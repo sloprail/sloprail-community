@@ -1,0 +1,6 @@
+74:  - Codex's cell never grounds the 'forked' start: the cited doc lists only 'How the session started: `startup`, `resume`, `clear`, or `compact`' (no fork), and the cited runs (stops, hook-exit-codes, hook-matchers) only show source "startup"; the only evidence is runs/session-fork, which is named in a deviation but not cited under codex runs. Cite runs/session-fork under codex runs, or drop 'f
+76:  - All three recorded runs (stops, hook-exit-codes, prompt-blocked) stream two `item.completed` `error` items between thread.started and turn.started, but streamShape in replay_test.go:154 filters error items out, so no noninteractive-run test asserts them or that the mock matches; the recordings also show a stream of only thread.started/turn.started/turn.completed with no items for a blocked 
+  - All three recorded runs (stops, hook-exit-codes, prompt-blocked) stream two `item.completed` `error` items between thread.started and turn.started, but streamShape in replay_test.go:154 filters er
+The files this refusal is about: codex-mock/e2e/001_hooks/session_fork_test.go, codex-mock/internal/runner/run.go, codex-mock/internal/session/file.go, codex-mock/internal/session/fork.go, codex-mock/
+
+[exited with code 0]

@@ -1,0 +1,26 @@
+the following rules refused this work:
+  - capability-once #1 breaks at spec/capabilities/session-start-hook.yaml:~32: the change joined `  cursor:` onto the end of the codex deviation's folded-scalar text line, so the cursor provider key is swallowed into the statement and the capability no longer has a cell for the cursor harness mock, though the Decision requires 'for every harness mock one of' supported, unsupported or pending; restore the line break so `cursor:` is its own provider key at the original indentation. (file-guard "adr-conformance")
+  - Capabilities not implemented, adapted or proven (adr/capability-once):
+- capability 'session-start-hook' has no cell for 'cursor': set it to {docs, runs}, {supported: false, reason, docs}, or "pending"
+- cursor-mock/internal/runner/run.go: sr:provides session-start-hook/cursor, but 'session-start-hook' has no supported cell for 'cursor' ({docs, runs}); a pending or unsupported cell is not coverage
+- cursor-mock/e2e/001_hooks/session_start_continue_test.go: sr:proves session-start-hook/cursor, but 'session-start-hook' has no supported cell for 'cursor' ({docs, runs}); a pending or unsupported cell is not coverage
+- cursor-mock/e2e/001_hooks/session_start_test.go: sr:proves session-start-hook/cursor, but 'session-start-hook' has no supported cell for 'cursor' ({docs, runs}); a pending or unsupported cell is not coverage
+The files this refusal is about: spec/capabilities/session-start-hook.yaml (file-guard "capability-covered")
+  - the judge's prepare step refused (before the model was asked): ./prepare.sh: line 49: DOC_ERROR: unbound variable
+The files this refusal is about: cursor-mock/snapshots/MANIFEST.yaml, spec/capabilities/session-fork.yaml, spec/capabilities/session-start-hook.yaml (file-guard "capability-grounded")
+  - Not judged yet: the judge's inputs are not ready. Fix these first, under the rule each names:
+- session-start-hook/codex: no snapshot in codex-mock/snapshots/MANIFEST.yaml freezes https://cursor.com/docs/hooks (file-guard/snapshots-current owns this)
+The files this refusal is about: codex-mock/e2e/001_hooks/session_fork_test.go, codex-mock/exec.go, codex-mock/internal/runner/run.go, codex-mock/internal/session/file.go, codex-mock/internal/session/fork.go, codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/session-fork/run.yaml, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/SEAL, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/events.jsonl, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/exit.txt (and 32 more) (file-guard "capability-rigor")
+  - Files that do not match their schema (.sloprail/schemas/):
+spec/capabilities/session-start-hook.yaml: document does not parse: conflicting values "https://cursor.com/docs/hooks#sessionstart" and "https://developers.openai.com/codex/hooks#sessionstart" (file-guard "shapes")
+  - Snapshots of the real harness are stale, broken or unused:
+- run codex/session-start-continue-false is cited by no capability: cite it, or delete it
+- capability 'session-start-hook' cites codex doc 'https://cursor.com/docs/hooks', which no snapshot in codex-mock/snapshots/MANIFEST.yaml freezes
+The files this refusal is about: codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/session-fork/run.yaml, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/SEAL, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/events.jsonl, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/exit.txt, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/payloads.jsonl, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/stderr.txt, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/stream.jsonl, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/transcript/rollout-2026-10-03T16-53-51-01a10241-d1b4-78e0-88dc-aed362ca9401.jsonl, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/transcript/rollout-2026-10-03T16-53-59-01a10241-f42d-79c3-a7da-f73a7b2ee02b.jsonl (and 26 more) (file-guard "snapshots-current
+  - Snapshots of the real harness are stale, broken or unused:
+- run cursor/session-start-block is cited by no capability: cite it, or delete it
+- run cursor/session-start-continue-false is cited by no capability: cite it, or delete it
+The files this refusal is about: codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/session-fork/run.yaml, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/SEAL, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/events.jsonl, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/exit.txt, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/payloads.jsonl, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/stderr.txt, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/stream.jsonl, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/transcript/rollout-2026-10-03T16-53-51-01a10241-d1b4-78e0-88dc-aed362ca9401.jsonl, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/transcript/rollout-2026-10-03T16-53-59-01a10241-f42d-79c3-a7da-f73a7b2ee02b.jsonl (and 26 more) (file-guard "snapshots-current
+FINISHED
+
+[exited with code 0]

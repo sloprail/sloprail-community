@@ -1,0 +1,9 @@
+On branch worktree-agent-a609b196101dcb60e
+nothing to commit, working tree clean
+0
+sloprail: file-guard "snapshots-current": cheap checks 1m27.452s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 31.518s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 31.032s, judges 0s
+sloprail: file-guards evaluated in 8m22.219s (26 rules, concurrency 6)
+
+[exited with code 0]

@@ -1,0 +1,62 @@
+sloprail: judging "module-distinct" internal/tasks with "./distinct-concern.md.j2"
+sloprail: file-guard "capability-rigor" session-end-hook: ok (20/26 settled, 9m15s)
+sloprail: judged "capability-rigor" session-start-hook in 43s
+sloprail: judging "module-leaks" internal/tasks with "./leak-or-use.md.j2"
+sloprail: file-guard "capability-rigor" session-start-hook: refused (21/26 settled, 9m26s)
+sloprail: sr-checks run still working: 21/26 checks settled, 5 judging (9m30s elapsed)
+sloprail: judged "capability-rigor" task-notifications in 1m17s
+sloprail: judged "capability-rigor" tool-failure-hook in 1m0s
+sloprail: judged "module-distinct" internal/tasks in 41s
+sloprail: file-guard "capability-rigor" task-notifications: refused (22/26 settled, 9m54s)
+sloprail: file-guard "capability-rigor" tool-failure-hook: refused (23/26 settled, 9m57s)
+sloprail: file-guard "module-distinct" internal/tasks: ok (24/26 settled, 9m58s)
+sloprail: sr-checks run still working: 24/26 checks settled, 2 judging (10m0s elapsed)
+sloprail: judged "module-leaks" internal/tasks in 41s
+sloprail: file-guard "module-leaks" internal/tasks: ok (25/26 settled, 10m6s)
+sloprail: judged "concern-undeclared" changeset in 1m11s
+sloprail: file-guard "concern-undeclared" changeset: ok (26/26 settled, 10m13s)
+sloprail: file-guard "adr-conformance": cheap checks 835ms, judges 1m22.103s
+sloprail: file-guard "capability-covered": cheap checks 1m47.24s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 3.266s, judges 1m25.394s
+sloprail: file-guard "capability-rigor": cheap checks 3.641s, judges 1m3.989s
+sloprail: file-guard "capability-rigor": cheap checks 4.433s, judges 48.392s
+sloprail: file-guard "capability-rigor": cheap checks 2.671s, judges 58.903s
+sloprail: file-guard "capability-rigor": cheap checks 1.67s, judges 55.59s
+sloprail: file-guard "capability-rigor": cheap checks 2.961s, judges 53.573s
+sloprail: file-guard "capability-rigor": cheap checks 2.693s, judges 57.904s
+sloprail: file-guard "capability-rigor": cheap checks 3.422s, judges 1m22.922s
+sloprail: file-guard "capability-rigor": cheap checks 2.349s, judges 1m20.029s
+sloprail: file-guard "child-processes": cheap checks 4.438s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 269ms, judges 1m18.548s
+sloprail: file-guard "config-at-entry": cheap checks 6.932s, judges 0s
+sloprail: file-guard "file-size": cheap checks 5.271s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 10.972s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 367ms, judges 3.942s
+sloprail: file-guard "layering": cheap checks 7.185s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 47.005s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 1m55.24s, judges 0s
+sloprail: file-guard "module-distinct": cheap checks 224ms, judges 56.535s
+sloprail: file-guard "module-leaks": cheap checks 356ms, judges 51.855s
+sloprail: file-guard "shapes": cheap checks 6.367s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 1m28.813s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 33.011s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 35.387s, judges 0s
+sloprail: file-guards evaluated in 10m13.197s (26 rules, concurrency 6)
+the following rules refused this work:
+  - Capabilities not implemented, adapted or proven (adr/capability-once):
+- capability 'task-notifications' needs exactly one // sr:capability task-notifications, in internal/ (found 2)
+The files this refusal is about: codex-mock/snapshots/runs/task-notifications-bg/run.yaml, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/SEAL, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/events.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/exit.txt, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/payloads.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/stderr.txt, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/stream.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/transcript/rollout-2026-10-03T17-15-49-01a10255-f124-7171-9e27-ba75c4982a00.jsonl, codex-mock/snapshots/runs/task-notifications-bg/setup/hook.sh, codex-mock/snapshots/runs/task-notifications-bg/setup/hooks.json (and 30 more) (file-guard "capability-covered")
+  - Docs-stated behaviours have no test and no deviation: the tool_call frames carry .tool_call.<tool>.args on started and .tool_call.<tool>.result.success on completed (the progress script reads writeToolCall.args.path and result.success.linesCreated), but the tests only compare frame type/subtype/tool/outcome and the shell stdout; and the how-it-works claim that print mode without --force only proposes changes while --force applies them is never exercised.
+The files this refusal is about: codex-mock/snapshots/runs/task-notifications-bg/run.yaml, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/SEAL, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/events.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/exit.txt, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/payloads.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/stderr.txt, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/stream.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/transcript/rollout-2026-10-03T17-15-49-01a10255-f124-7171-9e27-ba75c4982a00.jsonl, codex-mock/snapshots/runs/task-notifications-bg/setup/hook.sh, codex-mock/snapshots/runs/task-notifications-bg/setup/hooks.json (and 29 more) (file-guard "capability-rigor")
+  - The only test (TestAfterAToolSucceedsTheHookGetsItsInputItsOutputAndHowLongItTook) replays just file-tools, so it never checks the Shell postToolUse recorded in tool-failure and pretool-refusal (tool_output {"output":"FINE
+The files this refusal is about: codex-mock/snapshots/runs/task-notifications-bg/run.yaml, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/SEAL, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/events.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/exit.txt, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/payloads.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/stderr.txt, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/stream.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/transcript/rollout-2026-10-03T17-15-49-01a10255-f124-7171-9e27-ba75c4982a00.jsonl, codex-mock/snapshots/runs/task-notifications-bg/setup/hook.sh, codex-mock/snapshots/runs/task-notifications-bg/setup/hooks.json (and 29 more) (file-guard "capability-rigor")
+  - The only test (session_start_test.go) covers the exit-2 block run, but the cursor doc for sessionStart also says the schema accepts `continue` and that session creation is not blocked even when `continue` is false (and that the hook is fire-and-forget, so the loop does not wait on it). No test makes a sessionStart hook return {"continue": false} and checks the session still runs. The symlinked-cwd run, which records no transcript file at sessionStart and a session_id equal to conversation_id, is not driven by any test either.
+The files this refusal is about: codex-mock/snapshots/runs/task-notifications-bg/run.yaml, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/SEAL, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/events.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/exit.txt, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/payloads.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/stderr.txt, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/stream.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/transcript/rollout-2026-10-03T17-15-49-01a10255-f124-7171-9e27-ba75c4982a00.jsonl, codex-mock/snapshots/runs/task-notifications-bg/setup/hook.sh, codex-mock/snapshots/runs/task-notifications-bg/setup/hooks.json (and 29 more) (file-guard "capability-rigor")
+  - task-notifications/claude: the sub-agents doc (section 'Run subagents in foreground or background') says a background subagent can leave a background Bash command running past the end of its turn and that when it ends Claude Code sends the subagent a notification. No test marked `sr:proves task-notifications/claude` covers this (the three proving tests only cover the root session's own background Bash and a background Agent's completion notification), and no recorded run shows it. The doc's 30-minute/timeout stop of a background command, which 'tells Claude why', is also untested for this capability. Add a test and a run for a subagent-owned background command's notification.
+The files this refusal is about: codex-mock/snapshots/runs/task-notifications-bg/run.yaml, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/SEAL, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/events.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/exit.txt, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/payloads.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/stderr.txt, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/stream.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/transcript/rollout-2026-10-03T17-15-49-01a10255-f124-7171-9e27-ba75c4982a00.jsonl, codex-mock/snapshots/runs/task-notifications-bg/setup/hook.sh, codex-mock/snapshots/runs/task-notifications-bg/setup/hooks.json (and 29 more) (file-guard "capability-rigor")
+  - TestACallThatSucceedsFiresTheSuccessHook asserts a successful Read raises "preToolUse postToolUse", but the file-tools recording shows "preToolUse beforeReadFile postToolUse" (beforeReadFile payload with content "hi
+The files this refusal is about: codex-mock/snapshots/runs/task-notifications-bg/run.yaml, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/SEAL, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/events.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/exit.txt, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/payloads.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/stderr.txt, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/stream.jsonl, codex-mock/snapshots/runs/task-notifications-bg/samples/20261003-151547/transcript/rollout-2026-10-03T17-15-49-01a10255-f124-7171-9e27-ba75c4982a00.jsonl, codex-mock/snapshots/runs/task-notifications-bg/setup/hook.sh, codex-mock/snapshots/runs/task-notifications-bg/setup/hooks.json (and 29 more) (file-guard "capability-rigor")
+  - Files that do not match their schema (.sloprail/schemas/):
+spec/capabilities/task-notifications.yaml: #Capability.providers.cursor.docs.0: incomplete value =~"^https://[^\\s#]+#[a-z0-9-]+$" (file-guard "shapes")
+
+[exited with code 0]

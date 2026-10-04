@@ -1,0 +1,27 @@
+sloprail: file-guard "capability-rigor": cheap checks 4.793s, judges 53.819s
+sloprail: file-guard "capability-rigor": cheap checks 2.699s, judges 57.723s
+sloprail: file-guard "child-processes": cheap checks 4.691s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 247ms, judges 1m1.803s
+sloprail: file-guard "config-at-entry": cheap checks 7.066s, judges 0s
+sloprail: file-guard "file-size": cheap checks 5.33s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 9.052s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 289ms, judges 8.295s
+sloprail: file-guard "layering": cheap checks 6.888s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 49.767s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 1m28.746s, judges 0s
+sloprail: file-guard "module-distinct": cheap checks 793ms, judges 48.99s
+sloprail: file-guard "module-leaks": cheap checks 243ms, judges 43.902s
+sloprail: file-guard "module-leaks": cheap checks 3.427s, judges 0s
+sloprail: file-guard "module-leaks": cheap checks 253ms, judges 31.214s
+sloprail: file-guard "shapes": cheap checks 4.814s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 1m3.293s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 24.957s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 25.361s, judges 0s
+sloprail: file-guards evaluated in 10m20.258s (26 rules, concurrency 6)
+the following rules refused this work:
+  - The doc (hooks#sessionend) says SessionEnd "won't run for subagents", and the mock models sub-agents, but no test with a sub-agent turn asserts that SessionEnd fires only once for the main thread and not for the sub-agent; the reason=other, last-in-order, async-synchronous and output-not-recorded items are covered.
+The files this refusal is about: codex-mock/e2e/001_hooks/subagent_test.go, codex-mock/internal/runner/agent_host.go, codex-mock/internal/runner/run.go, codex-mock/snapshots/runs/subagent-lifecycle-hooks/run.yaml, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/SEAL, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/events.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/exit.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/payloads.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stderr.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stream.jsonl (and 30 more) (file-guard "capability-rigor")
+  - The recorded runs are matched well, but no test covers the behaviours the codex docs state for these hooks: SubagentStop `decision:"block"` or exit 2 continuing the sub-agent (with `stop_hook_active` true on the next stop), `continue:false` on SubagentStop taking precedence, and SubagentStart stdout (plain text or `hookSpecificOutput.additionalContext`) being added as developer context for the sub-agent.
+The files this refusal is about: codex-mock/e2e/001_hooks/subagent_test.go, codex-mock/internal/runner/agent_host.go, codex-mock/internal/runner/run.go, codex-mock/snapshots/runs/subagent-lifecycle-hooks/run.yaml, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/SEAL, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/events.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/exit.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/payloads.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stderr.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stream.jsonl (and 30 more) (file-guard "capability-rigor")
+
+[exited with code 0]

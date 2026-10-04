@@ -1,0 +1,8 @@
+Rebasing (1/5)Rebasing (2/5)Rebasing (3/5)Rebasing (4/5)Rebasing (5/5)                                                                                Successfully rebased and updated refs/heads/worktree-agent-a609b196101dcb60e.
+3
+the following rules refused this work:
+  - spec/capabilities/transcript-record-envelope.yaml codex cell: the second deviation cites `adr: modeled-surface` for the missing per-turn turn_context record, but that ADR's Decision lets a deviation cite it only for the listed out-of-model parts (slash commands, unimplemented tools, unfired hook events, announced-only file effects, aborts, impossible failures, diagnostic reference text, background limits), and a transcript record is not one of them; cite the ADR that actually covers it instead. (file-guard "adr-conformance")
+  - The doc (common-input-fields, line 476) types transcript_path as `string | null` ("if any"), a variant no test covers and no deviation declares. TestTranscriptIsADayAndSessionIDFileThatExistsAtStart skips payloads without a string transcript_path (`continue`) and only checks the one fresh startup session. It also never checks that the Stop payload names the same path as SessionStart, or that the dated directory matches the start day.
+The files this refusal is about: codex-mock/e2e/001_hooks/envelope_test.go, codex-mock/internal/session/file.go, codex-mock/internal/session/meta.go, spec/capabilities/transcript-record-envelope.yaml (file-guard "capability-rigor")
+
+[exited with code 0]

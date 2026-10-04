@@ -1,0 +1,36 @@
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (30s elapsed)
+sloprail: file-guard "config-at-entry" changeset: ok (1/11 settled, 59s)
+sloprail: sr-checks run still working: 1/11 checks settled, 0 judging (1m0s elapsed)
+sloprail: file-guard "child-processes" changeset: ok (2/11 settled, 1m1s)
+sloprail: file-guard "file-size" changeset: ok (3/11 settled, 1m2s)
+sloprail: file-guard "layering" changeset: ok (4/11 settled, 1m4s)
+sloprail: file-guard "invariant-covered" changeset: ok (5/11 settled, 1m5s)
+sloprail: file-guard "module-boundaries" changeset: ok (6/11 settled, 1m30s)
+sloprail: sr-checks run still working: 6/11 checks settled, 0 judging (1m30s elapsed)
+sloprail: file-guard "capability-covered" changeset: ok (7/11 settled, 1m50s)
+sloprail: judging "concern-undeclared" changeset with "./classify.md.j2"
+sloprail: judging "capability-rigor" stop-hook-payload with "./tests-prove-as-documented.md.j2"
+sloprail: file-guard "invariant-rigor" unclaimed: ok (8/11 settled, 1m53s)
+sloprail: judging "capability-rigor" stop-block-continuation with "./tests-prove-as-documented.md.j2"
+sloprail: sr-checks run still working: 8/11 checks settled, 3 judging (2m0s elapsed)
+sloprail: judged "concern-undeclared" changeset in 19s
+sloprail: file-guard "concern-undeclared" changeset: ok (9/11 settled, 2m10s)
+sloprail: judged "capability-rigor" stop-hook-payload in 32s
+sloprail: file-guard "capability-rigor" stop-hook-payload: refused (10/11 settled, 2m25s)
+sloprail: sr-checks run still working: 10/11 checks settled, 1 judging (2m30s elapsed)
+sloprail: judged "capability-rigor" stop-block-continuation in 39s
+sloprail: file-guard "capability-rigor" stop-block-continuation: refused (11/11 settled, 2m32s)
+sloprail: file-guard "capability-covered": cheap checks 52.675s, judges 0s
+sloprail: file-guard "capability-rigor": cheap checks 2.57s, judges 42.369s
+sloprail: file-guard "capability-rigor": cheap checks 2.763s, judges 35.575s
+sloprail: file-guard "child-processes": cheap checks 3.583s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 733ms, judges 20.674s
+sloprail: file-guard "config-at-entry": cheap checks 1.992s, judges 0s
+sloprail: file-guard "file-size": cheap checks 3.775s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 5.794s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 142ms, judges 2.984s
+sloprail: file-guard "layering": cheap checks 4.21s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 29.711s, judges 0s
+sloprail: file-guards evaluated in 2m32.085s (26 rules, concurrency 6)
+
+[exited with code 0]

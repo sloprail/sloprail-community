@@ -1,0 +1,30 @@
+    runs:
+      - claude-mock/snapshots/runs/resume-unknown
+  codex:
+    docs:
+      - https://developers.openai.com/codex/noninteractive#resume-a-non-interactive-session
+    runs:
+      - codex-mock/snapshots/runs/session-resume-unknown
+    deviations:
+      - adr: capability-grounding
+        statement: >-
+          Codex fails the resume before it starts any session, so no hook
+          fires at all: the end-of-session hook the statement has does not
+          fire (recorded: runs/session-resume-unknown, no hook payload at
+          all), and the mock fires none either. The message is a no-rollout
+          one on stderr, and the exit is 1.
+  cursor:
+    supported: false
+    reason: cursor-agent --resume with an unknown session id does not fail; it runs a new session under that id and exits 0.
+    runs:
+      - cursor-mock/snapshots/runs/session-resume-unknown
+sloprail: file-guard "module-boundaries": cheap checks 4.828s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 5.26s, judges 0s
+sloprail: file-guard "module-leaks": cheap checks 5.833s, judges 0s
+sloprail: file-guard "shapes": cheap checks 5.94s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 52.851s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 20.445s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 23.855s, judges 0s
+sloprail: file-guards evaluated in 4m56.307s (26 rules, concurrency 6)
+
+[exited with code 0]

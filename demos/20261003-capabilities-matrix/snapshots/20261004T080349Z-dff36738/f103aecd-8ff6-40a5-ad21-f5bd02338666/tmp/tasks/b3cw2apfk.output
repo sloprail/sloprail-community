@@ -1,0 +1,5 @@
+# github.com/sloprail/harness-mocks/cursor-mock/internal/runner
+cursor-mock/internal/runner/background_wait.go:45:6: notificationFrame redeclared in this block
+	cursor-mock/internal/runner/background.go:116:6: other declaration of notificationFrame
+
+[exited with code 0]

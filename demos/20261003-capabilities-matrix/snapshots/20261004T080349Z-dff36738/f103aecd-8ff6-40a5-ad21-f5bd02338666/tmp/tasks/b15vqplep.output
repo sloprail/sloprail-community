@@ -1,0 +1,9 @@
+pending cells on main: 29; merged PRs: 90; open: 3
+#109 codex: transcript-record-envelope supported, cursor unsupported
+#108 rules: a doc re-freeze or an edited declaration touches only the capabilities whose judges read it
+#106 codex: subagent-lifecycle-hooks supported; cursor: unsupported
+#105 codex, cursor: task-notifications (codex unsupported, cursor supported)
+#104 codex, cursor: agent-input-validation cells supported, recorded with the real harnesses
+#103 codex, cursor: session-resume-unknown cells
+
+[exited with code 0]

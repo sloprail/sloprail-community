@@ -1,0 +1,9 @@
+87036ed1 cursor, codex: foreground-subagent-bash-ends-with-response (cursor supported with deviations, codex unsupported), recorded
+696edd74 rules: a doc re-freeze or an edited declaration touches only the capabilities whose judges read it (#108)
+sloprail: file-guard "module-distinct" internal/subagents: refused (17/20 settled, 3m0s)
+sloprail: file-guard "module-leaks" internal/tasks: refused (20/20 settled, 3m16s)
+the following rules refused this work:
+  - The glob cursor-mock/internal/runner/agent*.go claims cursor-mock/internal/runner/agent_aborted.go, which builds a system task_notification frame (status aborted) for a background shell. That is the tasks module's concern of delivering background-task notifications, and background.go builds the same frame shape. Move it into the tasks home (for example as background_aborted.go, matched by curs
+  - Checklist: (1) cursor-mock/internal/runner/agent_aborted.go:15 builds the system/task_notification frame by hand, duplicating notificationFrame in cursor-mock/internal/runner/background.go:119-127 (leak: move abortedFrame into background*.go, or give notificationFrame a status parameter, and call that); (2) agent_task.go:25 `run_in_background` field of the Task input struct, used only to exclu
+
+[exited with code 0]

@@ -1,0 +1,6 @@
+pending cells on main: 6; merged PRs: 113; open: 4
+#134 codex: tests/recordings for noninteractive-run (git-repo check, --output-schema)
+#133 codex, cursor: foreground-subagent-result supported
+#131 codex, cursor: plugin-hooks cells supported, recorded in runs/plugin-hooks
+
+[exited with code 0]

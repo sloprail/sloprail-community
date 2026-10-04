@@ -1,0 +1,4 @@
+[{'adr': 'capability-grounding', 'statement': "Codex has no block cap for a sub-agent's stop hook; a hook that blocked 15 times in a row had the sub-agent run again each time, so the loop ends only when the hook lets it stop."}]
+The Codex doc for SubagentStop says that if any matching SubagentStop hook returns `continue: false`, it takes precedence over the other hooks' block decisions, so the sub-agent stops instead of running again. No test in codex-mock/e2e/001_hooks/subagent_stop_test.go exercises it, and neither recorded run shows it. The other checklist items are covered: block by JSON and by exit 2 with the reasons in the sub-agent's own rollout, `stop_hook_active` flipping to true, the matcher on `agent_type`, `agent_transcript_path`, and the uncapped 15-block deviation. (file-guard "capability-rigor")
+
+[exited with code 0]

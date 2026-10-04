@@ -1,0 +1,264 @@
+=== hook-exit-codes
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)\"/hook.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)\"/hook.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)\"/hook.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)\"/hook.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)\"/hook.sh"
+          }
+        ]
+#!/bin/sh
+# One hook for every event; each event exits with the code the scenario
+# exercises, and logs its payload and that code.
+IN=$(cat)
+printf '%s\n' "$IN" >>"$HOOK_LOG"
+ev=$(printf '%s' "$IN" | jq -r '.hook_event_name')
+tool=$(printf '%s' "$IN" | jq -r '.tool_name // ""')
+code=0
+case "$ev" in
+  SessionStart) echo "session-start stderr on exit 2" >&2; code=2 ;;
+  UserPromptSubmit) echo "The secret word is BANANA." ;;
+  PreToolUse) cmd=$(printf '%s' "$IN" | jq -r '.tool_input.command // ""')
+    case "$cmd" in *"echo one"*) echo "Blocked: echo one is off in this scenario" >&2; code=2 ;; esac ;;
+  PostToolUse) echo "post-tool warning on exit 1" >&2; code=1 ;;
+  Stop) if [ ! -f "$TMPDIR/stop-blocked-once" ]; then : >"$TMPDIR/stop-blocked-once"; echo "Before finishing, reply with the single word STOPPED-ONCE." >&2; code=2; fi ;;
+esac
+printf '{"hook_result":{"event":"%s","tool":"%s","exit":%s}}\n' "$ev" "$tool" "$code" >>"$HOOK_LOG"
+exit $code
+["session_meta","","{\"session_id\":\"01a0f77e-0a26-7542-a49b-f57de1e86220\",\"id\":\"01a0f77e-0a26-7542-a49b-f57de1e86220\",\"timestamp\":\"2026-10-01T12:43:48.162Z\",\"cwd\":\"<RUN>\",\"runtime_workspace_roots\":[\"<RUN>\"],\"originator\":\"codex_exec\",\"cli_version\":\"0.159.3\",\"source\":\"exec\",\"thread_"]
+["event_msg","task_started","{\"type\":\"task_started\",\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"root_turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"started_at\":1790858628,\"model_context_window\":258400,\"collaboration_mode_kind\":\"default\"}"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77e-122a-7471-9c1e-377ea745798c\",\"role\":\"developer\",\"content\":[{\"type\":\"input_text\",\"text\":\"<skills_instructions>\\n## Skills\\nA skill is a set of local instructions to follow that is stored in a `SKILL.md` file. Below is the li"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77e-122a-7471-9c1e-378430a76603\",\"role\":\"user\",\"content\":[{\"type\":\"input_text\",\"text\":\"<environment_context>\\n  <cwd><RUN></cwd>\\n  <shell>zsh</shell>\\n  <current_date>2026-10-01</current_date>\\n  <timezone>Europe/Berlin</timez"]
+["turn_context","","{\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"root_turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"disabled_plugin_ids\":[],\"cwd\":\"<RUN>\",\"workspace_roots\":[\"<RUN>\"],\"current_date\":\"2026-10-01\",\"timezone\":\"Europe/Berlin\",\"approval_policy\":\"never\",\"approva"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77e-135b-7252-ac88-4a9f67c30a8b\",\"role\":\"user\",\"content\":[{\"type\":\"input_text\",\"text\":\"Make every shell command its own separate tool call, never combined with another command or put in a script. Do these steps in order. 1) Run"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77e-0a26-7542-a49b-f57de1e86220\",\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"item\":{\"type\":\"UserMessage\",\"id\":\"01a0f77e-135b-7252-ac88-4aa8c1156e18\",\"content\":[{\"type\":\"text\",\"text\":\"Make every shell command its"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77e-135d-76b3-82ba-c69b29ad95df\",\"role\":\"developer\",\"content\":[{\"type\":\"input_text\",\"text\":\"The secret word is BANANA.\"}],\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"create_ti"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77e-0a26-7542-a49b-f57de1e86220\",\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"item\":{\"type\":\"Reasoning\",\"id\":\"rs_0d0d7b4960580ce9016abe5587869087d299dce5d507f0637f\",\"summary_text\":[],\"raw_content\":[]},\"started_at"]
+["response_item","reasoning","{\"type\":\"reasoning\",\"id\":\"rs_0d0d7b4960580ce9016abe5587869087d299dce5d507f0637f\",\"summary\":[],\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\"}}"]
+["response_item","custom_tool_call","{\"type\":\"custom_tool_call\",\"id\":\"ctc_0d0d7b4960580ce9016abe5588492887d2a09583fd8077a418\",\"status\":\"completed\",\"call_id\":\"call_kfq5GjfMVqyGGwDJxASzAB5P\",\"name\":\"exec\",\"input\":\"const r = await tools.exec_command({cmd:\\\"echo one\\\", shell:\\\"zsh\\\", login:false});\\n"]
+["response_item","custom_tool_call_output","{\"type\":\"custom_tool_call_output\",\"id\":\"ctco_01a0f77e-1ebb-7e61-a9d1-43e9f2e69a5e\",\"call_id\":\"call_kfq5GjfMVqyGGwDJxASzAB5P\",\"output\":[{\"type\":\"input_text\",\"text\":\"Script failed\\nWall time 0.1 seconds\\nOutput:\\n\"},{\"type\":\"input_text\",\"text\":\"Script error:\\nCo"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77e-1ec4-7343-b03f-9b3e379c1b84\",\"role\":\"developer\",\"content\":[{\"type\":\"input_text\",\"text\":\"<plugins_instructions>\\n## Plugins\\nA plugin is a local bundle of skills, MCP servers, and apps.\\n### How to use plugins\\n- Skill namin"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77e-0a26-7542-a49b-f57de1e86220\",\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"item\":{\"type\":\"Reasoning\",\"id\":\"rs_0d0d7b4960580ce9016abe558a9ee087d2823f12386433769f\",\"summary_text\":[],\"raw_content\":[]},\"started_at"]
+["response_item","reasoning","{\"type\":\"reasoning\",\"id\":\"rs_0d0d7b4960580ce9016abe558a9ee087d2823f12386433769f\",\"summary\":[],\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\"}}"]
+["response_item","custom_tool_call","{\"type\":\"custom_tool_call\",\"id\":\"ctc_0d0d7b4960580ce9016abe558ae1f887d29e44b7f52e0b562b\",\"status\":\"completed\",\"call_id\":\"call_PgGXuigW4KEt8LK0Y7BuzBTI\",\"name\":\"exec\",\"input\":\"const r = await tools.exec_command({cmd:\\\"ls /nonexistent-dir-for-this-run\\\", shell:\\"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77e-0a26-7542-a49b-f57de1e86220\",\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"item\":{\"type\":\"CommandExecution\",\"id\":\"exec-e1da67d4-0817-4ed1-bc93-f24e44424441\",\"process_id\":\"79429\",\"command\":[\"/bin/zsh\",\"-c\",\"ls "]
+["response_item","custom_tool_call_output","{\"type\":\"custom_tool_call_output\",\"id\":\"ctco_01a0f77e-2ac4-7c40-9ae1-aa0c5b2c13fb\",\"call_id\":\"call_PgGXuigW4KEt8LK0Y7BuzBTI\",\"output\":[{\"type\":\"input_text\",\"text\":\"Script completed\\nWall time 0.1 seconds\\nOutput:\\n\"},{\"type\":\"input_text\",\"text\":\"ls: /nonexiste"]
+["response_item","custom_tool_call","{\"type\":\"custom_tool_call\",\"id\":\"ctc_0d0d7b4960580ce9016abe558e039c87d2b2e9d1ca50772f34\",\"status\":\"completed\",\"call_id\":\"call_AUruzQavaERE166zp1zxVYEZ\",\"name\":\"exec\",\"input\":\"const r = await tools.exec_command({cmd:\\\"echo three\\\", shell:\\\"zsh\\\", login:false});"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77e-0a26-7542-a49b-f57de1e86220\",\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"item\":{\"type\":\"CommandExecution\",\"id\":\"exec-cb79f86f-f0b5-48a4-b1f2-988320b8f924\",\"process_id\":\"70146\",\"command\":[\"/bin/zsh\",\"-c\",\"ech"]
+["response_item","custom_tool_call_output","{\"type\":\"custom_tool_call_output\",\"id\":\"ctco_01a0f77e-3557-75d2-b772-e66679d714bb\",\"call_id\":\"call_AUruzQavaERE166zp1zxVYEZ\",\"output\":[{\"type\":\"input_text\",\"text\":\"Script completed\\nWall time 0.1 seconds\\nOutput:\\n\"},{\"type\":\"input_text\",\"text\":\"three\\n\"}],\"in"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77e-0a26-7542-a49b-f57de1e86220\",\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"item\":{\"type\":\"Reasoning\",\"id\":\"rs_0d0d7b4960580ce9016abe558fbc6887d2949db9a0a3a91d2a\",\"summary_text\":[],\"raw_content\":[]},\"started_at"]
+["response_item","reasoning","{\"type\":\"reasoning\",\"id\":\"rs_0d0d7b4960580ce9016abe558fbc6887d2949db9a0a3a91d2a\",\"summary\":[],\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\"}}"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77e-0a26-7542-a49b-f57de1e86220\",\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"item\":{\"type\":\"AgentMessage\",\"id\":\"msg_0d0d7b4960580ce9016abe558ff62c87d2b91b4e4c4df75b10\",\"content\":[{\"type\":\"Text\",\"text\":\"BANANA\"}]"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_0d0d7b4960580ce9016abe558ff62c87d2b91b4e4c4df75b10\",\"role\":\"assistant\",\"content\":[{\"type\":\"output_text\",\"text\":\"BANANA\"}],\"phase\":\"final_answer\",\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f1"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77e-3b0b-7462-b5c5-ccc1c0f8a4cb\",\"role\":\"user\",\"content\":[{\"type\":\"input_text\",\"text\":\"<hook_prompt hook_run_id=\\\"stop:4:<TMP>/home/.codex/hooks.json\\\">Before finishing, reply with the single word STOPPED-ONCE.</hook_prompt>\"}]"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77e-0a26-7542-a49b-f57de1e86220\",\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"item\":{\"type\":\"HookPrompt\",\"id\":\"msg_01a0f77e-3b0b-7462-b5c5-ccc1c0f8a4cb\",\"fragments\":[{\"text\":\"Before finishing, reply with the sing"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77e-0a26-7542-a49b-f57de1e86220\",\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"item\":{\"type\":\"Reasoning\",\"id\":\"rs_0d0d7b4960580ce9016abe5591ef3487d2a043e0ab384dd85b\",\"summary_text\":[],\"raw_content\":[]},\"started_at"]
+["response_item","reasoning","{\"type\":\"reasoning\",\"id\":\"rs_0d0d7b4960580ce9016abe5591ef3487d2a043e0ab384dd85b\",\"summary\":[],\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\"}}"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77e-0a26-7542-a49b-f57de1e86220\",\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"item\":{\"type\":\"AgentMessage\",\"id\":\"msg_0d0d7b4960580ce9016abe5593209087d2b7e35d15739e4c5b\",\"content\":[{\"type\":\"Text\",\"text\":\"STOPPED-O"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_0d0d7b4960580ce9016abe5593209087d2b7e35d15739e4c5b\",\"role\":\"assistant\",\"content\":[{\"type\":\"output_text\",\"text\":\"STOPPED-ONCE\"}],\"phase\":\"final_answer\",\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77e-0c4d-7170-881e-"]
+["event_msg","task_complete","{\"type\":\"task_complete\",\"turn_id\":\"01a0f77e-0c4d-7170-881e-abe5f18ab46c\",\"last_agent_message\":\"STOPPED-ONCE\",\"started_at\":1790858628,\"completed_at\":1790858643,\"duration_ms\":15217,\"time_to_first_token_ms\":4113}"]
+=== stops
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)\"/hook.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)\"/hook.sh"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)\"/hook.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)\"/hook.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)\"/hook.sh"
+          }
+        ]
+#!/bin/sh
+# Every event logs its payload. PreToolUse refuses DENYME by JSON and EXIT2ME
+# by exit 2; Stop blocks by JSON, then by exit 2, then lets the turn end.
+IN=$(cat)
+printf '%s\n' "$IN" >>"$HOOK_LOG"
+EV=$(printf '%s' "$IN" | jq -r '.hook_event_name')
+case "$EV" in
+  SessionStart) echo '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"SS-CTX"}}' ;;
+  PreToolUse)
+    if printf '%s' "$IN" | grep -q DENYME; then echo '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"DENY-REASON"}}'; fi
+    if printf '%s' "$IN" | grep -q EXIT2ME; then echo "PRE-BLOCK-MSG" >&2; exit 2; fi ;;
+  Stop)
+    N=$(cat "$TMPDIR/stopn" 2>/dev/null || echo 0); N=$((N + 1)); echo $N >"$TMPDIR/stopn"
+    if [ $N = 1 ]; then echo '{"decision":"block","reason":"BLOCK-JSON-REASON"}'; exit 0; fi
+    if [ $N = 2 ]; then echo "BLOCK-EXIT2-REASON" >&2; exit 2; fi ;;
+esac
+exit 0
+["session_meta","","{\"session_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"timestamp\":\"2026-10-01T12:43:20.639Z\",\"cwd\":\"<RUN>\",\"runtime_workspace_roots\":[\"<RUN>\"],\"originator\":\"codex_exec\",\"cli_version\":\"0.159.3\",\"source\":\"exec\",\"thread_"]
+["event_msg","task_started","{\"type\":\"task_started\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"root_turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"started_at\":1790858600,\"model_context_window\":258400,\"collaboration_mode_kind\":\"default\"}"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77d-a778-7ce3-907f-d105646d7a3d\",\"role\":\"developer\",\"content\":[{\"type\":\"input_text\",\"text\":\"<skills_instructions>\\n## Skills\\nA skill is a set of local instructions to follow that is stored in a `SKILL.md` file. Below is the li"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77d-a778-7ce3-907f-d1175cd85b8a\",\"role\":\"user\",\"content\":[{\"type\":\"input_text\",\"text\":\"<environment_context>\\n  <cwd><RUN></cwd>\\n  <shell>zsh</shell>\\n  <current_date>2026-10-01</current_date>\\n  <timezone>Europe/Berlin</timez"]
+["turn_context","","{\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"root_turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"disabled_plugin_ids\":[],\"cwd\":\"<RUN>\",\"workspace_roots\":[\"<RUN>\"],\"current_date\":\"2026-10-01\",\"timezone\":\"Europe/Berlin\",\"approval_policy\":\"never\",\"approva"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77d-a81d-78f1-bd72-8b0f5a47ac49\",\"role\":\"developer\",\"content\":[{\"type\":\"input_text\",\"text\":\"SS-CTX\"}],\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"create_time\":1790858602.52591"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77d-a850-73c2-8add-f2c3900e24c9\",\"role\":\"user\",\"content\":[{\"type\":\"input_text\",\"text\":\"Make every shell command its own separate tool call, never combined with another command or put in a script. Step 1: run the shell command: "]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"item\":{\"type\":\"UserMessage\",\"id\":\"01a0f77d-a850-73c2-8add-f2dcc2edcb0e\",\"content\":[{\"type\":\"text\",\"text\":\"Make every shell command its"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"item\":{\"type\":\"Reasoning\",\"id\":\"rs_065ab3a67778626b016abe556c31f087d2a8b0eef98b07cee3\",\"summary_text\":[],\"raw_content\":[]},\"started_at"]
+["response_item","reasoning","{\"type\":\"reasoning\",\"id\":\"rs_065ab3a67778626b016abe556c31f087d2a8b0eef98b07cee3\",\"summary\":[],\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\"}}"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"item\":{\"type\":\"AgentMessage\",\"id\":\"msg_065ab3a67778626b016abe556cff7487d2aba3e2f3f4a9354f\",\"content\":[{\"type\":\"Text\",\"text\":\"I’ll run "]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_065ab3a67778626b016abe556cff7487d2aba3e2f3f4a9354f\",\"role\":\"assistant\",\"content\":[{\"type\":\"output_text\",\"text\":\"I’ll run the three shell commands as separate tool calls, in order.\"}],\"phase\":\"commentary\",\"internal_chat_message_metad"]
+["response_item","custom_tool_call","{\"type\":\"custom_tool_call\",\"id\":\"ctc_065ab3a67778626b016abe556d3d9c87d29601d48244e87b88\",\"status\":\"completed\",\"call_id\":\"call_dP6RFh2IZahGeoB5IrfhO2QP\",\"name\":\"exec\",\"input\":\"const r = await tools.exec_command({cmd:\\\"echo DENYME\\\",workdir:\\\"<RUN>\\\",yield_time_"]
+["response_item","custom_tool_call_output","{\"type\":\"custom_tool_call_output\",\"id\":\"ctco_01a0f77d-b880-7082-a2ab-db277e60171a\",\"call_id\":\"call_dP6RFh2IZahGeoB5IrfhO2QP\",\"output\":[{\"type\":\"input_text\",\"text\":\"Script failed\\nWall time 0.1 seconds\\nOutput:\\n\"},{\"type\":\"input_text\",\"text\":\"Script error:\\nCo"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77d-b88b-7ec3-b2f1-01d2d90bc3c4\",\"role\":\"developer\",\"content\":[{\"type\":\"input_text\",\"text\":\"<plugins_instructions>\\n## Plugins\\nA plugin is a local bundle of skills, MCP servers, and apps.\\n### How to use plugins\\n- Skill namin"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"item\":{\"type\":\"Reasoning\",\"id\":\"rs_065ab3a67778626b016abe556fb23887d2851b6a26210de047\",\"summary_text\":[],\"raw_content\":[]},\"started_at"]
+["response_item","reasoning","{\"type\":\"reasoning\",\"id\":\"rs_065ab3a67778626b016abe556fb23887d2851b6a26210de047\",\"summary\":[],\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\"}}"]
+["response_item","custom_tool_call","{\"type\":\"custom_tool_call\",\"id\":\"ctc_065ab3a67778626b016abe55700ff887d2953b7f923d856156\",\"status\":\"completed\",\"call_id\":\"call_Sgwp7WokC9Q8pFstY9RrRR6B\",\"name\":\"exec\",\"input\":\"const r = await tools.exec_command({cmd:\\\"echo EXIT2ME\\\",workdir:\\\"<RUN>\\\",yield_time"]
+["response_item","custom_tool_call_output","{\"type\":\"custom_tool_call_output\",\"id\":\"ctco_01a0f77d-c3cf-78b2-a8a9-d75cc56b1039\",\"call_id\":\"call_Sgwp7WokC9Q8pFstY9RrRR6B\",\"output\":[{\"type\":\"input_text\",\"text\":\"Script failed\\nWall time 0.1 seconds\\nOutput:\\n\"},{\"type\":\"input_text\",\"text\":\"Script error:\\nCo"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"item\":{\"type\":\"Reasoning\",\"id\":\"rs_065ab3a67778626b016abe5573007c87d2be345213e26ced39\",\"summary_text\":[],\"raw_content\":[]},\"started_at"]
+["response_item","reasoning","{\"type\":\"reasoning\",\"id\":\"rs_065ab3a67778626b016abe5573007c87d2be345213e26ced39\",\"summary\":[],\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\"}}"]
+["response_item","custom_tool_call","{\"type\":\"custom_tool_call\",\"id\":\"ctc_065ab3a67778626b016abe557341e087d2b59532cfbb0794db\",\"status\":\"completed\",\"call_id\":\"call_f8N3ELMQQVixDBAQ51yxEnfQ\",\"name\":\"exec\",\"input\":\"const r = await tools.exec_command({cmd:\\\"echo FINE\\\",workdir:\\\"<RUN>\\\",yield_time_ms"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"item\":{\"type\":\"CommandExecution\",\"id\":\"exec-0e9ce8bc-667d-4077-a0e3-c50e69a4ddf2\",\"process_id\":\"39452\",\"command\":[\"/bin/zsh\",\"-lc\",\"ec"]
+["response_item","custom_tool_call_output","{\"type\":\"custom_tool_call_output\",\"id\":\"ctco_01a0f77d-d046-7f22-b020-779fdffe4082\",\"call_id\":\"call_f8N3ELMQQVixDBAQ51yxEnfQ\",\"output\":[{\"type\":\"input_text\",\"text\":\"Script completed\\nWall time 0.1 seconds\\nOutput:\\n\"},{\"type\":\"input_text\",\"text\":\"FINE\\n\"}],\"int"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"item\":{\"type\":\"AgentMessage\",\"id\":\"msg_065ab3a67778626b016abe55764f9087d2801925019cf37b53\",\"content\":[{\"type\":\"Text\",\"text\":\"DONE\"}],\""]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_065ab3a67778626b016abe55764f9087d2801925019cf37b53\",\"role\":\"assistant\",\"content\":[{\"type\":\"output_text\",\"text\":\"DONE\"}],\"phase\":\"final_answer\",\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77d-d6c0-7fb3-85ce-6bdca5b65697\",\"role\":\"user\",\"content\":[{\"type\":\"input_text\",\"text\":\"<hook_prompt hook_run_id=\\\"stop:4:<TMP>/home/.codex/hooks.json\\\">BLOCK-JSON-REASON</hook_prompt>\"}],\"internal_chat_message_metadata_passthro"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"item\":{\"type\":\"HookPrompt\",\"id\":\"msg_01a0f77d-d6c0-7fb3-85ce-6bdca5b65697\",\"fragments\":[{\"text\":\"BLOCK-JSON-REASON\",\"hookRunId\":\"stop:"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"item\":{\"type\":\"AgentMessage\",\"id\":\"msg_065ab3a67778626b016abe5577e44087d2a6fca5642703d5bb\",\"content\":[{\"type\":\"Text\",\"text\":\"DONE2\"}],"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_065ab3a67778626b016abe5577e44087d2a6fca5642703d5bb\",\"role\":\"assistant\",\"content\":[{\"type\":\"output_text\",\"text\":\"DONE2\"}],\"phase\":\"final_answer\",\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a176"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f77d-dd07-7030-a4df-5abd369e4591\",\"role\":\"user\",\"content\":[{\"type\":\"input_text\",\"text\":\"<hook_prompt hook_run_id=\\\"stop:4:<TMP>/home/.codex/hooks.json\\\">BLOCK-EXIT2-REASON</hook_prompt>\"}],\"internal_chat_message_metadata_passthr"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"item\":{\"type\":\"HookPrompt\",\"id\":\"msg_01a0f77d-dd07-7030-a4df-5abd369e4591\",\"fragments\":[{\"text\":\"BLOCK-EXIT2-REASON\",\"hookRunId\":\"stop"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"item\":{\"type\":\"Reasoning\",\"id\":\"rs_065ab3a67778626b016abe5579caa087d291c0fb1a382e3e64\",\"summary_text\":[],\"raw_content\":[]},\"started_at"]
+["response_item","reasoning","{\"type\":\"reasoning\",\"id\":\"rs_065ab3a67778626b016abe5579caa087d291c0fb1a382e3e64\",\"summary\":[],\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\"}}"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f77d-9eb6-75e2-bc4b-3d7c801284ba\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"item\":{\"type\":\"AgentMessage\",\"id\":\"msg_065ab3a67778626b016abe557a08b887d2ad95398b00200436\",\"content\":[{\"type\":\"Text\",\"text\":\"DONE2\"}],"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_065ab3a67778626b016abe557a08b887d2ad95398b00200436\",\"role\":\"assistant\",\"content\":[{\"type\":\"output_text\",\"text\":\"DONE2\"}],\"phase\":\"final_answer\",\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a176"]
+["event_msg","task_complete","{\"type\":\"task_complete\",\"turn_id\":\"01a0f77d-a0fb-77a0-9d8e-fd1a1769f5d4\",\"last_agent_message\":\"DONE2\",\"started_at\":1790858600,\"completed_at\":1790858618,\"duration_ms\":17519,\"time_to_first_token_ms\":4313}"]
+=== hook-timeout
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)\"/hook.sh slow",
+            "timeout": 1
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$(git rev-parse --show-toplevel)\"/hook.sh probe"
+          }
+        ]
+      }
+    ]
+  }
+}
+#!/bin/sh
+# slow: a PreToolUse hook that outlives its 1 second timeout, leaves a
+# grandchild running and has printed a deny that must be discarded.
+# probe: after the tool call, whether that grandchild is still alive.
+IN=$(cat)
+case "$1" in
+  slow)
+    sleep 30 &
+    echo $! >"$TMPDIR/grandchild"
+    echo '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"TIMEOUT-DENY"}}'
+    wait ;;
+  probe)
+    if kill -0 "$(cat "$TMPDIR/grandchild")" 2>/dev/null; then s=alive; else s=gone; fi
+    printf '{"grandchild":"%s"}\n' "$s" >>"$HOOK_LOG" ;;
+esac
+exit 0
+["session_meta","","{\"session_id\":\"01a0f8a4-a8c6-7290-9bcc-20cb98251043\",\"id\":\"01a0f8a4-a8c6-7290-9bcc-20cb98251043\",\"timestamp\":\"2026-10-01T18:05:36.437Z\",\"cwd\":\"<RUN>\",\"runtime_workspace_roots\":[\"<RUN>\"],\"originator\":\"codex_exec\",\"cli_version\":\"0.159.3\",\"source\":\"exec\",\"thread_"]
+["event_msg","task_started","{\"type\":\"task_started\",\"turn_id\":\"01a0f8a4-ab44-7a61-806b-5f719e8ca741\",\"root_turn_id\":\"01a0f8a4-ab44-7a61-806b-5f719e8ca741\",\"started_at\":1790877936,\"model_context_window\":258400,\"collaboration_mode_kind\":\"default\"}"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f8a4-b0ac-7423-ac4b-ec225c8071eb\",\"role\":\"developer\",\"content\":[{\"type\":\"input_text\",\"text\":\"<skills_instructions>\\n## Skills\\nA skill is a set of local instructions to follow that is stored in a `SKILL.md` file. Below is the li"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f8a4-b0ac-7423-ac4b-ec3295d18b15\",\"role\":\"user\",\"content\":[{\"type\":\"input_text\",\"text\":\"<environment_context>\\n  <cwd><RUN></cwd>\\n  <shell>zsh</shell>\\n  <current_date>2026-10-01</current_date>\\n  <timezone>Europe/Berlin</timez"]
+["turn_context","","{\"turn_id\":\"01a0f8a4-ab44-7a61-806b-5f719e8ca741\",\"root_turn_id\":\"01a0f8a4-ab44-7a61-806b-5f719e8ca741\",\"disabled_plugin_ids\":[],\"cwd\":\"<RUN>\",\"workspace_roots\":[\"<RUN>\"],\"current_date\":\"2026-10-01\",\"timezone\":\"Europe/Berlin\",\"approval_policy\":\"never\",\"approva"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f8a4-b0b2-7482-b84c-4765a64a3e61\",\"role\":\"user\",\"content\":[{\"type\":\"input_text\",\"text\":\"Make every shell command its own separate tool call, never combined with another command or put in a script. Run exactly this shell command,"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f8a4-a8c6-7290-9bcc-20cb98251043\",\"turn_id\":\"01a0f8a4-ab44-7a61-806b-5f719e8ca741\",\"item\":{\"type\":\"UserMessage\",\"id\":\"01a0f8a4-b0b2-7482-b84c-477573ca3552\",\"content\":[{\"type\":\"text\",\"text\":\"Make every shell command its"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f8a4-a8c6-7290-9bcc-20cb98251043\",\"turn_id\":\"01a0f8a4-ab44-7a61-806b-5f719e8ca741\",\"item\":{\"type\":\"Reasoning\",\"id\":\"rs_011f119fbfaacd54016abea0f31f9087d2ae62cc71b104f5f1\",\"summary_text\":[],\"raw_content\":[]},\"started_at"]
+["response_item","reasoning","{\"type\":\"reasoning\",\"id\":\"rs_011f119fbfaacd54016abea0f31f9087d2ae62cc71b104f5f1\",\"summary\":[],\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f8a4-ab44-7a61-806b-5f719e8ca741\"}}"]
+["response_item","custom_tool_call","{\"type\":\"custom_tool_call\",\"id\":\"ctc_011f119fbfaacd54016abea0f3b08487d2b05df74728ad965c\",\"status\":\"completed\",\"call_id\":\"call_1XITUzDBcnSEft6ljI8I1MwL\",\"name\":\"exec\",\"input\":\"const r = await tools.exec_command({cmd:\\\"echo one\\\",workdir:\\\"<RUN>\\\",yield_time_ms:"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f8a4-a8c6-7290-9bcc-20cb98251043\",\"turn_id\":\"01a0f8a4-ab44-7a61-806b-5f719e8ca741\",\"item\":{\"type\":\"CommandExecution\",\"id\":\"exec-6d19aade-167f-47c8-8119-9edc7ac546b9\",\"process_id\":\"54185\",\"command\":[\"/bin/zsh\",\"-lc\",\"ec"]
+["response_item","custom_tool_call_output","{\"type\":\"custom_tool_call_output\",\"id\":\"ctco_01a0f8a4-c241-7c43-87b6-bc9c0778e823\",\"call_id\":\"call_1XITUzDBcnSEft6ljI8I1MwL\",\"output\":[{\"type\":\"input_text\",\"text\":\"Script completed\\nWall time 1.1 seconds\\nOutput:\\n\"},{\"type\":\"input_text\",\"text\":\"one\\n\"}],\"inte"]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_01a0f8a4-c24b-78b2-bffa-06735dfc8655\",\"role\":\"developer\",\"content\":[{\"type\":\"input_text\",\"text\":\"<plugins_instructions>\\n## Plugins\\nA plugin is a local bundle of skills, MCP servers, and apps.\\n### How to use plugins\\n- Skill namin"]
+["event_msg","item_completed","{\"type\":\"item_completed\",\"thread_id\":\"01a0f8a4-a8c6-7290-9bcc-20cb98251043\",\"turn_id\":\"01a0f8a4-ab44-7a61-806b-5f719e8ca741\",\"item\":{\"type\":\"AgentMessage\",\"id\":\"msg_011f119fbfaacd54016abea0f7a1c087d2a5e615efa1e64f6e\",\"content\":[{\"type\":\"Text\",\"text\":\"DONE\"}],\""]
+["response_item","message","{\"type\":\"message\",\"id\":\"msg_011f119fbfaacd54016abea0f7a1c087d2a5e615efa1e64f6e\",\"role\":\"assistant\",\"content\":[{\"type\":\"output_text\",\"text\":\"DONE\"}],\"phase\":\"final_answer\",\"internal_chat_message_metadata_passthrough\":{\"turn_id\":\"01a0f8a4-ab44-7a61-806b-5f719e8c"]
+["event_msg","task_complete","{\"type\":\"task_complete\",\"turn_id\":\"01a0f8a4-ab44-7a61-806b-5f719e8ca741\",\"last_agent_message\":\"DONE\",\"started_at\":1790877936,\"completed_at\":1790877943,\"duration_ms\":7352,\"time_to_first_token_ms\":3280}"]

@@ -1,0 +1,7 @@
+LANDED
+76a8aaf1 codex: tests/recordings for session-start-hook (#137)
+2d68e598 codex, cursor: session-resume supported, recorded in runs/session-resume (#132)
+5cdf6477 cursor: tests/recordings for noninteractive-run (#136)
+beef75ff codex, cursor: subagent-transcripts supported, recorded in runs/subagent-transcripts-v2 and runs/subagent-transcripts (#120)
+
+[exited with code 0]

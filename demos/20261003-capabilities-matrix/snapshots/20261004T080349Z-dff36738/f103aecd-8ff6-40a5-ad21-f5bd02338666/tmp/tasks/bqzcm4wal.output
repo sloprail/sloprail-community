@@ -1,0 +1,5 @@
+# github.com/sloprail/harness-mocks/claude-mock/e2e/017_session_lifecycle
+# [github.com/sloprail/harness-mocks/claude-mock/e2e/017_session_lifecycle]
+vet: e2e/017_session_lifecycle/test_017_subagent_sidecar_test.go:39:6: keysOf redeclared in this block
+
+[exited with code 1]

@@ -1,0 +1,36 @@
+8:sloprail: file-guard "config-at-entry" changeset: refused (1/11 settled, 2m15s)
+9:sloprail: file-guard "adr-conformance" changeset: refused (2/11 settled, 2m16s)
+13:sloprail: file-guard "capability-rigor" hook-output-transcript-records: refused (6/11 settled, 2m24s)
+3cc192a1e01db853c9bbcf662457a67b3823b97e
+sloprail: waiting for another sr-checks run of this worktree over the same range to finish
+sloprail: waiting for another sr-checks run of this worktree over the same range to finish
+sloprail: waiting for another sr-checks run of this worktree over the same range to finish
+sloprail: waiting for another sr-checks run of this worktree over the same range to finish
+sloprail: waiting for another sr-checks run of this worktree over the same range to finish
+sloprail: waiting for another sr-checks run of this worktree over the same range to finish
+sloprail: waiting for another sr-checks run of this worktree over the same range to finish
+sloprail: waiting for another sr-checks run of this worktree over the same range to finish
+sloprail: waiting for another sr-checks run of this worktree over the same range to finish
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (30s elapsed)
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (1m0s elapsed)
+sloprail: file-guard "config-at-entry" changeset: refused (1/11 settled, 1m4s)
+sloprail: file-guard "capability-rigor" hook-output-transcript-records: refused (2/11 settled, 1m5s)
+sloprail: file-guard "adr-conformance" changeset: refused (3/11 settled, 1m6s)
+sloprail: file-guard "capability-rigor" transcript-record-envelope: ok (stored verdict) (4/11 settled, 1m9s)
+sloprail: file-guard "capability-rigor" session-transcript-file: ok (stored verdict) (5/11 settled, 1m10s)
+sloprail: file-guard "capability-grounded" transcript-record-envelope: ok (stored verdict) (6/11 settled, 1m12s)
+sloprail: file-guard "invariant-rigor" unclaimed: ok (stored verdict) (7/11 settled, 1m13s)
+sloprail: file-guard "module-leaks" no-leak-candidates: ok (stored verdict) (8/11 settled, 1m15s)
+sloprail: file-guard "snapshots-current" claude: ok (stored verdict) (9/11 settled, 1m17s)
+sloprail: file-guard "snapshots-current" codex: ok (stored verdict) (10/11 settled, 1m18s)
+sloprail: file-guard "snapshots-current" cursor: ok (stored verdict) (11/11 settled, 1m19s)
+sloprail: file-guards evaluated in 1m19.451s (26 rules, concurrency 6)
+the following rules refused this work:
+  - codex-mock/internal/session/meta.go:39 passes `Env: os.Environ()` to procexec.Run, breaking child-processes ('no child process gets `os.Environ()` directly'; environment facts come from the harness adapter via procexec) and mock-config ('No other code calls ... `os.Environ`'; read the environment once in the entrypoint into a config value passed down); take the environment from the entrypoint-provided configuration/adapter instead of calling os.Environ in the session package. (file-guard "adr-conformance")
+  - The docs say PreToolUse and PostToolUse additionalContext is added as developer context (doc lines 793-803, 914-927), but no test marked sr:proves hook-output-transcript-records/codex drives either. The PostToolUse additionalContext case sits only in capabilities_test.go under hook-additional-context. Also unchecked for this capability: PostToolUse continue:false replacing the tool result, and the PreToolUse ask decision that runs/pretool-decisions records.
+The files this refusal is about: codex-mock/e2e/001_hooks/envelope_test.go, codex-mock/internal/session/file.go, codex-mock/internal/session/meta.go, spec/capabilities/transcript-record-envelope.yaml (file-guard "capability-rigor")
+  - file-guard/config-at-entry (a mock reads its configuration once, at its entrypoint):
+- codex-mock/internal/session/meta.go reads or writes the process environment: read it once at the entrypoint into the configuration
+- the code outside the allowed place now holds 13 sites, up from 12: legacy sites may only be removed (file-guard "config-at-entry")
+
+[exited with code 0]

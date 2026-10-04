@@ -1,0 +1,15 @@
+77:the following rules refused this work:
+78-  - codex: the statement claims the hook fires with 'how long the call took', but the codex PostToolUse doc table (tool_input, tool_response, tool_use_id, turn_id, tool_name) has no duration field, the cited runs' Pos
+tToolUse payloads (e.g. posttool-block payloads.jsonl) contain only tool_name, tool_input, tool_response and tool_use_id, and the cell's deviations list nothing about duration.
+79-The files this refusal is about: spec/capabilities/agent-input-validation.yaml, spec/capabilities/posttooluse-payload.yaml (file-guard "capability-grounded")
+80-  - cursor/posttooluse-payload: the recorded postToolUse payloads (file-tools, pretool-refusal) carry a per-call tool_use_id and a real duration (45.586, 1.695, 424.074 ms), and the doc lists both, but no listed curso
+r test asserts tool_use_id at all, and TestAfterAToolSucceedsTheHookGetsItsInputItsOutputAndHowLongItTook only checks that duration is a float64, so a mock sending a constant 0 or identical ids would pass; also no listed
+ test checks that a pretool-refused call (pretool-refusal run) fires no postToolUse. For codex, the stops run shows refused calls (echo DENYME, echo EXIT2ME) fire no PostToolUse, and no listed codex test checks that.
+81-The files this refusal is about: codex-mock/e2e/001_hooks/agent_input_test.go, codex-mock/e2e/001_hooks/posttool_ids_test.go, codex-mock/internal/runner/agent_tool.go, codex-mock/internal/runner/tool_host.go, codex-mo
+ck/snapshots/runs/agent-input-validation-spawn/run.yaml, codex-mock/snapshots/runs/agent-input-validation-spawn/samples/20261003-145334/SEAL, codex-mock/snapshots/runs/agent-input-validation-spawn/samples/20261003-145334
+/events.jsonl, codex-mock/snapshots/runs/agent-input-validation-spawn/samples/20261003-145334/exit.txt, codex-mock/snapshots/runs/agent-input-validation-spawn/samples/20261003-145334/payloads.jsonl, codex-mock/snapshots/
+runs/agent-input-validation-spawn/samples/20261003-145334/stderr.txt (and 47 more) (file-guard "capability-rigor")
+  - cursor/posttooluse-payload: the recorded postToolUse payloads (file-tools, pretool-refusal) carry a per-call tool_use_id and a real duration (45.586, 1.695, 424.074 ms), and the doc lists both, bu
+The files this refusal is about: codex-mock/e2e/001_hooks/agent_input_test.go, codex-mock/e2e/001_hooks/posttool_ids_test.go, codex-mock/internal/runner/agent_tool.go, codex-mock/internal/runner/tool_
+
+[exited with code 0]

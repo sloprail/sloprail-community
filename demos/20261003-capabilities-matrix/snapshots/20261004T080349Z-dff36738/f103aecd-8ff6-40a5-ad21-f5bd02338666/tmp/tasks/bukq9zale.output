@@ -1,0 +1,7 @@
+ok  	github.com/sloprail/harness-mocks/codex-mock/e2e/001_hooks	5.261s
+the following rules refused this work:
+  - The docs say PreToolUse and PostToolUse additionalContext is added as developer context (doc lines 793-803, 914-927), but no test marked sr:proves hook-output-transcript-records/codex drives either. The PostToolUse additionalContext case sits only in capabilities_test.go under hook-additional-context. Also unchecked for this capability: PostToolUse continue:false replacing the tool result, and the PreToolUse ask decision that runs/pretool-decisions records.
+The files this refusal is about: codex-mock/e2e/001_hooks/envelope_test.go, codex-mock/internal/session/file.go, codex-mock/internal/session/meta.go, spec/capabilities/transcript-record-envelope.yaml (file-guard "capability-rigor")
+  - codex-mock/internal/session/meta.go:32 (`Env: []string{"LC_ALL=C"}`) makes git the first external tool to run with a hand-built minimal environment (no PATH, no HOME, nothing from the harness's adapter facts, and not built through procexec.Env), while claude-mock's transcript_stamp.go gitBranch runs git with the full inherited environment; adr/child-processes says every child's environment comes from the harness adapter's facts through procexec, but it never decides what environment an external tool like git gets (minimal and isolated, or inherited). No ADR decides this. Ask the user to decide it (a new ADR), or which existing ADR it falls under. (file-guard "concern-undeclared")
+
+[exited with code 0]

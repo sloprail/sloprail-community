@@ -1,0 +1,6 @@
+
+[exited with code 144]
+the following rules refused this work:
+  - capability-once: internal/tasks/await.go:15 AwaitCommandsAfterTurn is a copy of AwaitAfterTurn (internal/tasks/deliver.go) that differs only in the running check, and it carries no sr:capability marker, which breaks "Behaviour that differs between harnesses is a parameter of the core capability, never a copy of it" and "A capability's behaviour lives once, in internal/, on code marked sr:capability <id>"; make AwaitAfterTurn take the commands parameter and keep a single marked implementation. (file-guard "adr-conformance")
+  - adr/file-size (Go files stay small):
+- cursor-mock/internal/runner/background.go would be 151 lines, over the limit of 150: split it by responsibility into smaller files (file-guard "file-size")

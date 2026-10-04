@@ -1,0 +1,60 @@
+sloprail: file-guard "child-processes" changeset: ok (1/20 settled, 27s)
+sloprail: file-guard "config-at-entry" changeset: ok (2/20 settled, 27s)
+sloprail: file-guard "file-size" changeset: ok (3/20 settled, 28s)
+sloprail: file-guard "layering" changeset: ok (4/20 settled, 28s)
+sloprail: file-guard "invariant-covered" changeset: ok (5/20 settled, 29s)
+sloprail: file-guard "shapes" changeset: ok (6/20 settled, 29s)
+sloprail: sr-checks run still working: 6/20 checks settled, 0 judging (30s elapsed)
+sloprail: file-guard "module-boundaries" changeset: ok (7/20 settled, 32s)
+sloprail: file-guard "snapshots-current" cursor: ok (8/20 settled, 40s)
+sloprail: file-guard "snapshots-current" codex: ok (9/20 settled, 41s)
+sloprail: file-guard "snapshots-current" claude: ok (10/20 settled, 44s)
+sloprail: file-guard "capability-covered" changeset: ok (11/20 settled, 46s)
+sloprail: file-guard "module-coverage" changeset: refused (12/20 settled, 49s)
+sloprail: judging "adr-conformance" changeset with "../../_lib/adr-conforms.md.j2"
+sloprail: judging "concern-undeclared" changeset with "./classify.md.j2"
+sloprail: judging "capability-rigor" session-end-hook with "./tests-prove-as-documented.md.j2"
+sloprail: judging "capability-rigor" session-start-hook with "./tests-prove-as-documented.md.j2"
+sloprail: judging "capability-rigor" noninteractive-run with "./tests-prove-as-documented.md.j2"
+sloprail: judging "capability-grounded" noninteractive-run with "./docs-support-statement.md.j2"
+sloprail: sr-checks run still working: 12/20 checks settled, 6 judging (1m0s elapsed)
+sloprail: judged "capability-grounded" noninteractive-run in 26s
+sloprail: file-guard "capability-grounded" noninteractive-run: ok (13/20 settled, 1m18s)
+sloprail: file-guard "invariant-rigor" unclaimed: ok (14/20 settled, 1m19s)
+sloprail: file-guard "module-leaks" no-leak-candidates: ok (15/20 settled, 1m19s)
+sloprail: judged "adr-conformance" changeset in 30s
+sloprail: file-guard "adr-conformance" changeset: ok (16/20 settled, 1m21s)
+sloprail: judged "capability-rigor" noninteractive-run in 30s
+sloprail: file-guard "capability-rigor" noninteractive-run: ok (17/20 settled, 1m21s)
+sloprail: judged "concern-undeclared" changeset in 33s
+sloprail: file-guard "concern-undeclared" changeset: ok (18/20 settled, 1m23s)
+sloprail: judged "capability-rigor" session-start-hook in 35s
+sloprail: file-guard "capability-rigor" session-start-hook: ok (19/20 settled, 1m27s)
+sloprail: sr-checks run still working: 19/20 checks settled, 1 judging (1m30s elapsed)
+sloprail: judged "capability-rigor" session-end-hook in 41s
+sloprail: file-guard "capability-rigor" session-end-hook: ok (20/20 settled, 1m32s)
+sloprail: file-guard "adr-conformance": cheap checks 36ms, judges 31.614s
+sloprail: file-guard "capability-covered": cheap checks 21.161s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 367ms, judges 28.652s
+sloprail: file-guard "capability-rigor": cheap checks 1.547s, judges 32.206s
+sloprail: file-guard "capability-rigor": cheap checks 1.399s, judges 42.653s
+sloprail: file-guard "capability-rigor": cheap checks 1.429s, judges 37.51s
+sloprail: file-guard "child-processes": cheap checks 1.699s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 209ms, judges 34.234s
+sloprail: file-guard "config-at-entry": cheap checks 1.957s, judges 0s
+sloprail: file-guard "file-size": cheap checks 1.715s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 2.604s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 48ms, judges 826ms
+sloprail: file-guard "layering": cheap checks 1.976s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 4.947s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 21.735s, judges 0s
+sloprail: file-guard "module-leaks": cheap checks 45ms, judges 827ms
+sloprail: file-guard "shapes": cheap checks 1.418s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 15.851s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 11.795s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 10.162s, judges 0s
+sloprail: file-guards evaluated in 1m31.766s (26 rules, concurrency 6)
+Code outside the module map (adr/modules-cover-code):
+- codex-mock/gitcheck.go belongs to no module: put it in a module's home, or add a module.yaml for it (file-guard "module-coverage")
+
+[exited with code 0]

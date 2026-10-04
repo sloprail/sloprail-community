@@ -1,0 +1,62 @@
+sloprail: judging "module-leaks" internal/subagents with "./leak-or-use.md.j2"
+sloprail: file-guard "capability-rigor" hook-additional-context: refused (19/25 settled, 8m26s)
+sloprail: sr-checks run still working: 19/25 checks settled, 3 judging (8m30s elapsed)
+sloprail: judging "module-distinct" internal/subagents with "./distinct-concern.md.j2"
+sloprail: judging "module-leaks" internal/hooks with "./leak-or-use.md.j2"
+sloprail: judged "module-leaks" internal/subagents in 30s
+sloprail: file-guard "module-leaks" internal/subagents: ok (20/25 settled, 8m56s)
+sloprail: judged "module-leaks" internal/hooks in 17s
+sloprail: sr-checks run still working: 20/25 checks settled, 3 judging (9m0s elapsed)
+sloprail: waiting for a judge slot (16 busy)
+sloprail: file-guard "module-leaks" internal/hooks: ok (21/25 settled, 9m1s)
+sloprail: judged "capability-rigor" user-prompt-submit-hook in 54s
+sloprail: file-guard "capability-rigor" user-prompt-submit-hook: refused (22/25 settled, 9m7s)
+sloprail: judged "concern-undeclared" changeset in 59s
+sloprail: judging "module-leaks" internal/turnloop with "./leak-or-use.md.j2"
+sloprail: file-guard "concern-undeclared" changeset: ok (23/25 settled, 9m13s)
+sloprail: judged "module-distinct" internal/subagents in 42s
+sloprail: file-guard "module-distinct" internal/subagents: ok (24/25 settled, 9m15s)
+sloprail: sr-checks run still working: 24/25 checks settled, 1 judging (9m30s elapsed)
+sloprail: judged "module-leaks" internal/turnloop in 43s
+sloprail: file-guard "module-leaks" internal/turnloop: ok (25/25 settled, 9m56s)
+sloprail: file-guard "adr-conformance": cheap checks 973ms, judges 58.49s
+sloprail: file-guard "capability-covered": cheap checks 1m49.45s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 1.831s, judges 1m5.171s
+sloprail: file-guard "capability-rigor": cheap checks 3.853s, judges 1m18.617s
+sloprail: file-guard "capability-rigor": cheap checks 3.556s, judges 1m6.311s
+sloprail: file-guard "capability-rigor": cheap checks 2.391s, judges 44.396s
+sloprail: file-guard "capability-rigor": cheap checks 2.196s, judges 1m9.904s
+sloprail: file-guard "capability-rigor": cheap checks 2.201s, judges 1m15.437s
+sloprail: file-guard "child-processes": cheap checks 4.098s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 165ms, judges 1m6.838s
+sloprail: file-guard "config-at-entry": cheap checks 6.135s, judges 0s
+sloprail: file-guard "file-size": cheap checks 9.721s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 12.14s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 216ms, judges 2.242s
+sloprail: file-guard "layering": cheap checks 10.616s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 43.881s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 2m2.291s, judges 0s
+sloprail: file-guard "module-distinct": cheap checks 291ms, judges 1m1.574s
+sloprail: file-guard "module-leaks": cheap checks 422ms, judges 46.169s
+sloprail: file-guard "module-leaks": cheap checks 497ms, judges 38.323s
+sloprail: file-guard "module-leaks": cheap checks 443ms, judges 1m29.947s
+sloprail: file-guard "shapes": cheap checks 3.144s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 1m27.912s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 37.418s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 37.161s, judges 0s
+sloprail: file-guards evaluated in 9m56.119s (26 rules, concurrency 6)
+the following rules refused this work:
+  - The statement says the stop hook's payload 'lists the session's background tasks', but for codex neither the SubagentStop doc (fields: agent_id, agent_type, agent_transcript_path, stop_hook_active, last_assistant_message) nor the recorded SubagentStop payload in runs/subagent-lifecycle-hooks/samples/20261003-151504/payloads.jsonl contains any background-tasks field, and it is not listed as a deviation.
+The files this refusal is about: spec/capabilities/subagent-lifecycle-hooks.yaml (file-guard "capability-grounded")
+  - The Codex SessionStart doc says that after compaction, hooks matching source "compact" run and their additionalContext goes to the next model request, including mid-turn. No e2e test covers this, and the capability file declares no codex deviation for it. TestHookAddedContextIsKept only covers startup, UserPromptSubmit and PostToolUse. Its Equal on developerTexts also assumes the rollout has no other developer messages, but the real rollouts contain skills_instructions and plugins_instructions developer messages.
+The files this refusal is about: codex-mock/e2e/001_hooks/subagent_test.go, codex-mock/internal/runner/agent_host.go, codex-mock/internal/runner/turn_host.go, codex-mock/snapshots/runs/subagent-lifecycle-hooks/run.yaml, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/SEAL, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/events.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/exit.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/payloads.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stderr.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stream.jsonl (and 30 more) (file-guard "capability-rigor")
+  - TestStopBlockContinuesTheTurnWithOneEnd only checks that the rollout text contains BLOCK-JSON-REASON and BLOCK-EXIT2-REASON, with 3 Stop events and one turn.completed. The doc (hooks#stop) says a block reason becomes a new continuation prompt that acts as a user prompt, and the test never checks that role or that the agent ran again after each block. It does not check the recorded stop_hook_active sequence false/true/true, the extra agent_message items, or that the third Stop hook lets the turn end. A substring match could be satisfied by a hook-output record, so a mock that logged the reason without continuing would pass. The hook-exit-codes run (Stop exit 2 with a plain stderr reason, then exit 0) is not replayed. The doc rule that continue:false overrides a block has no test.
+The files this refusal is about: codex-mock/e2e/001_hooks/subagent_test.go, codex-mock/internal/runner/agent_host.go, codex-mock/internal/runner/turn_host.go, codex-mock/snapshots/runs/subagent-lifecycle-hooks/run.yaml, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/SEAL, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/events.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/exit.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/payloads.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stderr.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stream.jsonl (and 30 more) (file-guard "capability-rigor")
+  - TestStopPayloadCarriesLastMessageAndContinuing checks last_assistant_message only on the first Stop ("DONE"), but the recorded payloads show it updates on later Stops ("DONE2" on the second and third, with stop_hook_active true). Nothing checks that, and nothing checks the documented, recorded Stop-specific turn_id field (string, same across the Stops). The third Stop is also unchecked, since the test requires only 2.
+The files this refusal is about: codex-mock/e2e/001_hooks/subagent_test.go, codex-mock/internal/runner/agent_host.go, codex-mock/internal/runner/turn_host.go, codex-mock/snapshots/runs/subagent-lifecycle-hooks/run.yaml, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/SEAL, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/events.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/exit.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/payloads.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stderr.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stream.jsonl (and 30 more) (file-guard "capability-rigor")
+  - The Codex docs state that SubagentStart `continue: false` does not stop the sub-agent, and that `matcher` is applied to agent_type for both sub-agent events. No test covers either one. The start-refused test only uses exit 2, and no test filters a SubagentStart or SubagentStop hook with a matcher.
+The files this refusal is about: codex-mock/e2e/001_hooks/subagent_test.go, codex-mock/internal/runner/agent_host.go, codex-mock/internal/runner/turn_host.go, codex-mock/snapshots/runs/subagent-lifecycle-hooks/run.yaml, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/SEAL, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/events.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/exit.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/payloads.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stderr.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stream.jsonl (and 30 more) (file-guard "capability-rigor")
+  - The doc's UserPromptSubmit section states two JSON forms: a block with {"decision":"block","reason":...} and context added through hookSpecificOutput.additionalContext. TestUserPromptSubmitAddsContextOrRefuses (capabilities_test.go:302) covers neither; it only tests plain-text stdout and the exit-2 refusal. The block test also never checks that the stderr reason is surfaced, and no test has a hook try to rewrite the prompt, so 'cannot rewrite' is not exercised. The background-task notification firing named in the statement has no test either.
+The files this refusal is about: codex-mock/e2e/001_hooks/subagent_test.go, codex-mock/internal/runner/agent_host.go, codex-mock/internal/runner/turn_host.go, codex-mock/snapshots/runs/subagent-lifecycle-hooks/run.yaml, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/SEAL, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/events.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/exit.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/payloads.jsonl, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stderr.txt, codex-mock/snapshots/runs/subagent-lifecycle-hooks/samples/20261003-151504/stream.jsonl (and 30 more) (file-guard "capability-rigor")
+
+[exited with code 0]

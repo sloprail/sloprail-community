@@ -1,0 +1,6 @@
+landed
+5cdf6477 cursor: tests/recordings for noninteractive-run (#136)
+beef75ff codex, cursor: subagent-transcripts supported, recorded in runs/subagent-transcripts-v2 and runs/subagent-transcripts (#120)
+d6e7e4c2 claude: tests/recordings for subagent-transcripts, nested-subagents, session-resume, session-fork, compaction-transcript-continuity (#135)
+
+[exited with code 0]

@@ -1,0 +1,10 @@
+?   	github.com/sloprail/harness-mocks/codex-mock	[no test files]
+ok  	github.com/sloprail/harness-mocks/codex-mock/e2e/001_hooks	219.002s
+ok  	github.com/sloprail/harness-mocks/codex-mock/internal/childenv	0.391s
+?   	github.com/sloprail/harness-mocks/codex-mock/internal/events	[no test files]
+ok  	github.com/sloprail/harness-mocks/codex-mock/internal/hooks	4.346s
+?   	github.com/sloprail/harness-mocks/codex-mock/internal/runner	[no test files]
+?   	github.com/sloprail/harness-mocks/codex-mock/internal/session	[no test files]
+?   	github.com/sloprail/harness-mocks/codex-mock/internal/toolexec	[no test files]
+
+[exited with code 0]

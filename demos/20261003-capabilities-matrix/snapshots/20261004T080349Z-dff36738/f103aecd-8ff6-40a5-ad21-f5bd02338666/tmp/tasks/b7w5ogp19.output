@@ -1,0 +1,43 @@
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (30s elapsed)
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (1m0s elapsed)
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (1m30s elapsed)
+sloprail: sr-checks run still working: 6/20 checks settled, 0 judging (2m0s elapsed)
+sloprail: sr-checks run still working: 9/20 checks settled, 0 judging (2m30s elapsed)
+sloprail: judging "concern-undeclared" changeset with "./classify.md.j2"
+sloprail: judging "adr-conformance" changeset with "../../_lib/adr-conforms.md.j2"
+sloprail: judging "capability-rigor" stop-hook-payload with "./tests-prove-as-documented.md.j2"
+sloprail: judging "capability-rigor" stop-block-continuation with "./tests-prove-as-documented.md.j2"
+sloprail: judging "capability-grounded" stop-hook-payload with "./docs-support-statement.md.j2"
+sloprail: judging "capability-grounded" stop-block-continuation with "./docs-support-statement.md.j2"
+sloprail: sr-checks run still working: 12/20 checks settled, 6 judging (3m0s elapsed)
+sloprail: judged "concern-undeclared" changeset in 30s
+sloprail: judged "adr-conformance" changeset in 31s
+sloprail: file-guard "adr-conformance" changeset: refused (14/20 settled, 3m23s)
+sloprail: judged "capability-rigor" stop-hook-payload in 31s
+sloprail: judged "capability-grounded" stop-hook-payload in 35s
+sloprail: judged "capability-grounded" stop-block-continuation in 37s
+sloprail: sr-checks run still working: 18/20 checks settled, 1 judging (3m30s elapsed)
+sloprail: judged "capability-rigor" stop-block-continuation in 42s
+sloprail: file-guard "adr-conformance": cheap checks 1.739s, judges 34.752s
+sloprail: file-guard "capability-covered": cheap checks 52.907s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 1.667s, judges 43.697s
+sloprail: file-guard "capability-grounded": cheap checks 2.246s, judges 40.316s
+sloprail: file-guard "capability-rigor": cheap checks 4.477s, judges 47.197s
+sloprail: file-guard "capability-rigor": cheap checks 3.757s, judges 37.218s
+sloprail: file-guard "child-processes": cheap checks 3.833s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 471ms, judges 33.214s
+sloprail: file-guard "config-at-entry": cheap checks 4.574s, judges 0s
+sloprail: file-guard "file-size": cheap checks 5.683s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 8.417s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 79ms, judges 2.842s
+sloprail: file-guard "layering": cheap checks 5.795s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 30.688s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 59.473s, judges 0s
+sloprail: file-guard "module-leaks": cheap checks 184ms, judges 3.811s
+sloprail: file-guard "shapes": cheap checks 6.016s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 39.726s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 22.487s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 21.322s, judges 0s
+sloprail: file-guards evaluated in 3m35.338s (26 rules, concurrency 6)
+
+[exited with code 0]

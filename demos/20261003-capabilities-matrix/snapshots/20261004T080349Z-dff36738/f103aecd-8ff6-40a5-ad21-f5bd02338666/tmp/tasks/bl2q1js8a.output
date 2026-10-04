@@ -1,0 +1,5 @@
+The Codex doc (hooks#sessionstart) says that when a SessionStart hook matching source "compact" returns continue:false, Codex ends the turn without sending another model request, and that its additionalContext reaches the immediate continuation. No test covers that: TestCompactionStartsTheSessionWit
+The files this refusal is about: codex-mock/e2e/001_hooks/session_fork_test.go, codex-mock/exec.go, codex-mock/internal/runner/run.go, codex-mock/internal/session/file.go, codex-mock/internal/session/fork.go, codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/session-fork/run.yaml, codex-moc
+FINISHED
+
+[exited with code 0]

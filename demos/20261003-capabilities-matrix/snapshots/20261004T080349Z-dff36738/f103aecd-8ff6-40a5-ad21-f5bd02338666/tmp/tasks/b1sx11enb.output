@@ -1,0 +1,52 @@
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (30s elapsed)
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (1m0s elapsed)
+sloprail: file-guard "file-size" changeset: ok (1/18 settled, 1m15s)
+sloprail: file-guard "child-processes" changeset: ok (2/18 settled, 1m16s)
+sloprail: file-guard "config-at-entry" changeset: ok (3/18 settled, 1m17s)
+sloprail: file-guard "invariant-covered" changeset: ok (4/18 settled, 1m19s)
+sloprail: file-guard "layering" changeset: ok (5/18 settled, 1m20s)
+sloprail: file-guard "shapes" changeset: ok (6/18 settled, 1m21s)
+sloprail: sr-checks run still working: 6/18 checks settled, 0 judging (1m30s elapsed)
+sloprail: file-guard "snapshots-current" codex: ok (7/18 settled, 1m43s)
+sloprail: file-guard "snapshots-current" cursor: ok (8/18 settled, 1m44s)
+sloprail: file-guard "module-boundaries" changeset: ok (9/18 settled, 1m48s)
+sloprail: file-guard "snapshots-current" claude: ok (10/18 settled, 1m59s)
+sloprail: sr-checks run still working: 10/18 checks settled, 0 judging (2m0s elapsed)
+sloprail: file-guard "capability-covered" changeset: ok (11/18 settled, 2m2s)
+sloprail: file-guard "module-coverage" changeset: ok (12/18 settled, 2m10s)
+sloprail: judging "concern-undeclared" changeset with "./classify.md.j2"
+sloprail: judging "adr-conformance" changeset with "../../_lib/adr-conforms.md.j2"
+sloprail: file-guard "invariant-rigor" unclaimed: ok (13/18 settled, 2m12s)
+sloprail: judging "capability-rigor" task-stream-frames with "./tests-prove-as-documented.md.j2"
+sloprail: file-guard "module-leaks" no-leak-candidates: ok (14/18 settled, 2m13s)
+sloprail: judging "capability-grounded" task-stream-frames with "./docs-support-statement.md.j2"
+sloprail: sr-checks run still working: 14/18 checks settled, 4 judging (2m30s elapsed)
+sloprail: judged "adr-conformance" changeset in 32s
+sloprail: judged "capability-rigor" task-stream-frames in 31s
+sloprail: file-guard "adr-conformance" changeset: ok (15/18 settled, 2m44s)
+sloprail: file-guard "capability-rigor" task-stream-frames: ok (16/18 settled, 2m44s)
+sloprail: judged "concern-undeclared" changeset in 38s
+sloprail: file-guard "concern-undeclared" changeset: ok (17/18 settled, 2m50s)
+sloprail: judged "capability-grounded" task-stream-frames in 38s
+sloprail: file-guard "capability-grounded" task-stream-frames: ok (18/18 settled, 2m52s)
+sloprail: file-guard "adr-conformance": cheap checks 358ms, judges 33.556s
+sloprail: file-guard "capability-covered": cheap checks 49.612s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 657ms, judges 41.467s
+sloprail: file-guard "capability-rigor": cheap checks 3.91s, judges 34.103s
+sloprail: file-guard "child-processes": cheap checks 3.911s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 128ms, judges 39.696s
+sloprail: file-guard "config-at-entry": cheap checks 4.882s, judges 0s
+sloprail: file-guard "file-size": cheap checks 2.54s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 5.841s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 255ms, judges 1.671s
+sloprail: file-guard "layering": cheap checks 4.412s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 31.818s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 54.052s, judges 0s
+sloprail: file-guard "module-leaks": cheap checks 129ms, judges 2.593s
+sloprail: file-guard "shapes": cheap checks 3.758s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 40.271s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 23.003s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 22.641s, judges 0s
+sloprail: file-guards evaluated in 2m51.595s (26 rules, concurrency 6)
+
+[exited with code 0]

@@ -1,0 +1,24 @@
+?   	github.com/sloprail/harness-mocks/cursor-mock	[no test files]
+ok  	github.com/sloprail/harness-mocks/cursor-mock/e2e/001_hooks	160.608s
+ok  	github.com/sloprail/harness-mocks/cursor-mock/e2e/002_scenario	4.234s
+ok  	github.com/sloprail/harness-mocks/cursor-mock/internal/childenv	0.310s
+ok  	github.com/sloprail/harness-mocks/cursor-mock/internal/hooks	0.570s
+?   	github.com/sloprail/harness-mocks/cursor-mock/internal/runner	[no test files]
+ok  	github.com/sloprail/harness-mocks/cursor-mock/internal/toolexec	0.691s
+ok  	github.com/sloprail/harness-mocks/internal/compaction	0.658s
+ok  	github.com/sloprail/harness-mocks/internal/hooks	5.087s
+ok  	github.com/sloprail/harness-mocks/internal/procexec	3.876s
+ok  	github.com/sloprail/harness-mocks/internal/scenario	1.379s
+ok  	github.com/sloprail/harness-mocks/internal/session	0.950s
+ok  	github.com/sloprail/harness-mocks/internal/subagents	4.142s
+ok  	github.com/sloprail/harness-mocks/internal/tasks	3.653s
+ok  	github.com/sloprail/harness-mocks/internal/toolcall	1.455s
+ok  	github.com/sloprail/harness-mocks/internal/tools	1.631s
+ok  	github.com/sloprail/harness-mocks/internal/transcript	1.516s
+ok  	github.com/sloprail/harness-mocks/internal/turnloop	4.265s
+ok  	github.com/sloprail/harness-mocks/tools/capcells	10.357s
+ok  	github.com/sloprail/harness-mocks/tools/moveonly	41.076s
+
+[exited with code 0]
+
+[exited with code 0]

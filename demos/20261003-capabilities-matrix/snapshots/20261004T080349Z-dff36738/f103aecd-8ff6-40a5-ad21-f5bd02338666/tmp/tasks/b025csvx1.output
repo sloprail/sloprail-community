@@ -1,0 +1,5 @@
+exit 1
+The headless doc (#how-it-works, lines 9-24) says print mode without --force only proposes file changes and does not apply them, but the mock accepts and ignores --force/--yolo (cursor-mock/root.go) with no declared deviation and no test in noninteractive_test.go or scenario_test.go exercises it. Th
+The files this refusal is about: codex-mock/e2e/001_hooks/plugin_hooks_test.go, codex-mock/internal/hooks/config.go, codex-mock/internal/hooks/plugins.go, codex-mock/snapshots/MANIFEST.yaml, codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/plugin-hooks/run.yaml, codex-mock/snapshots/runs/p
+
+[exited with code 0]

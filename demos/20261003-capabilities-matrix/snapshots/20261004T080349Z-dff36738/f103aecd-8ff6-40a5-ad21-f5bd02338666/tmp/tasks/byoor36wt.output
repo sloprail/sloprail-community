@@ -1,0 +1,7 @@
+sloprail: file-guard "shapes": cheap checks 3.254s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 49.533s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 27.862s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 27.811s, judges 0s
+sloprail: file-guards evaluated in 2m53.16s (26 rules, concurrency 6)
+
+[exited with code 0]

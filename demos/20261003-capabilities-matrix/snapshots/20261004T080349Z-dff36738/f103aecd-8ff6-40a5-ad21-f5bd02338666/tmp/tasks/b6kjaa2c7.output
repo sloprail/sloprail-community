@@ -1,0 +1,17 @@
+sloprail: file-guard "concern-undeclared": cheap checks 841ms, judges 54.476s
+sloprail: file-guard "config-at-entry": cheap checks 4.08s, judges 0s
+sloprail: file-guard "file-size": cheap checks 6.914s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 7.358s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 8.201s, judges 0s
+sloprail: file-guard "layering": cheap checks 7.378s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 34.743s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 55.617s, judges 0s
+sloprail: file-guard "module-leaks": cheap checks 119ms, judges 1.514s
+sloprail: file-guard "shapes": cheap checks 2.734s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 2.352s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 2.523s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 3.283s, judges 0s
+sloprail: file-guards evaluated in 4m0.627s (26 rules, concurrency 6)
+modeled-surface: spec/capabilities/session-resume-unknown.yaml (codex deviations, adr: modeled-surface) cites the ADR for 'resuming an existing session is not modeled', but that is not one of the parts the Decision lists as out of the model (interactive-only, unimplemented tools, unfired hook events, announced-only file effects, tool aborts, unproducible failures, diagnostic reference text, background limits); drop this entry or record the gap under a different ADR, since the ADR only licenses deviations for the listed parts. (file-guard "adr-conformance")
+
+[exited with code 0]

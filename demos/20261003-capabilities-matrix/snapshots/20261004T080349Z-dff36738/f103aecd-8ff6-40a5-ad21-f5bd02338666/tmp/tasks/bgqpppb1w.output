@@ -1,0 +1,18 @@
+                                                                                Successfully rebased and updated refs/heads/worktree-agent-abb30e7cdc8998b15.
+os.(*File).WriteTo(0x1049ca370?, {0x104974da0?, 0x336aa4185ce0?})
+	/Users/nsviridenko/.asdf/installs/golang/1.26.0/go/src/os/file.go:273 +0x5c
+io.copyBuffer({0x104974da0, 0x336aa4185ce0}, {0x104974cd8, 0x336aa41905c8}, {0x0, 0x0, 0x0})
+	/Users/nsviridenko/.asdf/installs/golang/1.26.0/go/src/io/io.go:411 +0x98
+io.Copy(...)
+	/Users/nsviridenko/.asdf/installs/golang/1.26.0/go/src/io/io.go:388
+os/exec.(*Cmd).writerDescriptor.func1()
+	/Users/nsviridenko/.asdf/installs/golang/1.26.0/go/src/os/exec/exec.go:602 +0x40
+os/exec.(*Cmd).Start.func2(0x0?)
+	/Users/nsviridenko/.asdf/installs/golang/1.26.0/go/src/os/exec/exec.go:757 +0x30
+created by os/exec.(*Cmd).Start in goroutine 52
+	/Users/nsviridenko/.asdf/installs/golang/1.26.0/go/src/os/exec/exec.go:756 +0x6c8
+FAIL	github.com/sloprail/harness-mocks/codex-mock/e2e/001_hooks	601.281s
+ok  	github.com/sloprail/harness-mocks/internal/session	0.309s
+FAIL
+
+[exited with code 0]

@@ -1,0 +1,25 @@
+--- FAIL: TestASubAgentIsAnnouncedBySpawnAndItsEndIsToldByTheWait (1.60s)
+    collab_test.go:91: 
+        	Error Trace:	/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-aefdb38925cd179a2/codex-mock/e2e/001_hooks/collab_test.go:91
+        	Error:      	"{\"payload\":{\"agent_path\":\"/root/\",\"cli_version\":\"mock\",\"cwd\":\"/private/var/folders/<tmp>/T/TestASubAgentIsAnnouncedBySpawnAndItsEndIsToldByTheWait619020502/001/repo\",\"id\":\"7d2e68df-ffea-47ae-9a3e-ced5f8d8e958\",\"originator\":\"codex_exec\",\"parent_thread_id\":\"18a939cc-3b93-456a-b16f-39eacad3d21e\",\"session_id\":\"18a939cc-3b93-456a-b16f-39eacad3d21e\",\"source\":{\"subagent\":{\"thread_spawn\":{\"agent_path\":\"/root/\",\"agent_role\":null,\"depth\":1,\"parent_thread_id\":\"18a939cc-3b93-456a-b16f-39eacad3d21e\"}}},\"thread_source\":\"subagent\"},\"timestamp\":\"2026-10-03T17:17:53.317137Z\",\"type\":\"session_meta\"}\n{\"payload\":{\"content\":[{\"text\":\"Reply with the single word PONG.\",\"type\":\"input_text\"}],\"role\":\"user\",\"type\":\"message\"},\"timestamp\":\"2026-10-03T17:17:53.31735Z\",\"type\":\"response_item\"}\n{\"payload\":{\"content\":[{\"text\":\"PONG\",\"type\":\"output_text\"}],\"role\":\"assistant\",\"type\":\"message\"},\"timestamp\":\"2026-10-03T17:17:53.332154Z\",\"type\":\"response_item\"}\n" does not contain "\\\"completed\\\":\\\"PONG\\\""
+        	Test:       	TestASubAgentIsAnnouncedBySpawnAndItsEndIsToldByTheWait
+FAIL
+FAIL	github.com/sloprail/harness-mocks/codex-mock/e2e/001_hooks	20.718s
+FAIL
+sloprail: judging "module-distinct" internal/subagents with "./distinct-concern.md.j2"
+sloprail: judging "concern-undeclared" changeset with "./classify.md.j2"
+sloprail: judging "adr-conformance" changeset with "../../_lib/adr-conforms.md.j2"
+sloprail: judging "module-leaks" internal/subagents with "./leak-or-use.md.j2"
+sloprail: sr-checks run still working: 17/21 checks settled, 4 judging (2m30s elapsed)
+sloprail: judged "module-leaks" internal/subagents in 28s
+sloprail: file-guard "module-leaks" internal/subagents: ok (18/21 settled, 2m45s)
+sloprail: judged "concern-undeclared" changeset in 38s
+sloprail: file-guard "concern-undeclared" changeset: ok (19/21 settled, 2m55s)
+sloprail: judged "adr-conformance" changeset in 43s
+sloprail: file-guard "adr-conformance" changeset: ok (20/21 settled, 3m0s)
+sloprail: sr-checks run still working: 20/21 checks settled, 1 judging (3m0s elapsed)
+sloprail: judged "module-distinct" internal/subagents in 56s
+sloprail: file-guard "module-distinct" internal/subagents: ok (21/21 settled, 3m13s)
+sloprail: file-guards evaluated in 3m12.639s (26 rules, concurrency 6)
+
+[exited with code 0]

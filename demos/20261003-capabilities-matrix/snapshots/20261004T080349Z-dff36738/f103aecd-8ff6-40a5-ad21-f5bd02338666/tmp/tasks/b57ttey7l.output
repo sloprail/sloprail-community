@@ -1,0 +1,8 @@
+ok  	github.com/sloprail/harness-mocks/claude-mock/internal/hooks	9.611s
+ok  	github.com/sloprail/harness-mocks/claude-mock/internal/runner	3.138s
+ok  	github.com/sloprail/harness-mocks/claude-mock/internal/toolexec	0.385s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/017_session_lifecycle	146.094s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/015_resume_prompt	2.298s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/004_subagent	3.505s
+
+[exited with code 0]

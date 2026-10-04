@@ -1,0 +1,48 @@
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (30s elapsed)
+sloprail: file-guard "config-at-entry" changeset: ok (1/16 settled, 59s)
+sloprail: sr-checks run still working: 1/16 checks settled, 0 judging (1m0s elapsed)
+sloprail: file-guard "child-processes" changeset: ok (2/16 settled, 1m1s)
+sloprail: file-guard "file-size" changeset: ok (3/16 settled, 1m3s)
+sloprail: file-guard "shapes" changeset: ok (4/16 settled, 1m4s)
+sloprail: file-guard "invariant-covered" changeset: ok (5/16 settled, 1m5s)
+sloprail: file-guard "layering" changeset: ok (6/16 settled, 1m6s)
+sloprail: sr-checks run still working: 6/16 checks settled, 0 judging (1m30s elapsed)
+sloprail: file-guard "snapshots-current" codex: ok (7/16 settled, 1m32s)
+sloprail: file-guard "snapshots-current" cursor: ok (8/16 settled, 1m33s)
+sloprail: file-guard "module-boundaries" changeset: ok (9/16 settled, 1m36s)
+sloprail: file-guard "snapshots-current" claude: ok (10/16 settled, 1m53s)
+sloprail: file-guard "capability-covered" changeset: ok (11/16 settled, 1m56s)
+sloprail: judging "concern-undeclared" changeset with "./classify.md.j2"
+sloprail: judging "adr-conformance" changeset with "../../_lib/adr-conforms.md.j2"
+sloprail: file-guard "invariant-rigor" unclaimed: ok (12/16 settled, 1m58s)
+sloprail: judging "capability-rigor" session-start-hook with "./tests-prove-as-documented.md.j2"
+sloprail: judging "capability-grounded" session-start-hook with "./docs-support-statement.md.j2"
+sloprail: sr-checks run still working: 12/16 checks settled, 4 judging (2m0s elapsed)
+sloprail: judged "concern-undeclared" changeset in 24s
+sloprail: file-guard "concern-undeclared" changeset: ok (13/16 settled, 2m22s)
+sloprail: sr-checks run still working: 13/16 checks settled, 3 judging (2m30s elapsed)
+sloprail: judged "adr-conformance" changeset in 35s
+sloprail: file-guard "adr-conformance" changeset: ok (14/16 settled, 2m32s)
+sloprail: judged "capability-grounded" session-start-hook in 34s
+sloprail: file-guard "capability-grounded" session-start-hook: ok (15/16 settled, 2m36s)
+sloprail: judged "capability-rigor" session-start-hook in 55s
+sloprail: file-guard "capability-rigor" session-start-hook: ok (16/16 settled, 2m53s)
+sloprail: file-guard "adr-conformance": cheap checks 851ms, judges 36.217s
+sloprail: file-guard "capability-covered": cheap checks 58.892s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 1.199s, judges 40.188s
+sloprail: file-guard "capability-rigor": cheap checks 3.12s, judges 57.446s
+sloprail: file-guard "child-processes": cheap checks 4.237s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 129ms, judges 25.824s
+sloprail: file-guard "config-at-entry": cheap checks 2.34s, judges 0s
+sloprail: file-guard "file-size": cheap checks 5.516s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 7.437s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 274ms, judges 1.807s
+sloprail: file-guard "layering": cheap checks 6.875s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 35.974s, judges 0s
+sloprail: file-guard "shapes": cheap checks 3.254s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 49.533s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 27.862s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 27.811s, judges 0s
+sloprail: file-guards evaluated in 2m53.16s (26 rules, concurrency 6)
+
+[exited with code 0]

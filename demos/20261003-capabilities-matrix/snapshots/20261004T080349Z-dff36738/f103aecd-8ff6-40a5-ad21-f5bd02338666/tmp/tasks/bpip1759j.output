@@ -1,0 +1,32 @@
+sloprail: judging "concern-undeclared" changeset with "./classify.md.j2"
+sloprail: judging "adr-conformance" changeset with "../../_lib/adr-conforms.md.j2"
+sloprail: judging "capability-rigor" hook-matcher-filter with "./tests-prove-as-documented.md.j2"
+sloprail: file-guard "invariant-rigor" unclaimed: ok (12/16 settled, 2m18s)
+sloprail: judging "capability-grounded" hook-matcher-filter with "./docs-support-statement.md.j2"
+sloprail: judged "adr-conformance" changeset in 24s
+sloprail: file-guard "adr-conformance" changeset: ok (13/16 settled, 2m42s)
+sloprail: judged "concern-undeclared" changeset in 27s
+sloprail: file-guard "concern-undeclared" changeset: ok (14/16 settled, 2m45s)
+sloprail: judged "capability-rigor" hook-matcher-filter in 42s
+sloprail: file-guard "capability-rigor" hook-matcher-filter: refused (15/16 settled, 3m1s)
+sloprail: judged "capability-grounded" hook-matcher-filter in 39s
+sloprail: file-guard "capability-grounded" hook-matcher-filter: ok (16/16 settled, 3m4s)
+sloprail: file-guard "adr-conformance": cheap checks 254ms, judges 26.408s
+sloprail: file-guard "capability-covered": cheap checks 59.507s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 1.322s, judges 48.479s
+sloprail: file-guard "capability-rigor": cheap checks 2.837s, judges 45.566s
+sloprail: file-guard "child-processes": cheap checks 5.689s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 488ms, judges 29.383s
+sloprail: file-guard "config-at-entry": cheap checks 2.18s, judges 0s
+sloprail: file-guard "file-size": cheap checks 3.676s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 6.485s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 175ms, judges 1.745s
+sloprail: file-guard "layering": cheap checks 6.33s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 34.107s, judges 0s
+sloprail: file-guard "shapes": cheap checks 2.623s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 50.528s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 24.945s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 26.195s, judges 0s
+sloprail: file-guards evaluated in 3m4.303s (26 rules, concurrency 6)
+
+[exited with code 0]

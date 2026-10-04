@@ -1,0 +1,30 @@
++++ b/internal/subagents/module.yaml
+@@ -1,5 +1,5 @@
+ # A module is an area of code with a boundary; its decisions live here, not in an ADR.
+ # No core yet (internal/subagents): the code lives in the claude-mock files below, until it moves.
+ concern: "a nested agent run: its identity, working directory or worktree, transcript, hooks and result"
+-home: ["internal/subagents/**", "claude-mock/internal/runner/agent*.go", "claude-mock/internal/runner/session_subagent.go"]   # everything about the concern lives here
++home: ["internal/subagents/**", "claude-mock/internal/runner/agent*.go", "claude-mock/internal/runner/session_subagent.go", "codex-mock/internal/runner/spawn.go", "codex-mock/internal/session/child.go", "cursor-mock/internal/runner/task.go"]   # everything about the concern lives here
+ api: ["internal/subagents"]       # the only packages others may import
+?   	github.com/sloprail/harness-mocks/cursor-mock	[no test files]
+ok  	github.com/sloprail/harness-mocks/cursor-mock/e2e/001_hooks	125.630s
+ok  	github.com/sloprail/harness-mocks/cursor-mock/e2e/002_scenario	3.715s
+ok  	github.com/sloprail/harness-mocks/cursor-mock/internal/childenv	0.588s
+ok  	github.com/sloprail/harness-mocks/cursor-mock/internal/hooks	0.707s
+?   	github.com/sloprail/harness-mocks/cursor-mock/internal/runner	[no test files]
+ok  	github.com/sloprail/harness-mocks/cursor-mock/internal/toolexec	1.088s
+ok  	github.com/sloprail/harness-mocks/internal/compaction	0.908s
+ok  	github.com/sloprail/harness-mocks/internal/hooks	5.123s
+ok  	github.com/sloprail/harness-mocks/internal/procexec	4.186s
+ok  	github.com/sloprail/harness-mocks/internal/scenario	1.292s
+ok  	github.com/sloprail/harness-mocks/internal/session	1.387s
+ok  	github.com/sloprail/harness-mocks/internal/subagents	2.963s
+ok  	github.com/sloprail/harness-mocks/internal/tasks	3.671s
+ok  	github.com/sloprail/harness-mocks/internal/toolcall	1.490s
+ok  	github.com/sloprail/harness-mocks/internal/tools	1.604s
+ok  	github.com/sloprail/harness-mocks/internal/transcript	1.322s
+ok  	github.com/sloprail/harness-mocks/internal/turnloop	2.797s
+ok  	github.com/sloprail/harness-mocks/tools/capcells	6.035s
+ok  	github.com/sloprail/harness-mocks/tools/moveonly	25.898s
+
+[exited with code 0]

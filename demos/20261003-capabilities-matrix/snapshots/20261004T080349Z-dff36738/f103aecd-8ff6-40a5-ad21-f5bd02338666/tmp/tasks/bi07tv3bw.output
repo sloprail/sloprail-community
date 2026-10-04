@@ -1,0 +1,42 @@
+?   	github.com/sloprail/harness-mocks/codex-mock	[no test files]
+ok  	github.com/sloprail/harness-mocks/codex-mock/e2e/001_hooks	162.478s
+ok  	github.com/sloprail/harness-mocks/codex-mock/internal/childenv	0.320s
+?   	github.com/sloprail/harness-mocks/codex-mock/internal/events	[no test files]
+ok  	github.com/sloprail/harness-mocks/codex-mock/internal/hooks	6.867s
+?   	github.com/sloprail/harness-mocks/codex-mock/internal/runner	[no test files]
+?   	github.com/sloprail/harness-mocks/codex-mock/internal/session	[no test files]
+sloprail: file-guard "capability-rigor" session-start-hook: refused (22/24 settled, 6m23s)
+sloprail: sr-checks run still working: 22/24 checks settled, 2 judging (6m30s elapsed)
+sloprail: judged "concern-undeclared" changeset in 42s
+sloprail: file-guard "concern-undeclared" changeset: ok (23/24 settled, 6m52s)
+sloprail: judged "module-distinct" internal/subagents in 40s
+sloprail: file-guard "module-distinct" internal/subagents: ok (24/24 settled, 6m58s)
+sloprail: file-guard "adr-conformance": cheap checks 897ms, judges 51.931s
+sloprail: file-guard "capability-covered": cheap checks 1m21.126s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 1.338s, judges 1m3.669s
+sloprail: file-guard "capability-rigor": cheap checks 3.422s, judges 58.483s
+sloprail: file-guard "capability-rigor": cheap checks 3.321s, judges 49.819s
+sloprail: file-guard "capability-rigor": cheap checks 2.235s, judges 1m6.089s
+sloprail: file-guard "capability-rigor": cheap checks 1.857s, judges 1m0.888s
+sloprail: file-guard "child-processes": cheap checks 5.452s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 154ms, judges 44.791s
+sloprail: file-guard "config-at-entry": cheap checks 6.396s, judges 0s
+sloprail: file-guard "file-size": cheap checks 8.966s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 12.108s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 376ms, judges 1.988s
+sloprail: file-guard "layering": cheap checks 9.883s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 52.675s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 1m27.04s, judges 0s
+sloprail: file-guard "module-distinct": cheap checks 211ms, judges 46.814s
+sloprail: file-guard "module-leaks": cheap checks 5.009s, judges 0s
+sloprail: file-guard "module-leaks": cheap checks 6.534s, judges 0s
+sloprail: file-guard "module-leaks": cheap checks 7.044s, judges 0s
+sloprail: file-guard "shapes": cheap checks 7.334s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 1m7.567s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 28.665s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 32.819s, judges 0s
+sloprail: file-guards evaluated in 6m58.055s (26 rules, concurrency 6)
+The only session-start-hook/codex test (TestSessionStartSaysStartupAndCannotStopTheSession) checks source==startup and that exit 2 does not stop the session, but nothing covers the hook-matchers recording, where the SessionStart hook with matcher 'startup' ran and the one with matcher 'resume' did not (the doc says matcher is applied to source); the deviation also omits the doc's 'clear' source.
+The files this refusal is about: codex-mock/e2e/001_hooks/subagent_stop_test.go, codex-mock/internal/runner/agent_host.go, codex-mock/internal/runner/run.go, codex-mock/snapshots/runs/subagent-stop-block-loop/run.yaml, codex-mock/snapshots/runs/subagent-stop-block-loop/samples/20261003-151437/SEAL, codex-mock/snapshots/runs/subagent-stop-block-loop/samples/20261003-151437/events.jsonl, codex-mock/snapshots/runs/subagent-stop-block-loop/samples/20261003-151437/exit.txt, codex-mock/snapshots/runs/subagent-stop-block-loop/samples/20261003-151437/payloads.jsonl, codex-mock/snapshots/runs/subagent-stop-block-loop/samples/20261003-151437/stderr.txt, codex-mock/snapshots/runs/subagent-stop-block-loop/samples/20261003-151437/stream.jsonl (and 18 more) (file-guard "capability-rigor")
+
+[exited with code 0]

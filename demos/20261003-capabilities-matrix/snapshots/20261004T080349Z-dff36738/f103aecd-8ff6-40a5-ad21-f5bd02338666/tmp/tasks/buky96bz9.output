@@ -1,0 +1,6 @@
+dc663363 codex: subagent-stop-block-loop supported; cursor: unsupported, recorded in runs/subagent-stop-block-loop
+696edd74 rules: a doc re-freeze or an edited declaration touches only the capabilities whose judges read it (#108)
+ 27 files changed, 418 insertions(+), 3 deletions(-)
+modeled-surface #2/#3: spec/capabilities/subagent-stop-block-loop.yaml:18 (codex cell) records a `deviations` entry citing `adr: modeled-surface` for the unreached block cap and the unread stop-hook `continue:false`; the ADR says such an entry must name a part left out of the non-interactive model (interactive commands, unimplemented tools, unfired hooks, announce-only file-system effects, aborts, failures the runtime cannot produce, diagnostic reference text, background time limits), and neither of these is one, so implement the cap and continue:false (or extend the ADR's out-of-model list) rather than citing modeled-surface. (file-guard "adr-conformance")
+
+[exited with code 0]

@@ -1,0 +1,8 @@
+sloprail: file-guard "snapshots-current": cheap checks 19.19s, judges 0s
+sloprail: file-guards evaluated in 10m24.863s (26 rules, concurrency 6)
+The tests match the four recordings (context as developer message, PreToolUse and PostToolUse blocks as the call's result, a Stop exit-2 block as hook_prompt, silent/exit-1/timeout hooks leaving nothing, no summary record, blocked prompt leaving no record). But the codex doc (hooks#SessionStart, hooks#Stop, hooks#PreToolUse) names variants that no test exercises for transcript records: SessionStart context (plain text or JSON additionalContext, recorded as developer context), a Stop hook's JSON decision:block with reason (only exit 2 is tested, via hook_prompt), and a PreToolUse JSON block. Add tests, and a run that records them, for these.
+The files this refusal is about: codex-mock/e2e/001_hooks/hook_records_test.go, codex-mock/internal/session/file.go, spec/capabilities/hook-output-transcript-records.yaml (file-guard "capability-rigor")
+
+[exited with code 0]
+
+[exited with code 0]

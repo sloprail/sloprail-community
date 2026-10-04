@@ -1,0 +1,27 @@
+ ...6-06-01a10256-30c2-7943-a8da-522dd95b6a86.jsonl |  24 ++++
+ ...6-11-01a10256-46d9-7ac1-856a-4d25919d6fb5.jsonl |  14 ++
+ .../runs/subagent-transcripts-v2/setup/args        |   2 +
+ .../runs/subagent-transcripts-v2/setup/hook.sh     |   5 +
+ .../runs/subagent-transcripts-v2/setup/hooks.json  |  24 ++++
+ .../runs/subagent-transcripts-v2/setup/prompt.txt  |   1 +
+ cursor-mock/e2e/001_hooks/subagent_test.go         | 140 ++++++++++++++++++++
+ cursor-mock/internal/runner/agent_task.go          |   2 +-
+ cursor-mock/internal/runner/agent_transcript.go    |  25 ++++
+ .../snapshots/runs/subagent-transcripts/run.yaml   |   2 +
+ .../samples/20261003-151419/SEAL                   |   7 +
+ .../samples/20261003-151419/events.jsonl           |   7 +
+ .../samples/20261003-151419/exit.txt               |   1 +
+ .../samples/20261003-151419/payloads.jsonl         |   6 +
+ .../samples/20261003-151419/stderr.txt             |   0
+ .../samples/20261003-151419/stream.jsonl           |  15 +++
+ .../2d25ba87-93e7-4b09-a106-a597b00777e4.jsonl     |   4 +
+ .../3ed4fb85-351b-40d8-ab3b-f564a04f219a.jsonl     |   3 +
+ .../runs/subagent-transcripts/setup/hook.sh        |   5 +
+ .../runs/subagent-transcripts/setup/hooks.json     |  23 ++++
+ .../runs/subagent-transcripts/setup/prompt.txt     |   1 +
+ internal/subagents/layout_beside_test.go           |  16 +++
+ internal/subagents/place.go                        |  11 ++
+ spec/capabilities/subagent-transcripts.yaml        |  41 +++++-
+ 33 files changed, 560 insertions(+), 4 deletions(-)
+
+[exited with code 0]

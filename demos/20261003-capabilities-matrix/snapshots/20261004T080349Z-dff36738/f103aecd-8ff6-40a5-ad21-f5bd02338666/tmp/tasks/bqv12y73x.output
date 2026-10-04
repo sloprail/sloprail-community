@@ -1,0 +1,10 @@
+60:the following rules refused this work:
+61-  - The tests cover the recorded stream shape, stdout-only-final-message, and stderr progress, but the doc behaviours in the noninteractive page's Basic usage and Make-output-machine-readable sections that the mock does not model are neither tested nor declared as deviations. Examples: --output-schema is accepted with no effect in codex-mock/exec.go:38, although the docs say the final response conforms to the schema. The 'Git repository required' check, which --skip-git-repo-check overrides, 
+62-The files this refusal is about: codex-mock/e2e/001_hooks/session_fork_test.go, codex-mock/internal/runner/run.go, codex-mock/internal/session/file.go, codex-mock/internal/session/fork.go, codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/session-fork/run.yaml, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/SEAL, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/events.jsonl, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/exit.txt, codex-m
+63-  - The docs name a `compact` source (hooks#sessionstart: SessionStart with source "compact" runs before the next model request, and continue:false there ends the turn with no further model request), and the deviation says the mock reports it, but no test marked `sr:proves session-start-hook/codex` checks it. The only compact-source assertions are in compaction_test.go, which is marked `manual-compaction/codex`. startup, fork, matcher-on-source and continue:false on startup are covered. resum
+64-The files this refusal is about: codex-mock/e2e/001_hooks/session_fork_test.go, codex-mock/internal/runner/run.go, codex-mock/internal/session/file.go, codex-mock/internal/session/fork.go, codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/session-fork/run.yaml, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/SEAL, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/events.jsonl, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/exit.txt, codex-m
+FINISHED
+
+[exited with code 0]
+
+[exited with code 0]

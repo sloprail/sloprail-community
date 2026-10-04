@@ -1,0 +1,8 @@
+pending cells on main: 25; merged PRs: 93; open: 6
+#112 cursor, codex: foreground-subagent-bash-ends-with-response
+#111 cursor: tests/recordings for session-start-hook
+#110 codex, cursor: task-stream-frames supported, recorded in runs/task-stream-frames
+#109 codex: transcript-record-envelope supported, cursor unsupported
+#108 rules: a doc re-freeze or an edited declaration touches only the capabilities whose judges read it
+
+[exited with code 0]

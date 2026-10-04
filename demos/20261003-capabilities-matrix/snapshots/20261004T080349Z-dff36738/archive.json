@@ -1,0 +1,330 @@
+{
+  "label": "demo-new",
+  "cwd": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/harness-mocks-architecture-3031e7",
+  "project_dir": "-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7",
+  "sources": {
+    "claude_project_dir": "/Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7",
+    "scratchpad_roots": {
+      "f103aecd-8ff6-40a5-ad21-f5bd02338666": "/private/tmp/claude-501/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666 (named in the transcript)"
+    }
+  },
+  "sessions": [
+    "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+  ],
+  "started_at": "2026-10-04T08:03:49.400684Z",
+  "finished_at": "2026-10-04T08:09:02.423057Z",
+  "tool_versions": {
+    "git": "git version 2.39.5 (Apple Git-154)",
+    "sr-checks": "sr-checks version 0.4.0",
+    "sr-eval": "dev",
+    "sr-session": "sr-session version 0.4.0"
+  },
+  "checks": [
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a0536385c98a58af6",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a0536385c98a58af6.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a07553d2a030170f9",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a07553d2a030170f9.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a0be1bbdf1e9ecd30",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a0be1bbdf1e9ecd30.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a0c772020b44bc7d4",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a0c772020b44bc7d4.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a109c587d32837d47",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a109c587d32837d47.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a11c0a040e3cf682b",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a11c0a040e3cf682b.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a122781128a284455",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a122781128a284455.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a1623904b5d23ad05",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a1623904b5d23ad05.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a26fb63d519ffd330",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a26fb63d519ffd330.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a2c1fdf598c68619f",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a2c1fdf598c68619f.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a30b47b7e44b7c640",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a30b47b7e44b7c640.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a34378e2eed9754d0",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a34378e2eed9754d0.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a4d84e01b97891e91",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a4d84e01b97891e91.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a513ce3b392834fe0",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a513ce3b392834fe0.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a5206b5b2ad4bea59",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a5206b5b2ad4bea59.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a54d95a1b2ce35f6b",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a54d95a1b2ce35f6b.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a5742d151ebfb6c56",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a5742d151ebfb6c56.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a609b196101dcb60e",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a609b196101dcb60e.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a63bb90a3bc6561be",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a63bb90a3bc6561be.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a74ae8cc6fe515f14",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a74ae8cc6fe515f14.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a7b746b221fd760ca",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a7b746b221fd760ca.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a7e54ea3099505a7e",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a7e54ea3099505a7e.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a8a444ee54a52b4dc",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a8a444ee54a52b4dc.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a8dc95b6a34535897",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a8dc95b6a34535897.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-a98d9d24061df466d",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-a98d9d24061df466d.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-aa14e9cc78e7c5b07",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-aa14e9cc78e7c5b07.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-aa43418fbebf671c6",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-aa43418fbebf671c6.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-ab095323a3b740c00",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-ab095323a3b740c00.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-ab2efb1b0554a0078",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-ab2efb1b0554a0078.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-abb30e7cdc8998b15",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-abb30e7cdc8998b15.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-abe844dc3881e139c",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-abe844dc3881e139c.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-ac203fa7f0757b6fc",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-ac203fa7f0757b6fc.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-ace34c9d71e0db288",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-ace34c9d71e0db288.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-ad3b5c11f3a618bca",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-ad3b5c11f3a618bca.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-adc1470310079e23b",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-adc1470310079e23b.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-ade450ea5c2797f64",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-ade450ea5c2797f64.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-adfaf6893cfeed936",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-adfaf6893cfeed936.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-ae0b3cd9bc3b72728",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-ae0b3cd9bc3b72728.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-ae75cc2fe613b3186",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-ae75cc2fe613b3186.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-aefdb38925cd179a2",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-aefdb38925cd179a2.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/agent-afc43fc036aaadb5a",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-agent-afc43fc036aaadb5a.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    },
+    {
+      "repo": "/Users/nsviridenko/ws/sloprail/harness-mocks/.claude/worktrees/harness-mocks-architecture-3031e7",
+      "file": "checks/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7.jsonl",
+      "tracked_by_sessions": [
+        "f103aecd-8ff6-40a5-ad21-f5bd02338666"
+      ]
+    }
+  ],
+  "skipped": [
+    {
+      "session": "f103aecd-8ff6-40a5-ad21-f5bd02338666",
+      "item": "scratchpad and tasks/scratchpad/cu/home/Library/Keychains: not a regular file (d---------)",
+      "reason": "not copied"
+    },
+    {
+      "session": "f103aecd-8ff6-40a5-ad21-f5bd02338666",
+      "item": "scratchpad and tasks/scratchpad/sresume-cu/home/Library/Keychains: not a regular file (d---------)",
+      "reason": "not copied"
+    }
+  ]
+}

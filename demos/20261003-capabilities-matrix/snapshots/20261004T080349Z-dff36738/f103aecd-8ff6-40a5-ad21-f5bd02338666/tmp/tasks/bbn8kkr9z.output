@@ -1,0 +1,14 @@
+sloprail: file-guard "snapshots-current": cheap checks 48.346s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 26.854s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 23.986s, judges 0s
+sloprail: file-guards evaluated in 4m45.81s (26 rules, concurrency 6)
+the following rules refused this work:
+  - Capabilities not implemented, adapted or proven (adr/capability-once):
+- capability 'session-start-hook' needs exactly one // sr:capability session-start-hook, in internal/ (found 2)
+The files this refusal is about: codex-mock/e2e/001_hooks/env_test.go, codex-mock/e2e/001_hooks/helpers_test.go, codex-mock/e2e/001_hooks/lifecycle_recorded_test.go, codex-mock/exec.go, codex-mock/internal/childenv/childenv.go, codex-mock/internal/childenv/childenv_test.go, codex-mock/internal/events/progress.go, codex-mock/internal/events/stream.go, codex-mock/internal/hooks/decide.go, codex-mock/internal/hooks/warnings.go (and 51 more) (file-guard "capability-covered")
+  - session-start-hook/claude: no listed test checks that SessionStart fires first and before UserPromptSubmit (hookerrors and stops events.jsonl both start SessionStart then UserPromptSubmit; the doc says a prompt waits for SessionStart hooks), and no test covers the doc's SessionStart matcher filtering on source (startup/resume/compact/fork; every Claude test uses matcher "*"), whereas codex has both (TestSessionStartFiresOnceFirstWithStartup, TestSessionStartMatcherIsAppliedToTheSource). Codex and cursor subjects otherwise check out against their recordings.
+The files this refusal is about: codex-mock/e2e/001_hooks/env_test.go, codex-mock/e2e/001_hooks/lifecycle_recorded_test.go, codex-mock/internal/childenv/childenv.go, codex-mock/internal/childenv/childenv_test.go, codex-mock/internal/events/stream.go, codex-mock/internal/hooks/decide.go, codex-mock/internal/runner/run.go, codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/noninteractive-run-text-output/run.yaml, codex-mock/snapshots/runs/noninteractive-run-text-output/samples/20261003-170231/SEAL (and 47 more) (file-guard "capability-rigor")
+
+[exited with code 0]
+
+[exited with code 0]

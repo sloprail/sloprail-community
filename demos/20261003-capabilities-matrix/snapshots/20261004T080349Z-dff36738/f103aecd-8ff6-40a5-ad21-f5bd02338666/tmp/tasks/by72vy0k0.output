@@ -1,0 +1,10 @@
+# github.com/sloprail/harness-mocks/codex-mock/internal/runner
+codex-mock/internal/runner/run.go:48:1: syntax error: unexpected <<, expected field name or embedded type
+codex-mock/internal/runner/run.go:51:1: syntax error: unexpected ==, expected field name or embedded type
+codex-mock/internal/runner/run.go:54:1: syntax error: unexpected >>, expected field name or embedded type
+codex-mock/internal/runner/run.go:80:1: syntax error: unexpected <<, expected expression
+codex-mock/internal/runner/run.go:81:44: syntax error: unexpected ) in composite literal; possibly missing comma or }
+codex-mock/internal/runner/run.go:82:2: syntax error: non-declaration statement outside function body
+exit 1
+
+[exited with code 0]

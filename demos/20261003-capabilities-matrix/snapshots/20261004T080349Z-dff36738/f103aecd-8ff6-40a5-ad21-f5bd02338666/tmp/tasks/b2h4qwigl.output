@@ -1,0 +1,5 @@
+samples
+setup
+codex-mock/snapshots/capture.sh: line 67: 11653 Terminated: 15          ( cd "$work/repo" && env -i PATH="$PATH" HOME="$home" CODEX_HOME="$chome" USER="${USER:-}" LANG="${LANG:-en_US.UTF-8}" TERM="${TERM:-dumb}" TMPDIR="$work/tmp" HOOK_LOG="$cap/payloads.jsonl" ${extra[@]+"${extra[@]}"} "$codex_bin" exec --json --skip-git-repo-check --dangerously-bypass-approvals-and-sandbox --dangerously-bypass-hook-trust -m gpt-5.6-luna -c 'model_reasoning_effort="low"' ${args[@]+"${args[@]}"} "$(cat "$run/setup/prompt.txt")" < /dev/null > "$cap/stream.jsonl" 2> "$cap/stderr.txt" )
+
+[exited with code 0]

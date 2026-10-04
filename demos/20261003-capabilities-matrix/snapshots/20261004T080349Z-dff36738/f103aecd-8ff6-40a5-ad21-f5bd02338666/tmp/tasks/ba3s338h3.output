@@ -1,0 +1,5 @@
+landed
+ce617c61 codex: noninteractive-run: git-repo check enforced, --output-schema recorded, recordings for both (#134)
+9092c979 codex, cursor: foreground-subagent-result supported, recorded in runs/foreground-subagent-result (#133)
+
+[exited with code 0]

@@ -1,0 +1,12 @@
+ok  	github.com/sloprail/harness-mocks/codex-mock/e2e/001_hooks	8.229s
+ok  	github.com/sloprail/harness-mocks/codex-mock/internal/childenv	0.600s [no tests to run]
+ok  	github.com/sloprail/harness-mocks/codex-mock/internal/hooks	0.736s [no tests to run]
+ok  	github.com/sloprail/harness-mocks/cursor-mock/e2e/001_hooks	3.464s
+ok  	github.com/sloprail/harness-mocks/cursor-mock/e2e/002_scenario	2.640s [no tests to run]
+ok  	github.com/sloprail/harness-mocks/cursor-mock/internal/childenv	0.977s [no tests to run]
+ok  	github.com/sloprail/harness-mocks/cursor-mock/internal/hooks	0.319s
+ok  	github.com/sloprail/harness-mocks/cursor-mock/internal/toolexec	0.851s [no tests to run]
+(eval):1: no such file or directory: ../../../../../../private/tmp/claude-501/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/scratchpad/c4.txt
+ugrep: warning: /private/tmp/claude-501/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/scratchpad/c4.txt: No such file or directory
+
+[exited with code 0]

@@ -1,0 +1,7 @@
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/017_session_lifecycle	123.252s
+?   	github.com/sloprail/harness-mocks/claude-mock/internal/childenv	[no test files]
+ok  	github.com/sloprail/harness-mocks/claude-mock/internal/hooks	9.261s
+ok  	github.com/sloprail/harness-mocks/claude-mock/internal/runner	3.178s
+ok  	github.com/sloprail/harness-mocks/claude-mock/internal/toolexec	0.575s
+
+[exited with code 0]

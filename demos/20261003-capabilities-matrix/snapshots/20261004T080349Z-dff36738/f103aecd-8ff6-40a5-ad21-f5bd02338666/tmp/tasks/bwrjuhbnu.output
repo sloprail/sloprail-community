@@ -1,0 +1,77 @@
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (30s elapsed)
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (1m0s elapsed)
+sloprail: file-guard "child-processes" changeset: ok (1/23 settled, 1m7s)
+sloprail: file-guard "file-size" changeset: ok (2/23 settled, 1m8s)
+sloprail: file-guard "config-at-entry" changeset: ok (3/23 settled, 1m9s)
+sloprail: file-guard "layering" changeset: ok (4/23 settled, 1m11s)
+sloprail: file-guard "invariant-covered" changeset: ok (5/23 settled, 1m11s)
+sloprail: file-guard "shapes" changeset: ok (6/23 settled, 1m13s)
+sloprail: file-guard "module-boundaries" changeset: ok (7/23 settled, 1m21s)
+sloprail: file-guard "snapshots-current" codex: ok (8/23 settled, 1m24s)
+sloprail: file-guard "snapshots-current" cursor: ok (9/23 settled, 1m25s)
+sloprail: sr-checks run still working: 9/23 checks settled, 0 judging (1m30s elapsed)
+sloprail: file-guard "capability-covered" changeset: ok (10/23 settled, 1m33s)
+sloprail: file-guard "snapshots-current" claude: ok (11/23 settled, 1m34s)
+sloprail: file-guard "module-coverage" changeset: ok (12/23 settled, 1m39s)
+sloprail: judging "adr-conformance" changeset with "../../_lib/adr-conforms.md.j2"
+sloprail: judging "capability-grounded" session-start-hook with "./docs-support-statement.md.j2"
+sloprail: judging "capability-grounded" session-end-hook with "./docs-support-statement.md.j2"
+sloprail: judging "capability-grounded" noninteractive-run with "./docs-support-statement.md.j2"
+sloprail: judging "capability-rigor" session-end-hook with "./tests-prove-as-documented.md.j2"
+sloprail: judging "capability-rigor" noninteractive-run with "./tests-prove-as-documented.md.j2"
+sloprail: sr-checks run still working: 12/23 checks settled, 6 judging (2m0s elapsed)
+sloprail: judged "capability-grounded" noninteractive-run in 29s
+sloprail: file-guard "capability-grounded" noninteractive-run: ok (13/23 settled, 2m11s)
+sloprail: judged "capability-grounded" session-end-hook in 30s
+sloprail: file-guard "capability-grounded" session-end-hook: ok (14/23 settled, 2m12s)
+sloprail: judging "capability-rigor" session-start-hook with "./tests-prove-as-documented.md.j2"
+sloprail: judging "capability-rigor" subprocess-session-env with "./tests-prove-as-documented.md.j2"
+sloprail: judged "adr-conformance" changeset in 35s
+sloprail: file-guard "adr-conformance" changeset: refused (15/23 settled, 2m16s)
+sloprail: judging "concern-undeclared" changeset with "./classify.md.j2"
+sloprail: judged "capability-grounded" session-start-hook in 40s
+sloprail: file-guard "capability-grounded" session-start-hook: ok (16/23 settled, 2m23s)
+sloprail: file-guard "invariant-rigor" unclaimed: ok (17/23 settled, 2m24s)
+sloprail: file-guard "module-leaks" no-leak-candidates: ok (18/23 settled, 2m26s)
+sloprail: sr-checks run still working: 18/23 checks settled, 5 judging (2m30s elapsed)
+sloprail: judged "capability-rigor" session-end-hook in 49s
+sloprail: file-guard "capability-rigor" session-end-hook: ok (19/23 settled, 2m32s)
+sloprail: judged "capability-rigor" noninteractive-run in 54s
+sloprail: file-guard "capability-rigor" noninteractive-run: refused (20/23 settled, 2m37s)
+sloprail: judged "capability-rigor" session-start-hook in 31s
+sloprail: judged "capability-rigor" subprocess-session-env in 30s
+sloprail: file-guard "capability-rigor" session-start-hook: ok (21/23 settled, 2m45s)
+sloprail: file-guard "capability-rigor" subprocess-session-env: ok (22/23 settled, 2m46s)
+sloprail: sr-checks run still working: 22/23 checks settled, 1 judging (3m0s elapsed)
+sloprail: judged "concern-undeclared" changeset in 48s
+sloprail: file-guard "concern-undeclared" changeset: ok (23/23 settled, 3m6s)
+sloprail: file-guard "adr-conformance": cheap checks 311ms, judges 36.919s
+sloprail: file-guard "capability-covered": cheap checks 30.364s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 884ms, judges 31.577s
+sloprail: file-guard "capability-grounded": cheap checks 977ms, judges 32.832s
+sloprail: file-guard "capability-grounded": cheap checks 1.075s, judges 43.954s
+sloprail: file-guard "capability-rigor": cheap checks 3.083s, judges 57.543s
+sloprail: file-guard "capability-rigor": cheap checks 2.751s, judges 52.466s
+sloprail: file-guard "capability-rigor": cheap checks 2.788s, judges 34.107s
+sloprail: file-guard "capability-rigor": cheap checks 2.912s, judges 33.72s
+sloprail: file-guard "child-processes": cheap checks 2.43s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 72ms, judges 50.043s
+sloprail: file-guard "config-at-entry": cheap checks 3.016s, judges 0s
+sloprail: file-guard "file-size": cheap checks 2.025s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 4.877s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 82ms, judges 1.34s
+sloprail: file-guard "layering": cheap checks 3.835s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 13.628s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 30.95s, judges 0s
+sloprail: file-guard "module-leaks": cheap checks 72ms, judges 1.386s
+sloprail: file-guard "shapes": cheap checks 3.456s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 23.309s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 12.164s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 12s, judges 0s
+sloprail: file-guards evaluated in 3m6.139s (26 rules, concurrency 6)
+the following rules refused this work:
+  - capability-once: codex-mock/internal/runner/run.go (`halted = halted || d.Halt` / `if !halted { turnloop.Run(...) }`, plus Halt set in codex-mock/internal/hooks/decide.go) makes the Codex adapter decide whether a SessionStart hook's `continue: false` is honoured and ends the turn, violating 'An adapter translates and decides nothing: when a hook fires, whether a block is honoured, and in what order things happen are the capability's'; this verdict belongs in the core session-start-hook code (internal/hooks/lifecycle.go, BlocksSessionStart), with Codex's difference passed as a parameter and the adapter only translating continue:false. (file-guard "adr-conformance")
+  - The Basic usage doc says `codex exec --ephemeral` persists no session rollout files, and that piped stdin plus a prompt argument is treated as additional context. The mock accepts --ephemeral with no effect (codex-mock/exec.go) and does nothing with piped stdin. No test covers either behaviour, and no <deviation> declares them. Add tests and a recorded run for these, or declare a deviation.
+The files this refusal is about: codex-mock/e2e/001_hooks/env_test.go, codex-mock/e2e/001_hooks/lifecycle_recorded_test.go, codex-mock/internal/childenv/childenv.go, codex-mock/internal/childenv/childenv_test.go, codex-mock/internal/events/stream.go, codex-mock/internal/hooks/decide.go, codex-mock/internal/runner/run.go, codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/noninteractive-run-text-output/run.yaml, codex-mock/snapshots/runs/noninteractive-run-text-output/samples/20261003-170231/SEAL (and 46 more) (file-guard "capability-rigor")
+
+[exited with code 0]

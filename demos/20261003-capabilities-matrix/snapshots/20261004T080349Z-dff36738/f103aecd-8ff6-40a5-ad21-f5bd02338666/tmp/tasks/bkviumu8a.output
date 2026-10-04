@@ -1,0 +1,15 @@
+sloprail: file-guard "capability-rigor" posttooluse-payload: refused (23/23 settled, 12m5s)
+sloprail: file-guard "adr-conformance": cheap checks 380ms, judges 5m44.93s
+sloprail: file-guard "capability-covered": cheap checks 30.501s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 3.53s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 1.084s, judges 1m19.362s
+sloprail: file-guard "capability-rigor": cheap checks 4.685s, judges 0s
+sloprail: file-guard "capability-rigor": cheap checks 2.075s, judges 0s
+sloprail: file-guard "capability-rigor": cheap checks 1.16s, judges 9m59.502s
+sloprail: file-guard "capability-rigor": cheap checks 1.211s, judges 4m26.8s
+sloprail: file-guard "capability-rigor": cheap checks 4.464s, judges 0s
+sloprail: file-guard "child-processes": cheap checks 5.832s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 123ms, judges 3m51.602s
+sloprail: file-guard "config-at-entry": cheap checks 7.521s, judges 0s
+
+[exited with code 0]

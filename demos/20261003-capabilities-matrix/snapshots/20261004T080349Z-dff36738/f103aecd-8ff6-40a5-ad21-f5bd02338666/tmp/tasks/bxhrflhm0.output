@@ -1,0 +1,4 @@
+The docs say PreToolUse and PostToolUse additionalContext is added as developer context (doc lines 793-803, 914-927), but no test marked sr:proves hook-output-transcript-records/codex drives either. The PostToolUse additionalContext case sits only in capabilities_test.go under hook-additional-context. Also unchecked for this capability: PostToolUse continue:false replacing the tool result, and the PreToolUse ask decision that runs/pretool-decisions records.
+The files this refusal is about: codex-mock/e2e/001_hooks/envelope_test.go, codex-mock/internal/session/file.go, codex-mock/internal/session/meta.go, spec/capabilities/transcript-record-envelope.yaml (file-guard "capability-rigor")
+
+[exited with code 0]

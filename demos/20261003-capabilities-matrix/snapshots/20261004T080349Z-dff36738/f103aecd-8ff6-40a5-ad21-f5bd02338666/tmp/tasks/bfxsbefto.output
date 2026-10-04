@@ -1,0 +1,27 @@
+?   	github.com/sloprail/harness-mocks/claude-mock	[no test files]
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/001_passthrough	3.447s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/002_hooks	11.897s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/002_worktree	14.099s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/003_session	12.036s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/003_toolexec	2.594s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/004_subagent	10.599s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/005_pretooluse	20.437s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/006_posttooluse	8.505s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/007_toolexec	4.709s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/008_session_file	4.103s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/009_agent_tool	53.372s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/010_subagent_block_loop	18.507s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/011_plugin_hooks	9.170s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/012_schedule_wakeup	12.195s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/013_compaction	8.279s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/014_sragent_flags	4.894s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/015_resume_prompt	3.877s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/016_transcript_chain	4.352s
+ok  	github.com/sloprail/harness-mocks/claude-mock/e2e/017_session_lifecycle	121.210s
+?   	github.com/sloprail/harness-mocks/claude-mock/e2etest	[no test files]
+?   	github.com/sloprail/harness-mocks/claude-mock/internal/childenv	[no test files]
+ok  	github.com/sloprail/harness-mocks/claude-mock/internal/hooks	13.785s
+ok  	github.com/sloprail/harness-mocks/claude-mock/internal/runner	4.676s
+ok  	github.com/sloprail/harness-mocks/claude-mock/internal/toolexec	1.499s
+
+[exited with code 0]

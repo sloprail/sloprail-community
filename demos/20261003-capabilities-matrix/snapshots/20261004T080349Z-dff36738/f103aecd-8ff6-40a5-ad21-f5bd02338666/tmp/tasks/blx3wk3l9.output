@@ -1,0 +1,8 @@
+sloprail: file-guard "adr-conformance" changeset: refused (18/21 settled, 2m48s)
+sloprail: file-guard "capability-rigor" subagent-transcripts: refused (21/21 settled, 3m35s)
+sloprail: file-guards evaluated in 3m34.975s (26 rules, concurrency 6)
+the following rules refused this work:
+  - modeled-surface last Decision bullet ("No `deviations` entry citing this ADR names a part its mock models"): spec/capabilities/subagent-transcripts.yaml cursor deviation citing modeled-surface says "a background Task is not modelled", but cursor-mock/internal/runner/agent_background.go models a run_in_background Task; drop that clause (keep only the genuinely unfired subagentStart/subagentStop hooks). (file-guard "adr-conformance")
+  - Claude subject: the tests do cover the recorded behaviour (own file at <session>/subagents/agent-<id>.jsonl with isSidechain/agentId and a null-parent origin record; none of it in the main transcript; the .meta.json sidecar's agentType/toolUseId/spawnDepth/parentAgentId/requestShape for foreground, nested and background; SubagentStop agent_transcript_path). But the sub-agents doc (#resume-subagents, line 1078) states behaviour that no test exercises and no Claude deviation declares. A completed sub-agent that is resumed via SendMessage runs again under the same agentId and keeps appending to the same agent-<id>.jsonl; sub-agent transcripts persist and survive main-conversation compaction
+
+[exited with code 0]

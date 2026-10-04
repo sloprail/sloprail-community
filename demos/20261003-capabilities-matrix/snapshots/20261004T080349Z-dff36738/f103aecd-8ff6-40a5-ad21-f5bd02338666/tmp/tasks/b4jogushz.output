@@ -1,0 +1,7 @@
+pending cells on main: 18; merged PRs: 99; open: 7
+#122 codex: tests/recordings for stop-hook-payload, stop-block-continuation
+#119 cursor: tests/recordings for hook-timeout, hooks-all-matching-run, session-end-hook, hook-common-payload
+#118 codex: subagent-stop-block-loop supported; cursor: unsupported
+#116 codex: file-tools (shell reads, apply_patch writes)
+
+[exited with code 0]

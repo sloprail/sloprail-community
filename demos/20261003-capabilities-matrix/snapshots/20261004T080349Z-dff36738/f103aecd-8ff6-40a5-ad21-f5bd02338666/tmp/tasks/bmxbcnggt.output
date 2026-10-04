@@ -1,0 +1,75 @@
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (30s elapsed)
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (1m0s elapsed)
+sloprail: file-guard "child-processes" changeset: ok (1/22 settled, 1m10s)
+sloprail: file-guard "config-at-entry" changeset: ok (2/22 settled, 1m11s)
+sloprail: file-guard "file-size" changeset: ok (3/22 settled, 1m13s)
+sloprail: file-guard "layering" changeset: ok (4/22 settled, 1m14s)
+sloprail: file-guard "invariant-covered" changeset: ok (5/22 settled, 1m15s)
+sloprail: file-guard "shapes" changeset: ok (6/22 settled, 1m17s)
+sloprail: file-guard "snapshots-current" codex: ok (7/22 settled, 1m29s)
+sloprail: sr-checks run still working: 7/22 checks settled, 0 judging (1m30s elapsed)
+sloprail: file-guard "snapshots-current" cursor: ok (8/22 settled, 1m31s)
+sloprail: file-guard "module-boundaries" changeset: ok (9/22 settled, 1m32s)
+sloprail: file-guard "snapshots-current" claude: ok (10/22 settled, 1m39s)
+sloprail: file-guard "capability-covered" changeset: ok (11/22 settled, 1m41s)
+sloprail: judging "adr-conformance" changeset with "../../_lib/adr-conforms.md.j2"
+sloprail: judging "capability-rigor" hook-command-handler with "./tests-prove-as-documented.md.j2"
+sloprail: judging "capability-grounded" posttooluse-payload with "./docs-support-statement.md.j2"
+sloprail: judging "capability-grounded" hook-command-handler with "./docs-support-statement.md.j2"
+sloprail: judging "capability-grounded" user-prompt-submit-hook with "./docs-support-statement.md.j2"
+sloprail: judging "capability-grounded" hook-matcher-filter with "./docs-support-statement.md.j2"
+sloprail: sr-checks run still working: 11/22 checks settled, 6 judging (2m0s elapsed)
+sloprail: judged "adr-conformance" changeset in 28s
+sloprail: judged "capability-grounded" hook-matcher-filter in 26s
+sloprail: file-guard "adr-conformance" changeset: ok (12/22 settled, 2m11s)
+sloprail: judging "capability-rigor" hook-matcher-filter with "./tests-prove-as-documented.md.j2"
+sloprail: file-guard "capability-grounded" hook-matcher-filter: ok (13/22 settled, 2m12s)
+sloprail: judging "capability-rigor" posttooluse-payload with "./tests-prove-as-documented.md.j2"
+sloprail: judged "capability-grounded" posttooluse-payload in 30s
+sloprail: file-guard "capability-grounded" posttooluse-payload: ok (14/22 settled, 2m15s)
+sloprail: judging "capability-rigor" user-prompt-submit-hook with "./tests-prove-as-documented.md.j2"
+sloprail: judged "capability-rigor" hook-command-handler in 38s
+sloprail: judged "capability-grounded" user-prompt-submit-hook in 37s
+sloprail: file-guard "capability-rigor" hook-command-handler: ok (15/22 settled, 2m22s)
+sloprail: judging "concern-undeclared" changeset with "./classify.md.j2"
+sloprail: file-guard "capability-grounded" user-prompt-submit-hook: refused (16/22 settled, 2m24s)
+sloprail: file-guard "invariant-rigor" unclaimed: ok (17/22 settled, 2m26s)
+sloprail: judged "capability-grounded" hook-command-handler in 43s
+sloprail: file-guard "capability-grounded" hook-command-handler: ok (18/22 settled, 2m29s)
+sloprail: sr-checks run still working: 18/22 checks settled, 4 judging (2m30s elapsed)
+sloprail: judged "capability-rigor" posttooluse-payload in 35s
+sloprail: file-guard "capability-rigor" posttooluse-payload: ok (19/22 settled, 2m49s)
+sloprail: judged "concern-undeclared" changeset in 26s
+sloprail: file-guard "concern-undeclared" changeset: ok (20/22 settled, 2m51s)
+sloprail: judged "capability-rigor" hook-matcher-filter in 48s
+sloprail: sr-checks run still working: 20/22 checks settled, 1 judging (3m0s elapsed)
+sloprail: file-guard "capability-rigor" hook-matcher-filter: ok (21/22 settled, 3m2s)
+sloprail: judged "capability-rigor" user-prompt-submit-hook in 57s
+sloprail: file-guard "capability-rigor" user-prompt-submit-hook: ok (22/22 settled, 3m15s)
+sloprail: file-guard "adr-conformance": cheap checks 629ms, judges 29.89s
+sloprail: file-guard "capability-covered": cheap checks 35.738s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 1.078s, judges 48.121s
+sloprail: file-guard "capability-grounded": cheap checks 1.118s, judges 31.065s
+sloprail: file-guard "capability-grounded": cheap checks 1.196s, judges 34.151s
+sloprail: file-guard "capability-grounded": cheap checks 939ms, judges 42.538s
+sloprail: file-guard "capability-rigor": cheap checks 2.701s, judges 41.079s
+sloprail: file-guard "capability-rigor": cheap checks 2.273s, judges 50.975s
+sloprail: file-guard "capability-rigor": cheap checks 2.296s, judges 36.975s
+sloprail: file-guard "capability-rigor": cheap checks 1.993s, judges 59.789s
+sloprail: file-guard "child-processes": cheap checks 2.966s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 61ms, judges 29.058s
+sloprail: file-guard "config-at-entry": cheap checks 2.786s, judges 0s
+sloprail: file-guard "file-size": cheap checks 3.946s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 6.699s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 171ms, judges 2.153s
+sloprail: file-guard "layering": cheap checks 5.276s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 22.447s, judges 0s
+sloprail: file-guard "shapes": cheap checks 5.18s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 26.582s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 14.896s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 15.482s, judges 0s
+sloprail: file-guards evaluated in 3m15.132s (26 rules, concurrency 6)
+Codex is cited as supported with no deviations, but nothing grounds the statement's part 'It also fires for a background-task notification handed to the agent': the Codex UserPromptSubmit doc section says only 'User prompt that's about to be sent', none of its five cited runs mentions a notification, and spec/capabilities/task-notifications.yaml records Codex as telling the agent nothing when a background command ends, so list this part as a codex deviation or drop it from the statement.
+The files this refusal is about: spec/capabilities/hook-command-handler.yaml, spec/capabilities/hook-matcher-filter.yaml, spec/capabilities/posttooluse-payload.yaml, spec/capabilities/user-prompt-submit-hook.yaml (file-guard "capability-grounded")
+
+[exited with code 0]

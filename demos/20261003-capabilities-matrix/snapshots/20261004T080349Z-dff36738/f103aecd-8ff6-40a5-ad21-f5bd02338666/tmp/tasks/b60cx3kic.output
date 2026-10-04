@@ -1,0 +1,6 @@
+pending cells on main: 8; merged PRs: 111; open: 4
+#131 codex, cursor: plugin-hooks cells supported, recorded in runs/plugin-hooks
+#130 claude: tests/recordings for foreground-subagent-result, background-agent, background-bash
+#129 codex: compaction-transcript-continuity supported, cursor unsupported
+
+[exited with code 0]

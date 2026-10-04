@@ -1,0 +1,118 @@
+: sr-checks run still working: 0/0 checks settled, 0 judging (7m31s elapsed)
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (8m1s elapsed)
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (8m31s elapsed)
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (9m1s elapsed)
+sloprail: file-guard "capability-rigor" hook-common-payload: ok (stored verdict) (1/32 settled, 9m13s)
+sloprail: file-guard "child-processes" changeset: ok (2/32 settled, 9m17s)
+sloprail: file-guard "config-at-entry" changeset: ok (3/32 settled, 9m19s)
+sloprail: file-guard "file-size" changeset: refused (4/32 settled, 9m20s)
+sloprail: file-guard "invariant-covered" changeset: ok (5/32 settled, 9m22s)
+sloprail: file-guard "layering" changeset: ok (6/32 settled, 9m24s)
+sloprail: file-guard "shapes" changeset: ok (7/32 settled, 9m25s)
+sloprail: sr-checks run still working: 7/32 checks settled, 0 judging (9m31s elapsed)
+sloprail: file-guard "snapshots-current" codex: ok (8/32 settled, 9m52s)
+sloprail: file-guard "snapshots-current" cursor: ok (9/32 settled, 9m54s)
+sloprail: sr-checks run still working: 9/32 checks settled, 0 judging (10m1s elapsed)
+sloprail: file-guard "module-boundaries" changeset: ok (10/32 settled, 10m5s)
+sloprail: file-guard "capability-covered" changeset: ok (11/32 settled, 10m22s)
+sloprail: file-guard "snapshots-current" claude: ok (12/32 settled, 10m24s)
+sloprail: sr-checks run still working: 12/32 checks settled, 0 judging (10m31s elapsed)
+sloprail: file-guard "module-coverage" changeset: ok (13/32 settled, 10m46s)
+sloprail: judging "capability-rigor" noninteractive-run with "./tests-prove-as-documented.md.j2"
+sloprail: judging "capability-rigor" hooks-all-matching-run with "./tests-prove-as-documented.md.j2"
+sloprail: judging "capability-rigor" session-end-hook with "./tests-prove-as-documented.md.j2"
+sloprail: judging "adr-conformance" changeset with "../../_lib/adr-conforms.md.j2"
+sloprail: judging "capability-rigor" manual-compaction with "./tests-prove-as-documented.md.j2"
+sloprail: sr-checks run still working: 13/32 checks settled, 5 judging (11m1s elapsed)
+sloprail: judging "capability-grounded" manual-compaction with "./docs-support-statement.md.j2"
+sloprail: sr-checks run still working: 13/32 checks settled, 6 judging (11m31s elapsed)
+sloprail: judged "capability-rigor" session-end-hook in 45s
+sloprail: file-guard "capability-rigor" session-end-hook: refused (14/32 settled, 11m36s)
+sloprail: judging "capability-rigor" session-start-hook with "./tests-prove-as-documented.md.j2"
+sloprail: judged "capability-rigor" hooks-all-matching-run in 54s
+sloprail: file-guard "capability-rigor" hooks-all-matching-run: ok (15/32 settled, 11m45s)
+sloprail: judging "concern-undeclared" changeset with "./classify.md.j2"
+sloprail: judged "adr-conformance" changeset in 1m0s
+sloprail: file-guard "adr-conformance" changeset: ok (16/32 settled, 11m52s)
+sloprail: judging "invariant-rigor" loop-guard with "./tests-prove-statement.md.j2"
+sloprail: sr-checks run still working: 16/32 checks settled, 6 judging (12m1s elapsed)
+sloprail: judged "capability-grounded" manual-compaction in 59s
+sloprail: judged "capability-rigor" manual-compaction in 1m12s
+sloprail: file-guard "capability-grounded" manual-compaction: ok (17/32 settled, 12m5s)
+sloprail: judging "invariant-rigor" prompt-context-appended with "./tests-prove-statement.md.j2"
+sloprail: file-guard "capability-rigor" manual-compaction: refused (18/32 settled, 12m7s)
+sloprail: judging "invariant-rigor" scenario-prompt-env with "./tests-prove-statement.md.j2"
+sloprail: judged "capability-rigor" noninteractive-run in 1m35s
+sloprail: file-guard "capability-rigor" noninteractive-run: refused (19/32 settled, 12m25s)
+sloprail: judging "invariant-rigor" session-file-env with "./tests-prove-statement.md.j2"
+sloprail: judged "invariant-rigor" prompt-context-appended in 24s
+sloprail: sr-checks run still working: 19/32 checks settled, 5 judging (12m31s elapsed)
+sloprail: file-guard "invariant-rigor" prompt-context-appended: ok (20/32 settled, 12m32s)
+sloprail: judging "invariant-rigor" turn-loop with "./tests-prove-statement.md.j2"
+sloprail: judged "invariant-rigor" scenario-prompt-env in 28s
+sloprail: file-guard "invariant-rigor" scenario-prompt-env: ok (21/32 settled, 12m39s)
+sloprail: judged "capability-rigor" session-start-hook in 1m2s
+sloprail: judging "module-distinct" internal/compaction with "./distinct-concern.md.j2"
+sloprail: file-guard "capability-rigor" session-start-hook: refused (22/32 settled, 12m42s)
+sloprail: judged "invariant-rigor" loop-guard in 49s
+sloprail: judging "module-distinct" internal/session with "./distinct-concern.md.j2"
+sloprail: file-guard "invariant-rigor" loop-guard: ok (23/32 settled, 12m45s)
+sloprail: judging "module-distinct" internal/subagents with "./distinct-concern.md.j2"
+sloprail: judged "concern-undeclared" changeset in 1m3s
+sloprail: file-guard "concern-undeclared" changeset: ok (24/32 settled, 12m54s)
+sloprail: judging "module-leaks" internal/compaction with "./leak-or-use.md.j2"
+sloprail: sr-checks run still working: 24/32 checks settled, 6 judging (13m1s elapsed)
+sloprail: judged "invariant-rigor" turn-loop in 32s
+sloprail: file-guard "invariant-rigor" turn-loop: ok (25/32 settled, 13m8s)
+sloprail: judged "invariant-rigor" session-file-env in 43s
+sloprail: judging "module-leaks" internal/session with "./leak-or-use.md.j2"
+sloprail: file-guard "invariant-rigor" session-file-env: ok (26/32 settled, 13m12s)
+sloprail: judging "module-leaks" internal/subagents with "./leak-or-use.md.j2"
+sloprail: judged "module-distinct" internal/compaction in 36s
+sloprail: file-guard "module-distinct" internal/compaction: ok (27/32 settled, 13m20s)
+sloprail: sr-checks run still working: 27/32 checks settled, 5 judging (13m31s elapsed)
+sloprail: judged "module-leaks" internal/session in 25s
+sloprail: judged "module-distinct" internal/session in 53s
+sloprail: file-guard "module-leaks" internal/session: ok (28/32 settled, 13m38s)
+sloprail: file-guard "module-distinct" internal/session: refused (29/32 settled, 13m40s)
+sloprail: judged "module-leaks" internal/compaction in 45s
+sloprail: judged "module-distinct" internal/subagents in 55s
+sloprail: file-guard "module-leaks" internal/compaction: refused (30/32 settled, 13m45s)
+sloprail: file-guard "module-distinct" internal/subagents: refused (31/32 settled, 13m48s)
+sloprail: judged "module-leaks" internal/subagents in 37s
+sloprail: file-guard "module-leaks" internal/subagents: ok (32/32 settled, 13m55s)
+sloprail: file-guard "adr-conformance": cheap checks 755ms, judges 1m5.565s
+sloprail: file-guard "capability-covered": cheap checks 1m13.24s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 2.464s, judges 1m18.45s
+sloprail: file-guard "capability-rigor": cheap checks 4.024s, judges 0s
+sloprail: file-guard "capability-rigor": cheap checks 4.101s, judges 58.669s
+sloprail: file-guard "capability-rigor": cheap checks 3.564s, judges 1m20.845s
+sloprail: file-guard "capability-rigor": cheap checks 1.859s, judges 1m38.98s
+sloprail: file-guard "capability-rigor": cheap checks 2.288s, judges 49.527s
+sloprail: file-guard "capability-rigor": cheap checks 2.405s, judges 1m6.236s
+sloprail: file-guard "child-processes": cheap checks 4.896s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 211ms, judges 1m8.483s
+sloprail: file-guard "config-at-entry": cheap checks 5.992s, judges 0s
+sloprail: file-guard "file-size": cheap checks 7.52s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 8.396s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 174ms, judges 53.102s
+sloprail: file-guard "invariant-rigor": cheap checks 245ms, judges 27.062s
+sloprail: file-guard "invariant-rigor": cheap checks 110ms, judges 31.565s
+sloprail: file-guard "invariant-rigor": cheap checks 328ms, judges 46.909s
+sloprail: file-guard "invariant-rigor": cheap checks 203ms, judges 36.416s
+sloprail: file-guard "layering": cheap checks 8.953s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 47.755s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 1m27.763s, judges 0s
+sloprail: file-guard "module-distinct": cheap checks 483ms, judges 40.764s
+sloprail: file-guard "module-distinct": cheap checks 181ms, judges 58.271s
+sloprail: file-guard "module-distinct": cheap checks 205ms, judges 1m2.673s
+sloprail: file-guard "module-leaks": cheap checks 189ms, judges 51.594s
+sloprail: file-guard "module-leaks": cheap checks 211ms, judges 29.738s
+sloprail: file-guard "module-leaks": cheap checks 146ms, judges 42.355s
+sloprail: file-guard "shapes": cheap checks 3.353s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 1m2.644s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 28.686s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 29.25s, judges 0s
+sloprail: file-guards evaluated in 13m54.68s (26 rules, concurrency 6)
+
+[exited with code 0]

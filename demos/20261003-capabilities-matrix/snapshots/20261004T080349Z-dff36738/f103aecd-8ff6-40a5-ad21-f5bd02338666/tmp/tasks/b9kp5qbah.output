@@ -1,0 +1,4 @@
+All three recorded runs (stops, hook-exit-codes, prompt-blocked) stream two `item.completed` `error` items between thread.started and turn.started, but streamShape in replay_test.go:154 filters error items out, so no noninteractive-run test asserts them or that the mock matches; the recordings also 
+The files this refusal is about: codex-mock/e2e/001_hooks/session_fork_test.go, codex-mock/internal/runner/run.go, codex-mock/internal/session/file.go, codex-mock/internal/session/fork.go, codex-mock/snapshots/MANIFEST.yaml, codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/session-fork/run
+
+[exited with code 0]

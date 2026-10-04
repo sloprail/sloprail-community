@@ -1,0 +1,5 @@
+Current branch worktree-agent-a1623904b5d23ad05 is up to date.
+Codex: the part 'whatever the hook prints is not recorded in the transcript' is neither stated by the doc (it only says 'They are advisory, so their output won't steer Codex or keep the thread open') nor shown by the session-end run, whose hook.sh appends stdin to $HOOK_LOG and prints nothing to stdout/stderr, so the rollout transcript's lack of hook output proves nothing; the other parts (fires at end, reason 'other', generic reason) are grounded by the doc and payloads.jsonl.
+The files this refusal is about: spec/capabilities/session-end-hook.yaml, spec/capabilities/subagent-lifecycle-hooks.yaml (file-guard "capability-grounded")
+
+[exited with code 0]

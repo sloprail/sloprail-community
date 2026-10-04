@@ -1,0 +1,33 @@
+Rebasing (1/2)Rebasing (2/2)                                                                                Successfully rebased and updated refs/heads/worktree-agent-a30b47b7e44b7c640.
+sloprail: file-guard "adr-conformance": cheap checks 607ms, judges 51.454s
+sloprail: file-guard "capability-covered": cheap checks 1m2.871s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 977ms, judges 25.532s
+sloprail: file-guard "capability-grounded": cheap checks 2.228s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 3.803s, judges 0s
+sloprail: file-guard "capability-rigor": cheap checks 5.372s, judges 1m13.874s
+sloprail: file-guard "capability-rigor": cheap checks 5.367s, judges 1m8.5s
+sloprail: file-guard "capability-rigor": cheap checks 7.531s, judges 2m39.259s
+sloprail: file-guard "capability-rigor": cheap checks 2.882s, judges 0s
+sloprail: file-guard "child-processes": cheap checks 5.264s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 206ms, judges 52.79s
+sloprail: file-guard "config-at-entry": cheap checks 5.16s, judges 0s
+sloprail: file-guard "file-size": cheap checks 7.909s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 1.554s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 4.078s, judges 0s
+sloprail: file-guard "layering": cheap checks 6.079s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 34.297s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 1m7.729s, judges 0s
+sloprail: file-guard "module-leaks": cheap checks 279ms, judges 2.81s
+sloprail: file-guard "shapes": cheap checks 4.101s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 48.346s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 26.854s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 23.986s, judges 0s
+sloprail: file-guards evaluated in 4m45.81s (26 rules, concurrency 6)
+the following rules refused this work:
+  - Capabilities not implemented, adapted or proven (adr/capability-once):
+- capability 'session-start-hook' needs exactly one // sr:capability session-start-hook, in internal/ (found 2)
+The files this refusal is about: codex-mock/e2e/001_hooks/env_test.go, codex-mock/e2e/001_hooks/helpers_test.go, codex-mock/e2e/001_hooks/lifecycle_recorded_test.go, codex-mock/exec.go, codex-mock/internal/childenv/childenv.go, codex-mock/internal/childenv/childenv_test.go, codex-mock/internal/events/progress.go, codex-mock/internal/events/stream.go, codex-mock/internal/hooks/decide.go, codex-mock/internal/hooks/warnings.go (and 51 more) (file-guard "capability-covered")
+  - session-start-hook/claude: no listed test checks that SessionStart fires first and before UserPromptSubmit (hookerrors and stops events.jsonl both start SessionStart then UserPromptSubmit; the doc says a prompt waits for SessionStart hooks), and no test covers the doc's SessionStart matcher filtering on source (startup/resume/compact/fork; every Claude test uses matcher "*"), whereas codex has both (TestSessionStartFiresOnceFirstWithStartup, TestSessionStartMatcherIsAppliedToTheSource). Codex and cursor subjects otherwise check out against their recordings.
+The files this refusal is about: codex-mock/e2e/001_hooks/env_test.go, codex-mock/e2e/001_hooks/lifecycle_recorded_test.go, codex-mock/internal/childenv/childenv.go, codex-mock/internal/childenv/childenv_test.go, codex-mock/internal/events/stream.go, codex-mock/internal/hooks/decide.go, codex-mock/internal/runner/run.go, codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/noninteractive-run-text-output/run.yaml, codex-mock/snapshots/runs/noninteractive-run-text-output/samples/20261003-170231/SEAL (and 47 more) (file-guard "capability-rigor")
+
+[exited with code 0]

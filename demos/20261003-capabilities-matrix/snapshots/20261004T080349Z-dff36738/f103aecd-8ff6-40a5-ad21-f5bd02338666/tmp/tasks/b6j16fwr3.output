@@ -1,0 +1,6 @@
+LANDED
+d9ec5f6e claude: tests/recordings for foreground-subagent-result, background-agent, background-bash (#130)
+789c2b72 codex, cursor: nested-subagents supported, recorded in runs/nested-subagents* (#114)
+963f55b3 cursor: tests/recordings for posttooluse-payload, bash-tool-result, session-transcript-file, hook-command-handler (#128)
+
+[exited with code 0]

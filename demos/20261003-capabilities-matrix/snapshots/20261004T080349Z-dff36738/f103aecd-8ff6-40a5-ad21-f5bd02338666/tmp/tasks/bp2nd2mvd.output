@@ -1,0 +1,8 @@
+pending cells on main: 10; merged PRs: 109; open: 2
+#129 codex: compaction-transcript-continuity supported, cursor unsupported
+#128 cursor: tests/recordings for posttooluse-payload, bash-tool-result, session-transcript-file, hook-command-handler
+#127 cursor: tests/recordings for noninteractive-run
+open #120 codex, cursor: subagent-transcripts supported, recorded in runs/subagent-transcripts-v2 and runs/subagent-transcripts
+open #115 codex: tests/recordings for posttooluse-payload, user-prompt-submit-hook, hook-command-handler, hook-matcher-filter
+
+[exited with code 0]

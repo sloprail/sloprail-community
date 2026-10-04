@@ -1,0 +1,42 @@
+sloprail: judging "module-distinct" internal/session with "./distinct-concern.md.j2"
+sloprail: waiting for a judge slot (8 busy)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: judging "module-leaks" internal/session with "./leak-or-use.md.j2"
+sloprail: sr-checks run still working: 16/19 checks settled, 2 judging (10m0s elapsed)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: judged "module-distinct" internal/session in 41s
+sloprail: file-guard "module-distinct" internal/session: refused (17/19 settled, 10m14s)
+sloprail: judging "capability-grounded" session-resume-unknown with "./docs-support-statement.md.j2"
+sloprail: judged "module-leaks" internal/session in 17s
+sloprail: file-guard "module-leaks" internal/session: ok (18/19 settled, 10m18s)
+sloprail: sr-checks run still working: 18/19 checks settled, 1 judging (10m30s elapsed)
+sloprail: judged "capability-grounded" session-resume-unknown in 33s
+sloprail: file-guard "capability-grounded" session-resume-unknown: ok (19/19 settled, 10m51s)
+sloprail: file-guard "adr-conformance": cheap checks 1.262s, judges 42.628s
+sloprail: file-guard "capability-covered": cheap checks 42.779s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 1.451s, judges 7m18.058s
+sloprail: file-guard "capability-rigor": cheap checks 3.77s, judges 1m19.903s
+sloprail: file-guard "child-processes": cheap checks 4.97s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 741ms, judges 2m12.67s
+sloprail: file-guard "config-at-entry": cheap checks 2.98s, judges 0s
+sloprail: file-guard "file-size": cheap checks 5.042s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 5.584s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 97ms, judges 1.647s
+sloprail: file-guard "layering": cheap checks 4.461s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 20.53s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 44.902s, judges 0s
+sloprail: file-guard "module-distinct": cheap checks 71ms, judges 6m40.644s
+sloprail: file-guard "module-leaks": cheap checks 82ms, judges 6m43.363s
+sloprail: file-guard "shapes": cheap checks 3.448s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 34.543s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 11.227s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 11.73s, judges 0s
+sloprail: file-guards evaluated in 10m51.099s (26 rules, concurrency 6)
+the following rules refused this work:
+  - Capabilities not implemented, adapted or proven (adr/capability-once):
+- capability 'session-resume-unknown' needs exactly one // sr:capability session-resume-unknown, in internal/ (found 2)
+The files this refusal is about: codex-mock/e2e/001_hooks/resume_unknown_test.go, codex-mock/exec.go, codex-mock/internal/runner/resume.go, codex-mock/internal/session/resume.go, codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/session-resume-unknown/run.yaml, codex-mock/snapshots/runs/session-resume-unknown/samples/20261003-145502/SEAL, codex-mock/snapshots/runs/session-resume-unknown/samples/20261003-145502/events.jsonl, codex-mock/snapshots/runs/session-resume-unknown/samples/20261003-145502/exit.txt, codex-mock/snapshots/runs/session-resume-unknown/samples/20261003-145502/stderr.txt (and 19 more) (file-guard "capability-covered")
+  - Homes claim files of other concerns: claude-mock/internal/runner/runner_session_hooks.go fires SessionEnd/SessionStart hooks (internal/hooks concern), and session_append.go, session_seed.go and codex-mock/internal/session/file.go write the append-only session record file and its preamble records (internal/transcript concern, 'a session's append-only, chained record file') — narrow the globs and move these files to those modules, or merge session and transcript.
+The files this refusal is about: internal/session/module.yaml (file-guard "module-distinct")
+
+[exited with code 0]

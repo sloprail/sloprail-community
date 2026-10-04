@@ -1,0 +1,9 @@
+5077f50a1328428e2f86f89ff17f5f4cd79612ee
+ce617c613adcde12e449f9e0cf2c3db5f25e9af6
+the following rules refused this work:
+  - modeled-surface #4: spec/capabilities/session-start-hook.yaml:34 adds to the codex `adr: modeled-surface` deviation that a compact-source start hook 'fires' but its `continue: false` does not end the turn; that names a part the mock models (the compact SessionStart event it fires), and 'No `deviations` entry citing this ADR names a part its mock models'. It is also not one of the listed out-of-model parts. Record this behavioural difference outside a modeled-surface deviation, or drop it and prove the real behaviour in a test. (file-guard "adr-conformance")
+  - The deviation says a compact-source SessionStart hook fires but its continue:false does not end the turn (the doc says it does), yet no test drives that case: TestSessionStartContinueFalseEndsTheTurnNotTheSession covers only startup and TestCompactionStartsTheSessionWithSourceCompact never returns continue:false, so the declared deviation is unasserted.
+The files this refusal is about: codex-mock/e2e/001_hooks/session_fork_test.go, codex-mock/exec.go, codex-mock/internal/runner/run.go, codex-mock/internal/session/file.go, codex-mock/internal/session/fork.go, codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/session-fork/run.yaml, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/SEAL, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/events.jsonl, codex-mock/snapshots/runs/session-fork/samples/20261003-145349/exit.txt (and 32 more) (file-guard "capability-rigor")
+FINISHED
+
+[exited with code 0]

@@ -1,0 +1,11 @@
+ok  	github.com/sloprail/harness-mocks/codex-mock/e2e/001_hooks	5.761s
+Rebasing (1/3)Rebasing (2/3)Rebasing (3/3)                                                                                Successfully rebased and updated refs/heads/worktree-agent-a609b196101dcb60e.
+
+[exited with code 144]
+the following rules refused this work:
+  - codex-mock/internal/session/meta.go:39 passes `Env: os.Environ()` to procexec.Run, breaking child-processes ('no child process gets `os.Environ()` directly'; environment facts come from the harness adapter via procexec) and mock-config ('No other code calls ... `os.Environ`'; read the environment once in the entrypoint into a config value passed down); take the environment from the entrypoint-provided configuration/adapter instead of calling os.Environ in the session package. (file-guard "adr-conformance")
+  - The docs say PreToolUse and PostToolUse additionalContext is added as developer context (doc lines 793-803, 914-927), but no test marked sr:proves hook-output-transcript-records/codex drives either. The PostToolUse additionalContext case sits only in capabilities_test.go under hook-additional-context. Also unchecked for this capability: PostToolUse continue:false replacing the tool result, and the PreToolUse ask decision that runs/pretool-decisions records.
+The files this refusal is about: codex-mock/e2e/001_hooks/envelope_test.go, codex-mock/internal/session/file.go, codex-mock/internal/session/meta.go, spec/capabilities/transcript-record-envelope.yaml (file-guard "capability-rigor")
+  - file-guard/config-at-entry (a mock reads its configuration once, at its entrypoint):
+- codex-mock/internal/session/meta.go reads or writes the process environment: read it once at the entrypoint into the configuration
+- the code outside the allowed place now holds 13 sites, up from 12: legacy sites may only be removed (file-guard "config-at-entry")

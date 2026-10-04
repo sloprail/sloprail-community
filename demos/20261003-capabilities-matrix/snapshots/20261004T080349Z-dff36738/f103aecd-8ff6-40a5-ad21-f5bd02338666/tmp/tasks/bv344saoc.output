@@ -1,0 +1,62 @@
+sloprail: waiting for a judge slot (8 busy)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: sr-checks run still working: 18/22 checks settled, 0 judging (8m30s elapsed)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: sr-checks run still working: 18/22 checks settled, 0 judging (9m0s elapsed)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: judging "capability-rigor" posttooluse-payload with "./tests-prove-as-documented.md.j2"
+sloprail: judging "module-leaks" internal/toolcall with "./leak-or-use.md.j2"
+sloprail: waiting for a judge slot (8 busy)
+sloprail: judged "module-leaks" internal/toolcall in 17s
+sloprail: file-guard "module-leaks" internal/toolcall: refused (19/22 settled, 9m27s)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: sr-checks run still working: 19/22 checks settled, 1 judging (9m30s elapsed)
+sloprail: judging "module-leaks" internal/subagents with "./leak-or-use.md.j2"
+sloprail: waiting for a judge slot (8 busy)
+sloprail: sr-checks run still working: 19/22 checks settled, 2 judging (10m0s elapsed)
+sloprail: judged "module-leaks" internal/subagents in 21s
+sloprail: file-guard "module-leaks" internal/subagents: ok (20/22 settled, 10m2s)
+sloprail: judged "capability-rigor" posttooluse-payload in 57s
+sloprail: file-guard "capability-rigor" posttooluse-payload: refused (21/22 settled, 10m7s)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: sr-checks run still working: 21/22 checks settled, 0 judging (10m30s elapsed)
+sloprail: waiting for a judge slot (8 busy)
+sloprail: judging "module-distinct" internal/subagents with "./distinct-concern.md.j2"
+sloprail: sr-checks run still working: 21/22 checks settled, 1 judging (11m0s elapsed)
+sloprail: judged "module-distinct" internal/subagents in 30s
+sloprail: file-guard "module-distinct" internal/subagents: ok (22/22 settled, 11m24s)
+sloprail: file-guard "adr-conformance": cheap checks 825ms, judges 1m49.771s
+sloprail: file-guard "capability-covered": cheap checks 52.661s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 1.783s, judges 3m41.368s
+sloprail: file-guard "capability-rigor": cheap checks 2.085s, judges 1m1.717s
+sloprail: file-guard "capability-rigor": cheap checks 2.03s, judges 6m59.569s
+sloprail: file-guard "capability-rigor": cheap checks 1.731s, judges 1m55.335s
+sloprail: file-guard "child-processes": cheap checks 4.679s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 208ms, judges 2m32.703s
+sloprail: file-guard "config-at-entry": cheap checks 8.591s, judges 0s
+sloprail: file-guard "file-size": cheap checks 6.698s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 11.04s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 836ms, judges 1.268s
+sloprail: file-guard "layering": cheap checks 8.934s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 35.092s, judges 0s
+sloprail: file-guard "module-coverage": cheap checks 55.66s, judges 0s
+sloprail: file-guard "module-distinct": cheap checks 536ms, judges 7m13.791s
+sloprail: file-guard "module-leaks": cheap checks 164ms, judges 5m5.185s
+sloprail: file-guard "module-leaks": cheap checks 164ms, judges 4m24.296s
+sloprail: file-guard "shapes": cheap checks 2.881s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 42.205s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 17.262s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 18.67s, judges 0s
+sloprail: file-guards evaluated in 11m23.739s (26 rules, concurrency 6)
+the following rules refused this work:
+  - capability-once: codex-mock/internal/runner/agent_tool.go (executeAgent/spawnNeeds, lines 20-50) and cursor-mock/internal/toolexec/task.go (taskRequired, line 16) re-implement the agent-input-validation check in the adapters (own required lists, and codex decides validation runs after PreToolUse) instead of using the core capability in internal/subagents (MissingFromDispatch/DispatchRequired, marked sr:capability agent-input-validation); per "An adapter translates and decides nothing" and "Behaviour that differs between harnesses is a parameter of the core capability, never a copy of it", the required fields and the validate-before/after-hook order should be parameters of the core capability, with adapters only supplying them and wire wording. (file-guard "adr-conformance")
+  - Codex: the docs say PostToolUse also fires for Bash commands that exit non-zero, but TestPostToolUsePayloadCarriesInputAndResponse only runs 'echo FINE' (exit 0), and it doesn't assert the recorded tool_use_id or turn_id. Cursor: TestAfterAToolSucceedsTheHookGetsItsInputItsOutputAndHowLongItTook only asserts NotEmpty on tool_input and tool_output, so it doesn't pin the recorded tool_output JSON strings ({"file_path":...,"success":true}, {"file_path":...,"content_length":3}, {"output":"FINE
+The files this refusal is about: codex-mock/e2e/001_hooks/agent_input_test.go, codex-mock/internal/runner/agent_tool.go, codex-mock/internal/runner/tool_host.go, codex-mock/snapshots/runs/agent-input-validation-spawn/run.yaml, codex-mock/snapshots/runs/agent-input-validation-spawn/samples/20261003-145334/SEAL, codex-mock/snapshots/runs/agent-input-validation-spawn/samples/20261003-145334/events.jsonl, codex-mock/snapshots/runs/agent-input-validation-spawn/samples/20261003-145334/exit.txt, codex-mock/snapshots/runs/agent-input-validation-spawn/samples/20261003-145334/payloads.jsonl, codex-mock/snapshots/runs/agent-input-validation-spawn/samples/20261003-145334/stderr.txt, codex-mock/snapshots/runs/agent-input-validation-spawn/samples/20261003-145334/stream.jsonl (and 43 more) (file-guard "capability-rigor")
+  - Checklist: (1) codex-mock/internal/runner/agent_tool.go:27 builds the PreToolUse payload map (turn_id, tool_name, tool_use_id, tool_input) inline, then at lines 28-31 fires the hooks and interprets each decision into a refusal. That is a leak: it duplicates the pre-tool-hook logic in codex-mock/internal/runner/tool_host.go (payload() at line 40, Before() at lines 50-51), which is in the toolcall module's home. Move beforeAgent into tool_host.go, or have it reuse h.payload(c) and the shared fire/interpret/refusal path. (file-guard "module-leaks")
+
+[exited with code 0]

@@ -1,0 +1,10 @@
+sloprail: file-guard "file-size" changeset: refused (3/21 settled, 50s)
+sloprail: file-guard "adr-conformance" changeset: refused (17/21 settled, 2m17s)
+sloprail: file-guard "capability-rigor" subagent-transcripts: refused (19/21 settled, 2m19s)
+sloprail: file-guards evaluated in 2m49.534s (26 rules, concurrency 6)
+the following rules refused this work:
+  - capability-once: internal/subagents/beside.go:24 (Beside.Path) is the core placement behaviour for subagent-transcripts but is not marked `// sr:capability subagent-transcripts`, although the Decision says 'A capability's behaviour lives once, in `internal/`, on code marked `// sr:capability <id>`'; add the marker to Beside.Path, as Layout.Path in internal/subagents/place.go has. (file-guard "adr-conformance")
+  - subagent-transcripts/codex: the declared deviation that the mock records the sub-agent final answer (PONG) as the output of the spawn call (function_call_output in the session rollout) is never asserted by TestSubAgentRecordsGoToARolloutOfItsOwn, which only checks the parent has no PONG in assistant messages; the deviations that the child meta names no spawning call and agent_role is null are also not asserted, so a mock that dropped the answer would still pass.
+  - adr/file-size (Go files stay small):
+
+[exited with code 0]

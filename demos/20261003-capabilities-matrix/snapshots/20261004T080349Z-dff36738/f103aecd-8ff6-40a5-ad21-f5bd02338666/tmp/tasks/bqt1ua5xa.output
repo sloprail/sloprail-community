@@ -1,0 +1,17 @@
+cursor-mock unit tests	pass	15s	https://github.com/sloprail/harness-mocks/actions/runs/37152471037/job/111288995618	
+e2e tests	pass	6m16s	https://github.com/sloprail/harness-mocks/actions/runs/37152471037/job/111288995573	
+rule subject tests	pass	53s	https://github.com/sloprail/harness-mocks/actions/runs/37152471037/job/111288995700	
+sloprail verify	pass	1m4s	https://github.com/sloprail/harness-mocks/actions/runs/37152471361/job/111288996459	
+unit tests	pass	28s	https://github.com/sloprail/harness-mocks/actions/runs/37152471037/job/111288995578	
+CLAAssistant	pass	7s	https://github.com/sloprail/harness-mocks/actions/runs/37152471074/job/111288996115	
+capability rule tests	pass	18s	https://github.com/sloprail/harness-mocks/actions/runs/37152471037/job/111288995601	
+codex-mock e2e tests	pass	3m39s	https://github.com/sloprail/harness-mocks/actions/runs/37152471037/job/111288995435	
+codex-mock unit tests (with the shared core)	pass	29s	https://github.com/sloprail/harness-mocks/actions/runs/37152471037/job/111288995544	
+cursor-mock e2e tests	pass	3m5s	https://github.com/sloprail/harness-mocks/actions/runs/37152471037/job/111288995612	
+cursor-mock unit tests	pass	15s	https://github.com/sloprail/harness-mocks/actions/runs/37152471037/job/111288995618	
+e2e tests	pass	6m16s	https://github.com/sloprail/harness-mocks/actions/runs/37152471037/job/111288995573	
+rule subject tests	pass	53s	https://github.com/sloprail/harness-mocks/actions/runs/37152471037/job/111288995700	
+sloprail verify	pass	1m4s	https://github.com/sloprail/harness-mocks/actions/runs/37152471361/job/111288996459	
+unit tests	pass	28s	https://github.com/sloprail/harness-mocks/actions/runs/37152471037/job/111288995578	
+
+[exited with code 0]

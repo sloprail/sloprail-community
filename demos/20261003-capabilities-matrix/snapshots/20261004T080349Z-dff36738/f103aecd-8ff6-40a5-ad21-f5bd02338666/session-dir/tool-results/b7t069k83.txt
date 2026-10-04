@@ -1,0 +1,379 @@
+69:the following rules refused this work:
+70-  - Capabilities not implemented, adapted or proven (adr/capability-once):
+71-- capability 'session-start-hook' needs exactly one // sr:capability session-start-hook, in internal/ (found 2)
+72-The files this refusal is about: codex-mock/e2e/001_hooks/env_test.go, codex-mock/e2e/001_hooks/helpers_test.go, codex-mock/e2e/001_hooks/lifecycle_recorded_test.go, codex-mock/exec.go, codex-mock/internal/childenv/childenv.go, codex-mock/internal/childenv/childenv_test.go, codex-mock/internal/events/progress.go, codex-mock/internal/events/stream.go, codex-mock/internal/hooks/decide.go, codex-mock/internal/hooks/warnings.go (and 51 more) (file-guard "capability-covered")
+73-  - session-start-hook/claude: no listed test checks that SessionStart fires first and before UserPromptSubmit (hookerrors and stops events.jsonl both start SessionStart then UserPromptSubmit; the doc says a prompt waits for SessionStart hooks), and no test covers the doc's SessionStart matcher filtering on source (startup/resume/compact/fork; every Claude test uses matcher "*"), whereas codex has both (TestSessionStartFiresOnceFirstWithStartup, TestSessionStartMatcherIsAppliedToTheSource). Codex and cursor subjects otherwise check out against their recordings.
+74-The files this refusal is about: codex-mock/e2e/001_hooks/env_test.go, codex-mock/e2e/001_hooks/lifecycle_recorded_test.go, codex-mock/internal/childenv/childenv.go, codex-mock/internal/childenv/childenv_test.go, codex-mock/internal/events/stream.go, codex-mock/internal/hooks/decide.go, codex-mock/internal/runner/run.go, codex-mock/snapshots/capture.sh, codex-mock/snapshots/runs/noninteractive-run-text-output/run.yaml, codex-mock/snapshots/runs/noninteractive-run-text-output/samples/20261003-170231/SEAL (and 47 more) (file-guard "capability-rigor")
+total 3744
+drwxr-xr-x@ 372 nsviridenko  wheel   11904 Oct  3 19:32 .
+drwx------@   4 nsviridenko  wheel     128 Oct  3 16:27 ..
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 18:23 a0536385c98a58af6.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a0536385c98a58af6.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 19:28 a07553d2a030170f9.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a07553d2a030170f9.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 18:49 a0be1bbdf1e9ecd30.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a0be1bbdf1e9ecd30.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 17:13 a0c772020b44bc7d4.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a0c772020b44bc7d4.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 19:21 a109c587d32837d47.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a109c587d32837d47.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 16:45 a11c0a040e3cf682b.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a11c0a040e3cf682b.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 18:41 a1623904b5d23ad05.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a1623904b5d23ad05.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 17:54 a26fb63d519ffd330.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a26fb63d519ffd330.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 16:45 a2c1fdf598c68619f.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a2c1fdf598c68619f.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 18:50 a30b47b7e44b7c640.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a30b47b7e44b7c640.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 16:45 a4d84e01b97891e91.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a4d84e01b97891e91.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 19:10 a513ce3b392834fe0.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a513ce3b392834fe0.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 16:45 a5206b5b2ad4bea59.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a5206b5b2ad4bea59.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 19:04 a54d95a1b2ce35f6b.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a54d95a1b2ce35f6b.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 17:19 a609b196101dcb60e.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a609b196101dcb60e.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 19:32 a63bb90a3bc6561be.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a63bb90a3bc6561be.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 16:45 a74ae8cc6fe515f14.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a74ae8cc6fe515f14.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 17:48 a7b746b221fd760ca.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a7b746b221fd760ca.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 19:30 a7e54ea3099505a7e.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a7e54ea3099505a7e.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 17:13 a8dc95b6a34535897.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a8dc95b6a34535897.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 16:55 a98d9d24061df466d.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-a98d9d24061df466d.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 19:15 aa14e9cc78e7c5b07.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-aa14e9cc78e7c5b07.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 19:24 aa43418fbebf671c6.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-aa43418fbebf671c6.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 19:31 ab2efb1b0554a0078.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-ab2efb1b0554a0078.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 18:59 abb30e7cdc8998b15.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-abb30e7cdc8998b15.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 17:19 abe844dc3881e139c.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-abe844dc3881e139c.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 18:50 ac203fa7f0757b6fc.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-ac203fa7f0757b6fc.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 17:40 ace34c9d71e0db288.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-ace34c9d71e0db288.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 18:57 ad3b5c11f3a618bca.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-ad3b5c11f3a618bca.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 16:45 adc1470310079e23b.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-adc1470310079e23b.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 16:45 ade450ea5c2797f64.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-ade450ea5c2797f64.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 16:45 adfaf6893cfeed936.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-adfaf6893cfeed936.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 16:58 ae0b3cd9bc3b72728.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-ae0b3cd9bc3b72728.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 17:22 ae75cc2fe613b3186.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-ae75cc2fe613b3186.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 19:32 aefdb38925cd179a2.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-aefdb38925cd179a2.jsonl
+lrwxr-xr-x@   1 nsviridenko  wheel     209 Oct  3 19:23 afc43fc036aaadb5a.output -> /Users/nsviridenko/.claude/projects/-Users-nsviridenko-ws-sloprail-harness-mocks--claude-worktrees-harness-mocks-architecture-3031e7/f103aecd-8ff6-40a5-ad21-f5bd02338666/subagents/agent-afc43fc036aaadb5a.jsonl
+-rw-r--r--@   1 nsviridenko  wheel     631 Oct  3 19:23 b025csvx1.output
+-rw-r--r--@   1 nsviridenko  wheel    3454 Oct  3 18:39 b04jjzm66.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:21 b0e838h82.output
+-rw-r--r--@   1 nsviridenko  wheel      28 Oct  3 18:01 b0fixo0ph.output
+-rw-r--r--@   1 nsviridenko  wheel     400 Oct  3 18:33 b0hd2q2xi.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 19:16 b0k8swd8i.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 19:11 b0lmw2uh0.output
+-rw-r--r--@   1 nsviridenko  wheel    5280 Oct  3 18:09 b0wg2tx6z.output
+-rw-r--r--@   1 nsviridenko  wheel      83 Oct  3 16:50 b122ixcpk.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:16 b12em689p.output
+-rw-r--r--@   1 nsviridenko  wheel     533 Oct  3 19:03 b15vqplep.output
+-rw-r--r--@   1 nsviridenko  wheel    1156 Oct  3 18:16 b1710leqd.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:00 b19z9mjsk.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 18:25 b1c1p950n.output
+-rw-r--r--@   1 nsviridenko  wheel    3469 Oct  3 19:09 b1foin0p1.output
+-rw-r--r--@   1 nsviridenko  wheel    3775 Oct  3 18:57 b1sx11enb.output
+-rw-r--r--@   1 nsviridenko  wheel     175 Oct  3 19:30 b1vq9dl3k.output
+-rw-r--r--@   1 nsviridenko  wheel     199 Oct  3 18:54 b1wwwbhxm.output
+-rw-r--r--@   1 nsviridenko  wheel      28 Oct  3 18:01 b209zpx9c.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:24 b21c76m60.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:24 b21omszm4.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:35 b269r32oh.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:20 b28nss833.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 b29jla9kj.output
+-rw-r--r--@   1 nsviridenko  wheel   11073 Oct  3 18:12 b2aw85o90.output
+-rw-r--r--@   1 nsviridenko  wheel     167 Oct  3 17:39 b2fj7spg7.output
+-rw-r--r--@   1 nsviridenko  wheel     610 Oct  3 17:10 b2h4qwigl.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:55 b2jn2jnr8.output
+-rw-r--r--@   1 nsviridenko  wheel    1908 Oct  3 18:03 b2mje7ter.output
+-rw-r--r--@   1 nsviridenko  wheel       0 Oct  3 19:26 b2my3ghn4.output
+-rw-r--r--@   1 nsviridenko  wheel   17649 Oct  3 17:39 b2qbf549z.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 19:07 b2unlhrs5.output
+-rw-r--r--@   1 nsviridenko  wheel    1391 Oct  3 17:26 b2zxfuddh.output
+-rw-r--r--@   1 nsviridenko  wheel    1151 Oct  3 17:42 b3cn804dj.output
+-rw-r--r--@   1 nsviridenko  wheel     271 Oct  3 18:34 b3cw2apfk.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 b3e4f8czm.output
+-rw-r--r--@   1 nsviridenko  wheel    1722 Oct  3 19:15 b3fumegpb.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 b3ib3zup0.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 19:17 b3og002f4.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 17:53 b3rgu7c0w.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 b3yiaje1r.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 b41sn7hw9.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:24 b44s2fmlr.output
+-rw-r--r--@   1 nsviridenko  wheel      93 Oct  3 17:22 b47slis16.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:40 b4a9vu8kh.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:00 b4atlawso.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 19:18 b4ebx5ls8.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 b4gtnbojh.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:45 b4h17kwts.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 19:29 b4hulzaiw.output
+-rw-r--r--@   1 nsviridenko  wheel    2704 Oct  3 19:32 b4i4l8o1p.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 17:54 b4jrk57dp.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:34 b4omq68w3.output
+-rw-r--r--@   1 nsviridenko  wheel      31 Oct  3 19:16 b4q13wnne.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 19:09 b4rd38ige.output
+-rw-r--r--@   1 nsviridenko  wheel    6842 Oct  3 18:23 b4sckei2p.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 b4to2azcn.output
+-rw-r--r--@   1 nsviridenko  wheel   22348 Oct  3 17:30 b4x3jmk1h.output
+-rw-r--r--@   1 nsviridenko  wheel    1167 Oct  3 17:13 b51495pqv.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:22 b57flt26j.output
+-rw-r--r--@   1 nsviridenko  wheel      30 Oct  3 17:27 b58ful3jf.output
+-rw-r--r--@   1 nsviridenko  wheel  220329 Oct  3 19:21 b5lt4y867.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:23 b5ovn2zaa.output
+-rw-r--r--@   1 nsviridenko  wheel      30 Oct  3 17:10 b5pth2fdv.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:33 b5xtl6bhn.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 b5yk2vxsp.output
+-rw-r--r--@   1 nsviridenko  wheel       0 Oct  3 19:30 b63gkgswt.output
+-rw-r--r--@   1 nsviridenko  wheel    2636 Oct  3 18:31 b643s9u7n.output
+-rw-r--r--@   1 nsviridenko  wheel   16899 Oct  3 17:37 b67qe65by.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:14 b67rkf3p4.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 19:25 b67ztr7k2.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:34 b68nc5r9l.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:22 b6cobgpng.output
+-rw-r--r--@   1 nsviridenko  wheel    1574 Oct  3 17:23 b6kjaa2c7.output
+-rw-r--r--@   1 nsviridenko  wheel    1721 Oct  3 18:41 b6kry6tom.output
+-rw-r--r--@   1 nsviridenko  wheel     206 Oct  3 18:57 b6rk2f4pd.output
+-rw-r--r--@   1 nsviridenko  wheel      87 Oct  3 18:41 b71o3k270.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:52 b73ikdxte.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 b7eop89pm.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:45 b7j751ikb.output
+-rw-r--r--@   1 nsviridenko  wheel    4436 Oct  3 18:56 b7l75gqgt.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 b7my57el2.output
+-rw-r--r--@   1 nsviridenko  wheel      28 Oct  3 17:43 b7rdiw7qn.output
+-rw-r--r--@   1 nsviridenko  wheel    1843 Oct  3 19:32 b7t069k83.output
+-rw-r--r--@   1 nsviridenko  wheel    3152 Oct  3 19:13 b7w5ogp19.output
+-rw-r--r--@   1 nsviridenko  wheel      31 Oct  3 19:07 b7z2ojbi3.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:20 b844uy3yr.output
+-rw-r--r--@   1 nsviridenko  wheel      28 Oct  3 18:23 b8gdkurx0.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:23 b8gmpusxh.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 18:28 b8hifzfa0.output
+-rw-r--r--@   1 nsviridenko  wheel    2702 Oct  3 18:43 b8ki8oq2j.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:25 b8nteeov7.output
+-rw-r--r--@   1 nsviridenko  wheel      30 Oct  3 17:27 b8q2de8gm.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:35 b8qv9mcne.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 17:55 b8rirbm47.output
+-rw-r--r--@   1 nsviridenko  wheel    1720 Oct  3 17:45 b8s7tm9z4.output
+-rw-r--r--@   1 nsviridenko  wheel      93 Oct  3 17:22 b8t4jfuw7.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 19:07 b8u8ufu4b.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 17:43 b8v1icluq.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 19:08 b90bk1ei5.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 19:24 b90odnoip.output
+-rw-r--r--@   1 nsviridenko  wheel       0 Oct  3 19:29 b92tg5931.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 19:21 b974q0tpb.output
+-rw-r--r--@   1 nsviridenko  wheel    5283 Oct  3 18:14 b98l7sahw.output
+-rw-r--r--@   1 nsviridenko  wheel      54 Oct  3 19:25 b9ckud3di.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 19:07 b9juqjn80.output
+-rw-r--r--@   1 nsviridenko  wheel     624 Oct  3 19:31 b9kp5qbah.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:00 b9n7b8ces.output
+-rw-r--r--@   1 nsviridenko  wheel      28 Oct  3 18:01 b9xnepc39.output
+-rw-r--r--@   1 nsviridenko  wheel      32 Oct  3 17:45 b9zye0w6d.output
+-rw-r--r--@   1 nsviridenko  wheel      35 Oct  3 17:37 ba0kqduvs.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 ba1k6wwha.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 19:08 ba2sw3qm7.output
+-rw-r--r--@   1 nsviridenko  wheel    3193 Oct  3 18:43 ba7k44bbt.output
+-rw-r--r--@   1 nsviridenko  wheel    1369 Oct  3 17:26 bafbakt6f.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:48 balw8c6v3.output
+-rw-r--r--@   1 nsviridenko  wheel       0 Oct  3 19:29 bauxqrjq5.output
+-rw-r--r--@   1 nsviridenko  wheel     725 Oct  3 18:23 bavxs11z8.output
+-rw-r--r--@   1 nsviridenko  wheel    1224 Oct  3 17:57 bb12r8c83.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:25 bb21bp9bu.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:26 bb4ev77ok.output
+-rw-r--r--@   1 nsviridenko  wheel       0 Oct  3 19:27 bbn8kkr9z.output
+-rw-r--r--@   1 nsviridenko  wheel     101 Oct  3 17:22 bbpsv0gap.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:33 bbq5psjb5.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 bbu8vu6kl.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:57 bc0pqo016.output
+-rw-r--r--@   1 nsviridenko  wheel    4049 Oct  3 18:21 bc57l0jza.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 19:10 bc9033mu5.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:49 bcff0ratx.output
+-rw-r--r--@   1 nsviridenko  wheel    1464 Oct  3 17:31 bcgklbcpw.output
+-rw-r--r--@   1 nsviridenko  wheel      28 Oct  3 18:59 bch6hx2b3.output
+-rw-r--r--@   1 nsviridenko  wheel    1246 Oct  3 17:41 bchnqnlp0.output
+-rw-r--r--@   1 nsviridenko  wheel      78 Oct  3 17:11 bckmcpzy2.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 16:51 bcmootp2n.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 19:07 bcn86kqb2.output
+-rw-r--r--@   1 nsviridenko  wheel    1198 Oct  3 17:55 bcoaw4yvo.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:00 bctcqt83o.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:27 bcyz36vhw.output
+-rw-r--r--@   1 nsviridenko  wheel     755 Oct  3 16:51 bdkmamp37.output
+-rw-r--r--@   1 nsviridenko  wheel      31 Oct  3 18:13 bdkr50y3o.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 19:07 bdqfl8v3q.output
+-rw-r--r--@   1 nsviridenko  wheel      26 Oct  3 19:27 bdrdeovjz.output
+-rw-r--r--@   1 nsviridenko  wheel       0 Oct  3 19:24 be4fpl6kv.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:58 be4rwsyrf.output
+-rw-r--r--@   1 nsviridenko  wheel    3028 Oct  3 17:43 be8ah3sny.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 18:09 beb6pd44h.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:35 bef1zqkga.output
+-rw-r--r--@   1 nsviridenko  wheel    8124 Oct  3 18:39 befmc86mm.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 bep2xoyxu.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:26 beyyktw6s.output
+-rw-r--r--@   1 nsviridenko  wheel      77 Oct  3 16:51 bf5fjkl5g.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 19:07 bf74fhb89.output
+-rw-r--r--@   1 nsviridenko  wheel      97 Oct  3 18:51 bf7xhdedr.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:23 bfu2rm5ed.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 19:15 bg0uk1x4g.output
+-rw-r--r--@   1 nsviridenko  wheel    2622 Oct  3 18:56 bg1j3z1kv.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 17:31 bg3cpo1s5.output
+-rw-r--r--@   1 nsviridenko  wheel      32 Oct  3 19:08 bgam2phhj.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:23 bgavm0jrf.output
+-rw-r--r--@   1 nsviridenko  wheel     877 Oct  3 19:01 bgevglvh7.output
+-rw-r--r--@   1 nsviridenko  wheel     408 Oct  3 18:30 bgh0lcd5n.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:39 bgjfqj08z.output
+-rw-r--r--@   1 nsviridenko  wheel      28 Oct  3 18:01 bgk6um9ek.output
+-rw-r--r--@   1 nsviridenko  wheel      33 Oct  3 19:07 bgla7e1m3.output
+-rw-r--r--@   1 nsviridenko  wheel   11071 Oct  3 18:20 bglc7ccbc.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:24 bglwtzplz.output
+-rw-r--r--@   1 nsviridenko  wheel    1189 Oct  3 17:17 bgpvpt40v.output
+-rw-r--r--@   1 nsviridenko  wheel    1084 Oct  3 19:01 bgqpppb1w.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:24 bgw5vda7z.output
+-rw-r--r--@   1 nsviridenko  wheel       0 Oct  3 19:28 bh38ot1ju.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:24 bh4a04191.output
+-rw-r--r--@   1 nsviridenko  wheel    1024 Oct  3 19:07 bh6lqb4ut.output
+-rw-r--r--@   1 nsviridenko  wheel     222 Oct  3 17:35 bh6w9r1vz.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 17:31 bhe4qlmdo.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:00 bhep5eo9k.output
+-rw-r--r--@   1 nsviridenko  wheel    1224 Oct  3 19:16 bhk8val5v.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 19:14 bhs404pin.output
+-rw-r--r--@   1 nsviridenko  wheel    1391 Oct  3 17:28 bhygsxsuy.output
+-rw-r--r--@   1 nsviridenko  wheel    4020 Oct  3 17:45 bi07tv3bw.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 bi9yk1j0p.output
+-rw-r--r--@   1 nsviridenko  wheel    2945 Oct  3 18:00 bia9m49p5.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 18:17 bibnzncf3.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 17:51 bimvazp4x.output
+-rw-r--r--@   1 nsviridenko  wheel       0 Oct  3 19:32 biyeb776w.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 19:06 bizwpio8q.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:18 bj13i5pu8.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:34 bj9z6djd6.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:26 bjcu7ecqf.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 19:08 bjfv4h1jm.output
+-rw-r--r--@   1 nsviridenko  wheel   14868 Oct  3 17:43 bjj2w020x.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 17:42 bjk2bvgfz.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:23 bjr3ve459.output
+-rw-r--r--@   1 nsviridenko  wheel    1507 Oct  3 18:35 bjt13hzq4.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 19:18 bjydzz3sy.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 18:22 bk4hos3oz.output
+-rw-r--r--@   1 nsviridenko  wheel     449 Oct  3 19:26 bkenm7yo5.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:00 bkn8arxvz.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 bksxcsqph.output
+-rw-r--r--@   1 nsviridenko  wheel    1014 Oct  3 17:20 bkviumu8a.output
+-rw-r--r--@   1 nsviridenko  wheel     172 Oct  3 18:10 bkyx0qjqt.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:26 bl7cyqsx2.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:51 blahkb6wv.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:05 blcp7u5ge.output
+-rw-r--r--@   1 nsviridenko  wheel   16921 Oct  3 18:13 blghaso9l.output
+-rw-r--r--@   1 nsviridenko  wheel    3945 Oct  3 17:15 blhcowl3k.output
+-rw-r--r--@   1 nsviridenko  wheel   10610 Oct  3 17:44 blipiekm1.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:23 bls1mw9u7.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:25 bltwszmf9.output
+-rw-r--r--@   1 nsviridenko  wheel      25 Oct  3 17:22 bm2rob77b.output
+-rw-r--r--@   1 nsviridenko  wheel     795 Oct  3 18:05 bm3v5d511.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 19:25 bm59tx4eu.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 17:43 bm64lt5rf.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:23 bmjj1575p.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 19:28 bmqf9ol8z.output
+-rw-r--r--@   1 nsviridenko  wheel    1226 Oct  3 19:01 bms93fmei.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:21 bmt61aecw.output
+-rw-r--r--@   1 nsviridenko  wheel    6318 Oct  3 19:04 bmxbcnggt.output
+-rw-r--r--@   1 nsviridenko  wheel      32 Oct  3 18:59 bn0v62f0o.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 18:58 bne87hb3h.output
+-rw-r--r--@   1 nsviridenko  wheel    3797 Oct  3 18:00 bnek310xo.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:38 bnl28sk4f.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:18 bnskuf3di.output
+-rw-r--r--@   1 nsviridenko  wheel   22744 Oct  3 17:12 bo3w57lmg.output
+-rw-r--r--@   1 nsviridenko  wheel    4022 Oct  3 17:44 bo5cnvnk2.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:48 bo7rx0jxs.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 17:49 bo8rj3le3.output
+-rw-r--r--@   1 nsviridenko  wheel    1120 Oct  3 18:12 bogls40uw.output
+-rw-r--r--@   1 nsviridenko  wheel      46 Oct  3 18:01 bomv7dyyh.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:18 boof8fs80.output
+-rw-r--r--@   1 nsviridenko  wheel      94 Oct  3 17:54 bowv20mhi.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 bp9eilbxw.output
+-rw-r--r--@   1 nsviridenko  wheel       0 Oct  3 19:29 bpcuqhzpn.output
+-rw-r--r--@   1 nsviridenko  wheel    4877 Oct  3 18:30 bpg3tt7ze.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:41 bpgbl09xe.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:20 bphgpl2w5.output
+-rw-r--r--@   1 nsviridenko  wheel    2250 Oct  3 19:06 bpip1759j.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 19:08 bplurpv49.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 bpp5x0nbd.output
+-rw-r--r--@   1 nsviridenko  wheel      28 Oct  3 17:40 bpqaq932n.output
+-rw-r--r--@   1 nsviridenko  wheel   19304 Oct  3 17:32 bpvfz86u5.output
+-rw-r--r--@   1 nsviridenko  wheel   11433 Oct  3 17:44 bpy8rhm9q.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:01 bq0x138pt.output
+-rw-r--r--@   1 nsviridenko  wheel   14477 Oct  3 17:47 bq1qsw2dq.output
+-rw-r--r--@   1 nsviridenko  wheel   13516 Oct  3 17:42 bq80fwya9.output
+-rw-r--r--@   1 nsviridenko  wheel   12543 Oct  3 17:24 bq8hdljs8.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 19:30 bq9asyba1.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 bqby6jw92.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 18:21 bqio7r3m2.output
+-rw-r--r--@   1 nsviridenko  wheel   13168 Oct  3 17:27 bqjfdbjwv.output
+-rw-r--r--@   1 nsviridenko  wheel      28 Oct  3 18:31 bqk6prfm0.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 18:59 bqq5iwf1e.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:57 bqqmqj5rf.output
+-rw-r--r--@   1 nsviridenko  wheel    9022 Oct  3 18:01 bqw77ttgl.output
+-rw-r--r--@   1 nsviridenko  wheel    3022 Oct  3 17:40 bqxpo0d44.output
+-rw-r--r--@   1 nsviridenko  wheel    2532 Oct  3 18:19 br9ve57px.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 18:01 brg89rg9k.output
+-rw-r--r--@   1 nsviridenko  wheel   16635 Oct  3 17:41 brgoj1iuo.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:53 brismb34d.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:35 brxbvr95h.output
+-rw-r--r--@   1 nsviridenko  wheel    1189 Oct  3 17:13 bs03hg6lg.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 19:08 bs2g7wao9.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 bsa2f7dgb.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:38 bshv2qnf1.output
+-rw-r--r--@   1 nsviridenko  wheel      26 Oct  3 19:16 bsj0c5gve.output
+-rw-r--r--@   1 nsviridenko  wheel      35 Oct  3 17:24 bsst4i018.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 17:31 bt11n8xzw.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 bt2q0lyje.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 19:05 btj1umrgb.output
+-rw-r--r--@   1 nsviridenko  wheel     222 Oct  3 17:46 btlq7zp15.output
+-rw-r--r--@   1 nsviridenko  wheel    2244 Oct  3 17:24 btpvj34oh.output
+-rw-r--r--@   1 nsviridenko  wheel      93 Oct  3 17:22 btq3dhfbm.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:28 btug3f0lc.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 btuyivghp.output
+-rw-r--r--@   1 nsviridenko  wheel      26 Oct  3 18:47 bu0dkjk7e.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:35 bu15naxhy.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:22 bu48maw8g.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:23 bu5g8erxo.output
+-rw-r--r--@   1 nsviridenko  wheel   18627 Oct  3 17:32 bud3c2pt8.output
+-rw-r--r--@   1 nsviridenko  wheel    5898 Oct  3 17:29 bufhjp8bn.output
+-rw-r--r--@   1 nsviridenko  wheel    3785 Oct  3 19:32 buhov9tvt.output
+-rw-r--r--@   1 nsviridenko  wheel    1523 Oct  3 18:32 bukq9zale.output
+-rw-r--r--@   1 nsviridenko  wheel     971 Oct  3 19:08 buky96bz9.output
+-rw-r--r--@   1 nsviridenko  wheel    2001 Oct  3 19:07 burdy4yxn.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:24 butx4o6od.output
+-rw-r--r--@   1 nsviridenko  wheel      73 Oct  3 18:23 buu0axtfk.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 18:16 buzmp9hhb.output
+-rw-r--r--@   1 nsviridenko  wheel      53 Oct  3 19:07 bv1srnd2q.output
+-rw-r--r--@   1 nsviridenko  wheel    6479 Oct  3 17:14 bv344saoc.output
+-rw-r--r--@   1 nsviridenko  wheel     844 Oct  3 19:25 bv6z2j6o7.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:00 bvb1d9vq7.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:44 bvcjb8low.output
+-rw-r--r--@   1 nsviridenko  wheel    1041 Oct  3 17:13 bvcjd0p2d.output
+-rw-r--r--@   1 nsviridenko  wheel       0 Oct  3 19:32 bve2n09e6.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:16 bvmi265vw.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 17:55 bvr5vz8b1.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 19:21 bvsgq8zpd.output
+-rw-r--r--@   1 nsviridenko  wheel      28 Oct  3 17:43 bvt1j1bgc.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 19:10 bvv9hkz2i.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 18:01 bw2prn7cz.output
+-rw-r--r--@   1 nsviridenko  wheel      60 Oct  3 17:14 bw8tx6t14.output
+-rw-r--r--@   1 nsviridenko  wheel    7154 Oct  3 19:19 bwrjuhbnu.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:28 bwtuv9kbc.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 19:07 bx63fqfmc.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:32 bx9e7nfu7.output
+-rw-r--r--@   1 nsviridenko  wheel      22 Oct  3 18:30 bx9z02szh.output
+-rw-r--r--@   1 nsviridenko  wheel    2462 Oct  3 17:40 bxedj8z3a.output
+-rw-r--r--@   1 nsviridenko  wheel      27 Oct  3 17:21 bxhbx2k4d.output
+-rw-r--r--@   1 nsviridenko  wheel     716 Oct  3 18:32 bxhrflhm0.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 19:25 by0imov8w.output
+-rw-r--r--@   1 nsviridenko  wheel    1282 Oct  3 19:00 by0sbt9lh.output
+-rw-r--r--@   1 nsviridenko  wheel      94 Oct  3 18:58 by129shww.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 18:58 by3lbf40d.output
+-rw-r--r--@   1 nsviridenko  wheel    1304 Oct  3 18:24 by4jakczm.output
+-rw-r--r--@   1 nsviridenko  wheel    8989 Oct  3 17:23 by59dxxm0.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 19:32 by6nzbg9p.output
+-rw-r--r--@   1 nsviridenko  wheel      31 Oct  3 17:22 by6zt2a9t.output
+-rw-r--r--@   1 nsviridenko  wheel     719 Oct  3 18:14 by72vy0k0.output
+-rw-r--r--@   1 nsviridenko  wheel    6820 Oct  3 18:23 by7bg3f28.output
+-rw-r--r--@   1 nsviridenko  wheel    2308 Oct  3 18:13 bya0vayfd.output
+-rw-r--r--@   1 nsviridenko  wheel      28 Oct  3 17:43 byanqvu9k.output
+-rw-r--r--@   1 nsviridenko  wheel    8401 Oct  3 17:35 byd4ogms4.output
+-rw-r--r--@   1 nsviridenko  wheel    3822 Oct  3 17:26 byfunsb1o.output
+-rw-r--r--@   1 nsviridenko  wheel      93 Oct  3 17:22 bykvfu4b5.output
+-rw-r--r--@   1 nsviridenko  wheel   30722 Oct  3 17:40 bymstwawv.output
+-rw-r--r--@   1 nsviridenko  wheel     376 Oct  3 18:59 byoor36wt.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 19:00 bywv3cief.output
+-rw-r--r--@   1 nsviridenko  wheel      94 Oct  3 18:44 byz7zgcos.output
+-rw-r--r--@   1 nsviridenko  wheel      29 Oct  3 19:16 bz2dtfoyx.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:45 bz5p1q2ap.output
+-rw-r--r--@   1 nsviridenko  wheel    2756 Oct  3 18:10 bza6ke4z0.output
+-rw-r--r--@   1 nsviridenko  wheel    4022 Oct  3 17:41 bzd0d8p37.output
+-rw-r--r--@   1 nsviridenko  wheel      24 Oct  3 17:31 bzm732xyg.output
+-rw-r--r--@   1 nsviridenko  wheel     145 Oct  3 17:56 bzv3vouci.output
+-rw-r--r--@   1 nsviridenko  wheel      10 Oct  3 17:36 bzy1i6kim.output

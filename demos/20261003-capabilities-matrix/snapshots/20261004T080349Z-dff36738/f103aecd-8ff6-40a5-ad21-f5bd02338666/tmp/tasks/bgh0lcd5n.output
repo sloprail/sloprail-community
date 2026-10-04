@@ -1,0 +1,7 @@
+Refreshing checks status every 10 seconds. Press Ctrl+C to quit.
+
+CLAAssistant	pending	0	https://github.com/sloprail/harness-mocks/actions/runs/37137064240/job/111243637543	
+CLAAssistant	pass	8s	https://github.com/sloprail/harness-mocks/actions/runs/37137064240/job/111243637543	
+CLAAssistant	pass	8s	https://github.com/sloprail/harness-mocks/actions/runs/37137064240/job/111243637543	
+
+[exited with code 0]

@@ -1,0 +1,51 @@
+Current branch worktree-agent-a34378e2eed9754d0 is up to date.
+sloprail: sr-checks run still working: 0/0 checks settled, 0 judging (30s elapsed)
+sloprail: file-guard "child-processes" changeset: ok (1/16 settled, 36s)
+sloprail: file-guard "file-size" changeset: ok (2/16 settled, 37s)
+sloprail: file-guard "config-at-entry" changeset: ok (3/16 settled, 38s)
+sloprail: file-guard "invariant-covered" changeset: ok (4/16 settled, 39s)
+sloprail: file-guard "layering" changeset: ok (5/16 settled, 40s)
+sloprail: file-guard "shapes" changeset: ok (6/16 settled, 41s)
+sloprail: file-guard "module-boundaries" changeset: ok (7/16 settled, 47s)
+sloprail: file-guard "snapshots-current" cursor: ok (8/16 settled, 56s)
+sloprail: file-guard "snapshots-current" codex: ok (9/16 settled, 57s)
+sloprail: sr-checks run still working: 9/16 checks settled, 0 judging (1m0s elapsed)
+sloprail: file-guard "snapshots-current" claude: ok (10/16 settled, 1m2s)
+sloprail: file-guard "capability-covered" changeset: ok (11/16 settled, 1m4s)
+sloprail: judging "concern-undeclared" changeset with "./classify.md.j2"
+sloprail: judging "adr-conformance" changeset with "../../_lib/adr-conforms.md.j2"
+sloprail: judging "capability-rigor" noninteractive-run with "./tests-prove-as-documented.md.j2"
+sloprail: file-guard "invariant-rigor" unclaimed: ok (12/16 settled, 1m5s)
+sloprail: judging "capability-grounded" noninteractive-run with "./docs-support-statement.md.j2"
+sloprail: judged "concern-undeclared" changeset in 22s
+sloprail: file-guard "concern-undeclared" changeset: ok (13/16 settled, 1m26s)
+sloprail: judged "adr-conformance" changeset in 24s
+sloprail: file-guard "adr-conformance" changeset: ok (14/16 settled, 1m29s)
+sloprail: sr-checks run still working: 14/16 checks settled, 2 judging (1m30s elapsed)
+sloprail: judged "capability-grounded" noninteractive-run in 27s
+sloprail: file-guard "capability-grounded" noninteractive-run: ok (15/16 settled, 1m33s)
+sloprail: judged "capability-rigor" noninteractive-run in 41s
+sloprail: file-guard "capability-rigor" noninteractive-run: refused (16/16 settled, 1m46s)
+sloprail: file-guard "adr-conformance": cheap checks 490ms, judges 25.11s
+sloprail: file-guard "capability-covered": cheap checks 30.711s, judges 0s
+sloprail: file-guard "capability-grounded": cheap checks 388ms, judges 29.587s
+sloprail: file-guard "capability-rigor": cheap checks 1.431s, judges 42.673s
+sloprail: file-guard "child-processes": cheap checks 3.396s, judges 0s
+sloprail: file-guard "concern-undeclared": cheap checks 65ms, judges 22.732s
+sloprail: file-guard "config-at-entry": cheap checks 5.382s, judges 0s
+sloprail: file-guard "file-size": cheap checks 4.083s, judges 0s
+sloprail: file-guard "invariant-covered": cheap checks 5.953s, judges 0s
+sloprail: file-guard "invariant-rigor": cheap checks 300ms, judges 1.356s
+sloprail: file-guard "layering": cheap checks 5.698s, judges 0s
+sloprail: file-guard "module-boundaries": cheap checks 10.238s, judges 0s
+sloprail: file-guard "shapes": cheap checks 3.759s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 23.485s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 18.058s, judges 0s
+sloprail: file-guard "snapshots-current": cheap checks 15.759s, judges 0s
+sloprail: file-guards evaluated in 1m46.376s (26 rules, concurrency 6)
+The headless doc says --force (or --yolo) is what lets a print-mode run modify files, but no test in this subject writes a file under --force or --yolo and checks it was applied. TestForceOrYoloApprovesShellCommands covers shell commands only, and the file-write check runs only in the no-force replay. Add a test, and a recorded run, that does a file write with --force or --yolo.
+The files this refusal is about: cursor-mock/e2e/001_hooks/noninteractive_stream_test.go, spec/capabilities/noninteractive-run.yaml (file-guard "capability-rigor")
+
+[exited with code 0]
+
+[exited with code 0]

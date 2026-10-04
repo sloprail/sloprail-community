@@ -1,0 +1,9 @@
+sloprail: file-guard "capability-rigor" background-agent: refused (4/27 settled, 6m17s)
+sloprail: file-guard "capability-rigor" background-bash: refused (5/27 settled, 6m18s)
+sloprail: file-guard "capability-rigor" session-start-hook: refused (8/27 settled, 6m24s)
+the following rules refused this work:
+  - The sub-agents doc lists variants no test covers and no <deviation> declares: a subagent definition whose frontmatter sets `background: true` must run in the background even when Claude asks for the foreground (this applies in -p mode, where fork mode is off). Agent-team teammates also have run_
+  - No listed test asserts the stream frames for a background command that finishes on its own, which the midturn sample records as background_tasks_changed, task_started, background_tasks_changed, task_updated and task_notification, ending in a completed task_notification before the result. TestT01
+  - The doc (cursor.com/docs/hooks#sessionstart) says session creation is not blocked even when a sessionStart hook returns continue:false, and the only test (session_start_test.go) covers just the exit-2 case, so the continue:false variant has no test or recorded run.
+
+[exited with code 0]
