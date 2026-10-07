@@ -27,16 +27,10 @@
 TRAJECTORY_HEALTH_MODEL="${TRAJECTORY_HEALTH_MODEL:-size-sm}"
 
 # subagent_records prints the path of every sub-agent record the run's session
-# left, one per line, sorted: <session>/subagents/agent-*.jsonl and those a
-# harness nests deeper (subagents/workflows/wf_<id>/agent-*.jsonl — a workflow's
-# agents). A flat `subagents/*.jsonl` glob misses the nested ones, and with them
-# every refusal a workflow's agent met.
+# left, one per line, sorted. Only sloprail's account of them (trajectory describe,
+# which asks the harness where it keeps them): no layout is assumed here.
 subagent_records() {
-  {
-    # What the harness's session record says it spawned (sloprail's own, harness-neutral).
-    sr-session trajectory describe --path "$SR_EVAL_TRANSCRIPT" 2>/dev/null | jq -r '.subagentPaths[]?' 2>/dev/null
-    find "${SR_EVAL_TRANSCRIPT%.jsonl}/subagents" -type f -name 'agent-*.jsonl' 2>/dev/null
-  } | sort -u
+  sr-session trajectory describe --path "$SR_EVAL_TRANSCRIPT" 2>/dev/null | jq -r '.subagentPaths[]?' 2>/dev/null | sort -u
 }
 
 # trajectory_entries prints a session record as one normalized entry per line,
@@ -47,10 +41,17 @@ trajectory_entries() {
     jq -c '.[]' 2>/dev/null
 }
 
-# cat_subagent_records prints every sub-agent record's content, for a grep —
-# the nested ones included.
+# trajectory_text prints every string a session record holds, decoded (the agent's
+# prose, a tool call's arguments, a tool's output, a hook's message), one per line,
+# for a grep over what was said rather than over how the record is encoded.
+trajectory_text() {
+  trajectory_entries "$1" | jq -r '[.message?, .attachment?, .stopHook?] | .. | strings' 2>/dev/null
+}
+
+# cat_subagent_records prints the text (trajectory_text) of every sub-agent
+# record, for a grep.
 cat_subagent_records() {
-  subagent_records | while IFS= read -r rec; do cat "$rec"; done
+  subagent_records | while IFS= read -r rec; do trajectory_text "$rec"; done
 }
 
 # TRAJECTORY_BUDGET is the most text a judge is handed, in bytes.
@@ -429,13 +430,9 @@ $es_facts"
 # `.sloprail/file-guard/<name>/…` is not one). The older quoted
 # `gate "<name>"` / `file-guard "<name>"` form still counts, as follows.
 #
-# The quote before/after the name may be a literal `"` or a JSON-escaped
-# `\"` — which one appears depends on how many times the refusal text itself
-# got JSON-encoded before landing in the transcript (a raw hook stdout write
-# vs. text nested inside a tool_result's own JSON string), and BOTH shapes
-# were measured in real transcripts from real runs. `\{0,1\}` (POSIX basic
-# regex; `?` is not portable to every grep) makes the backslash optional on
-# both sides so either shape matches.
+# The text is the decoded strings of the normalized entries (trajectory_text), so
+# how many times a refusal was JSON-encoded in the record does not matter; the
+# optional backslash is kept for text that itself quotes an escaped name.
 #
 # Usage: guardrail_fired_check '<name>' ; # sets GF_STATUS (fired/never-fired), GF_COUNT
 guardrail_fired_check() {
@@ -444,7 +441,7 @@ guardrail_fired_check() {
   if [ -f "${SR_EVAL_TRANSCRIPT:-/nonexistent}" ]; then
     # The sub-agents' records too: a rule refusing inside a sub-agent (at its
     # SubagentStop, or a tool call it made) is written there, not in the root.
-    count="$({ cat "$SR_EVAL_TRANSCRIPT"; cat_subagent_records; } 2>/dev/null \
+    count="$({ trajectory_text "$SR_EVAL_TRANSCRIPT"; cat_subagent_records; } 2>/dev/null \
       | grep -oE "(^|[^/A-Za-z0-9_.-])([a-z0-9-]+/)?(file-guard|gate)/$name([^/A-Za-z0-9_.-]|\\.([^A-Za-z0-9_]|$)|$)|\\\\?\"$name\\\\?\"" | wc -l | tr -d ' ')"
   fi
   GF_COUNT="$count"

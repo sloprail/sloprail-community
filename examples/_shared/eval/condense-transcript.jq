@@ -25,14 +25,21 @@
 # already in the one canonical shape there (`.type`, `.message.role`,
 # `.message.content` as a string or tool_use / tool_result / text blocks,
 # `.attachment`), so nothing below knows which harness wrote the session.
-# normalize does not carry the harness's Stop-hook run summaries (a system
-# entry's subtype), so the judge sees a refused Stop (the attachment above) but
-# no explicit line for a Stop that passed.
+# A Stop hook run is a system entry carrying `.stopHook` (refused, reasons), kept
+# as one STOP_HOOK line: pass or refuse. It is NOT a HOOK_REFUSAL line (the
+# refusal's text is the attachment's), so a refused Stop is not counted twice by
+# the scorer's refusal section.
 select(.type == "user" or .type == "assistant"
-  or (.type == "attachment" and .attachment.type? == "hook_blocking_error")) |
+  or (.type == "attachment" and .attachment.type? == "hook_blocking_error")
+  or (.type == "system" and .stopHook != null)) |
 (.message // {}) as $m |
 $m.role as $role |
-if .type == "attachment" then
+if .type == "system" then
+  "STOP_HOOK: "
+    + (if .stopHook.refused
+       then "refuse (the agent was sent back to work)"
+       else "pass (the turn was allowed to end)" end)
+elif .type == "attachment" then
   "HOOK_REFUSAL (" + (.attachment.hookEvent // "?") + "): "
     + ((.attachment.blockingError.blockingError // .attachment.blockingError // "") | tostring | .[0:600])
 elif $role == "user" and ($m.content | type) == "array" then
