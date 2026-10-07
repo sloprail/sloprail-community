@@ -18,5 +18,5 @@ overlay: overlay
 exampleSloprail: true
 # sonnet, as track-as-task: Haiku reads "track this as a task" as its own
 # TaskCreate tool and never reaches the repo's convention (measured 2026-09-27).
-model: sonnet
+model: size-md
 score: score.sh

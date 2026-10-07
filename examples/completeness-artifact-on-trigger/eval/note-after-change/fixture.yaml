@@ -12,5 +12,5 @@ description: >
   bar itself.
 seed: seed
 overlay: overlay
-model: haiku
+model: size-sm
 score: score.sh

@@ -28,5 +28,5 @@ description: >
   what source was read are recorded as informational rows.
 seed: seed
 exampleSloprail: true
-model: haiku
+model: size-sm
 score: score.sh

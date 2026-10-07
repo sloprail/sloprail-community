@@ -32,7 +32,19 @@ TRAJECTORY_HEALTH_MODEL="${TRAJECTORY_HEALTH_MODEL:-size-sm}"
 # agents). A flat `subagents/*.jsonl` glob misses the nested ones, and with them
 # every refusal a workflow's agent met.
 subagent_records() {
-  find "${SR_EVAL_TRANSCRIPT%.jsonl}/subagents" -type f -name 'agent-*.jsonl' 2>/dev/null | sort
+  {
+    # What the harness's session record says it spawned (sloprail's own, harness-neutral).
+    sr-session trajectory describe --path "$SR_EVAL_TRANSCRIPT" 2>/dev/null | jq -r '.subagentPaths[]?' 2>/dev/null
+    find "${SR_EVAL_TRANSCRIPT%.jsonl}/subagents" -type f -name 'agent-*.jsonl' 2>/dev/null
+  } | sort -u
+}
+
+# trajectory_entries prints a session record as one normalized entry per line,
+# whichever harness wrote it (sr-session reads Claude Code's, Codex's and Cursor's
+# records into the one shape the condensing and the scorers' jq read).
+trajectory_entries() {
+  SLOPRAIL_HARNESS="${SR_EVAL_HARNESS:-claude}" sr-session trajectory normalize --path "$1" --whole-session 2>/dev/null |
+    jq -c '.[]' 2>/dev/null
 }
 
 # cat_subagent_records prints every sub-agent record's content, for a grep —
@@ -124,7 +136,7 @@ trajectory_condense() {
   subagent_records_by_time > "$tc_dir/records"
   while IFS= read -r tc_sub; do
     tc_n=$((tc_n + 1))
-    jq -r -f "$tc_jq" "$tc_sub" > "$tc_dir/rec-$tc_n" 2>/dev/null
+    trajectory_entries "$tc_sub" | jq -r -f "$tc_jq" > "$tc_dir/rec-$tc_n" 2>/dev/null
     printf '%s\t%s\n' "$tc_n" "$(basename "$tc_sub" .jsonl)" >> "$tc_dir/agents"
   done < "$tc_dir/records"
 
@@ -303,7 +315,7 @@ $es_facts"
   # skimming for "did this look stuck" would actually want to read, not the
   # raw JSONL with every cache/token/attachment field repeated per entry.
   condensed_file=$(mktemp)
-  jq -r -f "$condense_jq" "$SR_EVAL_TRANSCRIPT" > "$condensed_file" 2>/dev/null
+  trajectory_entries "$SR_EVAL_TRANSCRIPT" | jq -r -f "$condense_jq" > "$condensed_file" 2>/dev/null
   if [ ! -s "$condensed_file" ]; then
     TH_STATUS="fail"
     TH_REASON="condensing the transcript produced no output — the transcript may be malformed or condense-transcript.jq may need updating for this transcript's shape"
@@ -372,14 +384,10 @@ $es_facts"
   # excludes Bash/Read/Write/Edit entirely, rather than an unset flag.
   judge_cwd=$(mktemp -d)
   # Hook-free: the judge reads a transcript, it must never be a guarded session.
-  # Measured: judge sessions that inherited the sloprail hooks (user-scope
-  # plugin, ambient settings) met 8 Stop-hook refusal cycles each. sr-agent's
-  # baseArgs isolation (hooks:{}, enabledPlugins:{}) does not switch off hooks a
-  # plugin or settings layer adds, so disableAllHooks is passed here too, with the
-  # rest of the isolation restated (a later --settings wins outright). Once
-  # sr-agent itself sets disableAllHooks this is redundant, and harmless.
-  judge_settings='{"settings":"{\"disableAllHooks\":true,\"hooks\":{},\"mcpServers\":{},\"enabledPlugins\":{}}"}'
-  raw="$(cd "$judge_cwd" && sr-agent --harness claude-code --model "$TRAJECTORY_HEALTH_MODEL" --allowed-tools "WebSearch" --claude-args "$judge_settings" --prompt "$(cat "$prompt_file")" 2>&1)"
+  # sr-agent's own isolation does it for every harness (its baseArgs: Claude's
+  # disableAllHooks settings, Codex's --disable hooks), so nothing harness-specific
+  # is passed here. The judge runs on the harness the agent ran under.
+  raw="$(cd "$judge_cwd" && sr-agent --harness "${SR_EVAL_HARNESS:-${SLOPRAIL_HARNESS:-claude}}" --model "$TRAJECTORY_HEALTH_MODEL" --allowed-tools "WebSearch" --prompt "$(cat "$prompt_file")" 2>&1)"
   rm -f "$prompt_file" "$scenario_file" "$guardrail_file" "$transcript_file"
   rmdir "$judge_cwd" 2>/dev/null || true
 

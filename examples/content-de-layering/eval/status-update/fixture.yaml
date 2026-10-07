@@ -16,5 +16,5 @@ description: >
   content, is recorded as an informational signal for the analysis.
 seed: seed
 exampleSloprail: true
-model: haiku
+model: size-sm
 score: score.sh

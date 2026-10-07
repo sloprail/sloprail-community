@@ -20,5 +20,5 @@ description: >
   file-guard baseline-timing question under investigation.
 seed: seed
 exampleSloprail: true
-model: haiku
+model: size-sm
 score: score.sh

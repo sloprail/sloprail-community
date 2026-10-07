@@ -19,5 +19,5 @@ seed: ../goodwill-refund/seed
 setup: ../goodwill-refund/setup.sh
 overlay: ../goodwill-refund/overlay
 exampleSloprail: true
-model: haiku
+model: size-sm
 score: score.sh

@@ -31,6 +31,8 @@ select(.type == "user" or .type == "assistant"
   or (.type == "attachment" and .attachment.type? == "hook_blocking_error")
   or (.type == "system" and .subtype? == "stop_hook_summary")) |
 (.message // {}) as $m |
+# Cursor's and Codex's records carry the role on the entry, not in the message.
+($m.role // .type) as $role |
 if .type == "system" then
   "STOP_HOOK: "
     + (if ((.hookErrors // []) | length) > 0 or (.preventedContinuation // false)
@@ -39,10 +41,15 @@ if .type == "system" then
 elif .type == "attachment" then
   "HOOK_REFUSAL (" + (.attachment.hookEvent // "?") + "): "
     + ((.attachment.blockingError.blockingError // .attachment.blockingError // "") | tostring | .[0:600])
-elif $m.role == "user" and ($m.content | type) == "array" then
-  ($m.content[]? | select(.type == "tool_result") |
-    "TOOL_RESULT: " + ((.content | if type == "string" then . else ([.[]? | .text?] | join(" ")) end) // "" | tostring | .[0:300]))
-elif $m.role == "assistant" and ($m.content | type) == "array" then
+elif $role == "user" and ($m.content | type) == "array" then
+  ($m.content[]? |
+    if .type == "tool_result" then
+      "TOOL_RESULT: " + ((.content | if type == "string" then . else ([.[]? | .text?] | join(" ")) end) // "" | tostring | .[0:300])
+    elif .type == "text" then
+      # A harness that records the user's words as text blocks (Cursor's).
+      "USER: " + ((.text // "") | .[0:800])
+    else empty end)
+elif $role == "assistant" and ($m.content | type) == "array" then
   ($m.content[]? |
     if .type == "tool_use" then
       # A plain `tostring | .[0:250]` on the WHOLE input truncates a
@@ -64,6 +71,6 @@ elif $m.role == "assistant" and ($m.content | type) == "array" then
     elif .type == "text" then
       "ASSISTANT: " + ((.text // "") | .[0:800])
     else empty end)
-elif $m.role == "user" and ($m.content | type) == "string" then
+elif $role == "user" and ($m.content | type) == "string" then
   "USER: " + ($m.content | .[0:800])
 else empty end
