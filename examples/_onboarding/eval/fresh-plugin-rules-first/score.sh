@@ -98,27 +98,13 @@ fi
 
 # --- INST-002: plugin still enabled — sr-eval installed it, as the user's
 # /plugin install would; this is the precondition, not the agent's work. ---
-key='sloprail@sloprail-marketplace'
+# Asked of sloprail, not of any harness's files: `sr-session plugins` prints the plugins the
+# harness the agent ran under resolves for this project (one JSON line each), from the
+# agent's own HOME, which is where sr-eval installed it.
 scope="none"
-# Where each harness records an enabled plugin (what sr-eval's install wrote).
-case "${SR_EVAL_HARNESS:-claude}" in
-  claude)
-    for pair in "project:$P/.claude/settings.json" "local:$P/.claude/settings.local.json" "user:$H/.claude/settings.json"; do
-      f="${pair#*:}"
-      if [ -f "$f" ] && [ "$(jq -r --arg k "$key" '.enabledPlugins[$k] // false' "$f" 2>/dev/null)" = "true" ]; then
-        scope="${pair%%:*}"
-        break
-      fi
-    done ;;
-  codex)
-    # [plugins."sloprail@sloprail-marketplace"] enabled = true, in the user layer.
-    if [ -f "$H/.codex/config.toml" ] && awk -v k="[plugins.\"$key\"]" '$0 == k { on = 1; next } /^\[/ { on = 0 } on && /^enabled[[:space:]]*=[[:space:]]*true/ { found = 1 } END { exit !found }' "$H/.codex/config.toml"; then
-      scope="user"
-    fi ;;
-  cursor)
-    # A local plugin: Cursor loads every directory under ~/.cursor/plugins/local.
-    [ -f "$H/.cursor/plugins/local/sloprail/.cursor-plugin/plugin.json" ] && scope="user" ;;
-esac
+resolved="$(cd "$P" && HOME="$H" SLOPRAIL_HARNESS="${SR_EVAL_HARNESS:-claude}" "$SR_EVAL_BIN_DIR/sr-session" plugins 2>/dev/null |
+  jq -r 'select(.name == "sloprail") | .root' 2>/dev/null | head -n1)"
+[ -n "$resolved" ] && scope="resolved ($resolved)"
 inst_plugin="fail"
 [ "$scope" != none ] && inst_plugin="pass"
 
