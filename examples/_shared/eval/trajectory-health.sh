@@ -61,7 +61,7 @@ TRAJECTORY_BUDGET="${TRAJECTORY_BUDGET:-60000}"
 # they happened rather than in id order.
 subagent_records_by_time() {
   subagent_records | while IFS= read -r rec; do
-    ts="$(jq -r 'select(.timestamp != null) | .timestamp' "$rec" 2>/dev/null | head -1)"
+    ts="$(trajectory_entries "$rec" | jq -r 'select(.timestamp != null) | .timestamp' 2>/dev/null | head -1)"
     printf '%s\t%s\n' "${ts:-9999}" "$rec"
   done | sort | cut -f2-
 }
@@ -461,9 +461,9 @@ guardrail_fired_check() {
 # silent), so this is the only evidence a scorer has that the gates matching a
 # Stop evaluated and let the turn end. Prints yes or no.
 last_stop_passed() {
-  if [ -f "${SR_EVAL_TRANSCRIPT:-/nonexistent}" ] && jq -s -e '[.[] | .attachment? // empty
+  if [ -f "${SR_EVAL_TRANSCRIPT:-/nonexistent}" ] && trajectory_entries "$SR_EVAL_TRANSCRIPT" | jq -s -e '[.[] | .attachment? // empty
       | select(.hookEvent == "Stop" and (.type == "hook_success" or .type == "hook_blocking_error"))]
-      | length > 0 and (last | .type == "hook_success")' "$SR_EVAL_TRANSCRIPT" >/dev/null 2>&1; then
+      | length > 0 and (last | .type == "hook_success")' >/dev/null 2>&1; then
     echo yes
   else
     echo no

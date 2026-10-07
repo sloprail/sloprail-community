@@ -20,25 +20,19 @@
 # (as this did until 2026-09-27) hid every end-of-turn refusal from the judge,
 # which then could not tell a refused turn from a finished one.
 #
-# The harness also records each Stop hook run as a system entry of subtype
-# stop_hook_summary. Dropping those (as this did until 2026-10-01) left the
-# judge unable to see that the FINAL Stop passed: it read a run whose last Stop
-# hook ran clean as one that "ends mid-stream" (_sloprail-tasks fix-and-review).
-# Each is kept as one line, STOP_HOOK: pass or STOP_HOOK: refuse. It is NOT a
-# HOOK_REFUSAL line (the refusal's text is the attachment's, above it), so a
-# refused Stop is not counted twice by the scorer's refusal section.
+# Input is `sr-session trajectory normalize` output (one entry per line, e.g.
+# `... | jq -c '.[]'`), never a raw harness record: every harness's records are
+# already in the one canonical shape there (`.type`, `.message.role`,
+# `.message.content` as a string or tool_use / tool_result / text blocks,
+# `.attachment`), so nothing below knows which harness wrote the session.
+# normalize does not carry the harness's Stop-hook run summaries (a system
+# entry's subtype), so the judge sees a refused Stop (the attachment above) but
+# no explicit line for a Stop that passed.
 select(.type == "user" or .type == "assistant"
-  or (.type == "attachment" and .attachment.type? == "hook_blocking_error")
-  or (.type == "system" and .subtype? == "stop_hook_summary")) |
+  or (.type == "attachment" and .attachment.type? == "hook_blocking_error")) |
 (.message // {}) as $m |
-# Cursor's and Codex's records carry the role on the entry, not in the message.
-($m.role // .type) as $role |
-if .type == "system" then
-  "STOP_HOOK: "
-    + (if ((.hookErrors // []) | length) > 0 or (.preventedContinuation // false)
-       then "refuse (the agent was sent back to work)"
-       else "pass (the turn was allowed to end)" end)
-elif .type == "attachment" then
+$m.role as $role |
+if .type == "attachment" then
   "HOOK_REFUSAL (" + (.attachment.hookEvent // "?") + "): "
     + ((.attachment.blockingError.blockingError // .attachment.blockingError // "") | tostring | .[0:600])
 elif $role == "user" and ($m.content | type) == "array" then
@@ -46,7 +40,6 @@ elif $role == "user" and ($m.content | type) == "array" then
     if .type == "tool_result" then
       "TOOL_RESULT: " + ((.content | if type == "string" then . else ([.[]? | .text?] | join(" ")) end) // "" | tostring | .[0:300])
     elif .type == "text" then
-      # A harness that records the user's words as text blocks (Cursor's).
       "USER: " + ((.text // "") | .[0:800])
     else empty end)
 elif $role == "assistant" and ($m.content | type) == "array" then
