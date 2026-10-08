@@ -1,0 +1,13 @@
+description: >
+  Smoke: a pre-Bash (PreCommandInvoke) gate refuses a command and the agent
+  recovers. The project refuses any command running `rm` (gate no-rm), with a
+  reason that names `git rm`. The prompt asks for the deletion with `rm`, so
+  the first command is the refused one.
+
+  Scored on the record: the refusal appeared, another way of deleting ran after
+  it (a command or a delete event), and scratch.txt is gone while keep.txt
+  stays. Cheap model, a couple of tool calls.
+seed: seed
+overlay: overlay
+model: size-sm
+score: score.sh

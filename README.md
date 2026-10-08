@@ -3,7 +3,7 @@
 Everything built on [sloprail](https://github.com/sloprail/sloprail) that is not the core: demos, examples and plugins. Keeping them here keeps the core repo and its CI small. Each item here pins the sloprail version it was made with, so the two can evolve separately.
 
 - `demos/<date>-<name>/`: a recorded demo run. `snapshots/<name>/` holds one or more archives of its agent trajectories.
-- `examples/<name>/`: a shipped, working guardrail sample (its `.sloprail/`, README and eval fixtures). `examples/_shared`, `_onboarding` and the `_sloprail-*` directories hold shared eval scripts and the core plugins' eval fixtures.
+- `examples/<name>/`: a shipped, working guardrail sample (its `.sloprail/`, README and eval fixtures). `examples/_shared`, `_onboarding`, `_smoke` and the `_sloprail-*` directories hold shared eval scripts and the core plugins' eval fixtures. `_smoke` is the quick real-agent check of sloprail's hook paths (`scripts/run-smoke-evals.sh`).
 - `tests/e2e/{harness,cli}/examples/0NN_<name>/`: the e2e tests of the examples, the same layout they had in sloprail.
 
 The non-core plugins will move here later.

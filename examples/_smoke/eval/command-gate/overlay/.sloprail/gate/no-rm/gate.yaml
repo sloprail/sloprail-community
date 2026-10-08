@@ -1,0 +1,7 @@
+# A shell command that runs `rm` is refused before it runs; the reason says to
+# use `git rm`, which tracks the deletion.
+on:
+  - event: PreCommandInvoke
+    match: 'any(event.invocations, .bin == "rm")'
+checks:
+  - script: ./refuse.sh

@@ -1,0 +1,6 @@
+# A change to limits.yaml must cite the user's words: the commit carries a
+# `Sloprail-Cites-User: <exact quote>` trailer. The plugin's cite-before-commit
+# gate refuses the `git commit` that lacks one, naming how to add it.
+match: 'path == "limits.yaml"'
+require:
+  - citation: {source_types: [user]}

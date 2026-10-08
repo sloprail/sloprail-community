@@ -1,0 +1,11 @@
+description: >
+  Smoke: the plugin's SessionStart context reaches the agent. The project is one
+  README. The prompt asks about a fact only that context holds (the file the
+  plugin's session-start note says lists where files may land), with no tools
+  allowed, so the answer can come from nowhere else.
+
+  Scored on the record, not by a judge: the agent's last message names
+  .sloprail/file-guard/structure.yaml. Cheap model, one turn, seconds.
+seed: seed
+model: size-sm
+score: score.sh

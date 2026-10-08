@@ -1,0 +1,5 @@
+# The records committed in data/users.json are in ascending id order. A committed
+# file out of order fails the range; Stop shows the stored failure.
+match: 'path == "data/users.json"'
+checks:
+  - script: ./check.sh
