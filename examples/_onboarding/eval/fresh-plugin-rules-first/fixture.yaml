@@ -17,7 +17,16 @@ description: >
   plus nothing of sloprail copied into the repo. Proof rules beyond the
   structure, which rules refused, disabled rules and stray files are
   informational rows.
+
+  The run is multi-turn: after the agent finishes, sloprail's Stop notice can
+  make it ask whether to add CI verification or disable that requirement, and a
+  real user would just answer. The simulated user (user.md) answers that and
+  nothing else: it says nothing about tests, rules or sloprail, so the
+  rules-first behaviour still has to come from the plugin alone.
 seed: seed
 freshMachine: true
 model: size-sm
 score: score.sh
+user:
+  brief: user.md
+  maxTurns: 3
