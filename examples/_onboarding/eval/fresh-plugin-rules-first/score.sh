@@ -183,7 +183,8 @@ if [ -n "$endpoint_file" ] && [ "$endpoint_idx" -gt 0 ] && grep -qi 'invoice' "$
   task="pass"
 fi
 
-# --- TASK-002: the project's own convention — one test per endpoint under
+# --- INFO-005: informational, not gating: writing the endpoint's test is not what
+# this eval proves. The project's own convention — one test per endpoint under
 # test/endpoints/ (its README says so, and every existing endpoint has one). ---
 test_file="$(find "$P/test" -iname '*invoice*' -type f 2>/dev/null | head -1)"
 task_test="fail"
@@ -212,7 +213,7 @@ hygiene="pass"
 [ -n "$polluted" ] && hygiene="fail"
 
 overall="pass"
-for s in "$TH_STATUS" "$inst_bin" "$inst_plugin" "$inst_loaded" "$rules_first" "$task" "$task_test" "$hygiene"; do
+for s in "$TH_STATUS" "$inst_bin" "$inst_plugin" "$inst_loaded" "$rules_first" "$task" "$hygiene"; do
   [ "$s" = pass ] || overall="fail"
 done
 
@@ -236,7 +237,7 @@ if [ -n "${SR_EVAL_VERDICT_OUT:-}" ]; then
        {check_id: "INST-003-plugin_loaded", status: $il, reasoning: ("sr-session session store for this conversation (hooks ran): " + $store)},
        {check_id: "RULES-001-rules_before_endpoint", status: $rf, reasoning: ("first .sloprail/ write at call " + $ri + ", first invoice endpoint write at call " + $ei + "; rule yaml files: " + $rn + "; structure.yaml: " + $st + "; structure gate loaded: " + $sl + "; not loaded: " + $nl)},
        {check_id: "TASK-001-endpoint_written", status: $task, reasoning: ("endpoint file: " + $ef)},
-       {check_id: "TASK-002-endpoint_tested", status: $tt, reasoning: ("test file: " + $tf)},
+       {check_id: "INFO-005-endpoint_tested", status: "info", reasoning: ("test file (" + $tt + "): " + $tf)},
        {check_id: "HYG-001-sloprail_not_installed_into_repo", status: $hyg, reasoning: ("sloprail files inside the project: " + $polluted)},
        {check_id: "INFO-003-proof_rules_for_the_shape", status: "info", reasoning: ("file-guard/gate rules beyond structure: " + $proof)},
        {check_id: "INFO-004-rules_disabled", status: "info", reasoning: ("config.yaml disabled: " + $disabled)},
