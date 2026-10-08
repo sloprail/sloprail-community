@@ -123,7 +123,7 @@ if [ "$build" = checkout ] &&
   # A patch body is file content, not a command: a CI workflow the agent writes
   # (asked to) holds `curl … install.sh | sh` and was never run here.
   ! jq -e 'select(.cmd | test("\\*\\*\\* Begin Patch") | not)
-      | select(.cmd | test("(^|[;&|[:space:]])(sh|bash|zsh|source|\\.)[[:space:]]+[^;|&]*install\\.sh|curl[^|]*install\\.sh|SLOPRAIL_RELEASE_URL"))' "$calls" >/dev/null 2>&1; then
+      | select(.cmd | test("(^|[;&|[:space:]])(sh|bash|zsh|source|\\.)[[:space:]]+[^;|&]*install\\.sh|curl[^|]*install\\.sh[^|]*\\|[[:space:]]*([A-Z_]+=[^[:space:]]*[[:space:]]+)*(sh|bash|zsh)([[:space:]]|$)|SLOPRAIL_RELEASE_URL"))' "$calls" >/dev/null 2>&1; then
   from_release="yes"
 fi
 inst_bin="fail"
