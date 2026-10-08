@@ -37,8 +37,8 @@ func runScorer(t *testing.T, fixture, charge string) (string, int) {
 	writeExec(t, proj, "src/charge.go", charge)
 	tr := filepath.Join(t.TempDir(), "t.jsonl")
 	writeExec(t, filepath.Dir(tr), filepath.Base(tr),
-		`{"type":"user","message":{"role":"user","content":"add a goodwill flag"}}`+"\n"+
-			`{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":`+jsonText(finalMessage)+`}]}}`+"\n")
+		`{"type":"user","uuid":"u1","message":{"role":"user","content":"add a goodwill flag"}}`+"\n"+
+			`{"type":"assistant","uuid":"a1","parentUuid":"u1","message":{"role":"assistant","content":[{"type":"text","text":`+jsonText(finalMessage)+`}]}}`+"\n")
 	// A judge that always calls the run healthy: the gate must not depend on it.
 	bin := t.TempDir()
 	// The stub also keeps the prompt it was given, for a test to read.
@@ -49,7 +49,9 @@ func runScorer(t *testing.T, fixture, charge string) (string, int) {
 		}
 	})
 	c := exec.Command("sh", filepath.Join(repoRoot(t), "examples", "business-invariants", "eval", fixture, "score.sh"))
-	c.Env = append(harness.HostEnv(),
+	// The build under test's sr-session: the scorer reads the transcript only
+	// through `sr-session trajectory normalize`.
+	c.Env = append(harness.HostEnv(), "PATH="+harness.New(t).BinDir()+string(os.PathListSeparator)+os.Getenv("PATH"),
 		"SR_EVAL_TRANSCRIPT="+tr, "SR_EVAL_PROJECT_DIR="+proj, "SR_EVAL_BIN_DIR="+bin,
 		"SR_EVAL_AGENT_HOME="+t.TempDir(), "SR_EVAL_VERDICT_OUT="+filepath.Join(t.TempDir(), "v.json"))
 	out, err := c.CombinedOutput()

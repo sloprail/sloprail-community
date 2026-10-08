@@ -5,6 +5,7 @@ package e2e
 // a path under .sloprail/ (a rule read, listed or committed) for one.
 
 import (
+	"encoding/json"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -18,33 +19,40 @@ func TestT052_02_GuardrailFiredRecognisesTheEnginesRefusalForm(t *testing.T) {
 		want   string
 	}{
 		"a plugin's file-guard": {
-			`{"content":"changes:\n  - UNIT.md (modified) — sloprail-content/file-guard/unit-publish-approved, sloprail-content/file-guard/other"}`,
+			"changes:\n  - UNIT.md (modified) — sloprail-content/file-guard/unit-publish-approved, sloprail-content/file-guard/other",
 			"FIRED=fired COUNT=1"},
 		"an example's file-guard": {
-			`{"content":"changes:\n  - memories/runbook.md (modified) — file-guard/unit-publish-approved\nCommit these"}`,
+			"changes:\n  - memories/runbook.md (modified) — file-guard/unit-publish-approved\nCommit these",
 			"FIRED=fired COUNT=1"},
 		"a gate": {
-			`{"content":"refused by sloprail/gate/unit-publish-approved."}`,
+			"refused by sloprail/gate/unit-publish-approved.",
 			"FIRED=fired COUNT=1"},
 		"the older quoted form": {
-			`{"content":"file-guard \"unit-publish-approved\" refused"}`,
+			`file-guard "unit-publish-approved" refused`,
 			"FIRED=fired COUNT=1"},
 		"a rule's path is not a refusal": {
-			`{"content":"create mode 100644 .sloprail/file-guard/unit-publish-approved/file-guard.yaml\n.sloprail/gate/unit-publish-approved/gate.yaml"}`,
+			"create mode 100644 .sloprail/file-guard/unit-publish-approved/file-guard.yaml\n.sloprail/gate/unit-publish-approved/gate.yaml",
 			"FIRED=never-fired COUNT=0"},
 		"another rule with the name as a prefix": {
-			`{"content":"— file-guard/unit-publish-approved-extra"}`,
+			"— file-guard/unit-publish-approved-extra",
 			"FIRED=never-fired COUNT=0"},
 	} {
 		t.Run(name, func(t *testing.T) {
 			session := filepath.Join(t.TempDir(), "session.jsonl")
-			if err := os.WriteFile(session, []byte(tc.record+"\n"), 0o644); err != nil {
+			// The refusal text as a tool's result: the one shape every harness's
+			// record is read into (sr-session trajectory normalize).
+			rec, err := json.Marshal(map[string]any{"type": "user", "uuid": "u1", "message": map[string]any{"role": "user",
+				"content": []any{map[string]any{"type": "tool_result", "tool_use_id": "t1", "content": tc.record}}}})
+			if err != nil {
+				t.Fatal(err)
+			}
+			if err := os.WriteFile(session, append(rec, '\n'), 0o644); err != nil {
 				t.Fatal(err)
 			}
 			cmd := exec.Command("sh", "-c", `. "$SHARED/trajectory-health.sh"
 guardrail_fired_check unit-publish-approved
 printf 'FIRED=%s COUNT=%s\n' "$GF_STATUS" "$GF_COUNT"`)
-			cmd.Env = append(os.Environ(), "SHARED="+sharedEval(t), "SR_EVAL_TRANSCRIPT="+session)
+			cmd.Env = append(srSessionEnv(t), "SHARED="+sharedEval(t), "SR_EVAL_TRANSCRIPT="+session)
 			out, err := cmd.CombinedOutput()
 			if err != nil {
 				t.Fatalf("sh: %v\n%s", err, out)

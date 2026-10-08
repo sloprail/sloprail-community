@@ -402,7 +402,9 @@ func TestT039_32_ScorerClaimsGateVerdictOnlyWhenGatesRan(t *testing.T) {
 			}
 			engine := "#!/bin/sh\nexec '" + filepath.Join(e.BinDir(), "sr-session") + "' \"$@\"\n"
 			if tc.noEngine {
-				engine = "#!/bin/sh\necho 'sr-session: cannot read the record' >&2\nexit 1\n"
+				// The engine's reading of the events fails; the condensing of the
+				// trajectory (a whole-session read) still works, so the judge is asked.
+				engine = "#!/bin/sh\ncase \" $* \" in *\" --events \"*) echo 'sr-session: cannot read the record' >&2; exit 1 ;; esac\nexec '" + filepath.Join(e.BinDir(), "sr-session") + "' \"$@\"\n"
 			}
 			if err := os.WriteFile(filepath.Join(bin, "sr-session"), []byte(engine), 0o755); err != nil {
 				t.Fatal(err)

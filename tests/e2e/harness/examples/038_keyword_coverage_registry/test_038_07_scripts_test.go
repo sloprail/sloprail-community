@@ -103,7 +103,7 @@ func TestT038_33_TheScorerClaimsOnlyTheCoverageItChecked(t *testing.T) {
 		refused  map[int]bool
 		wantFact string
 		banFact  string
-		broken   bool // sr-session's normalize fails
+		broken   bool // the coverage read of sr-session's normalize fails
 	}{
 		{"a declared scanner and no gh call", nil, nil, "found NO single gh command", "WAS covered", false},
 		{"a declared scanner and a covering gh call", []string{covering}, nil, "WAS covered", "found NO single gh command", false},
@@ -141,7 +141,7 @@ func TestT038_33_TheScorerClaimsOnlyTheCoverageItChecked(t *testing.T) {
 				t.Fatal(err)
 			}
 			if tc.broken {
-				if err := os.WriteFile(filepath.Join(bin, "sr-session"), []byte("#!/bin/sh\necho 'database is locked' >&2\nexit 1\n"), 0o755); err != nil {
+				if err := os.WriteFile(filepath.Join(bin, "sr-session"), []byte("#!/bin/sh\n# Only the coverage read (it asks for events) fails; the condensing of the\n# trajectory reads the whole session with the real sr-session.\ncase \" $* \" in *\" --events \"*) echo 'database is locked' >&2; exit 1 ;; esac\nexec "+filepath.Join(build, "sr-session")+" \"$@\"\n"), 0o755); err != nil {
 					t.Fatal(err)
 				}
 			} else if err := os.Symlink(filepath.Join(build, "sr-session"), filepath.Join(bin, "sr-session")); err != nil {

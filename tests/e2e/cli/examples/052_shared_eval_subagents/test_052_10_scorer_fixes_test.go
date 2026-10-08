@@ -48,7 +48,7 @@ func section(t *testing.T, path, from, to string) string {
 func runSh(t *testing.T, script string, env ...string) string {
 	t.Helper()
 	cmd := exec.Command("sh", "-c", script)
-	cmd.Env = append(os.Environ(), env...)
+	cmd.Env = append(srSessionEnv(t), env...)
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		t.Fatalf("sh: %v\n%s", err, out)
@@ -106,8 +106,8 @@ func TestT052_11_GateThatRanAndPassedIsNotNeverFired(t *testing.T) {
 	needTools(t, "jq")
 	shared := sharedEval(t)
 	tr := filepath.Join(t.TempDir(), "t.jsonl")
-	pass := `{"type":"attachment","attachment":{"type":"hook_success","hookEvent":"Stop"}}`
-	block := `{"type":"attachment","attachment":{"type":"hook_blocking_error","hookEvent":"Stop","blockingError":"x"}}`
+	pass := `{"type":"attachment","uuid":"e1","attachment":{"type":"hook_success","hookEvent":"Stop"}}`
+	block := `{"type":"attachment","uuid":"e2","attachment":{"type":"hook_blocking_error","hookEvent":"Stop","blockingError":"x"}}`
 	check := func(status, active string) string {
 		return runSh(t, `. "$SHARED/trajectory-health.sh"; gate_ran_and_passed `+status+` `+active,
 			"SHARED="+shared, "SR_EVAL_TRANSCRIPT="+tr)
@@ -136,7 +136,7 @@ func TestT052_12_WebFetchMeansACall(t *testing.T) {
 	sec := section(t, exampleFile(t, "doc-conformance", "eval", "precompact-support", "score.sh"),
 		`webfetch_used="no"`, `guardrail_fired_check "mock-matches-doc"`) + "\necho $webfetch_used"
 	tr := filepath.Join(t.TempDir(), "t.jsonl")
-	listed := `{"type":"attachment","attachment":{"type":"deferred_tools_delta","addedNames":["WebFetch","WebSearch"]}}`
+	listed := `{"type":"attachment","uuid":"e3","attachment":{"type":"deferred_tools_delta","addedNames":["WebFetch","WebSearch"]}}`
 	called := `{"type":"assistant","message":{"content":[{"type":"tool_use","name":"WebFetch","input":{"url":"https://x"}}]}}`
 	writeLines(t, tr, listed)
 	if got := runSh(t, sec, "SR_EVAL_TRANSCRIPT="+tr); got != "no" {
@@ -154,18 +154,20 @@ func TestT052_13_OnboardingCountsOnlyRealRefusals(t *testing.T) {
 	needTools(t, "jq")
 	sec := section(t, exampleFile(t, "_onboarding", "eval", "fresh-plugin-rules-first", "score.sh"),
 		`own_refusals=`, `setup=`) + "\necho \"$own_refusals\""
+	// The scorer sources the shared script, which holds trajectory_entries.
+	sec = `. "$SHARED/trajectory-health.sh"` + "\n" + sec
 	tr := filepath.Join(t.TempDir(), "t.jsonl")
 	writeLines(t, tr,
-		`{"type":"attachment","attachment":{"type":"hook_success","hookEvent":"Stop","stdout":"file-guard \"quiet-rule\" passed"}}`,
-		`{"type":"user","message":{"content":[{"type":"tool_result","is_error":false,"content":"docs: gate \"read-in-a-doc\" refuses"}]}}`)
-	if got := runSh(t, sec, "T="+tr); got != "" {
+		`{"type":"attachment","uuid":"e4","attachment":{"type":"hook_success","hookEvent":"Stop","stdout":"file-guard \"quiet-rule\" passed"}}`,
+		`{"type":"user","uuid":"e5","message":{"role":"user","content":[{"type":"tool_result","tool_use_id":"t","is_error":false,"content":"docs: gate \"read-in-a-doc\" refuses"}]}}`)
+	if got := runSh(t, sec, "T="+tr, "SHARED="+sharedEval(t)); got != "" {
 		t.Errorf("pass output and read docs are not refusals, got %q", got)
 	}
 	writeLines(t, tr,
-		`{"type":"attachment","attachment":{"type":"hook_success","hookEvent":"Stop","stdout":"file-guard \"quiet-rule\" passed"}}`,
-		`{"type":"user","message":{"content":[{"type":"tool_result","is_error":true,"content":"READ REQUIRED (gate \"read-first\" from plugin \"x\")"}]}}`,
-		`{"type":"attachment","attachment":{"type":"hook_blocking_error","hookEvent":"Stop","blockingError":"no tag (gate \"tag-required\")"}}`)
-	got := runSh(t, sec, "T="+tr)
+		`{"type":"attachment","uuid":"e6","attachment":{"type":"hook_success","hookEvent":"Stop","stdout":"file-guard \"quiet-rule\" passed"}}`,
+		`{"type":"user","uuid":"e7","message":{"role":"user","content":[{"type":"tool_result","tool_use_id":"t","is_error":true,"content":"READ REQUIRED (gate \"read-first\" from plugin \"x\")"}]}}`,
+		`{"type":"attachment","uuid":"e8","attachment":{"type":"hook_blocking_error","hookEvent":"Stop","blockingError":"no tag (gate \"tag-required\")"}}`)
+	got := runSh(t, sec, "T="+tr, "SHARED="+sharedEval(t))
 	if !strings.Contains(got, "read-first") || !strings.Contains(got, "tag-required") || strings.Contains(got, "quiet-rule") {
 		t.Errorf("want read-first and tag-required only, got %q", got)
 	}
@@ -245,8 +247,8 @@ func TestT052_16_TrailerQuoteMustBeUserText(t *testing.T) {
 	p := newProject(t)
 	tr := filepath.Join(t.TempDir(), "t.jsonl")
 	writeLines(t, tr,
-		`{"type":"user","message":{"content":"is_rate_limited ignores window_seconds. Hand this to a subagent."}}`,
-		`{"type":"user","message":{"content":[{"type":"tool_result","content":"ignores nothing here"}]}}`)
+		`{"type":"user","uuid":"e9","message":{"content":"is_rate_limited ignores window_seconds. Hand this to a subagent."}}`,
+		`{"type":"user","uuid":"e10","message":{"content":[{"type":"tool_result","content":"ignores nothing here"}]}}`)
 	env := []string{"SR_EVAL_TRANSCRIPT=" + tr, "SR_EVAL_PROJECT_DIR=" + p.dir}
 	if got := runSh(t, sec, env...); !strings.HasPrefix(got, "none") {
 		t.Errorf("no trailers must say so, got %q", got)
