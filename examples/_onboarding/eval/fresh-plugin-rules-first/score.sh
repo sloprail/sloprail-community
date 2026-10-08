@@ -4,8 +4,16 @@
 # first. Gated on trajectory health (the shared judge) AND on the outcomes —
 # unlike a guardrail fixture, the behaviour under test here IS the outcome
 # (binaries that landed, a loaded structure written before the endpoint), so
-# those rows gate too. Every gating row but the plugin-enabled precondition
-# reads the agent-under-test's transcript.
+# those rows gate too. The rows about the machine (binaries, plugin, hooks)
+# read the machine, never the transcript: not every harness records a
+# SessionStart hook's output in its transcript (Cursor's does not), so text such
+# as "sloprail: installed ..." is evidence on one harness only. The binaries are
+# compared with the checkout's build (SR_EVAL_BIN_DIR holds it; sr-eval's
+# release is built from it), and the hooks' having run is read from
+# sr-session's own session store. The rows about what the agent did read its
+# transcript, through sr-session's normalization. Multi-turn is fine: the
+# simulated user's turns land in the same transcript, and the order of the
+# agent's calls is read across all of it.
 set -eu
 
 for v in SR_EVAL_TRANSCRIPT SR_EVAL_BIN_DIR SR_EVAL_PROJECT_DIR SR_EVAL_AGENT_HOME; do
@@ -74,27 +82,49 @@ endpoint_idx="$(first_index "(.path | test(\"src/.*invoice\"; \"i\")) or ((.cmd 
 
 # --- INST-001: sr* binaries installed, through the release path, and they run. ---
 bin="$(find "$H" -name sr-session -type f -perm -u+x 2>/dev/null | head -1)"
-# The plugin's own start-time install announces itself in the transcript.
-from_release="no"
-if grep -q 'sloprail: installed ' "$T"; then
-  from_release="yes"
-fi
 bin_runs="no"
 if [ -n "$bin" ] && (cd "$P" && HOME="$H" "$bin" start </dev/null >/dev/null 2>&1); then
   bin_runs="yes"
 fi
-inst_bin="fail"
-[ -n "$bin" ] && [ "$from_release" = yes ] && [ "$bin_runs" = yes ] && inst_bin="pass"
-# Which build landed. Not by comparing bytes: install.sh re-signs every binary
-# on macOS (codesign --force), so an installed copy never matches its archive.
-# The announcement names the tag instead, and "checkout" is the tag only
-# sr-eval's local release of this checkout carries (SLOPRAIL_INSTALL_TAG).
+# Which build landed, read from the binaries themselves (Go build info: the
+# module version and the vcs.* settings), against the same-named binary in
+# SR_EVAL_BIN_DIR, which is the checkout's build that sr-eval's local release was
+# made from. Not by comparing bytes: install.sh re-signs every binary on macOS
+# (codesign --force), so an installed copy never matches its archive. A build
+# of any other source (a published release, a source install) has other build
+# info, so "checkout" is the build only sr-eval's release of this checkout carries.
+build_id() {
+  go version -m "$1" 2>/dev/null | awk '$1 == "mod" {m = $2 " " $3} $1 == "build" && $2 ~ /^vcs\./ {v = v " " $2} END {if (m != "") print m v}'
+}
 build="none"
+checked=""
 if [ -n "$bin" ]; then
-  build="other"
-  grep -q 'sloprail: installed checkout' "$T" && build="checkout"
+  build="checkout"
+  inst_dir="$(dirname "$bin")"
+  for built in "$SR_EVAL_BIN_DIR"/sr*; do
+    [ -f "$built" ] || continue
+    name="$(basename "$built")"
+    [ -x "$inst_dir/$name" ] || continue
+    want="$(build_id "$built")"
+    got="$(build_id "$inst_dir/$name")"
+    checked="$checked $name"
+    if [ -z "$want" ] || [ "$want" != "$got" ]; then
+      build="other"
+    fi
+  done
+  case " $checked " in *" sr-session "*) ;; *) build="other" ;; esac
 fi
-[ "$build" = checkout ] || inst_bin="fail"
+# Through the plugin's own start-time install, not the agent's: the fresh machine
+# has no sr* binary anywhere and the only build of this checkout reachable is the
+# local release, so a checkout build that is present arrived by install.sh. What
+# the record can still say is whether the AGENT ran install.sh itself.
+from_release="no"
+if [ "$build" = checkout ] &&
+  ! jq -e 'select(.cmd | test("(^|[;&|[:space:]])(sh|bash|zsh|source|\\.)[[:space:]]+[^;|&]*install\\.sh|curl[^|]*install\\.sh|SLOPRAIL_RELEASE_URL"))' "$calls" >/dev/null 2>&1; then
+  from_release="yes"
+fi
+inst_bin="fail"
+[ -n "$bin" ] && [ "$from_release" = yes ] && [ "$bin_runs" = yes ] && [ "$build" = checkout ] && inst_bin="pass"
 
 # --- INST-002: plugin still enabled — sr-eval installed it, as the user's
 # /plugin install would; this is the precondition, not the agent's work. ---
@@ -108,10 +138,19 @@ resolved="$(cd "$P" && HOME="$H" SLOPRAIL_HARNESS="${SR_EVAL_HARNESS:-claude}" "
 inst_plugin="fail"
 [ "$scope" != none ] && inst_plugin="pass"
 
-# --- INST-003: the plugin actually loaded (its SessionStart context is in the
-# transcript). ---
+# --- INST-003: the plugin actually loaded: its hooks ran in this session. ---
+# Read from sr-session's own session store, which only a hook the harness fired
+# for this conversation creates (the stable id comes from the transcript's path,
+# the same way for every harness). The plugin's SessionStart text (rules-first.md)
+# is printed by that same hook wrapper, but whether the text reaches the
+# transcript is the harness's choice, so the transcript is not asked.
 inst_loaded="fail"
-grep -q 'sloprail is active in this project' "$T" && inst_loaded="pass"
+session_id="$(printf '{"transcript_path":"%s","cwd":"%s"}' "$T" "$P" | (cd "$P" && HOME="$H" SLOPRAIL_HARNESS="${SR_EVAL_HARNESS:-claude}" "$SR_EVAL_BIN_DIR/sr-session" id 2>/dev/null) | head -n1)"
+store=""
+if [ -n "$session_id" ]; then
+  store="$(find "$H/Library/Application Support/sloprail/sessions" "$H/.local/share/sloprail/sessions" -type f -name state.db -path "*/$session_id/*" 2>/dev/null | head -n1)"
+fi
+[ -n "$store" ] && inst_loaded="pass"
 
 # --- RULES-001: rules in .sloprail/ written before the endpoint, and still there. ---
 rule_files="$(find "$P/.sloprail" -type f \( -name '*.yaml' -o -name '*.yml' \) 2>/dev/null | wc -l | tr -d ' ')"
@@ -182,7 +221,7 @@ if [ -n "${SR_EVAL_VERDICT_OUT:-}" ]; then
     --arg status "$overall" --arg th "$TH_STATUS" --arg th_reason "$TH_REASON" \
     --arg ib "$inst_bin" --arg build "$build" --arg bin "${bin:-none}" --arg rel "$from_release" --arg runs "$bin_runs" \
     --arg ip "$inst_plugin" --arg scope "$scope" \
-    --arg il "$inst_loaded" \
+    --arg il "$inst_loaded" --arg store "${store:-none}" \
     --arg rf "$rules_first" --arg ri "$rule_idx" --arg ei "$endpoint_idx" --arg rn "$rule_files" --arg st "$has_structure" \
     --arg task "$task" --arg ef "${endpoint_file:-none}" \
     --arg tt "$task_test" --arg tf "${test_file:-none}" \
@@ -192,9 +231,9 @@ if [ -n "${SR_EVAL_VERDICT_OUT:-}" ]; then
     --arg disabled "$(grep -E '^[[:space:]]*-' "$P/.sloprail/config.yaml" 2>/dev/null | tr -d ' -' | tr '\n' ' ' || true)" \
     '{subject: "_onboarding/fresh-plugin-rules-first", status: $status, rows: [
        {check_id: "TRAJ-001-trajectory_health", status: $th, reasoning: $th_reason},
-       {check_id: "INST-001-binaries_installed", status: $ib, reasoning: ("sr-session: " + $bin + "; plugin auto-install announced: " + $rel + "; build: " + $build + "; runs: " + $runs)},
+       {check_id: "INST-001-binaries_installed", status: $ib, reasoning: ("sr-session: " + $bin + "; installed by the plugin, not the agent: " + $rel + "; build vs checkout: " + $build + "; runs: " + $runs)},
        {check_id: "INST-002-plugin_enabled", status: $ip, reasoning: ("enabled at scope: " + $scope)},
-       {check_id: "INST-003-plugin_loaded", status: $il, reasoning: "SessionStart rules-first context present in the transcript"},
+       {check_id: "INST-003-plugin_loaded", status: $il, reasoning: ("sr-session session store for this conversation (hooks ran): " + $store)},
        {check_id: "RULES-001-rules_before_endpoint", status: $rf, reasoning: ("first .sloprail/ write at call " + $ri + ", first invoice endpoint write at call " + $ei + "; rule yaml files: " + $rn + "; structure.yaml: " + $st + "; structure gate loaded: " + $sl + "; not loaded: " + $nl)},
        {check_id: "TASK-001-endpoint_written", status: $task, reasoning: ("endpoint file: " + $ef)},
        {check_id: "TASK-002-endpoint_tested", status: $tt, reasoning: ("test file: " + $tf)},
@@ -206,7 +245,7 @@ if [ -n "${SR_EVAL_VERDICT_OUT:-}" ]; then
      ]}' > "$SR_EVAL_VERDICT_OUT"
 fi
 
-echo "overall=$overall traj=$TH_STATUS ($TH_REASON) bin=$inst_bin[$bin release=$from_release build=$build runs=$bin_runs] plugin=$inst_plugin[$scope] loaded=$inst_loaded rules_first=$rules_first[rule@$rule_idx endpoint@$endpoint_idx files=$rule_files structure=$has_structure loaded=$structure_loaded not_loaded=${not_loaded:-none} proof=${proof_rules:-none}] task=$task test=$task_test hygiene=$hygiene[${polluted:-none}] refusals=[${own_refusals:-none}] stray=[${stray:-none}]" >&2
+echo "overall=$overall traj=$TH_STATUS ($TH_REASON) bin=$inst_bin[$bin release=$from_release build=$build runs=$bin_runs] plugin=$inst_plugin[$scope] loaded=$inst_loaded[${store:-none}] rules_first=$rules_first[rule@$rule_idx endpoint@$endpoint_idx files=$rule_files structure=$has_structure loaded=$structure_loaded not_loaded=${not_loaded:-none} proof=${proof_rules:-none}] task=$task test=$task_test hygiene=$hygiene[${polluted:-none}] refusals=[${own_refusals:-none}] stray=[${stray:-none}]" >&2
 
 [ "$overall" = pass ] && exit 0
 exit 1
