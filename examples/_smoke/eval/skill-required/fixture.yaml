@@ -1,0 +1,15 @@
+description: >
+  Smoke: a skill-required gate passes once the skill was read. The project's
+  gate needs-guardrails-skill refuses a write under memories/ until the sloprail
+  plugin's authoring-guardrails skill was read this session. The skill is the
+  plugin's own, so every harness has it; how it is read differs (the Skill tool
+  on Claude Code, a read of an installed copy's SKILL.md on Codex, which has no
+  Skill tool: a read of any copy of the plugin counts since #443).
+
+  Scored on the record: the write was refused, the skill was read after the
+  refusal (a Skill call or a read of its SKILL.md), a write of memories/idea.md
+  ran after that read, and the file ends with the line.
+seed: seed
+overlay: overlay
+model: size-sm
+score: score.sh

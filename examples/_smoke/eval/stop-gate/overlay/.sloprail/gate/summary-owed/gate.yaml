@@ -1,0 +1,6 @@
+# A turn may not end until SUMMARY.md exists at the repo root. The refusal says
+# what is owed; once the file is there the same gate lets the turn end.
+on:
+  - event: Stop
+checks:
+  - script: ./check.sh

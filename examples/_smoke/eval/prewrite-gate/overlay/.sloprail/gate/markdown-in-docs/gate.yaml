@@ -1,0 +1,7 @@
+# A .md written outside docs/ is refused before it lands. The reason says where
+# it belongs; the marker in it is what the smoke scorer looks for.
+on:
+  - event: PreFileWrite
+    match: 'event.path endsWith ".md" and not (event.path startsWith "docs/")'
+checks:
+  - script: ./refuse.sh

@@ -1,0 +1,9 @@
+# A write under memories/ is refused until the sloprail plugin's own
+# authoring-guardrails skill was read this session. The skill is the plugin's,
+# so it exists on every harness; Claude Code loads it with the Skill tool, Codex
+# has no such tool and reads the SKILL.md of an installed copy of the plugin.
+on:
+  - event: PreFileWrite
+    match: 'event.path startsWith "memories/" and event.path endsWith ".md"'
+require:
+  - skill: authoring-guardrails

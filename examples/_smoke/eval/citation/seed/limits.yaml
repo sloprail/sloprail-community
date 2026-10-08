@@ -1,0 +1,2 @@
+request_timeout_seconds: 30
+max_retries: 3

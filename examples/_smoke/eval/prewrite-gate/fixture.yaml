@@ -1,0 +1,13 @@
+description: >
+  Smoke: a PreFileWrite gate refuses a write and the agent recovers. The project
+  keeps its markdown under docs/ (gate markdown-in-docs refuses a .md written
+  anywhere else, with a reason naming docs/). The prompt asks for CHANGELOG.md
+  and says nothing about the rule, so the first write is the tempting one.
+
+  Scored on the record: the refusal appeared, a write of docs/CHANGELOG.md ran
+  after it, and the project ends with docs/CHANGELOG.md holding the line and no
+  CHANGELOG.md at the root. Cheap model, a couple of tool calls.
+seed: seed
+overlay: overlay
+model: size-sm
+score: score.sh

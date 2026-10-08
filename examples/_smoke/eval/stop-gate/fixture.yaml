@@ -1,0 +1,14 @@
+description: >
+  Smoke: a Stop gate blocks the end of the turn once and the agent does the owed
+  work. The project's gate summary-owed refuses a Stop until SUMMARY.md exists.
+  The prompt is a one-line typo fix and never mentions a summary, so the first
+  attempt to finish is the refused one.
+
+  Scored on the record: the Stop refusal appeared, the agent worked after it
+  (SUMMARY.md written), greeting.txt is fixed, SUMMARY.md exists and the last
+  Stop of the run let the turn end. Needs a Stop hook that fires: on Cursor that
+  is the TUI, not `-p`.
+seed: seed
+overlay: overlay
+model: size-sm
+score: score.sh

@@ -1,0 +1,21 @@
+description: >
+  Smoke: a committed bad file is refused at Stop, on the sr-checks verify path.
+  The project's file-guard users-have-email fails a data/users.json record with
+  no email. The prompt asks for exactly such a record, committed, with the
+  branch tracked (`sr-session refs track`: the engine tracks no branch by
+  itself in production, so a Stop verifies nothing unless the session tracks
+  one). The Stop then verifies the tracked range against the stored results;
+  the refusal sends the agent to judge it (`sr-checks run`) and, on the failure,
+  to fix the file.
+
+  The seed carries a CI file with a `# sr:ci verify` marker only to satisfy the
+  plugin's ci-verify-required gate, which this case is not about.
+
+  Scored on the record: a Stop refusal carrying the rule's reason appeared, the
+  agent acted after it, and the committed users.json ends valid with a clean
+  tree and a last Stop that let the turn end. Needs a Stop hook that fires: on
+  Cursor that is the TUI, not `-p`.
+seed: seed
+overlay: overlay
+model: size-sm
+score: score.sh
