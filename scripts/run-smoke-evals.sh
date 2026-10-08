@@ -51,11 +51,8 @@ case "$jobs" in '' | *[!0-9]* | 0) echo "--jobs must be a positive number" >&2; 
 # A (harness:case) listed here is EXPECTED TO FAIL. The table shows it as XFAIL
 # (it failed, as expected) or XPASS (it passed: the expectation is stale, which
 # fails the run so it gets deleted). It is not skipped: it runs every time.
-EXPECT_FAIL=(
-  "cursor:stop-gate"
-  "cursor:file-guard-stop"
-)
-EXPECT_FAIL_WHY="Cursor's stop hook never fires under 'cursor-agent -p', which is how sr-eval runs Cursor today. Remove these two lines when sr-eval's Cursor TUI mode lands (branch feat/sr-eval-cursor-tui)."
+EXPECT_FAIL=()
+EXPECT_FAIL_WHY=""
 # ----------------------------------------------------------------------------
 
 if [ -z "$sloprail" ]; then
@@ -106,6 +103,7 @@ wait
 
 expected_fail() { # harness case
   local e
+  [ "${#EXPECT_FAIL[@]}" -eq 0 ] && return 1 # bash 3.2 (macOS): an empty array under set -u is unbound
   for e in "${EXPECT_FAIL[@]}"; do [ "$e" = "$1:$2" ] && return 0; done
   return 1
 }
@@ -145,7 +143,7 @@ for c in $cases; do
   printf '\n'
 done
 printf '\nPASS ok | FAIL the scorer said no | ERROR the run could not be completed | XFAIL failed as expected | XPASS passed but was expected to fail\n'
-for e in "${EXPECT_FAIL[@]}"; do
+for e in ${EXPECT_FAIL[@]+"${EXPECT_FAIL[@]}"}; do
   h="${e%%:*}"
   case " $harnesses " in *" $h "*) printf 'expected to fail: %s\n  %s\n' "$e" "$EXPECT_FAIL_WHY"; break ;; esac
 done

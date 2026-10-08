@@ -1,5 +1,5 @@
-# A turn may not end until SUMMARY.md exists at the repo root. The refusal says
-# what is owed; once the file is there the same gate lets the turn end.
+# A turn may not end until SUMMARY.md at the repo root carries the receipt the first refusal
+# hands out; once it does, the same gate lets the turn end.
 on:
   - event: Stop
 checks:
