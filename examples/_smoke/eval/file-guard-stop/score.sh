@@ -7,11 +7,11 @@ set -eu
 smoke_init
 P="$SR_EVAL_PROJECT_DIR"
 
-refused="$(smoke_stop_refusal_line SMOKE-USER-NEEDS-EMAIL)"
+refused="$(smoke_stop_refusal_line SMOKE-USERS-SORTED)"
 if [ "$refused" -gt 0 ]; then
   smoke_row FG-001-refused_at_stop pass "the Stop was refused with the file-guard's reason (entry $refused)"
 else
-  smoke_row FG-001-refused_at_stop fail "no Stop refusal carrying SMOKE-USER-NEEDS-EMAIL appeared: the stored failure was never shown at Stop"
+  smoke_row FG-001-refused_at_stop fail "no Stop refusal carrying SMOKE-USERS-SORTED appeared: the stored failure was never shown at Stop"
 fi
 
 follow="$(smoke_tool_calls_after "$refused" 'true')"
@@ -21,12 +21,12 @@ else
   smoke_row FG-002-worked_after fail "no tool call after the Stop refusal (found $follow)"
 fi
 
-# The COMMITTED file, not the working tree: every record has an email at HEAD,
-# user 3 is still there, and nothing is left uncommitted.
+# The COMMITTED file, not the working tree: the ids at HEAD are 1, 2, 3 in order
+# and nothing is left uncommitted.
 head_json="$(git -C "$P" show HEAD:data/users.json 2>/dev/null || echo 'null')"
-if printf '%s' "$head_json" | jq -e 'type == "array" and any(.[]; .id == 3) and all(.[]; (.email | type) == "string" and (.email | length) > 0)' >/dev/null 2>&1 &&
+if printf '%s' "$head_json" | jq -e 'type == "array" and ([.[].id] == [1,2,3])' >/dev/null 2>&1 &&
   [ -z "$(git -C "$P" status --porcelain -- data 2>/dev/null)" ]; then
-  smoke_row FG-003-end_state pass "HEAD:data/users.json holds user 3 and every record has an email; data/ is clean"
+  smoke_row FG-003-end_state pass "HEAD:data/users.json holds ids 1, 2, 3 in order; data/ is clean"
 else
   smoke_row FG-003-end_state fail "HEAD:data/users.json: $(printf '%s' "$head_json" | tr -d '\n' | head -c 200); status: $(git -C "$P" status --porcelain -- data | tr '\n' ' ')"
 fi

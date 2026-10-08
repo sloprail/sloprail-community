@@ -2,9 +2,11 @@
 # Runs the smoke evals (examples/_smoke/eval/*) for each real harness, every
 # (harness, case) pair in parallel, and prints a harness x case table.
 #
-#   scripts/run-smoke-evals.sh [--harness claude,codex,cursor] [--case a,b]
-#                              [--jobs N] [--sloprail DIR] [--model M]
+#   scripts/run-smoke-evals.sh --harness claude[,codex,cursor] [--case a,b]
+#                              [--jobs N] [--sloprail DIR] [--model M] [--keep]
 #
+# --harness is required (each cell is a real, billed agent run; nothing fans out by
+# accident). --jobs N caps concurrent runs (default 2).
 # These are REAL agent runs (a cheap model, about a minute each). They need:
 #   - a sloprail checkout with its binaries built (`make build` there): sr-eval
 #     builds that checkout fresh for every run and installs its plugin for the
@@ -19,11 +21,12 @@ set -uo pipefail
 
 here="$(cd "$(dirname "$0")/.." && pwd)"
 all_harnesses="claude codex cursor"
-harnesses="$all_harnesses"
+harnesses=""
 cases=""
-jobs=0
+jobs=2
 sloprail="${SLOPRAIL_CHECKOUT:-}"
 model=""
+keep=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -32,10 +35,17 @@ while [ $# -gt 0 ]; do
     --jobs) jobs="$2"; shift 2 ;;
     --sloprail) sloprail="$2"; shift 2 ;;
     --model) model="$2"; shift 2 ;;
-    -h | --help) sed -n '2,19p' "$0"; exit 0 ;;
+    --keep) keep=1; shift ;;
+    -h | --help) sed -n '2,20p' "$0"; exit 0 ;;
     *) echo "unknown argument: $1" >&2; exit 2 ;;
   esac
 done
+
+if [ -z "$harnesses" ]; then
+  echo "pass --harness (one or more of: $all_harnesses): every cell is a real agent run, so the harnesses are never defaulted" >&2
+  exit 2
+fi
+case "$jobs" in '' | *[!0-9]* | 0) echo "--jobs must be a positive number" >&2; exit 2 ;; esac
 
 # --- Expected failures, in plain view -------------------------------------
 # A (harness:case) listed here is EXPECTED TO FAIL. The table shows it as XFAIL
@@ -76,7 +86,7 @@ trap 'rm -rf "$out"' EXIT
 run_one() { # harness case
   local h="$1" c="$2" start end code
   start="$(date +%s)"
-  (cd "$sloprail" && ./bin/sr-eval run --fixture "$evals/$c" --harness "$h" --no-archive ${model:+--model "$model"}) > "$out/$h.$c.log" 2>&1
+  (cd "$sloprail" && ./bin/sr-eval run --fixture "$evals/$c" --harness "$h" --no-archive ${keep:+--keep} ${model:+--model "$model"}) > "$out/$h.$c.log" 2>&1
   code=$?
   end="$(date +%s)"
   printf '%s %s\n' "$code" "$((end - start))" > "$out/$h.$c.res"
@@ -84,13 +94,11 @@ run_one() { # harness case
 
 total=0
 for h in $harnesses; do for c in $cases; do total=$((total + 1)); done; done
-echo "running $total smoke eval(s) ($harnesses x $cases), $([ "$jobs" -gt 0 ] && echo "$jobs at a time" || echo "all in parallel")..." >&2
+echo "running $total smoke eval(s) ($harnesses x $cases), $jobs at a time..." >&2
 
 for h in $harnesses; do
   for c in $cases; do
-    if [ "$jobs" -gt 0 ]; then
-      while [ "$(jobs -rp | wc -l | tr -d ' ')" -ge "$jobs" ]; do sleep 1; done
-    fi
+    while [ "$(jobs -rp | wc -l | tr -d ' ')" -ge "$jobs" ]; do sleep 1; done
     run_one "$h" "$c" &
   done
 done

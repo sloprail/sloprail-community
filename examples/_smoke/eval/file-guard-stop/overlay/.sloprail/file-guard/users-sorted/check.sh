@@ -17,10 +17,10 @@ case "$count" in '' | *[!0-9]*) refuse "the changeset's files could not be read,
 
 fine() {
   local content="$1"
-  if printf '%s' "$content" | jq -e 'type == "array" and all(.[]; (.email | type) == "string" and (.email | length) > 0)' >/dev/null 2>&1; then
+  if printf '%s' "$content" | jq -e 'type == "array" and ([.[].id] == ([.[].id] | sort))' >/dev/null 2>&1; then
     return 0
   fi
-  echo "SMOKE-USER-NEEDS-EMAIL: every record in data/users.json needs a non-empty email. Add one to each record that lacks it and commit the fix."
+  echo "SMOKE-USERS-SORTED: the records in data/users.json must be in ascending order of id. Move the out-of-order record to its place and commit the fix."
   return 1
 }
 

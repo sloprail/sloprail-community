@@ -22,7 +22,7 @@ all harnesses (`examples/_shared/eval/smoke.sh`).
 ## Run
 
 ```sh
-scripts/run-smoke-evals.sh --sloprail ../sloprail      # all cases x claude, codex, cursor
+scripts/run-smoke-evals.sh --harness claude --sloprail ../sloprail   # --harness is required; --jobs N caps concurrency (default 2)
 scripts/run-smoke-evals.sh --harness claude --case stop-gate
 ```
 

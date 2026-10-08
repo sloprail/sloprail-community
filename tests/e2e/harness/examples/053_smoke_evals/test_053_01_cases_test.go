@@ -85,21 +85,22 @@ func TestT053_04_StopGate(t *testing.T) {
 	wantFail(t, e, c, proj, "s-053-04b", "a turn that stayed refused with the work undone")
 }
 
-// T053_05: file-guard-stop — a committed record without an email is refused at Stop; the fix is committed.
+// T053_05: file-guard-stop — a committed users.json out of id order is refused at Stop; the fix is committed.
 func TestT053_05_FileGuardStop(t *testing.T) {
 	const c = "file-guard-stop"
-	bad := "[\n  {\"id\": 1, \"email\": \"ada@example.com\"},\n  {\"id\": 2, \"email\": \"grace@example.com\"},\n  {\"id\": 3}\n]\n"
-	good := "[\n  {\"id\": 1, \"email\": \"ada@example.com\"},\n  {\"id\": 2, \"email\": \"grace@example.com\"},\n  {\"id\": 3, \"email\": \"user3@example.com\"}\n]\n"
+	bad := "[\n  {\"id\": 3, \"email\": \"linus@example.com\"},\n  {\"id\": 1, \"email\": \"ada@example.com\"},\n  {\"id\": 2, \"email\": \"grace@example.com\"}\n]\n"
+	good := "[\n  {\"id\": 1, \"email\": \"ada@example.com\"},\n  {\"id\": 2, \"email\": \"grace@example.com\"},\n  {\"id\": 3, \"email\": \"linus@example.com\"}\n]\n"
 	e := newEnv(t)
 	proj := project(t, e, c)
 	e.Run(proj, "s-053-05a", prompt(t, c), Turns("committed",
 		Write("w1", "data/users.json", bad),
 		Bash("b1", "git add data/users.json && git commit -q -m 'add user 3'"),
 		Bash("b2", "sr-session refs track"),
+		Bash("b2j", "sr-checks run --base HEAD~1 --head HEAD >/dev/null 2>&1"),
 	))
 	e.Run(proj, "s-053-05a", "continue", Turns("fixed",
 		Write("w2", "data/users.json", good),
-		Bash("b3", "git add data/users.json && git commit -q -m 'give user 3 an email'"),
+		Bash("b3", "git add data/users.json && git commit -q -m 'sort the users'"),
 	))
 	wantPass(t, e, c, proj, "s-053-05a")
 
@@ -108,6 +109,7 @@ func TestT053_05_FileGuardStop(t *testing.T) {
 		Write("w1", "data/users.json", bad),
 		Bash("b1", "git add data/users.json && git commit -q -m 'add user 3'"),
 		Bash("b2", "sr-session refs track"),
+		Bash("b2j", "sr-checks run --base HEAD~1 --head HEAD >/dev/null 2>&1"),
 	))
 	wantFail(t, e, c, proj, "s-053-05b", "a bad committed file left as it is")
 }

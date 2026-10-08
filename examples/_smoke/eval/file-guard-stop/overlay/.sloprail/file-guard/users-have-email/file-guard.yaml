@@ -1,5 +1,0 @@
-# Every user record committed in data/users.json carries an email. A committed
-# record without one fails the range; Stop shows the stored failure.
-match: 'path == "data/users.json"'
-checks:
-  - script: ./check.sh
