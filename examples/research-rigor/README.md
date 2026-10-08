@@ -14,7 +14,7 @@ Make sure sloprail is installed — see the docs
 Then copy this example into your project:
 
 ```bash
-git clone --depth 1 https://github.com/sloprail/sloprail /tmp/sloprail-clone && mkdir -p .sloprail && cp -R /tmp/sloprail-clone/examples/research-rigor/.sloprail/. .sloprail/ && rm -rf /tmp/sloprail-clone
+git clone --depth 1 https://github.com/sloprail/sloprail-community /tmp/sloprail-clone && mkdir -p .sloprail && cp -R /tmp/sloprail-clone/examples/research-rigor/.sloprail/. .sloprail/ && rm -rf /tmp/sloprail-clone
 ```
 
 Then declare `#research`, skim only a README, and confirm you see the
