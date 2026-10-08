@@ -12,7 +12,7 @@ Make sure sloprail is installed — see the docs
 Then copy this example into your project:
 
 ```bash
-git clone --depth 1 https://github.com/sloprail/sloprail /tmp/sloprail-clone && mkdir -p .sloprail && cp -R /tmp/sloprail-clone/examples/no-unasked-deletion/.sloprail/. .sloprail/ && rm -rf /tmp/sloprail-clone
+git clone --depth 1 https://github.com/sloprail/sloprail-community /tmp/sloprail-clone && mkdir -p .sloprail && cp -R /tmp/sloprail-clone/examples/no-unasked-deletion/.sloprail/. .sloprail/ && rm -rf /tmp/sloprail-clone
 ```
 
 Then rewrite a file so it drops content nobody asked to remove, and confirm
