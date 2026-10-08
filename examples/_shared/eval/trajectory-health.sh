@@ -388,8 +388,12 @@ $es_facts"
   # sr-agent's own isolation does it for every harness (its baseArgs: Claude's
   # disableAllHooks settings, Codex's --disable hooks), so nothing harness-specific
   # is passed here. The judge runs on the harness the agent ran under.
-  raw="$(cd "$judge_cwd" && sr-agent --harness "${SR_EVAL_HARNESS:-${SLOPRAIL_HARNESS:-claude}}" --model "$TRAJECTORY_HEALTH_MODEL" --allowed-tools "WebSearch" --prompt "$(cat "$prompt_file")" 2>&1)"
-  rm -f "$prompt_file" "$scenario_file" "$guardrail_file" "$transcript_file"
+  # Only stdout is the answer: a harness logs its own events (Codex's shell calls,
+  # as JSON) on stderr, and the first object there is not the verdict.
+  judge_err="$(mktemp)"
+  raw="$(cd "$judge_cwd" && sr-agent --harness "${SR_EVAL_HARNESS:-${SLOPRAIL_HARNESS:-claude}}" --model "$TRAJECTORY_HEALTH_MODEL" --allowed-tools "WebSearch" --prompt "$(cat "$prompt_file")" 2>"$judge_err")"
+  [ -n "$raw" ] || raw="$(cat "$judge_err")"
+  rm -f "$prompt_file" "$scenario_file" "$guardrail_file" "$transcript_file" "$judge_err"
   rmdir "$judge_cwd" 2>/dev/null || true
 
   # Parse the answer whole first: a verdict's reasoning can quote text with
@@ -397,7 +401,7 @@ $es_facts"
   # same bug the engine's judge verifier had). The pattern is the fallback for
   # an answer with prose around the object.
   stripped="$(printf '%s' "$raw" | tr -d '\r' | sed 's/```json//g; s/```//g')"
-  json="$(printf '%s' "$stripped" | jq -c 'select(type == "object")' 2>/dev/null | head -1)"
+  json="$(printf '%s' "$stripped" | jq -c 'select(type == "object" and has("healthy"))' 2>/dev/null | tail -1)"
   if [ -z "$json" ]; then
     json="$(printf '%s' "$stripped" | tr '\n' ' ' | grep -o '{[^{}]*}' | head -1)"
   fi
