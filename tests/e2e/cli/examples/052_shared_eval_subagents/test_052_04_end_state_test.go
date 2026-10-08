@@ -1,6 +1,7 @@
 package e2e
 
 import (
+	"github.com/sloprail/sloprail/tests/e2e/harness"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -24,8 +25,9 @@ func TestT052_04_StopHookSummariesAreKept(t *testing.T) {
 		`{"type":"system","subtype":"stop_hook_summary","uuid":"s1","hookCount":1,"hookErrors":["commit first"],"preventedContinuation":false}`,
 		`{"type":"system","subtype":"stop_hook_summary","uuid":"s2","hookCount":1,"hookErrors":[],"preventedContinuation":false}`)
 
-	cmd := exec.Command("sh", "-c", `jq -r -f "$SHARED/condense-transcript.jq" "$SR_EVAL_TRANSCRIPT"`)
-	cmd.Env = append(os.Environ(), "SHARED="+shared, "SR_EVAL_TRANSCRIPT="+session)
+	cmd := exec.Command("sh", "-c", `. "$SHARED/trajectory-health.sh"
+trajectory_entries "$SR_EVAL_TRANSCRIPT" | jq -r -f "$SHARED/condense-transcript.jq"`)
+	cmd.Env = append(srSessionEnv(t), "SHARED="+shared, "SR_EVAL_TRANSCRIPT="+session)
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		t.Fatalf("jq: %v\n%s", err, out)
@@ -154,8 +156,11 @@ func TestT052_05_EndStateFactsCatchDestroyedGuardrails(t *testing.T) {
 	}
 }
 
-// T052_06: the judge is launched hook-free: the sr-agent argv carries
-// disableAllHooks. A stub sr-agent records its argv and answers healthy.
+// T052_06: the judge is launched through sr-agent on the harness the agent ran
+// under, with nothing harness-specific and nothing that could re-enable hooks:
+// sr-agent's own isolation makes the judge hook-free for every harness, so the
+// argv must carry no --claude-args (a later settings layer would win over that
+// isolation). A stub sr-agent records its argv and answers healthy.
 func TestT052_06_JudgeRunsHookFree(t *testing.T) {
 	if _, err := exec.LookPath("jq"); err != nil {
 		t.Skip("jq not installed")
@@ -189,12 +194,13 @@ func TestT052_06_JudgeRunsHookFree(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	binDir := harness.New(t).BinDir()
 	session := filepath.Join(t.TempDir(), "s-052-06.jsonl")
 	writeLines(t, session, `{"type":"user","uuid":"u1","message":{"role":"user","content":"do the work"}}`)
 
 	cmd := exec.Command("sh", "-c", `. "$SHARED_COPY/trajectory-health.sh"; trajectory_health_check scenario guardrail; printf '%s' "$TH_STATUS"`, script)
-	cmd.Env = append(os.Environ(), "SHARED_COPY="+evalDir, "PATH="+bin+string(os.PathListSeparator)+os.Getenv("PATH"),
-		"SR_EVAL_TRANSCRIPT="+session)
+	cmd.Env = append(os.Environ(), "SHARED_COPY="+evalDir, "PATH="+bin+string(os.PathListSeparator)+binDir+string(os.PathListSeparator)+os.Getenv("PATH"),
+		"SR_EVAL_TRANSCRIPT="+session, "SR_EVAL_HARNESS=claude")
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		t.Fatalf("sh: %v\n%s", err, out)
@@ -206,7 +212,19 @@ func TestT052_06_JudgeRunsHookFree(t *testing.T) {
 	if err != nil {
 		t.Fatalf("the judge was never launched: %v", err)
 	}
-	if !strings.Contains(string(argv), "disableAllHooks") {
-		t.Errorf("the judge's sr-agent argv must carry disableAllHooks:\n%s", argv)
+	args := strings.Split(strings.TrimSpace(string(argv)), "\n")
+	harnessArg := ""
+	for i, a := range args {
+		if a == "--harness" && i+1 < len(args) {
+			harnessArg = args[i+1]
+		}
+	}
+	if harnessArg != "claude" {
+		t.Errorf("the judge must run on the agent's harness (SR_EVAL_HARNESS=claude), argv:\n%s", argv)
+	}
+	for _, a := range args {
+		if a == "--claude-args" || strings.Contains(a, "disableAllHooks") || a == "claude-code" {
+			t.Errorf("the judge's argv must not carry harness-specific flags (%q); sr-agent isolates hooks itself:\n%s", a, argv)
+		}
 	}
 }

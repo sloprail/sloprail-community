@@ -16,7 +16,7 @@ description: >
   grant, so it proves nothing about the gate.
 seed: seed
 exampleSloprail: true
-model: haiku
+model: size-sm
 score: score.sh
 user:
   brief: user.md

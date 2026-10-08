@@ -22,5 +22,5 @@ seed: seed
 setup: setup.sh
 overlay: overlay
 exampleSloprail: true
-model: haiku
+model: size-sm
 score: score.sh

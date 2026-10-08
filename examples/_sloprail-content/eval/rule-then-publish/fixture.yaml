@@ -18,5 +18,5 @@ description: >
 seed: seed
 overlay: overlay
 plugins: [sloprail-content]
-model: haiku
+model: size-sm
 score: score.sh

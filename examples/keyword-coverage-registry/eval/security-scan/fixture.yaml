@@ -22,5 +22,5 @@ description: >
 seed: seed
 overlay: overlay
 exampleSloprail: true
-model: haiku
+model: size-sm
 score: score.sh

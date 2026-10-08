@@ -19,5 +19,5 @@ description: >
   informational rows.
 seed: seed
 freshMachine: true
-model: haiku
+model: size-sm
 score: score.sh

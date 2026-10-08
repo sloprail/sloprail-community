@@ -18,5 +18,5 @@ exampleSloprail: true
 # sonnet, not haiku: measured 2026-09-27, Haiku reads "track this as a task"
 # as its own TaskCreate tool every time and never reaches the repo's
 # convention, so grounding is never exercised; Sonnet loads the skill.
-model: sonnet
+model: size-md
 score: score.sh

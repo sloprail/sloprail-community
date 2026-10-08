@@ -20,5 +20,5 @@ plugins: [sloprail-tasks]
 # Haiku reads "track this as a task" as its own TaskCreate tool every time and
 # never reaches the repo's lifecycle, so none of the plugin's guards is
 # exercised.
-model: sonnet
+model: size-md
 score: score.sh

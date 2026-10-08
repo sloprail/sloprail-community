@@ -27,7 +27,7 @@ H="$SR_EVAL_AGENT_HOME"
 
 SCENARIO="An agent is asked to add GET /invoices to a small Express + Prisma
 API, 'the first of several new resources'. The prompt says nothing else. The
-user has installed the sloprail Claude Code plugin for this project and
+user has installed the sloprail plugin for this project and
 nothing more. At session start the plugin installs its sr* binaries itself
 (announced in the agent's context: 'installing the sr binaries ... installed
 ...') and tells the agent that sloprail works rules first."
@@ -53,9 +53,16 @@ trajectory_health_check "$SCENARIO" "$GUARDRAIL"
 # --- The agent's tool calls, in order: one JSON object per line. ---
 calls="$(mktemp)"
 trap 'rm -f "$calls"' EXIT
-jq -c 'select(.type=="assistant") | .message.content[]? | select(.type=="tool_use")
-       | {name, path: (.input.file_path // .input.notebook_path // ""), cmd: (.input.command // "")}' \
-  "$T" 2>/dev/null > "$calls" || true
+# Read through sr-session's normalization (trajectory_entries), so the same filter
+# holds for Claude Code's, Codex's and Cursor's records: a tool call by its input,
+# and every file the call writes (the pre-write events), which is how a Codex
+# apply_patch or a Cursor Write names its path.
+trajectory_entries "$T" | jq -c '
+  select(.type=="assistant") |
+  ((.message.content[]? | select(.type=="tool_use")
+    | {name, path: (.input.file_path // .input.notebook_path // ""), cmd: (if (.input.command | type) == "string" then .input.command else "" end)}),
+   (.events[]? | select((.kind // "") | test("^PreFile(Create|Update)$")) | {name: .kind, path: (.path // ""), cmd: ""}))' \
+  2>/dev/null > "$calls" || true
 
 # first_index <jq-filter>: 1-based index of the first call the filter selects, or 0.
 first_index() {
@@ -91,15 +98,13 @@ fi
 
 # --- INST-002: plugin still enabled — sr-eval installed it, as the user's
 # /plugin install would; this is the precondition, not the agent's work. ---
-key='sloprail@sloprail-marketplace'
+# Asked of sloprail, not of any harness's files: `sr-session plugins` prints the plugins the
+# harness the agent ran under resolves for this project (one JSON line each), from the
+# agent's own HOME, which is where sr-eval installed it.
 scope="none"
-for pair in "project:$P/.claude/settings.json" "local:$P/.claude/settings.local.json" "user:$H/.claude/settings.json"; do
-  f="${pair#*:}"
-  if [ -f "$f" ] && [ "$(jq -r --arg k "$key" '.enabledPlugins[$k] // false' "$f" 2>/dev/null)" = "true" ]; then
-    scope="${pair%%:*}"
-    break
-  fi
-done
+resolved="$(cd "$P" && HOME="$H" SLOPRAIL_HARNESS="${SR_EVAL_HARNESS:-claude}" "$SR_EVAL_BIN_DIR/sr-session" plugins 2>/dev/null |
+  jq -r 'select(.name == "sloprail") | .root' 2>/dev/null | head -n1)"
+[ -n "$resolved" ] && scope="resolved ($resolved)"
 inst_plugin="fail"
 [ "$scope" != none ] && inst_plugin="pass"
 
@@ -150,8 +155,8 @@ task_test="fail"
 # result the harness marked as an error (a PreToolUse denial). The same
 # `gate "x"` text also sits in the Stop pass output (hook_success) and in docs
 # the agent read; counting those reported rules that never refused anything.
-own_refusals="$(jq -r -s '.[] | (.attachment? // empty | select(.type == "hook_blocking_error") | .blockingError | tostring),
-    (.message.content? | arrays | .[] | select(.type == "tool_result" and .is_error == true) | .content | tostring)' "$T" 2>/dev/null |
+own_refusals="$(trajectory_entries "$T" | jq -r -s '.[] | (.attachment? // empty | select(.type == "hook_blocking_error") | .blockingError | tostring),
+    (.message.content? | arrays | .[] | select(.type == "tool_result" and .is_error == true) | .content | tostring)' 2>/dev/null |
   grep -Eo '(file-guard|gate) \\?"[a-z0-9-]+\\?"' | sort -u | tr '\n' ' ' || true)"
 # Measured against the harness's setup commit, so what the agent COMMITTED
 # counts the same as what it left lying around.
@@ -159,7 +164,7 @@ setup="${SR_EVAL_RULES_COMMIT:-${SR_EVAL_SEED_COMMIT:-}}"
 [ -n "$setup" ] || setup="$(git -C "$P" rev-list --max-parents=0 HEAD 2>/dev/null | tail -1)"
 changed="$( { git -C "$P" diff --name-only "$setup" 2>/dev/null; git -C "$P" ls-files --others --exclude-standard 2>/dev/null; } | sort -u)"
 stray="$(printf '%s\n' "$changed" |
-  grep -Ev '^(src/|test/|\.sloprail/|\.claude/|prisma/|node_modules/|package(-lock)?\.json$|tsconfig\.json$|vitest\.config\.|README\.md$|$)' | tr '\n' ' ')"
+  grep -Ev '^(src/|test/|\.sloprail/|\.claude/|\.codex/|\.cursor/|\.agents/|prisma/|node_modules/|package(-lock)?\.json$|tsconfig\.json$|vitest\.config\.|README\.md$|$)' | tr '\n' ' ')"
 
 # --- HYG-001: sloprail itself was not installed INTO the project (its
 # binaries or a clone of its repo belong on the machine, not in the repo). ---

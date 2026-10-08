@@ -20,29 +20,36 @@
 # (as this did until 2026-09-27) hid every end-of-turn refusal from the judge,
 # which then could not tell a refused turn from a finished one.
 #
-# The harness also records each Stop hook run as a system entry of subtype
-# stop_hook_summary. Dropping those (as this did until 2026-10-01) left the
-# judge unable to see that the FINAL Stop passed: it read a run whose last Stop
-# hook ran clean as one that "ends mid-stream" (_sloprail-tasks fix-and-review).
-# Each is kept as one line, STOP_HOOK: pass or STOP_HOOK: refuse. It is NOT a
-# HOOK_REFUSAL line (the refusal's text is the attachment's, above it), so a
-# refused Stop is not counted twice by the scorer's refusal section.
+# Input is `sr-session trajectory normalize` output (one entry per line, e.g.
+# `... | jq -c '.[]'`), never a raw harness record: every harness's records are
+# already in the one canonical shape there (`.type`, `.message.role`,
+# `.message.content` as a string or tool_use / tool_result / text blocks,
+# `.attachment`), so nothing below knows which harness wrote the session.
+# A Stop hook run is a system entry carrying `.stopHook` (refused, reasons), kept
+# as one STOP_HOOK line: pass or refuse. It is NOT a HOOK_REFUSAL line (the
+# refusal's text is the attachment's), so a refused Stop is not counted twice by
+# the scorer's refusal section.
 select(.type == "user" or .type == "assistant"
   or (.type == "attachment" and .attachment.type? == "hook_blocking_error")
-  or (.type == "system" and .subtype? == "stop_hook_summary")) |
+  or (.type == "system" and .stopHook != null)) |
 (.message // {}) as $m |
+$m.role as $role |
 if .type == "system" then
   "STOP_HOOK: "
-    + (if ((.hookErrors // []) | length) > 0 or (.preventedContinuation // false)
+    + (if .stopHook.refused
        then "refuse (the agent was sent back to work)"
        else "pass (the turn was allowed to end)" end)
 elif .type == "attachment" then
   "HOOK_REFUSAL (" + (.attachment.hookEvent // "?") + "): "
     + ((.attachment.blockingError.blockingError // .attachment.blockingError // "") | tostring | .[0:600])
-elif $m.role == "user" and ($m.content | type) == "array" then
-  ($m.content[]? | select(.type == "tool_result") |
-    "TOOL_RESULT: " + ((.content | if type == "string" then . else ([.[]? | .text?] | join(" ")) end) // "" | tostring | .[0:300]))
-elif $m.role == "assistant" and ($m.content | type) == "array" then
+elif $role == "user" and ($m.content | type) == "array" then
+  ($m.content[]? |
+    if .type == "tool_result" then
+      "TOOL_RESULT: " + ((.content | if type == "string" then . else ([.[]? | .text?] | join(" ")) end) // "" | tostring | .[0:300])
+    elif .type == "text" then
+      "USER: " + ((.text // "") | .[0:800])
+    else empty end)
+elif $role == "assistant" and ($m.content | type) == "array" then
   ($m.content[]? |
     if .type == "tool_use" then
       # A plain `tostring | .[0:250]` on the WHOLE input truncates a
@@ -64,6 +71,6 @@ elif $m.role == "assistant" and ($m.content | type) == "array" then
     elif .type == "text" then
       "ASSISTANT: " + ((.text // "") | .[0:800])
     else empty end)
-elif $m.role == "user" and ($m.content | type) == "string" then
+elif $role == "user" and ($m.content | type) == "string" then
   "USER: " + ($m.content | .[0:800])
 else empty end

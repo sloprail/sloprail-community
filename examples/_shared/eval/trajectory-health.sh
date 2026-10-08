@@ -27,18 +27,31 @@
 TRAJECTORY_HEALTH_MODEL="${TRAJECTORY_HEALTH_MODEL:-size-sm}"
 
 # subagent_records prints the path of every sub-agent record the run's session
-# left, one per line, sorted: <session>/subagents/agent-*.jsonl and those a
-# harness nests deeper (subagents/workflows/wf_<id>/agent-*.jsonl — a workflow's
-# agents). A flat `subagents/*.jsonl` glob misses the nested ones, and with them
-# every refusal a workflow's agent met.
+# left, one per line, sorted. Only sloprail's account of them (trajectory describe,
+# which asks the harness where it keeps them): no layout is assumed here.
 subagent_records() {
-  find "${SR_EVAL_TRANSCRIPT%.jsonl}/subagents" -type f -name 'agent-*.jsonl' 2>/dev/null | sort
+  sr-session trajectory describe --path "$SR_EVAL_TRANSCRIPT" 2>/dev/null | jq -r '.subagentPaths[]?' 2>/dev/null | sort -u
 }
 
-# cat_subagent_records prints every sub-agent record's content, for a grep —
-# the nested ones included.
+# trajectory_entries prints a session record as one normalized entry per line,
+# whichever harness wrote it (sr-session reads Claude Code's, Codex's and Cursor's
+# records into the one shape the condensing and the scorers' jq read).
+trajectory_entries() {
+  SLOPRAIL_HARNESS="${SR_EVAL_HARNESS:-claude}" sr-session trajectory normalize --path "$1" --whole-session 2>/dev/null |
+    jq -c '.[]' 2>/dev/null
+}
+
+# trajectory_text prints every string a session record holds, decoded (the agent's
+# prose, a tool call's arguments, a tool's output, a hook's message), one per line,
+# for a grep over what was said rather than over how the record is encoded.
+trajectory_text() {
+  trajectory_entries "$1" | jq -r '[.message?, .attachment?, .stopHook?] | .. | strings' 2>/dev/null
+}
+
+# cat_subagent_records prints the text (trajectory_text) of every sub-agent
+# record, for a grep.
 cat_subagent_records() {
-  subagent_records | while IFS= read -r rec; do cat "$rec"; done
+  subagent_records | while IFS= read -r rec; do trajectory_text "$rec"; done
 }
 
 # TRAJECTORY_BUDGET is the most text a judge is handed, in bytes.
@@ -49,7 +62,7 @@ TRAJECTORY_BUDGET="${TRAJECTORY_BUDGET:-60000}"
 # they happened rather than in id order.
 subagent_records_by_time() {
   subagent_records | while IFS= read -r rec; do
-    ts="$(jq -r 'select(.timestamp != null) | .timestamp' "$rec" 2>/dev/null | head -1)"
+    ts="$(trajectory_entries "$rec" | jq -r 'select(.timestamp != null) | .timestamp' 2>/dev/null | head -1)"
     printf '%s\t%s\n' "${ts:-9999}" "$rec"
   done | sort | cut -f2-
 }
@@ -124,7 +137,7 @@ trajectory_condense() {
   subagent_records_by_time > "$tc_dir/records"
   while IFS= read -r tc_sub; do
     tc_n=$((tc_n + 1))
-    jq -r -f "$tc_jq" "$tc_sub" > "$tc_dir/rec-$tc_n" 2>/dev/null
+    trajectory_entries "$tc_sub" | jq -r -f "$tc_jq" > "$tc_dir/rec-$tc_n" 2>/dev/null
     printf '%s\t%s\n' "$tc_n" "$(basename "$tc_sub" .jsonl)" >> "$tc_dir/agents"
   done < "$tc_dir/records"
 
@@ -303,7 +316,7 @@ $es_facts"
   # skimming for "did this look stuck" would actually want to read, not the
   # raw JSONL with every cache/token/attachment field repeated per entry.
   condensed_file=$(mktemp)
-  jq -r -f "$condense_jq" "$SR_EVAL_TRANSCRIPT" > "$condensed_file" 2>/dev/null
+  trajectory_entries "$SR_EVAL_TRANSCRIPT" | jq -r -f "$condense_jq" > "$condensed_file" 2>/dev/null
   if [ ! -s "$condensed_file" ]; then
     TH_STATUS="fail"
     TH_REASON="condensing the transcript produced no output — the transcript may be malformed or condense-transcript.jq may need updating for this transcript's shape"
@@ -372,14 +385,10 @@ $es_facts"
   # excludes Bash/Read/Write/Edit entirely, rather than an unset flag.
   judge_cwd=$(mktemp -d)
   # Hook-free: the judge reads a transcript, it must never be a guarded session.
-  # Measured: judge sessions that inherited the sloprail hooks (user-scope
-  # plugin, ambient settings) met 8 Stop-hook refusal cycles each. sr-agent's
-  # baseArgs isolation (hooks:{}, enabledPlugins:{}) does not switch off hooks a
-  # plugin or settings layer adds, so disableAllHooks is passed here too, with the
-  # rest of the isolation restated (a later --settings wins outright). Once
-  # sr-agent itself sets disableAllHooks this is redundant, and harmless.
-  judge_settings='{"settings":"{\"disableAllHooks\":true,\"hooks\":{},\"mcpServers\":{},\"enabledPlugins\":{}}"}'
-  raw="$(cd "$judge_cwd" && sr-agent --harness claude-code --model "$TRAJECTORY_HEALTH_MODEL" --allowed-tools "WebSearch" --claude-args "$judge_settings" --prompt "$(cat "$prompt_file")" 2>&1)"
+  # sr-agent's own isolation does it for every harness (its baseArgs: Claude's
+  # disableAllHooks settings, Codex's --disable hooks), so nothing harness-specific
+  # is passed here. The judge runs on the harness the agent ran under.
+  raw="$(cd "$judge_cwd" && sr-agent --harness "${SR_EVAL_HARNESS:-${SLOPRAIL_HARNESS:-claude}}" --model "$TRAJECTORY_HEALTH_MODEL" --allowed-tools "WebSearch" --prompt "$(cat "$prompt_file")" 2>&1)"
   rm -f "$prompt_file" "$scenario_file" "$guardrail_file" "$transcript_file"
   rmdir "$judge_cwd" 2>/dev/null || true
 
@@ -421,13 +430,9 @@ $es_facts"
 # `.sloprail/file-guard/<name>/…` is not one). The older quoted
 # `gate "<name>"` / `file-guard "<name>"` form still counts, as follows.
 #
-# The quote before/after the name may be a literal `"` or a JSON-escaped
-# `\"` — which one appears depends on how many times the refusal text itself
-# got JSON-encoded before landing in the transcript (a raw hook stdout write
-# vs. text nested inside a tool_result's own JSON string), and BOTH shapes
-# were measured in real transcripts from real runs. `\{0,1\}` (POSIX basic
-# regex; `?` is not portable to every grep) makes the backslash optional on
-# both sides so either shape matches.
+# The text is the decoded strings of the normalized entries (trajectory_text), so
+# how many times a refusal was JSON-encoded in the record does not matter; the
+# optional backslash is kept for text that itself quotes an escaped name.
 #
 # Usage: guardrail_fired_check '<name>' ; # sets GF_STATUS (fired/never-fired), GF_COUNT
 guardrail_fired_check() {
@@ -436,7 +441,7 @@ guardrail_fired_check() {
   if [ -f "${SR_EVAL_TRANSCRIPT:-/nonexistent}" ]; then
     # The sub-agents' records too: a rule refusing inside a sub-agent (at its
     # SubagentStop, or a tool call it made) is written there, not in the root.
-    count="$({ cat "$SR_EVAL_TRANSCRIPT"; cat_subagent_records; } 2>/dev/null \
+    count="$({ trajectory_text "$SR_EVAL_TRANSCRIPT"; cat_subagent_records; } 2>/dev/null \
       | grep -oE "(^|[^/A-Za-z0-9_.-])([a-z0-9-]+/)?(file-guard|gate)/$name([^/A-Za-z0-9_.-]|\\.([^A-Za-z0-9_]|$)|$)|\\\\?\"$name\\\\?\"" | wc -l | tr -d ' ')"
   fi
   GF_COUNT="$count"
@@ -453,9 +458,9 @@ guardrail_fired_check() {
 # silent), so this is the only evidence a scorer has that the gates matching a
 # Stop evaluated and let the turn end. Prints yes or no.
 last_stop_passed() {
-  if [ -f "${SR_EVAL_TRANSCRIPT:-/nonexistent}" ] && jq -s -e '[.[] | .attachment? // empty
+  if [ -f "${SR_EVAL_TRANSCRIPT:-/nonexistent}" ] && trajectory_entries "$SR_EVAL_TRANSCRIPT" | jq -s -e '[.[] | .attachment? // empty
       | select(.hookEvent == "Stop" and (.type == "hook_success" or .type == "hook_blocking_error"))]
-      | length > 0 and (last | .type == "hook_success")' "$SR_EVAL_TRANSCRIPT" >/dev/null 2>&1; then
+      | length > 0 and (last | .type == "hook_success")' >/dev/null 2>&1; then
     echo yes
   else
     echo no

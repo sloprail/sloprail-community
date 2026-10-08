@@ -31,6 +31,15 @@ func sharedEval(t *testing.T) string {
 	return dir
 }
 
+// srSessionEnv is the host environment with sloprail's own binaries (sr-session
+// among them) first on PATH: the shared scorers read a session record only
+// through `sr-session trajectory normalize` / `describe`, never as raw jsonl.
+func srSessionEnv(t *testing.T) []string {
+	t.Helper()
+	e := harness.New(t)
+	return append(harness.HostEnv(), "PATH="+e.BinDir()+string(os.PathListSeparator)+os.Getenv("PATH"))
+}
+
 func writeLines(t *testing.T, path string, lines ...string) {
 	t.Helper()
 	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
@@ -59,13 +68,13 @@ func TestT052_01_WorkflowSubagentsAreRead(t *testing.T) {
 
 	script := `. "$SHARED/trajectory-health.sh"
 root="$(mktemp)"
-jq -r -f "$SHARED/condense-transcript.jq" "$SR_EVAL_TRANSCRIPT" > "$root"
+trajectory_entries "$SR_EVAL_TRANSCRIPT" | jq -r -f "$SHARED/condense-transcript.jq" > "$root"
 trajectory_condense "$SHARED/condense-transcript.jq" "$root"
 guardrail_fired_check guarded-thing
 printf '\nFIRED=%s COUNT=%s\n' "$GF_STATUS" "$GF_COUNT"
 `
 	cmd := exec.Command("sh", "-c", script)
-	cmd.Env = append(harness.HostEnv(), "SHARED="+shared, "SR_EVAL_TRANSCRIPT="+session)
+	cmd.Env = append(srSessionEnv(t), "SHARED="+shared, "SR_EVAL_TRANSCRIPT="+session)
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		t.Fatalf("sh: %v\n%s", err, out)
@@ -119,12 +128,12 @@ func condenseRun(t *testing.T, subs, refusals int) (string, int) {
 	}
 	script := `. "$SHARED/trajectory-health.sh"
 root="$(mktemp)"
-jq -r -f "$SHARED/condense-transcript.jq" "$SR_EVAL_TRANSCRIPT" > "$root"
+trajectory_entries "$SR_EVAL_TRANSCRIPT" | jq -r -f "$SHARED/condense-transcript.jq" > "$root"
 wc -c < "$root" >&2
 trajectory_condense "$SHARED/condense-transcript.jq" "$root"
 `
 	cmd := exec.Command("sh", "-c", script)
-	cmd.Env = append(harness.HostEnv(), "SHARED="+shared, "SR_EVAL_TRANSCRIPT="+session)
+	cmd.Env = append(srSessionEnv(t), "SHARED="+shared, "SR_EVAL_TRANSCRIPT="+session)
 	var stdout, stderr strings.Builder
 	cmd.Stdout, cmd.Stderr = &stdout, &stderr
 	if err := cmd.Run(); err != nil {
