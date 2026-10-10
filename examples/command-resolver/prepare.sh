@@ -15,6 +15,14 @@ find .sloprail -depth \( -name tests -o -name structure.tests \) -type d -exec r
 case "$variant" in
   sloprail)
     command -v yq >/dev/null 2>&1 || echo "prepare: yq is not on PATH yet; the fixture runs freshMachine, so the plugin's install.sh puts it there at session start" >&2
+    # A file-guard judges commits, and a Stop only verifies the ranges the session tracks:
+    # nothing is tracked unless SR_AUTO_WATCH_GIT_REFS=1. With it the session tracks its own
+    # branch, so a Stop is refused until `sr-checks run` has judged the work and it passed.
+    # Set in the project's settings, the way a project that wants this would set it.
+    mkdir -p .claude
+    [ -f .claude/settings.json ] || echo '{}' > .claude/settings.json
+    jq '.env = ((.env // {}) + {SR_AUTO_WATCH_GIT_REFS: "1"})' .claude/settings.json > .claude/settings.json.tmp
+    mv .claude/settings.json.tmp .claude/settings.json
     ;;
   bare)
     rm -rf .sloprail
