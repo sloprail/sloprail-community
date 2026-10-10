@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Prepares the project a run starts from. sr-eval calls it as the fixture's setup script, in
+# the project, after template/ (the seed) and this example's .sloprail/ are in place and
+# before the first commit.
+#
+#   SR_EVAL_VARIANT=sloprail (default)   the template and the rules, as copied
+#   SR_EVAL_VARIANT=bare                 the template alone: no rules, and nothing that names them
+#
+# Both variants get the same CLAUDE.md, spec/, config/ and adr/: the conventions are stated
+# in both, and only one of them has anything checking them.
+set -euo pipefail
+variant="${SR_EVAL_VARIANT:-sloprail}"
+case "$variant" in
+  sloprail)
+    command -v yq >/dev/null 2>&1 || echo "prepare: yq is not on PATH yet; the fixture runs freshMachine, so the plugin's install.sh puts it there at session start" >&2
+    ;;
+  bare)
+    rm -rf .sloprail
+    # An ADR's `sloprails:` line names the rules that enforce it. There are none here.
+    sed -i.bak '/^sloprails:/d' adr/*/ADR.md && rm -f adr/*/ADR.md.bak
+    ;;
+  *)
+    echo "prepare: unknown SR_EVAL_VARIANT '$variant' (sloprail or bare)" >&2
+    exit 1
+    ;;
+esac
+[ -d .git ] && printf "%s\n" "$variant" > .git/sr-eval-variant || true

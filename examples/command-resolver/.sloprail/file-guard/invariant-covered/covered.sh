@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# The file's shape is file-guard/spec-quality's (spec.cue). For each invariant the change
-# touches (its spec/<domain>/invariants/<id>.yaml changed, or a changed file carries, before
-# or after, a marker naming it) that exists at head:
+# For EVERY invariant of the spec at head:
 #   - ≥1 `// sr:invariant <domain>/<id>` in non-test code
 #   - ≥1 `// sr:proves <domain>/<id>` in a test (is_test: *_test.go, tests/, a rule's sr-test case)
-# Untouched invariants are not re-checked: what stood before this rule is taken as it is.
+# Changed from sloprail's copy, which re-checks only the invariants a change touches: there the
+# spec grows with the code. Here the whole spec is given up front and never changes
+# (givens-frozen), so "touched" would never name an invariant nobody has started on, and the
+# tool is done only when every one of them is covered.
 # And back, over the whole tree: every sr:invariant and sr:proves naming a <domain>/<id>
 # names an invariant; sr:proves sits only in tests, sr:invariant only outside them.
 set -uo pipefail
@@ -18,8 +19,6 @@ load_markers proves; proves="$MARKERS"
 impl="$(printf '%s\n' "$impl" | awk -F'\t' '$2 ~ /^[a-z0-9-]+\/[a-z0-9-]+$/')"
 proves="$(printf '%s\n' "$proves" | awk -F'\t' '$2 ~ /^[a-z0-9-]+\/[a-z0-9-]+$/')"
 TEST='(_test[.]go$|^tests/|(^|/)[.]sloprail/.*/tests/)'
-touched="$(cs '.changeset.files[] | (.path | capture("^spec/(?<d>[a-z0-9-]+)/invariants/(?<n>[a-z0-9-]+)\\.yaml$") | "\(.d)/\(.n)"),
-  (((.newMarkers // []) + (.oldMarkers // []))[] | select(.kind == "invariant" or .kind == "proves") | .fqn)' | sort -u)"
 
 problems=""
 add() { problems="${problems}- $1"$'\n'; }
@@ -27,7 +26,6 @@ ids="$(jq -r '.[].id' <<<"$inv")"
 while IFS= read -r i; do
   [ -n "$i" ] || continue
   id="$(jq -r '.id' <<<"$i")"
-  printf '%s\n' "$touched" | grep -Fxq -- "$id" || continue
   kebab "${id%%/*}" && kebab "${id#*/}" || add "$(jq -r '.path' <<<"$i"): the domain and file name must be kebab-case"
   printf '%s\n' "$impl" | awk -F'\t' -v id="$id" -v t="$TEST" '$2 == id && $1 !~ t' | grep -q . ||
     add "invariant '$id' has no implementation: mark the code that upholds it with // sr:invariant $id"
@@ -45,5 +43,11 @@ while IFS=$'\t' read -r path id; do
   [[ "$path" =~ $TEST ]] || add "$path: sr:proves belongs on a test (a *_test.go, under tests/, or a rule's sr-test case)"
 done <<<"$proves"
 [ -z "$problems" ] && exit 0
-refuse "Invariants not implemented or not proven:
-${problems}"
+# The first Stop of a fresh repository would list two lines for each of the 125 invariants:
+# show the first 30 and count the rest.
+total="$(printf '%s' "$problems" | grep -c .)"
+shown="$(printf '%s' "$problems" | head -n 30)"
+more=""; [ "$total" -gt 30 ] && more="
+... and $((total - 30)) more. Every invariant under spec/ needs both markers before the work is done."
+refuse "Invariants not implemented or not proven ($total):
+${shown}${more}"

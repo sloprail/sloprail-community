@@ -1,6 +1,6 @@
 ---
 concern: which module every piece of code belongs to
-sloprails: [file-guard/module-coverage, file-guard/module-distinct]
+sloprails: [file-guard/module-coverage, file-guard/module-distinct, file-guard/module-boundaries, file-guard/module-leaks]
 # The code that must be mapped to modules.
 space: ["internal/**"]
 # Globs of code not yet in any module. Each only shrinks.

@@ -1,0 +1,7 @@
+# What the run is given is fixed: a commit may not add, change or delete anything under
+# spec/, config/, adr/ or .sloprail/, nor CLAUDE.md. gate/givens-frozen refuses the write
+# itself; this catches one that got past it.
+match: path matches "^(spec|config|adr|[.]sloprail)/" or path == "CLAUDE.md"
+deletions: include
+checks:
+  - script: ./refuse.sh

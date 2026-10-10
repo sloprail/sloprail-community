@@ -1,8 +1,10 @@
-# Every invariant a change touches is implemented and proven [deterministic]; the
-# markers are read over the whole committed tree, so deleting a proving test (its marker leaves) breaks
-# coverage of the invariant it named.
+# Every invariant of the spec is implemented and proven [deterministic]: each has code marked
+# sr:invariant and a test marked sr:proves. The markers are read over the whole committed tree,
+# so deleting a proving test (its marker leaves) breaks coverage of the invariant it named.
+# Runs on any Go change, marked or not: an agent that marks nothing is still told what is missing.
 match: >-
-  path matches "^spec/[a-z0-9-]+/invariants/[a-z0-9-]+[.]yaml$"
+  path endsWith ".go"
+  or path matches "^spec/[a-z0-9-]+/invariants/[a-z0-9-]+[.]yaml$"
   or any(markers, .kind == "invariant" or .kind == "proves")
   or any(oldMarkers, .kind == "invariant" or .kind == "proves")
 deletions: include
