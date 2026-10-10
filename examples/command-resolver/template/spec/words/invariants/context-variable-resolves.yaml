@@ -1,0 +1,5 @@
+predicate: >-
+  A reference to a variable the line has not assigned contributes that variable's value in
+  {@fld:line:Context.env} to {@fld:words:Word.value}.
+why: >-
+  `$HOME/x` would be reported as unknown although the environment says what it is.

@@ -1,0 +1,5 @@
+predicate: >-
+  The word after one of a program's {@fld:config:CommandStringProgram.valueOptions} is
+  that option's value and never the {@fld:command-strings:CommandString.text}.
+why: >-
+  An option name would be resolved as a command.

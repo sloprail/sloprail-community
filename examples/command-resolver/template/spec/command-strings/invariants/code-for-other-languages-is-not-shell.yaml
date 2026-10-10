@@ -1,0 +1,6 @@
+predicate: >-
+  A code string given to a program that is not a {@ent:config:CommandStringProgram}
+  (`python -c`, `node -e`, `perl -e`, `ruby -e`) is not a
+  {@ent:command-strings:CommandString}.
+why: >-
+  Python or JavaScript would be parsed as shell.

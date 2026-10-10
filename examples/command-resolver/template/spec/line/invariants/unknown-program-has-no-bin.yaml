@@ -1,0 +1,6 @@
+predicate: >-
+  A command whose program word has no {@fld:words:Word.value} yields an
+  {@ent:line:Invocation} with no {@fld:line:Invocation.bin}, and no later word of the
+  command takes the program's place.
+why: >-
+  The command would vanish, or an argument be reported as the program.

@@ -1,0 +1,6 @@
+predicate: >-
+  A directory change, export or assignment inside a {@ent:command-strings:CommandString}
+  whose program has {@fld:config:CommandStringProgram.currentShell} true applies to the
+  {@ent:line:Invocation}s after it.
+why: >-
+  A `cd` inside eval would be forgotten.

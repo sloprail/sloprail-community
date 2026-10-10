@@ -1,0 +1,5 @@
+predicate: >-
+  {@fld:config:Config.wrappers} and {@fld:config:Config.commandStringPrograms} hold every
+  built-in entry whether or not a user supplies a configuration.
+why: >-
+  Adding one program would switch off the looking-through of sudo or bash.

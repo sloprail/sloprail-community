@@ -1,0 +1,5 @@
+predicate: >-
+  A command whose program word has the empty string as its {@fld:words:Word.value} yields
+  no {@ent:line:Invocation}.
+why: >-
+  A nameless program would be reported.

@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:words:Word} whose text references a positional or special parameter (`$1`, `$@`,
+  `$?`, `$$`, `$!`) has {@fld:words:Word.unknown} special-parameter.
+why: >-
+  A value only the running shell has would be guessed.

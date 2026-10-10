@@ -1,0 +1,5 @@
+predicate: >-
+  After a `cd` to a known relative path, {@fld:line:Invocation.cwd} is the previous
+  directory joined with it and lexically cleaned.
+why: >-
+  `cd a && cd b` would be reported at b.

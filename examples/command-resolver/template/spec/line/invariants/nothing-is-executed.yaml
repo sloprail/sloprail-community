@@ -1,0 +1,5 @@
+predicate: >-
+  Resolving a {@ent:line:Line} runs no command, substitution or expansion written in
+  {@fld:line:Line.text}.
+why: >-
+  Reading a dangerous line would carry it out.

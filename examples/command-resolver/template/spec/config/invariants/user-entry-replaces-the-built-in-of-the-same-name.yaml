@@ -1,0 +1,5 @@
+predicate: >-
+  A user-supplied {@ent:config:Wrapper} or {@ent:config:CommandStringProgram} replaces the
+  built-in entry of the same name whole, and leaves every other entry as it was.
+why: >-
+  A corrected option table would be merged with the wrong one, or would wipe the rest.

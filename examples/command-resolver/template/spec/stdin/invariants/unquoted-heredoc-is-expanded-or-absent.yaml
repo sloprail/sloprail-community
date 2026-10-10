@@ -1,0 +1,6 @@
+predicate: >-
+  When {@fld:stdin:HereDocument.quotedDelimiter} is false, {@fld:line:Invocation.stdin} is
+  present only when every expansion in {@fld:stdin:HereDocument.body} can be known, and
+  then holds their results in place of the expansions.
+why: >-
+  Half-expanded text would be reported as what the program reads.

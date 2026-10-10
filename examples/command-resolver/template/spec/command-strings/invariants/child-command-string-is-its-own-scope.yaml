@@ -1,0 +1,7 @@
+predicate: >-
+  A {@ent:command-strings:CommandString} whose program has
+  {@fld:config:CommandStringProgram.currentShell} false runs in a {@ent:line:Scope} of
+  kind child-shell: it starts with the directory and environment in force where it stands,
+  and nothing it changes reaches a later {@ent:line:Invocation}.
+why: >-
+  A `cd` inside `bash -c` would move the commands after it.

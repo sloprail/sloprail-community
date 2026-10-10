@@ -1,0 +1,5 @@
+predicate: >-
+  A shell builtin such as `cd`, `export`, `eval`, `exec` or `read` yields an
+  {@ent:line:Invocation} like any other program, however its name is quoted.
+why: >-
+  Which builtins appear would depend on a hidden list and on spelling.

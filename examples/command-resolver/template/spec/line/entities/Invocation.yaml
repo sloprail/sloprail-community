@@ -1,0 +1,21 @@
+doc: "One program the line would run."
+fields:
+  - name: bin
+    type: string?
+    doc: "The program's name without its directory; absent when the program word is unknown."
+  - name: argv
+    type: words.Word[]
+    doc: "The words the program would receive, program word first."
+  - name: cwd
+    type: string?
+    doc: "The directory the program runs in; absent when unknown."
+    constraint_expr: 'an absolute path, lexically clean'
+  - name: env
+    type: Record<string>
+    doc: "The environment variables the line itself sets for the program, with their values."
+  - name: unknownEnv
+    type: string[]
+    doc: "The names the line sets for the program to a value that is unknown."
+  - name: stdin
+    type: string?
+    doc: "The literal text the line feeds the program on standard input."

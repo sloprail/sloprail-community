@@ -1,0 +1,5 @@
+predicate: >-
+  A `cd` inside a child {@ent:line:Scope} does not change the {@fld:line:Invocation.cwd}
+  of any Invocation outside it.
+why: >-
+  A subshell's cd would move the commands after it.

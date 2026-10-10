@@ -1,0 +1,5 @@
+predicate: >-
+  A wrapped program that is itself a {@ent:config:Wrapper} is looked through in turn, to
+  any depth.
+why: >-
+  Stacking two wrappers would hide the program.

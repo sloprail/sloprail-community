@@ -1,0 +1,6 @@
+predicate: >-
+  An unquoted brace expression yields one {@ent:words:Word} per alternative, left to
+  right, each with its own {@fld:words:Word.value}; a quoted, escaped or incomplete brace
+  is literal text.
+why: >-
+  `rm {a,b}` would be reported as one argument.

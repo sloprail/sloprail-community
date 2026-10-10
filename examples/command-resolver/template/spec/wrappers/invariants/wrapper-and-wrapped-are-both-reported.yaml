@@ -1,0 +1,6 @@
+predicate: >-
+  A {@ent:config:Wrapper} followed by a command yields an {@ent:line:Invocation} for
+  itself, whose {@fld:line:Invocation.argv} is the whole vector as written, immediately
+  followed by one for the wrapped program, whose argv starts at the wrapped program word.
+why: >-
+  `sudo npm publish` would hide either sudo or npm.

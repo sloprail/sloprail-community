@@ -1,0 +1,5 @@
+predicate: >-
+  A `cd` inside a `{ …; }` group that is neither backgrounded nor a pipeline stage changes
+  the {@fld:line:Invocation.cwd} of the Invocations after the group.
+why: >-
+  A group would be treated as a subshell.

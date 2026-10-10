@@ -1,0 +1,5 @@
+predicate: >-
+  Whitespace that is quoted or escaped in {@fld:words:Word.text} stays inside one
+  {@ent:words:Word}.
+why: >-
+  One argument holding a space would be reported as two.

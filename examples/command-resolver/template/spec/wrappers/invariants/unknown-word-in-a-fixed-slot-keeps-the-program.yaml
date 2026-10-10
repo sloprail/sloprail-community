@@ -1,0 +1,6 @@
+predicate: >-
+  When a {@ent:words:Word} with no value fills a slot the wrapper's entry fixes, the value
+  of one of {@fld:config:Wrapper.valueOptions} or one of its
+  {@fld:config:Wrapper.leadingOperands}, the wrapped program is still reported.
+why: >-
+  `sudo -u $(id -un) npm` would hide npm.

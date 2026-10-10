@@ -1,0 +1,6 @@
+predicate: >-
+  {@fld:line:Resolution.invocations} lists the programs in the order their commands are
+  written in {@fld:line:Line.text}, except that a command comes before every command
+  nested inside it: its substitutions, the program it wraps, its command string.
+why: >-
+  Two resolvers would list the same programs in different orders.

@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:config:Wrapper} option written with its value in the same word (`-uroot`,
+  `--user=root`) consumes no further word.
+why: >-
+  The program word would be swallowed as an option value.

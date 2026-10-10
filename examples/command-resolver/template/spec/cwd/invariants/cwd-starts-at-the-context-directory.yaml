@@ -1,0 +1,6 @@
+predicate: >-
+  An {@ent:line:Invocation} that no directory change precedes, in its own
+  {@ent:line:Scope} or in any scope enclosing it, has {@fld:line:Context.cwd} as its
+  {@fld:line:Invocation.cwd}.
+why: >-
+  The first command would be reported somewhere other than where the line starts.

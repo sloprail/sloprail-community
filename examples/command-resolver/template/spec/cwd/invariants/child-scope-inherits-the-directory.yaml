@@ -1,0 +1,5 @@
+predicate: >-
+  A child {@ent:line:Scope} starts with the {@fld:line:Invocation.cwd} in force where it
+  stands.
+why: >-
+  Commands in a subshell would be reported back at the start.

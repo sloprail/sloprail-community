@@ -1,0 +1,5 @@
+predicate: >-
+  Text the shell treats as data yields no {@ent:line:Invocation}: a quoted string's
+  literal text, a comment, and the literal text of a here-document body.
+why: >-
+  A program name that is only mentioned would be reported as run.

@@ -1,0 +1,5 @@
+predicate: >-
+  The commands of a function body yield their {@ent:line:Invocation}s once, at the
+  definition, whether or not the function is called.
+why: >-
+  A program hidden in a function would go unreported, or be reported once per call.

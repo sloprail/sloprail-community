@@ -1,0 +1,10 @@
+doc: "A command `find` runs for the files it matches."
+fields:
+  - name: introducer
+    type: string
+    doc: "The word that opens the clause."
+    enum: ["-exec", "-execdir", "-ok", "-okdir"]
+  - name: terminator
+    type: string
+    doc: "The word that closes the clause."
+    enum: [";", "+"]

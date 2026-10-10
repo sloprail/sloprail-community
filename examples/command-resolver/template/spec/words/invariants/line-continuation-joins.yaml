@@ -1,0 +1,5 @@
+predicate: >-
+  A backslash followed by a newline, outside single quotes, contributes nothing to any
+  {@fld:words:Word.value}.
+why: >-
+  A command split over two lines would be reported as two, or with a stray backslash.

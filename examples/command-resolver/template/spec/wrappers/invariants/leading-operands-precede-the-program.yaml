@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:config:Wrapper} takes {@fld:config:Wrapper.leadingOperands} bare words before
+  the wrapped program word.
+why: >-
+  `timeout 5 npm` would report a program named 5.

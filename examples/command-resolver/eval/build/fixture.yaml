@@ -1,0 +1,27 @@
+description: >
+  Build the whole command resolver from its specification: 13 entities and 125
+  invariants, an empty Go repository, one prompt, no user to ask.
+
+  One fixture, two variants, prepared by ../../prepare.sh from SR_EVAL_VARIANT:
+  `sloprail` (the default) starts from template/ plus this example's rules;
+  `bare` starts from template/ alone. CLAUDE.md, spec/, config/ and adr/ are the
+  same in both.
+
+  freshMachine: the agent's machine has no sr* binaries, jq or yq until the
+  plugin's own install.sh puts them there at session start, the way a newcomer
+  gets them. The module and file-size rules need yq.
+
+  NOT READY TO RUN. The invariants await sign-off; `variants` needs sr-eval
+  with `--variant` (sloprail/sloprail, branch feat/sr-eval-variants); and
+  score.sh reports only that the tool builds and its own tests pass. Correctness
+  is measured by a scorecard kept outside this repository, not written yet.
+seed: ../../template
+exampleSloprail: true
+setup: ../../prepare.sh
+variants:
+  sloprail: {}
+  bare: {noSloprail: true}
+freshMachine: true
+harnesses: [claude]
+model: size-sm
+score: score.sh

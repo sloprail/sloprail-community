@@ -1,0 +1,5 @@
+predicate: >-
+  An {@ent:line:Invocation} written before an `export NAME=value` does not have NAME in
+  its {@fld:line:Invocation.env} from it.
+why: >-
+  An export would be applied backwards.

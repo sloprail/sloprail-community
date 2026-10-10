@@ -1,0 +1,7 @@
+predicate: >-
+  For a program whose {@fld:config:CommandStringProgram.form} is option, the
+  {@ent:command-strings:CommandString} is the value of its `-c` or `--command` option, and
+  only when {@fld:config:CommandStringProgram.leadingOperands} bare words precede that
+  option.
+why: >-
+  `su -c 'npm publish'` would hide npm, or `flock -c x file` be misread.

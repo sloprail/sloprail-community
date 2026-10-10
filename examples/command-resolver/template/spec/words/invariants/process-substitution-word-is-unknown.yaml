@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:words:Word} whose text contains a process substitution has
+  {@fld:words:Word.unknown} process-substitution.
+why: >-
+  A made-up descriptor path would be reported as an argument.

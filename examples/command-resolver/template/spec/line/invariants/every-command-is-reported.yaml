@@ -1,0 +1,7 @@
+predicate: >-
+  Every simple command of a {@ent:line:Line} whose program word is not the empty string
+  yields exactly one entry of {@fld:line:Resolution.invocations}, whether it stands in a
+  pipeline, an `&&`, `||` or `;` list, a subshell, a brace group, a background job, or
+  after `!` or `time`.
+why: >-
+  A program behind an operator would escape whoever reads the output.

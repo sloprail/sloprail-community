@@ -1,0 +1,7 @@
+predicate: >-
+  Quoting never reaches a {@fld:words:Word.value}: the quote characters of
+  {@fld:words:Word.text} are absent from it, a single-quoted part appears verbatim, an
+  unquoted backslash is absent before the character it escapes, and adjacent quoted and
+  unquoted parts form one string.
+why: >-
+  A program spelled `n\pm` or `n""pm` would not be reported as npm.

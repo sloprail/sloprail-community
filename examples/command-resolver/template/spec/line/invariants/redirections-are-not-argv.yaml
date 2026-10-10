@@ -1,0 +1,5 @@
+predicate: >-
+  A redirection and its target word are never in {@fld:line:Invocation.argv}, and the
+  words written after a redirection still belong to the same {@ent:line:Invocation}.
+why: >-
+  A file name would be reported as an argument, or the arguments after it lost.

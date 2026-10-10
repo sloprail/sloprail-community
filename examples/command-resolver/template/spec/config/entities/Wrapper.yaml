@@ -1,0 +1,24 @@
+doc: "A program whose arguments are the argument vector of another program it runs."
+fields:
+  - name: name
+    type: string
+    doc: "The program's name."
+  - name: valueOptions
+    type: string[]
+    doc: "Its options that take their value as a separate word."
+  - name: leadingOperands
+    type: int32
+    doc: "How many bare words it takes before the wrapped program."
+    constraint_expr: '>= 0'
+  - name: takesAssignments
+    type: bool
+    doc: "Whether NAME=value words before the wrapped program are assignments for it."
+  - name: describingOptions
+    type: string[]
+    doc: "Its options that make it describe, list or edit instead of running a program."
+  - name: directoryOptions
+    type: string[]
+    doc: "Its options that name the directory the wrapped program runs in."
+  - name: requiredOptions
+    type: string[]
+    doc: "Options of which one must be given for it to run a program at all; empty when it always does."

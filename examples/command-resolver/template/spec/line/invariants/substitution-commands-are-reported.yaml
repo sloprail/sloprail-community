@@ -1,0 +1,6 @@
+predicate: >-
+  A command inside a command substitution or a process substitution yields an
+  {@ent:line:Invocation} wherever the substitution stands: in an argument, a program word,
+  an assignment, a redirection target, a here-string or an unquoted here-document body.
+why: >-
+  A program run through `$(…)` would go unreported.

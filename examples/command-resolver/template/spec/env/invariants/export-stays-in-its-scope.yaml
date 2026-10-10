@@ -1,0 +1,5 @@
+predicate: >-
+  An export made inside a child {@ent:line:Scope} is absent from the
+  {@fld:line:Invocation.env} of every Invocation outside that scope.
+why: >-
+  A subshell's export would leak into the commands after it.

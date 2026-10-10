@@ -1,0 +1,5 @@
+predicate: >-
+  When the value of one of {@fld:config:Wrapper.directoryOptions} has no
+  {@fld:words:Word.value}, the wrapped program has no {@fld:line:Invocation.cwd}.
+why: >-
+  The wrapped program would be reported where it does not run.

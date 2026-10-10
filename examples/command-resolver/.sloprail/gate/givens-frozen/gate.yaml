@@ -1,0 +1,12 @@
+# What the run is given is not the run's to change: the specification (spec/), the program
+# tables (config/), the decisions (adr/), CLAUDE.md and these rules (.sloprail/). An agent
+# that cannot make its code meet an invariant must not make the invariant, the file-size
+# limit or the judge meet its code. Refused before the bytes land; file-guard/givens-frozen
+# is the backstop for a write this gate cannot see (a script, a generator).
+on:
+  - event: PreFileWrite
+    match: 'event.path matches "^(spec|config|adr|[.]sloprail)/" or event.path == "CLAUDE.md"'
+  - event: PreFileDelete
+    match: 'event.path matches "^(spec|config|adr|[.]sloprail)/" or event.path == "CLAUDE.md"'
+checks:
+  - script: ./refuse.sh

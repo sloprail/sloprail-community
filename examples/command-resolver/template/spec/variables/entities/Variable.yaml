@@ -1,0 +1,8 @@
+doc: "A shell variable as the line sees it."
+fields:
+  - name: name
+    type: string
+    doc: "The variable's name."
+  - name: value
+    type: string?
+    doc: "Its value at a point of the line; absent when it cannot be known without running something."

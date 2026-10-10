@@ -1,0 +1,8 @@
+# A turn may not end while committed work has no verdict: the engine's own Stop reports a
+# stored FAIL, but work nobody ran the checks on has no verdict to report, and nothing else
+# here would ask for one (there is no pull request and no push). This asks at every Stop of
+# the main session and names the command that judges the work.
+on:
+  - event: Stop
+checks:
+  - script: ./verify.sh

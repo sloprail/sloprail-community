@@ -1,0 +1,6 @@
+predicate: >-
+  A {@ent:wrappers:FindClause} whose {@fld:wrappers:FindClause.terminator} is `;` ends at
+  the first `;` word; `+` closes a clause only directly after `{}`; a clause with no
+  terminator yields no {@ent:line:Invocation}.
+why: >-
+  Words of a second clause, or of no clause at all, would be reported as a command.

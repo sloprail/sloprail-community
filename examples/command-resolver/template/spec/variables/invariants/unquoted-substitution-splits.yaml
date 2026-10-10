@@ -1,0 +1,5 @@
+predicate: >-
+  An unquoted reference to a {@fld:variables:Variable.value} holding whitespace yields one
+  {@ent:words:Word} per field; inside double quotes it yields one.
+why: >-
+  `X='a b'; rm $X` would be reported as one file.

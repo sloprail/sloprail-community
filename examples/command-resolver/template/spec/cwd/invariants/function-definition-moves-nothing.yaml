@@ -1,0 +1,5 @@
+predicate: >-
+  A `cd` in a function body does not change the {@fld:line:Invocation.cwd} of the
+  Invocations after the definition.
+why: >-
+  Defining a function would be reported as changing directory.

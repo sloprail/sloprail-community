@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:words:Word} whose text starts with an unquoted `~name`, or with `~` when
+  {@fld:line:Context.env} has no HOME, has {@fld:words:Word.unknown} user-home.
+why: >-
+  Another user's home directory would be guessed.

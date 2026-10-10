@@ -1,0 +1,5 @@
+predicate: >-
+  When a command has several redirections of descriptor 0, the last one alone decides
+  {@fld:line:Invocation.stdin}.
+why: >-
+  An input the shell overrides would be reported.

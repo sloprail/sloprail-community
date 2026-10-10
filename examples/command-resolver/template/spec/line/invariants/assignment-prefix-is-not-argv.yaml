@@ -1,0 +1,6 @@
+predicate: >-
+  A `NAME=value` word written before the program word is never in
+  {@fld:line:Invocation.argv} and is never the program; the same word after the program
+  word is an ordinary argument.
+why: >-
+  An assignment would be reported as the program, or dropped from the arguments.

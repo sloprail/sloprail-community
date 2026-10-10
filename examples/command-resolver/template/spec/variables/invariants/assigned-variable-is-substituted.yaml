@@ -1,0 +1,6 @@
+predicate: >-
+  A reference `$X` or `${X}` to a {@ent:variables:Variable} with a
+  {@fld:variables:Variable.value} contributes that value to {@fld:words:Word.value}, bare,
+  inside double quotes or joined to other text.
+why: >-
+  `X=a; rm $X` would be reported without its argument.

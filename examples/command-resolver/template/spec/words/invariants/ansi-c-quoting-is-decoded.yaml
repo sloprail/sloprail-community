@@ -1,0 +1,5 @@
+predicate: >-
+  A `$'…'` part of {@fld:words:Word.text} contributes its decoded text to
+  {@fld:words:Word.value}, by bash's ANSI-C escapes.
+why: >-
+  A program spelled with `\x` escapes would be reported under another name.

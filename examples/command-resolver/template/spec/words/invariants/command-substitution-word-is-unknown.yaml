@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:words:Word} whose text contains a command substitution has
+  {@fld:words:Word.unknown} command-substitution.
+why: >-
+  The output of a command that never ran would be guessed.

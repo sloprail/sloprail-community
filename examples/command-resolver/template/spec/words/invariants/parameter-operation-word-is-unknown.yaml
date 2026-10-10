@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:words:Word} whose text applies a parameter operator (`${X:-d}`, `${#X}`,
+  `${X%p}`) has {@fld:words:Word.unknown} parameter-operation.
+why: >-
+  A transformed value would be reported without having been computed.

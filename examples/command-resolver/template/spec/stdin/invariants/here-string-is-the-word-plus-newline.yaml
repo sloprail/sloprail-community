@@ -1,0 +1,5 @@
+predicate: >-
+  For a here-string whose word has a {@fld:words:Word.value}, {@fld:line:Invocation.stdin}
+  is that value followed by exactly one newline.
+why: >-
+  The reported input would differ from what the program reads by a newline.

@@ -1,0 +1,6 @@
+predicate: >-
+  A {@ent:command-strings:CommandString} with no {@fld:command-strings:CommandString.text}
+  yields no {@ent:line:Invocation} beyond its program's own, and the word after it is not
+  read in its place.
+why: >-
+  A program would be invented from a string nobody can read.

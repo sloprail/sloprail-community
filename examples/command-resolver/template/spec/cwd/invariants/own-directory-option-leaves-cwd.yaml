@@ -1,0 +1,5 @@
+predicate: >-
+  A program's own directory option (`git -C`, `make -C`, `tar -C`, `npm --prefix`) does
+  not change its {@fld:line:Invocation.cwd}.
+why: >-
+  The directory the shell starts the program in would be misreported.

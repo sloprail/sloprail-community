@@ -1,0 +1,5 @@
+predicate: >-
+  After a call of a function whose body contains a `cd`, {@fld:line:Invocation.cwd} is the
+  body's resulting directory or absent, never the directory before the call.
+why: >-
+  A real move would go unreported.

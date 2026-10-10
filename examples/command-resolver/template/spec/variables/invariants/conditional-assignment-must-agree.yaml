@@ -1,0 +1,5 @@
+predicate: >-
+  After an assignment that may or may not have run, a {@ent:variables:Variable} has a
+  {@fld:variables:Variable.value} only when every path leaves it with the same one.
+why: >-
+  One branch's value would be reported for all.

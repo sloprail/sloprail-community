@@ -1,0 +1,15 @@
+description: >
+  eval/build cut down to 12 invariants (setup.sh), to see the whole loop cheaply
+  before the full run: coverage of every invariant, the bucketed judge, the
+  module rules, file size, file placement, the frozen givens. Same template,
+  rules, prompt, score and variants as eval/build.
+seed: ../../template
+exampleSloprail: true
+setup: setup.sh
+variants:
+  sloprail: {}
+  bare: {noSloprail: true}
+freshMachine: true
+harnesses: [claude]
+model: size-sm
+score: score.sh

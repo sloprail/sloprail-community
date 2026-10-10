@@ -1,0 +1,6 @@
+predicate: >-
+  A {@ent:line:Line} whose {@fld:line:Line.text} is not valid shell syntax has a
+  {@fld:line:Resolution.parseError} and no entry in {@fld:line:Resolution.invocations},
+  not even for the statements before the error.
+why: >-
+  An unreadable line would look like a line that runs nothing.

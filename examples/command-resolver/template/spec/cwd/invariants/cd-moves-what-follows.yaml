@@ -1,0 +1,5 @@
+predicate: >-
+  A `cd` changes the {@fld:line:Invocation.cwd} of the Invocations after it in the same
+  {@ent:line:Scope}; the cd's own cwd is the directory in force before it.
+why: >-
+  A command would be reported in the directory it left, or cd in the one it is entering.

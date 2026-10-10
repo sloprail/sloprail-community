@@ -1,0 +1,5 @@
+predicate: >-
+  When several parts of a {@fld:words:Word.text} each make it unknown,
+  {@fld:words:Word.unknown} names the cause that comes first in the text.
+why: >-
+  Two resolvers would classify the same word differently.

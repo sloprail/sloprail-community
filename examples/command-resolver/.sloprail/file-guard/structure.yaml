@@ -1,0 +1,30 @@
+# Where files may land in the resolver's repository. Everything not allowed
+# here is refused before the write, so new code maps to a declared place.
+allow:
+  # the rules, and what they are about
+  - glob: ".sloprail/**"
+  - regex: '^adr/[a-z][a-z0-9]*(-[a-z0-9]+)*/ADR\.md$'
+  - regex: '^spec/[a-z0-9-]+/invariants/[a-z0-9-]+\.yaml$'
+  - regex: '^spec/[a-z0-9-]+/entities/[A-Z][A-Za-z0-9]*\.yaml$'
+
+  # the built-in program tables
+  - regex: '^config/builtin\.yaml$'
+
+  # the CLI entrypoint
+  - regex: '^cmd/[a-z0-9]+/[a-z0-9_]+\.go$'
+
+  # the code: modules, each with its boundary
+  - regex: '^internal/[a-z0-9]+(/[a-z0-9]+)*/[a-z0-9_]+\.go$'
+  - regex: '^internal/[a-z0-9]+(/[a-z0-9]+)*/(module\.yaml|candidates\.sh)$'
+
+  # the cases a test loops over, beside that test: one case per line
+  - regex: '^internal/[a-z0-9]+(/[a-z0-9]+)*/testdata/[a-z0-9_]+\.jsonl$'
+
+  # end-to-end tests of the built tool, grouped by the feature they prove (a spec domain)
+  - regex: '^tests/[a-z0-9]+(-[a-z0-9]+)*/[a-z0-9_]+_test\.go$'
+  - regex: '^tests/[a-z0-9]+(-[a-z0-9]+)*/testdata/[a-z0-9_]+\.jsonl$'
+
+  # the repository itself
+  - regex: '^(README|CLAUDE)\.md$'
+  - regex: '^(\.gitignore|go\.mod|go\.sum)$'
+  - regex: '^\.claude/settings\.json$'

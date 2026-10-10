@@ -1,0 +1,6 @@
+predicate: >-
+  After an `if`, `case` or loop, {@fld:line:Invocation.cwd} is present only when every
+  path through it, running no branch or zero iterations included, ends in the same
+  directory.
+why: >-
+  One branch's directory would be reported for all.

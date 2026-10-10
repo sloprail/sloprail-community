@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:words:Word} whose text holds an arithmetic expansion that names a variable has
+  {@fld:words:Word.unknown} arithmetic.
+why: >-
+  A computed value would be guessed.

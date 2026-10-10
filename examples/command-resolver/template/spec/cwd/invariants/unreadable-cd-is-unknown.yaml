@@ -1,0 +1,5 @@
+predicate: >-
+  After a `cd` whose operand has no {@fld:words:Word.value}, a `pushd` or a `popd`, the
+  later Invocations of the {@ent:line:Scope} have no {@fld:line:Invocation.cwd}.
+why: >-
+  A command would be reported where it no longer is.

@@ -1,0 +1,5 @@
+predicate: >-
+  {@fld:line:Invocation.bin} is the last path component of the {@fld:words:Word.value} of
+  the first entry of {@fld:line:Invocation.argv}, and that entry keeps the full path.
+why: >-
+  The same program reached by different paths would be reported under different names.

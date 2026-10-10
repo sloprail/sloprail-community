@@ -1,0 +1,6 @@
+predicate: >-
+  An unquoted leading `~` or `~/` in {@fld:words:Word.text} contributes the value of HOME
+  in {@fld:line:Context.env} to {@fld:words:Word.value}; a quoted or escaped tilde, or one
+  elsewhere in the word, is literal text.
+why: >-
+  A literal `~` would name a different file from the one the shell passes.

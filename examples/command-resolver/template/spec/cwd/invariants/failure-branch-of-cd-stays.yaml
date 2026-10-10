@@ -1,0 +1,5 @@
+predicate: >-
+  In `cd D || R`, the {@fld:line:Invocation.cwd} of R is the directory in force before the
+  cd.
+why: >-
+  The failure path would be reported in the directory that could not be entered.
