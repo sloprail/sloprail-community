@@ -10,6 +10,8 @@
 # in both, and only one of them has anything checking them.
 set -euo pipefail
 variant="${SR_EVAL_VARIANT:-sloprail}"
+# The rules' own test cases are for whoever changes the rules, not for the run.
+find .sloprail -depth \( -name tests -o -name structure.tests \) -type d -exec rm -r {} + 2>/dev/null || true
 case "$variant" in
   sloprail)
     command -v yq >/dev/null 2>&1 || echo "prepare: yq is not on PATH yet; the fixture runs freshMachine, so the plugin's install.sh puts it there at session start" >&2

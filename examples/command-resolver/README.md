@@ -22,6 +22,10 @@ specified as invariants, built once with these rules and once without.
 | `file-guard/module-distinct` | no two modules share a concern | as in harness-mocks | harness-mocks |
 | `file-guard/module-leaks` | a module's logic stays in its home | as in harness-mocks | harness-mocks |
 
+The four rules written or changed here each have an `sr-test` case beside them
+(`sr-test run examples/command-resolver`); the rules copied from harness-mocks
+came without cases. `prepare.sh` removes the cases from the project a run starts from.
+
 `invariant-held` hands its judge paths, not text: per invariant, its spec file
 and the files carrying `sr:invariant` / `sr:proves` for it. The judge reads them.
 Its rubric is the two original rubrics, kept word for word, as two questions.
