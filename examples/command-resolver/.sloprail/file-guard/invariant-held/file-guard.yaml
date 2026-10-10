@@ -11,6 +11,13 @@
 # its spec file and the paths of the files carrying its markers; the judge reads them itself
 # (a judge can read the whole project without a grant).
 #
+# The judge answers with a table (response.schema.json): per invariant, `code` and `tests`,
+# each pass or fail. post-process.sh holds the table to the invariants the judge was given
+# (one missing or unknown: the judge is asked again), takes the verdict from the table (every
+# cell passes; the table wins over the judge's own `pass` when the two disagree), and stores
+# the table with the verdict as metadata, with where each invariant's markers are in the
+# judged commit: `sr-checks show --json` and `sr-checks log --json` print it.
+#
 # That every invariant HAS marked code and a marked test is invariant-covered's, a script.
 match: >-
   path matches "^spec/[a-z0-9-]+/invariants/[a-z0-9-]+[.]yaml$"
@@ -21,6 +28,8 @@ subjects: ./subjects.sh
 checks:
   - prepare: ./prepare.sh
     judge: ./code-and-tests-hold.md.j2
+    response_schema: ./response.schema.json
+    post_process: ./post-process.sh
     # A size above the default: on the same commit it named six tests that could not fail for
     # the reason their invariant gives, where the default size (size-md) named one.
     model: size-xl

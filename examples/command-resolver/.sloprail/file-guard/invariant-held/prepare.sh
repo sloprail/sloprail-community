@@ -3,7 +3,8 @@
 # additionalContext.invariants. Each carries its id, the path of its spec file, the paths of
 # the files marked sr:invariant <id> (code) and of the files marked sr:proves <id> (tests).
 # Paths only: the judge reads the files. An invariant with neither marker yet is left out:
-# there is nothing to judge, and its absence is invariant-covered's finding.
+# there is nothing to judge, and its absence is invariant-covered's finding. Their ids go in
+# additionalContext.unmarked, which the prompt does not use: post-process.sh records them.
 set -uo pipefail
 payload="$(cat)"
 . "${SR_GUARDRAIL_DIR:-.}/../../_lib/changeset.sh"
@@ -15,11 +16,12 @@ payload="$(cat)"
 load_buckets
 code="$(markers_json invariant)"; tests="$(markers_json proves)"
 want="$(subject_id)"
-invariants="$(jq -nc --argjson b "$BUCKETS" --argjson code "$code" --argjson tests "$tests" --arg want "$want" '
+listed="$(jq -nc --argjson b "$BUCKETS" --argjson code "$code" --argjson tests "$tests" --arg want "$want" '
   [$b[] | select($want == "" or .bucket == $want) | .id as $id
    | {id, path,
       code: ([$code[] | select(.q == $id) | .p] | unique),
-      tests: ([$tests[] | select(.q == $id) | .p] | unique)}
-   | select((.code + .tests) | length > 0)]')"
-if [ "$(jq 'length' <<<"$invariants")" -eq 0 ]; then echo '{"skip": true}'; exit 0; fi
-jq -n -c --argjson i "$invariants" '{additionalContext: {invariants: $i}}'
+      tests: ([$tests[] | select(.q == $id) | .p] | unique)}]
+  | {invariants: map(select((.code + .tests) | length > 0)),
+     unmarked: map(select((.code + .tests) | length == 0) | .id)}')"
+if [ "$(jq '.invariants | length' <<<"$listed")" -eq 0 ]; then echo '{"skip": true}'; exit 0; fi
+jq -n -c --argjson l "$listed" '{additionalContext: $l}'
