@@ -10,6 +10,9 @@ set -euo pipefail
 # 3. the prompt carries paths, not content: the spec file and the marked files are named, and
 #    neither the predicate's text nor the code's is in it.
 # 4. an unmarked Go file is not this rule's: no judge call.
+# 5. a case file is part of the tests beside it: adding src/testdata/cases.jsonl judges the buckets
+#    whose marked tests sit in src/ again (both here), and a case file beside no marked test
+#    judges nothing.
 rm -rf .sloprail; git init -q .
 mkdir -p .sloprail/file-guard src spec/demo/invariants
 cp -R "$SR_TEST_SLOPRAIL_DIR/_lib" .sloprail/
@@ -73,3 +76,13 @@ git checkout -q -b unmarked "$BASE"
 printf 'package src\n\nfunc Helper() {}\n' > src/helper.go; commit unmarked
 run || dump "4: an unmarked file was refused"
 [ ! -s "$JUDGE_LOG" ] || dump "4: the judge ran on an unmarked file: $(cat "$JUDGE_LOG")"
+
+# 5. a case file belongs to the tests beside it
+git checkout -q -b cases "$BASE"
+mkdir -p src/testdata; printf '{"name":"one","in":"a","want":"a"}\n' > src/testdata/cases.jsonl; commit cases
+run || dump "5: a case file beside sound tests was refused"
+[ "$(sort "$JUDGE_LOG" | tr '\n' '|')" = "${B01}|demo/i11 demo/i12 |" ] || dump "5: expected both buckets with tests in src/ to be judged, the judge saw: $(tr '\n' '|' < "$JUDGE_LOG")"
+git checkout -q -b stray-cases "$BASE"
+mkdir -p other/testdata; printf '{}\n' > other/testdata/cases.jsonl; commit stray-cases
+run || dump "5: a case file beside no marked test was refused"
+[ ! -s "$JUDGE_LOG" ] || dump "5: the judge ran for a case file beside no marked test: $(cat "$JUDGE_LOG")"

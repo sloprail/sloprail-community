@@ -4,7 +4,8 @@
 #
 # Subjects are BUCKETS of 10 invariants (buckets.sh), not one invariant each: 125 invariants
 # are 13 judge calls, not 250. A bucket is re-judged when one of its spec files, or a file
-# marked for one of its invariants, changes; the other buckets keep their verdicts.
+# marked for one of its invariants, or a case file (testdata/*.jsonl) beside one of its marked
+# tests, changes; the other buckets keep their verdicts.
 #
 # Nothing is inlined into the prompt. prepare.sh hands the judge, per invariant, the path of
 # its spec file and the paths of the files carrying its markers; the judge reads them itself
@@ -15,6 +16,7 @@ match: >-
   path matches "^spec/[a-z0-9-]+/invariants/[a-z0-9-]+[.]yaml$"
   or any(markers, .kind == "invariant" or .kind == "proves")
   or any(oldMarkers, .kind == "invariant" or .kind == "proves")
+  or path matches "(^|/)testdata/[a-z0-9_]+[.]jsonl$"
 subjects: ./subjects.sh
 checks:
   - prepare: ./prepare.sh

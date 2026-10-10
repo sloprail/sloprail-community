@@ -55,9 +55,11 @@ Each of these is a decision in `adr/`. Read the ADR before writing code it cover
   a module is imported only through its `api`. Logic that exists in one module
   is used from there, never copied into another.
 - **Files are small** ([adr/file-size](adr/file-size/ADR.md)). A Go file has at
-  most 150 lines, a test file at most 400. Split by responsibility.
+  most 150 lines, a test file at most 400. Split by responsibility; a test with many
+  variations keeps them in `testdata/<name>.jsonl` and loops over them.
 - **Every file has a declared place** ([adr/file-placement](adr/file-placement/ADR.md)).
-  `cmd/resolve/` holds only the entry point; everything else is under `internal/`.
+  `cmd/resolve/` holds only the entry point and the code is under `internal/`. Tests of the
+  tool as a whole go under `tests/<feature>/`.
 
 ## Building
 

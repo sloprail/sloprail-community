@@ -16,5 +16,11 @@ case $n in
   9) write_ no-testdata internal/words/testdata/cases.json "[]" ;;
   10) write_ no-case internal/Words/split.go "package words" ;;
   11) write_ no-doc docs/NOTES.md "notes" ;;
+  12) write_ ok-cases internal/words/testdata/quoting.jsonl "{}" ;;
+  13) write_ ok-e2e tests/command-strings/bash_c_test.go "package commandstrings" ;;
+  14) write_ ok-e2e-cases tests/words/testdata/quoting.jsonl "{}" ;;
+  15) write_ no-e2e-helper tests/words/helper.go "package words" ;;
+  16) write_ no-e2e-root tests/all_test.go "package tests" ;;
+  17) write_ no-root-testdata testdata/cases.jsonl "{}" ;;
   *) echo '{"type":"result","subtype":"success","result":"done","is_error":false}' ;;
 esac
