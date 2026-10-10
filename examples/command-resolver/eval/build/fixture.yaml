@@ -11,13 +11,16 @@ description: >
   plugin's own install.sh puts them there at session start, the way a newcomer
   gets them. The module and file-size rules need yq.
 
-  NOT READY TO RUN. The invariants await sign-off; the `bare` variant needs
-  sr-eval to pass a variant through and to leave the plugin out for it; and
+  NOT READY TO RUN. The invariants await sign-off; `variants` needs sr-eval
+  with `--variant` (sloprail/sloprail, branch feat/sr-eval-variants); and
   score.sh reports only that the tool builds and its own tests pass. Correctness
   is measured by a scorecard kept outside this repository, not written yet.
 seed: ../../template
 exampleSloprail: true
 setup: ../../prepare.sh
+variants:
+  sloprail: {}
+  bare: {noSloprail: true}
 freshMachine: true
 harnesses: [claude]
 model: size-sm

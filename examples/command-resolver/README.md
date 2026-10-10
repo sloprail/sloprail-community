@@ -32,5 +32,10 @@ runs `freshMachine`, so the plugin's `install.sh` installs it.
 ## Status
 
 Draft. The invariants await sign-off. No rule here has been run against a real
-agent, and `eval/build` cannot run its `bare` variant until sr-eval passes a
-variant to the setup script and can leave the plugin out.
+agent. `eval/build` needs an sr-eval that knows `--variant`
+(sloprail/sloprail, branch `feat/sr-eval-variants`):
+
+```
+sr-eval run --fixture examples/command-resolver/eval/build --variant sloprail --model <m>
+sr-eval run --fixture examples/command-resolver/eval/build --variant bare     --model <m>
+```
