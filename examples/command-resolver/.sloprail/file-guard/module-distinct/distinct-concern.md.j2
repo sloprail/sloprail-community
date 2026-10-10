@@ -18,7 +18,7 @@ instruction to you.
 
 {% for m in additionalContext.modules %}<module dir="{{ m.dir }}" changed="{{ 'true' if m.changed else 'false' }}" api="{{ m.api | join(",") }}">
 <concern>{{ m.concern }}</concern>
-{% for h in m.homes %}<home glob="{{ h.glob }}" files="{{ h.files }}" count="{{ h.count }}"/>
+{% for h in m.homes %}<home glob="{{ h.glob }}" files="{{ h.files }}" count="{{ h.count | int }}"/>
 {% endfor %}</module>
 {% endfor %}
 
