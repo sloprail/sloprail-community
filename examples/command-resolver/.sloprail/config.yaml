@@ -1,0 +1,6 @@
+# ci-verify-required asks the user whether to add a CI job. This repository is built by an
+# agent on its own, with no pull requests: gate/checks-judged asks for the verdicts instead.
+disabled:
+  - sloprail/gate/ci-verify-required
+# A refused Stop is handed back until the work passes: no cap on refusals in a row.
+stop_hook_block_cap: 0

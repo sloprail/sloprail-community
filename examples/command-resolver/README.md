@@ -13,6 +13,7 @@ specified as invariants, built once with these rules and once without.
 | Rule | What it holds | Judge calls | From |
 |---|---|---|---|
 | `gate/givens-frozen`, `file-guard/givens-frozen` | nothing under `spec/`, `config/`, `adr/`, `.sloprail/`, nor `CLAUDE.md`, is added, changed or removed | 0 | written here |
+| `gate/checks-judged` | a turn of the main session does not end while committed work since the rules has no verdict or a failing one; the refusal names the `sr-checks run` command (the engine's own Stop reports stored failures only, and there is no push or pull request here to ask for the rest) | 0 | written here |
 | `file-guard/structure.yaml` | where files may be written (`adr/file-placement`) | 0 | written here |
 | `file-guard/invariant-covered` | every invariant has marked code and a marked test | 0 | sloprail, changed to check every invariant instead of the touched ones |
 | `file-guard/invariant-held` | the marked code upholds its invariant and the marked tests prove it | 1 per bucket of 10 invariants touched, 13 at most | sloprail's `invariant-upheld` and `invariant-rigor`, merged |
