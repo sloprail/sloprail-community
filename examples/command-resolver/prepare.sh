@@ -34,10 +34,4 @@ case "$variant" in
     exit 1
     ;;
 esac
-# The agent's HOME carries the host's git identity but not its signing key, so a commit the
-# host's configuration would sign cannot be made there. The run's own commits are unsigned.
-if [ -d .git ]; then
-  git config commit.gpgsign false
-  git config tag.gpgsign false
-fi
 [ -d .git ] && printf "%s\n" "$variant" > .git/sr-eval-variant || true
