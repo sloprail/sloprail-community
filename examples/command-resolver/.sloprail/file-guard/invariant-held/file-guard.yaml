@@ -21,6 +21,6 @@ subjects: ./subjects.sh
 checks:
   - prepare: ./prepare.sh
     judge: ./code-and-tests-hold.md.j2
-    # The largest model: on the same commit it named six tests that could not fail for the
-    # reason their invariant gives, where the default size named one.
-    model: claude-opus-5-5
+    # A size above the default: on the same commit it named six tests that could not fail for
+    # the reason their invariant gives, where the default size (size-md) named one.
+    model: size-xl
