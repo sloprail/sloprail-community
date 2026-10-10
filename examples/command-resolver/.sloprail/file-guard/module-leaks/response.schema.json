@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["pass", "reasoning", "candidates"],
+  "additionalProperties": false,
+  "properties": {
+    "pass": {
+      "type": "boolean",
+      "description": "true when every entry of `candidates` is a \"use\", false when any is a \"leak\"."
+    },
+    "reasoning": {
+      "type": "string",
+      "description": "The checklist the rubric asks for, and for each leak what it asks you to name. On a fail it is shown to the agent that wrote the code."
+    },
+    "candidates": {
+      "type": "array",
+      "description": "Your classification of every match in the module's matches file, one entry per match and none for anything else.",
+      "items": {
+        "type": "object",
+        "required": ["path", "line", "verdict"],
+        "additionalProperties": false,
+        "properties": {
+          "path": {"type": "string", "description": "The match's path, as its line in the matches file gives it."},
+          "line": {"type": "integer", "minimum": 1, "description": "The match's line number, as its line in the matches file gives it."},
+          "verdict": {"enum": ["leak", "use"], "description": "\"leak\": the module's logic outside its home. \"use\": a use of the module."}
+        }
+      }
+    }
+  }
+}

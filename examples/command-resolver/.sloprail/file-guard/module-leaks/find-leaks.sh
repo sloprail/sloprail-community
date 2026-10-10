@@ -4,7 +4,9 @@
 # Emits {"skip": true} when nothing is left to judge, else the leftover candidates grouped by
 # module, with the module's own concern (module.yaml: one line). The leftover candidates are
 # written, one path:line:snippet per line, to a file outside the project (under a temp dir) that
-# the judge reads; nothing that can grow is put in the prompt.
+# the judge reads; nothing that can grow is put in the prompt. Each module also carries its
+# `candidates`, the path and line of every one of them, which the prompt does not use:
+# post-process.sh holds the judge's answer to them.
 set -uo pipefail
 payload="$(cat)"
 . "${SR_GUARDRAIL_DIR:-.}/../../_lib/changeset.sh"
@@ -27,8 +29,10 @@ while IFS= read -r m; do
   [ "$nleft" -gt 0 ] || continue
   mfile="$out/$(printf '%s' "$dir" | tr '/' '_').matches"
   jq -r '.[] | "\(.path):\(.line):\(.text)"' <<<"$LEFT" >"$mfile" || refuse_error "could not write the candidates of $dir for the judge"
-  groups="$(jq -c --arg d "$dir" --argjson m "$m" --arg f "$mfile" --argjson n "$nleft" \
-    '. + [{module: $d, concern: $m.concern, home: $m.home, api: $m.api, matches: $f, count: $n}]' <<<"$groups")" ||
+  printf '%s' "$LEFT" >"$LEAK_WORK/left"
+  groups="$(jq -c --arg d "$dir" --argjson m "$m" --arg f "$mfile" --argjson n "$nleft" --slurpfile left "$LEAK_WORK/left" \
+    '. + [{module: $d, concern: $m.concern, home: $m.home, api: $m.api, matches: $f, count: $n,
+           candidates: ($left[0] | map({path, line}))}]' <<<"$groups")" ||
     refuse_error "could not record the candidates of $dir for the judge"
 done <<<"$mlist"
 ngroups="$(jq 'length' <<<"$groups")" || refuse_error "could not count the modules with candidates left"
