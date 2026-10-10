@@ -1,0 +1,29 @@
+# The resolver's built-in tables (spec/config/entities/Config.yaml). A user's own
+# configuration file has the same shape; an entry there replaces the entry of the same name.
+wrappers:
+  - {name: sudo, valueOptions: [-u, --user, -g, --group, -h, --host, -p, --prompt, -C, --close-from, -D, --chdir, -R, --chroot, -r, --role, -t, --type, -T, --command-timeout, -U, --other-user], leadingOperands: 0, takesAssignments: true, describingOptions: [-l, --list, -e, --edit, -v, --validate, -k, --reset-timestamp], directoryOptions: [-D, --chdir], requiredOptions: []}
+  - {name: doas, valueOptions: [-u, -C, -a], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
+  - {name: env, valueOptions: [-u, --unset, -C, --chdir, -S, --split-string, -a, --argv0], leadingOperands: 0, takesAssignments: true, describingOptions: [], directoryOptions: [-C, --chdir], requiredOptions: []}
+  - {name: xargs, valueOptions: [-a, --arg-file, -d, --delimiter, -E, -I, -L, --max-lines, -n, --max-args, -P, --max-procs, -s, --max-chars], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
+  - {name: nohup, valueOptions: [], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
+  - {name: nice, valueOptions: [-n, --adjustment], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
+  - {name: ionice, valueOptions: [-c, --class, -n, --classdata, -p, --pid, -P, --pgid, -u, --uid], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
+  - {name: stdbuf, valueOptions: [-i, --input, -o, --output, -e, --error], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
+  - {name: timeout, valueOptions: [-k, --kill-after, -s, --signal], leadingOperands: 1, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
+  - {name: setsid, valueOptions: [], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
+  - {name: watch, valueOptions: [-n, --interval], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
+  - {name: chroot, valueOptions: [--userspec, --groups], leadingOperands: 1, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
+  - {name: runuser, valueOptions: [-u, --user, -g, --group, -G, --supp-group, -s, --shell, -w, --whitelist-environment], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: [-u, --user]}
+  - {name: command, valueOptions: [], leadingOperands: 0, takesAssignments: false, describingOptions: [-v, -V], directoryOptions: [], requiredOptions: []}
+  - {name: exec, valueOptions: [-a], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
+  - {name: builtin, valueOptions: [], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
+commandStringPrograms:
+  - {name: sh, form: shell, valueOptions: [-o, +o], leadingOperands: 0, currentShell: false}
+  - {name: bash, form: shell, valueOptions: [-o, +o, -O, +O, --rcfile, --init-file], leadingOperands: 0, currentShell: false}
+  - {name: zsh, form: shell, valueOptions: [-o, +o], leadingOperands: 0, currentShell: false}
+  - {name: dash, form: shell, valueOptions: [-o, +o], leadingOperands: 0, currentShell: false}
+  - {name: ksh, form: shell, valueOptions: [-o, +o], leadingOperands: 0, currentShell: false}
+  - {name: eval, form: arguments, valueOptions: [], leadingOperands: 0, currentShell: true}
+  - {name: su, form: option, valueOptions: [-g, --group, -G, --supp-group, -s, --shell, -w, --whitelist-environment], leadingOperands: 0, currentShell: false}
+  - {name: flock, form: option, valueOptions: [-w, --wait, --timeout, -E, --conflict-exit-code], leadingOperands: 1, currentShell: false}
+  - {name: script, form: option, valueOptions: [-E, --echo, -I, --log-in, -O, --log-out, -B, --log-io, -T, --log-timing, -m, --logging-format], leadingOperands: 0, currentShell: false}
