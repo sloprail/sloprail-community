@@ -1,0 +1,6 @@
+predicate: >-
+  {@fld:line:Invocation.env} and {@fld:line:Invocation.unknownEnv} hold a NAME only when
+  {@fld:line:Line.text} sets it for that program; a variable that is only in
+  {@fld:line:Context.env} is in neither.
+why: >-
+  Every program would be reported with the whole ambient environment.

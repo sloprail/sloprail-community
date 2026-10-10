@@ -1,0 +1,5 @@
+predicate: >-
+  In `X=a cmd $X`, the words of cmd do not see that assignment: `$X` takes the
+  {@fld:variables:Variable.value} in force before the command.
+why: >-
+  `X=a echo $X` would be reported as echoing a.

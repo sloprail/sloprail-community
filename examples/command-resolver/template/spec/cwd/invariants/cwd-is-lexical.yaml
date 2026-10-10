@@ -1,0 +1,6 @@
+predicate: >-
+  {@fld:line:Invocation.cwd} is computed from the text of paths alone: no symbolic link is
+  followed and no directory is checked for existence.
+why: >-
+  The answer would change with the disk, and be wrong for a directory the line itself
+  creates.

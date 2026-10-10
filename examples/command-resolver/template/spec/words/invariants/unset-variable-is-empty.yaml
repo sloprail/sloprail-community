@@ -1,0 +1,5 @@
+predicate: >-
+  A reference to a variable that neither the line nor {@fld:line:Context.env} sets
+  contributes the empty string to {@fld:words:Word.value}.
+why: >-
+  A word bash expands to nothing would be reported as unknown.

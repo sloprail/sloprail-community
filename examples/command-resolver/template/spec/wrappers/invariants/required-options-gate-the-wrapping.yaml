@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:config:Wrapper} with non-empty {@fld:config:Wrapper.requiredOptions} yields a
+  wrapped {@ent:line:Invocation} only when one of them is given.
+why: >-
+  `runuser bob` would report a program named bob.

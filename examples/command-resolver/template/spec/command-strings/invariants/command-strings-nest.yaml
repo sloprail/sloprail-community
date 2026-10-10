@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:command-strings:CommandString} found inside another's text is resolved in turn,
+  to any depth.
+why: >-
+  Wrapping a command in two shells would hide it.

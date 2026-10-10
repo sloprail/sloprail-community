@@ -1,0 +1,5 @@
+predicate: >-
+  After a `cd` with no operand, {@fld:line:Invocation.cwd} is the value of HOME in force,
+  and absent when HOME is not set.
+why: >-
+  A command would be reported where the line started although it moved home.

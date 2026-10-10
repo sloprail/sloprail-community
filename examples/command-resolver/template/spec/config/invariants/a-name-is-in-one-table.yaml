@@ -1,0 +1,5 @@
+predicate: >-
+  No name is both a {@fld:config:Wrapper.name} and a
+  {@fld:config:CommandStringProgram.name}.
+why: >-
+  The same program would be read two ways.

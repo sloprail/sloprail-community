@@ -1,0 +1,7 @@
+predicate: >-
+  For a {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form}
+  is shell, an argument is a {@ent:command-strings:CommandString} only when a single-dash
+  option cluster containing `c` precedes it, and it is then the first word that is neither
+  an option nor an option's value.
+why: >-
+  `bash -lc 'cmd'` would be missed, or `bash --rcfile x` misread.

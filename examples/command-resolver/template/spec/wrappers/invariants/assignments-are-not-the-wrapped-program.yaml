@@ -1,0 +1,6 @@
+predicate: >-
+  `NAME=value` words between a {@ent:config:Wrapper} whose
+  {@fld:config:Wrapper.takesAssignments} is true and the wrapped program are never the
+  wrapped program word.
+why: >-
+  `env FOO=1 npm` would report a program named FOO=1.

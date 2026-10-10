@@ -1,0 +1,6 @@
+predicate: >-
+  When a {@ent:words:Word} with no value stands among a {@ent:config:Wrapper}'s words
+  where it could be an option or the program itself, no wrapped {@ent:line:Invocation} is
+  reported.
+why: >-
+  `sudo $(x) npm` would report npm although the unknown word may be the program.

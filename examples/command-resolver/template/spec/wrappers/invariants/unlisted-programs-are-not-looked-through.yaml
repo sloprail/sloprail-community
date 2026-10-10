@@ -1,0 +1,6 @@
+predicate: >-
+  A program whose name is in neither table of the {@ent:config:Config}, and is not `find`,
+  yields only its own {@ent:line:Invocation}; its arguments are never read as another
+  program.
+why: >-
+  An ordinary argument would be reported as a program.

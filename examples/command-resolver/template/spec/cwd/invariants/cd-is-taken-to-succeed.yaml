@@ -1,0 +1,4 @@
+predicate: >-
+  After `cd D; X` or `cd D && X` with a known D, the {@fld:line:Invocation.cwd} of X is D.
+why: >-
+  Every command after a cd would be unknown.

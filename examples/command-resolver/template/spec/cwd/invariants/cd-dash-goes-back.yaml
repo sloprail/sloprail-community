@@ -1,0 +1,6 @@
+predicate: >-
+  After `cd -`, {@fld:line:Invocation.cwd} is the directory in force before the latest
+  directory change of the {@ent:line:Scope}, or the value of OLDPWD in
+  {@fld:line:Context.env} when there was none, and absent when neither is known.
+why: >-
+  A command would be reported in the wrong one of two directories.

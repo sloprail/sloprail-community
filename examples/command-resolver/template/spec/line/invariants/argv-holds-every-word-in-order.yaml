@@ -1,0 +1,6 @@
+predicate: >-
+  {@fld:line:Invocation.argv} holds one {@ent:words:Word} for every word the shell would
+  pass the program, in the order written, whether or not the word has a
+  {@fld:words:Word.value}.
+why: >-
+  A consumer could not tell `git -C $(x) push` from `git -C push`.

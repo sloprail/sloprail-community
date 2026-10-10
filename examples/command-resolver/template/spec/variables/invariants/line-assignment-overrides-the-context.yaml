@@ -1,0 +1,6 @@
+predicate: >-
+  A {@ent:variables:Variable} the line has assigned takes its
+  {@fld:variables:Variable.value} from the latest assignment before the reference in its
+  {@ent:line:Scope}, not from {@fld:line:Context.env}.
+why: >-
+  A stale or ambient value would be reported.

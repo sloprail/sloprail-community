@@ -1,0 +1,6 @@
+predicate: >-
+  The words `env -S` splits its string into are the words of the one command that
+  {@ent:config:Wrapper} runs: `;`, `&&` and `|` inside the string are ordinary characters,
+  never shell operators.
+why: >-
+  A second program that env never runs would be reported.

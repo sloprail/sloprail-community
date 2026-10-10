@@ -1,0 +1,5 @@
+predicate: >-
+  An arithmetic expansion made only of integer constants and operators contributes its
+  decimal result to {@fld:words:Word.value}.
+why: >-
+  A value the line fixes would be reported as unknown.

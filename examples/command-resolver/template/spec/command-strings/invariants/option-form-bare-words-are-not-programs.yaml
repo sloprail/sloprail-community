@@ -1,0 +1,5 @@
+predicate: >-
+  A bare word of a program whose {@fld:config:CommandStringProgram.form} is option yields
+  no {@ent:line:Invocation}.
+why: >-
+  `su bob` would report a program named bob.

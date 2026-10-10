@@ -1,0 +1,6 @@
+predicate: >-
+  An assignment made inside a child {@ent:line:Scope} gives no
+  {@fld:variables:Variable.value} to references after that scope, and a child scope sees
+  the values assigned before it started.
+why: >-
+  A subshell's assignment would leak, or a subshell would lose its parent's.

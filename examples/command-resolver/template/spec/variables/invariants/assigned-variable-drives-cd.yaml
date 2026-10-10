@@ -1,0 +1,6 @@
+predicate: >-
+  A `cd` operand made only of literal text and references to {@ent:variables:Variable}s
+  with a {@fld:variables:Variable.value} sets {@fld:line:Invocation.cwd} as a literal
+  operand would.
+why: >-
+  `D=sub; cd $D && npm publish` would be reported with an unknown directory.

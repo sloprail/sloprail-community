@@ -1,0 +1,5 @@
+predicate: >-
+  Inside double quotes a backslash is removed from {@fld:words:Word.value} only before
+  `$`, a backtick, `"`, `\` or a newline; before any other character it stays.
+why: >-
+  Arguments holding backslashes would be reported altered.

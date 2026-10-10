@@ -1,0 +1,5 @@
+predicate: >-
+  The word after one of a wrapper's {@fld:config:Wrapper.valueOptions} is that option's
+  value and never the wrapped program.
+why: >-
+  `sudo -u root npm` would report a program named root.

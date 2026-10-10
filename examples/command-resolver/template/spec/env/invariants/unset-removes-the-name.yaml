@@ -1,0 +1,7 @@
+predicate: >-
+  After `unset NAME` or `export -n NAME`, later {@ent:line:Invocation}s of the
+  {@ent:line:Scope} have NAME in neither {@fld:line:Invocation.env} nor
+  {@fld:line:Invocation.unknownEnv}; `env -i` and `env -u NAME` remove it for the wrapped
+  program.
+why: >-
+  A removed variable would still be reported as set.

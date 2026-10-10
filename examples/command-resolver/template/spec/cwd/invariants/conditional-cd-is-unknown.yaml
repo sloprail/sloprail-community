@@ -1,0 +1,6 @@
+predicate: >-
+  After `A && cd D` or `A || cd D`, where A is not itself the cd, the later
+  {@ent:line:Invocation}s of the {@ent:line:Scope} have no {@fld:line:Invocation.cwd}
+  unless D is the directory already in force.
+why: >-
+  A cd that may not have run would be reported as certain.

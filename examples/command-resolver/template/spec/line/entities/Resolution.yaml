@@ -1,0 +1,8 @@
+doc: "The resolver's answer for one line."
+fields:
+  - name: invocations
+    type: Invocation[]
+    doc: "The programs the line would run."
+  - name: parseError
+    type: string?
+    doc: "Why the line could not be read as shell; absent when it could."

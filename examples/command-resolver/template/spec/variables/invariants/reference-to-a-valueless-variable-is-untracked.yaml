@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:words:Word} that references a {@ent:variables:Variable} with no
+  {@fld:variables:Variable.value} has {@fld:words:Word.unknown} untracked-variable.
+why: >-
+  The context's old value, or an empty string, would stand in for a changed one.

@@ -1,0 +1,5 @@
+predicate: >-
+  Each complete {@ent:wrappers:FindClause} of a `find` yields the {@ent:line:Invocation}s
+  of its command right after find's own, in clause order.
+why: >-
+  `find . -exec rm {} ;` would hide rm.

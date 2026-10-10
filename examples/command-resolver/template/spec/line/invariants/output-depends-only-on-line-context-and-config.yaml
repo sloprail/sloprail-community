@@ -1,0 +1,6 @@
+predicate: >-
+  A {@ent:line:Resolution} depends only on {@fld:line:Line.text}, the {@ent:line:Context}
+  and the {@ent:config:Config}: never on files on disk or on any other state of the
+  machine that resolves it.
+why: >-
+  The same line would resolve differently from one run to the next.

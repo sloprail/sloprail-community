@@ -1,0 +1,19 @@
+doc: "A program that runs one of its arguments as a shell command line."
+fields:
+  - name: name
+    type: string
+    doc: "The program's name."
+  - name: form
+    type: string
+    doc: "Where the command string stands among its arguments."
+    enum: ["shell", "option", "arguments"]
+  - name: valueOptions
+    type: string[]
+    doc: "Its options that take their value as a separate word."
+  - name: leadingOperands
+    type: int32
+    doc: "How many bare words must come before the command-string option."
+    constraint_expr: '>= 0'
+  - name: currentShell
+    type: bool
+    doc: "Whether the string runs in the shell that invokes the program instead of a child."

@@ -1,0 +1,5 @@
+predicate: >-
+  `NAME=value cmd` puts NAME in the {@fld:line:Invocation.env} of cmd and of every program
+  cmd goes on to run, and in no later command's.
+why: >-
+  A variable set for one command would be missing from it, or leak into the next.

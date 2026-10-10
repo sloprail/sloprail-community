@@ -1,0 +1,5 @@
+predicate: >-
+  A `NAME=value` word a {@ent:config:Wrapper} takes as an assignment is in the
+  {@fld:line:Invocation.env} of the wrapped program and absent from the wrapper's own.
+why: >-
+  `env FOO=1 npm` would report FOO on env and not on npm.

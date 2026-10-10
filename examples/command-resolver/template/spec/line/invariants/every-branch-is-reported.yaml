@@ -1,0 +1,6 @@
+predicate: >-
+  The commands in the condition and in every branch of an `if`, `case`, `while`, `until`
+  or `for` each yield an {@ent:line:Invocation}, whichever branch would run and however
+  evident the condition written in {@fld:line:Line.text} looks.
+why: >-
+  A program in a branch that looks untaken would go unreported.

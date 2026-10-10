@@ -1,0 +1,10 @@
+doc: "The tables of programs the resolver looks through: the built-in ones and those a user adds."
+fields:
+  - name: wrappers
+    type: Wrapper[]
+    doc: "The programs that run another program from their arguments."
+    constraint_expr: 'names are unique'
+  - name: commandStringPrograms
+    type: CommandStringProgram[]
+    doc: "The programs that run one of their arguments as a shell command line."
+    constraint_expr: 'names are unique'

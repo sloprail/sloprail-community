@@ -1,0 +1,5 @@
+predicate: >-
+  A call of a function defined on the line yields one {@ent:line:Invocation} whose
+  {@fld:line:Invocation.bin} is the function's name.
+why: >-
+  The call would vanish from the output or be mistaken for the body.

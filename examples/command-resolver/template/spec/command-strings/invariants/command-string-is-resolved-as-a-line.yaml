@@ -1,0 +1,6 @@
+predicate: >-
+  A {@ent:command-strings:CommandString} whose {@fld:command-strings:CommandString.text}
+  is known yields, right after its program's own {@ent:line:Invocation}, every Invocation
+  that text would yield as a {@ent:line:Line} of its own.
+why: >-
+  `bash -c 'npm publish'` would hide npm.

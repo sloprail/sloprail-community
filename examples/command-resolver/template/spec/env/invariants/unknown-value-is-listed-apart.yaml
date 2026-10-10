@@ -1,0 +1,5 @@
+predicate: >-
+  A NAME the line sets for a program to a value that has no {@fld:words:Word.value} is in
+  {@fld:line:Invocation.unknownEnv} and not in {@fld:line:Invocation.env}.
+why: >-
+  An unknown value would be reported as empty.

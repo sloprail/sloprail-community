@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:words:Word} with no {@fld:words:Word.value} is one entry of
+  {@fld:line:Invocation.argv}, however many words the shell would split it into.
+why: >-
+  The positions of the words after it would differ between resolvers.

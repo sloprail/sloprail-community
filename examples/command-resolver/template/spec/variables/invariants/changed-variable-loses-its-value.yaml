@@ -1,0 +1,7 @@
+predicate: >-
+  A {@ent:variables:Variable} has no {@fld:variables:Variable.value} after something the
+  line cannot follow may have changed it: `read`, `+=`, an array assignment, a `for` loop
+  naming it, arithmetic naming it, `source`, or a current-shell
+  {@ent:command-strings:CommandString} with no text.
+why: >-
+  A value that no longer holds would be reported.

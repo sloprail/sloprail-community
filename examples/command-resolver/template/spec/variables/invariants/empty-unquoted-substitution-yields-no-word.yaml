@@ -1,0 +1,5 @@
+predicate: >-
+  A word that is only an unquoted reference to an empty {@fld:variables:Variable.value}
+  yields no {@ent:words:Word} at all.
+why: >-
+  `$EMPTY npm publish` would not be reported as running npm.

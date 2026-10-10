@@ -1,0 +1,6 @@
+predicate: >-
+  After a `--` among a {@ent:config:Wrapper}'s own words no later word is one of its
+  options, and the `--` is neither the wrapped program nor in the wrapped
+  {@fld:line:Invocation.argv}.
+why: >-
+  A program whose name starts with a dash would be lost, or `--` reported as a program.

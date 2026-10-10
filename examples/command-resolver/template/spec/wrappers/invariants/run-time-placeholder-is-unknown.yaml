@@ -1,0 +1,6 @@
+predicate: >-
+  A whole-word `{}` in a {@ent:wrappers:FindClause} command, and a word holding the
+  replace string of `xargs -I`, have {@fld:words:Word.unknown} placeholder in the inner
+  command's {@fld:line:Invocation.argv}.
+why: >-
+  A placeholder would be reported as the file name it stands for.

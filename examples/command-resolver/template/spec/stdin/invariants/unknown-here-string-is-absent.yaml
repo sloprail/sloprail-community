@@ -1,0 +1,5 @@
+predicate: >-
+  For a here-string whose word has no {@fld:words:Word.value},
+  {@fld:line:Invocation.stdin} is absent.
+why: >-
+  A guessed input would be reported.

@@ -1,0 +1,9 @@
+doc: "What the resolver is told about where the line would run."
+fields:
+  - name: env
+    type: Record<string>
+    doc: "The environment variables in force before the line runs."
+  - name: cwd
+    type: string
+    doc: "The directory the line would start in."
+    constraint_expr: 'an absolute path'

@@ -1,0 +1,6 @@
+predicate: >-
+  A program whose {@fld:config:CommandStringProgram.form} is shell, given a script file,
+  `-s`, or `-c` with no word after it, has no {@ent:command-strings:CommandString} and
+  yields only its own {@ent:line:Invocation}.
+why: >-
+  The content of a file the line does not show would be guessed.

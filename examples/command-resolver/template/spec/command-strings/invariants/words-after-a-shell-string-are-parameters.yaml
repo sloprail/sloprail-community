@@ -1,0 +1,6 @@
+predicate: >-
+  The words after the {@ent:command-strings:CommandString} of a program whose
+  {@fld:config:CommandStringProgram.form} is shell are positional parameters and yield no
+  {@ent:line:Invocation}.
+why: >-
+  `bash -c 'echo' rm` would report rm.

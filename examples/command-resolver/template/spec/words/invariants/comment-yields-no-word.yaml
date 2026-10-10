@@ -1,0 +1,5 @@
+predicate: >-
+  An unquoted `#` at the start of a word starts a comment: it and the rest of that
+  physical line contribute no {@ent:words:Word}.
+why: >-
+  Commented-out text would be reported as arguments.

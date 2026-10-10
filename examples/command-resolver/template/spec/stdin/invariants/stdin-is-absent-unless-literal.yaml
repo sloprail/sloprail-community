@@ -1,0 +1,5 @@
+predicate: >-
+  {@fld:line:Invocation.stdin} is absent when the command's input is a pipe, a file, a
+  duplicated or closed descriptor, or nothing the line states.
+why: >-
+  Input the line does not contain would be invented.

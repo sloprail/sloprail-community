@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:words:Word} has a {@fld:words:Word.unknown} exactly when it has no
+  {@fld:words:Word.value}.
+why: >-
+  A consumer could not tell a known word from an unknown one, or would see both at once.

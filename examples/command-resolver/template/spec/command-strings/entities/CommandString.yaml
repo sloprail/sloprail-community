@@ -1,0 +1,8 @@
+doc: "An argument that a program runs as a shell command line of its own."
+fields:
+  - name: program
+    type: config.CommandStringProgram
+    doc: "The program given the string."
+  - name: text
+    type: string?
+    doc: "The string; absent when it cannot be known without running something."

@@ -1,0 +1,5 @@
+doc: "One shell command line handed to the resolver."
+fields:
+  - name: text
+    type: string
+    doc: "The line as written; it may span several physical lines."

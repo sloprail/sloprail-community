@@ -1,0 +1,12 @@
+doc: "One word of a command, as the shell would pass it."
+fields:
+  - name: text
+    type: string
+    doc: "The word as written, quoting included."
+  - name: value
+    type: string?
+    doc: "The string the shell would pass for the word; absent when it cannot be known without running something."
+  - name: unknown
+    type: string
+    doc: "Why the word has no value; not set when it has one."
+    enum: ["command-substitution", "process-substitution", "glob", "special-parameter", "parameter-operation", "arithmetic", "untracked-variable", "user-home", "placeholder"]

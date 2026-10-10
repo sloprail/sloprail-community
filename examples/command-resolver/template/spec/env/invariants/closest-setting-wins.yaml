@@ -1,0 +1,6 @@
+predicate: >-
+  When several layers set the same NAME for a program, its {@fld:line:Invocation.env}
+  holds the value set closest to it: a wrapper's assignment over the command's prefix, a
+  prefix over an earlier export, a later export over an earlier one.
+why: >-
+  The overridden value would be reported.

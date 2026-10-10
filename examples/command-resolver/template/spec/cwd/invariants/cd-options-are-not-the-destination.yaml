@@ -1,0 +1,5 @@
+predicate: >-
+  An option of `cd` (`-L`, `-P`, `-e`, `-@`, `--`) is never the directory that
+  {@fld:line:Invocation.cwd} takes.
+why: >-
+  A directory named -P would be reported.

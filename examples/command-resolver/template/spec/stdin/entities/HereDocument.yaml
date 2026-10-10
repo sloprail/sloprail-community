@@ -1,0 +1,11 @@
+doc: "A here-document attached to a command."
+fields:
+  - name: quotedDelimiter
+    type: bool
+    doc: "Whether any part of the delimiter is quoted."
+  - name: stripsTabs
+    type: bool
+    doc: "Whether it was written with `<<-`."
+  - name: body
+    type: string
+    doc: "The lines between the operator's line and the delimiter line, as written."

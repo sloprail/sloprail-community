@@ -1,0 +1,5 @@
+predicate: >-
+  A {@ent:line:Line} whose {@fld:line:Line.text} is valid shell syntax has no
+  {@fld:line:Resolution.parseError}.
+why: >-
+  A readable line would be flagged as unreadable.

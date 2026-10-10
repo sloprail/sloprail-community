@@ -1,0 +1,6 @@
+doc: "A shell process within the line."
+fields:
+  - name: kind
+    type: string
+    doc: "What started the process."
+    enum: ["line", "subshell", "pipeline-stage", "background-job", "command-substitution", "process-substitution", "child-shell"]
