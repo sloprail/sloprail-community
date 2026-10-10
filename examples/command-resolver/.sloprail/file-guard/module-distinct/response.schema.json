@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["pass", "reasoning", "modules"],
+  "additionalProperties": false,
+  "properties": {
+    "pass": {
+      "type": "boolean",
+      "description": "true when every cell of `modules` is \"pass\", false when any is \"fail\"."
+    },
+    "reasoning": {
+      "type": "string",
+      "description": "The two checklists the rubric asks for, and on a fail what it asks you to name. On a fail it is shown to the agent that wrote the modules."
+    },
+    "modules": {
+      "type": "object",
+      "description": "Your verdict on the two things judged, one entry for every <module> above marked changed=\"true\" and for no other, keyed by its dir.",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["concern", "home"],
+        "additionalProperties": false,
+        "properties": {
+          "concern": {
+            "enum": ["pass", "fail"],
+            "description": "1: this module's concern is distinct from the concern of every other module."
+          },
+          "home": {
+            "enum": ["pass", "fail"],
+            "description": "2: this module's home globs fit its concern."
+          }
+        }
+      }
+    }
+  }
+}

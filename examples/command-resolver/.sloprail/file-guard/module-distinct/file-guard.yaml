@@ -8,8 +8,15 @@
 # One subject for the changeset (subjects.sh): every added or changed module is judged against
 # every other in a single call, keyed by all modules' concern, home and api and by the files
 # their homes match, so a change to any module, or a file landing in a home, judges them again.
+# The judge answers with a table (response.schema.json): per changed module, `concern` and
+# `home`, each pass or fail. post-process.sh holds the table to the changed modules (one missing
+# or one other: the judge is asked again), takes the verdict from the table (every cell passes;
+# the table wins over the judge's own `pass` when the two disagree), and stores the table with
+# the verdict as metadata: `sr-checks show --json` and `sr-checks log --json` print it.
 match: path endsWith "/module.yaml"
 subjects: ./subjects.sh
 checks:
   - prepare: ./prepare.sh
     judge: ./distinct-concern.md.j2
+    response_schema: ./response.schema.json
+    post_process: ./post-process.sh
