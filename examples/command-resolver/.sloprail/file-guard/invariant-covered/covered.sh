@@ -21,25 +21,28 @@ proves="$(printf '%s\n' "$proves" | awk -F'\t' '$2 ~ /^[a-z0-9-]+\/[a-z0-9-]+$/'
 TEST='(_test[.]go$|^tests/|(^|/)[.]sloprail/.*/tests/)'
 
 problems=""
+# No pipe feeds a reader that stops at its first match: under pipefail the writer then dies of a
+# closed pipe once the list outgrows one pipe write (about 4 KB, near 100 invariants), and the
+# check reported an invariant or a spec file as missing that was there. Lists are read as here-strings.
 add() { problems="${problems}- $1"$'\n'; }
 ids="$(jq -r '.[].id' <<<"$inv")"
 while IFS= read -r i; do
   [ -n "$i" ] || continue
   id="$(jq -r '.id' <<<"$i")"
   kebab "${id%%/*}" && kebab "${id#*/}" || add "$(jq -r '.path' <<<"$i"): the domain and file name must be kebab-case"
-  printf '%s\n' "$impl" | awk -F'\t' -v id="$id" -v t="$TEST" '$2 == id && $1 !~ t' | grep -q . ||
+  awk -F'\t' -v id="$id" -v t="$TEST" '$2 == id && $1 !~ t { f = 1 } END { exit !f }' <<<"$impl" ||
     add "invariant '$id' has no implementation: mark the code that upholds it with // sr:invariant $id"
-  printf '%s\n' "$proves" | awk -F'\t' -v id="$id" -v t="$TEST" '$2 == id && $1 ~ t' | grep -q . ||
+  awk -F'\t' -v id="$id" -v t="$TEST" '$2 == id && $1 ~ t { f = 1 } END { exit !f }' <<<"$proves" ||
     add "invariant '$id' has no test: mark a test that proves it with // sr:proves $id"
 done < <(jq -c '.[]' <<<"$inv")
 while IFS=$'\t' read -r path id; do
   [ -n "$path" ] || continue
-  printf '%s\n' "$ids" | grep -Fxq -- "$id" || add "$path: sr:invariant '$id' names no spec/${id%%/*}/invariants/${id#*/}.yaml"
+  grep -Fxq -- "$id" <<<"$ids" || add "$path: sr:invariant '$id' names no spec/${id%%/*}/invariants/${id#*/}.yaml"
   [[ "$path" =~ $TEST ]] && add "$path: sr:invariant marks the code that upholds an invariant, not a test; use // sr:proves $id"
 done <<<"$impl"
 while IFS=$'\t' read -r path id; do
   [ -n "$path" ] || continue
-  printf '%s\n' "$ids" | grep -Fxq -- "$id" || add "$path: sr:proves '$id' names no spec/${id%%/*}/invariants/${id#*/}.yaml"
+  grep -Fxq -- "$id" <<<"$ids" || add "$path: sr:proves '$id' names no spec/${id%%/*}/invariants/${id#*/}.yaml"
   [[ "$path" =~ $TEST ]] || add "$path: sr:proves belongs on a test (a *_test.go, under tests/, or a rule's sr-test case)"
 done <<<"$proves"
 [ -z "$problems" ] && exit 0
