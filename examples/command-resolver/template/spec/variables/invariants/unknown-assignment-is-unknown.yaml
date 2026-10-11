@@ -1,5 +1,5 @@
 predicate: >-
-  A {@ent:variables:Variable} assigned from a word with no {@fld:words:Word.value} has no
-  {@fld:variables:Variable.value}.
+  A {@ent:variables:Variable} assigned from a word with no {@fld:words:Word.value} has
+  no {@fld:variables:Variable.value}, up to its next assignment.
 why: >-
   A guessed or empty value would spread to every later reference.

@@ -1,8 +1,11 @@
 predicate: >-
-  After `unset NAME` or `export -n NAME`, later {@ent:line:Invocation}s of the
-  {@ent:line:Scope} have NAME in neither {@fld:line:Invocation.env} nor
-  {@fld:line:Invocation.unknownEnv}, up to the next `export` of NAME, except a program
-  given NAME by its own prefix or by its {@ent:config:Wrapper}'s assignment; `env -i`
-  and `env -u NAME` remove it for the wrapped program.
+  After an `unset NAME` or `export -n NAME` outside a function body, or a call of a
+  function defined on the line whose body holds one, the later {@ent:line:Invocation}s
+  of its {@ent:line:Scope}, and of scopes started there later, have NAME in neither
+  {@fld:line:Invocation.env} nor {@fld:line:Invocation.unknownEnv}, unless a later
+  `export` of NAME precedes them in their own Scope or one enclosing it, or a prefix
+  assignment of their command or their {@ent:config:Wrapper}'s assignment sets it; the
+  program that `env -i` or `env -u NAME` runs has NAME in neither unless that wrapper's
+  own assignment sets it.
 why: >-
   A removed variable would still be reported as set.

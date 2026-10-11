@@ -1,5 +1,5 @@
 predicate: >-
-  After a `cd` to a known absolute path, {@fld:line:Invocation.cwd} is that path lexically
-  cleaned, whatever the directory was before, unknown included.
+  The {@fld:line:Invocation.cwd} a `cd` to a known absolute path sets is that path
+  lexically cleaned, whatever the directory in force before it, unknown included.
 why: >-
   An unknown directory would never recover, or a previous one be prepended.

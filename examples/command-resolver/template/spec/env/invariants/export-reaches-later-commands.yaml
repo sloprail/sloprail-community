@@ -1,7 +1,10 @@
 predicate: >-
-  After `export NAME=value`, every later {@ent:line:Invocation} of the same
-  {@ent:line:Scope}, and of scopes started later from it, has NAME in its
-  {@fld:line:Invocation.env}, up to the next `unset NAME` or `export -n NAME` of that
-  Scope.
+  After an `export NAME=value` outside a function body, or a call of a function defined
+  on the line whose body holds one, every later {@ent:line:Invocation} of the same
+  {@ent:line:Scope}, and of scopes started there later, has NAME in its
+  {@fld:line:Invocation.env}, or in its {@fld:line:Invocation.unknownEnv} when the value
+  has no {@fld:words:Word.value}, unless a later `unset NAME` or `export -n NAME`
+  precedes it in its own Scope or one enclosing it; a program that `env -i` or `env -u
+  NAME` runs is not among them.
 why: >-
   A variable exported one statement earlier would be missing.

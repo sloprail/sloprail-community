@@ -1,8 +1,12 @@
 predicate: >-
-  {@fld:line:Resolution.invocations} lists the simple commands in the order they are
-  written in {@fld:line:Line.text}, except that the commands nested in a command come
-  directly after it, each followed by its own nested ones: first the program it wraps or
-  the commands of its find clauses, then the commands of its command string, then those
-  of its substitutions, here-document bodies included, in the order written.
+  {@fld:line:Resolution.invocations} lists the simple commands of {@fld:line:Line.text}
+  in the order written, each directly followed by the Invocations it gives rise to, each
+  of those followed in turn by its own: first the program it runs as a
+  {@ent:config:Wrapper}, or the commands of its {@ent:wrappers:FindClause}s in clause
+  order, then the commands of its {@ent:command-strings:CommandString}, then the
+  commands of the command and process substitutions in its words, assignments,
+  redirections and here-document bodies, in the order written. The commands of a
+  substitution that belongs to no simple command stand where the substitution is
+  written.
 why: >-
   Two resolvers would list the same programs in different orders.

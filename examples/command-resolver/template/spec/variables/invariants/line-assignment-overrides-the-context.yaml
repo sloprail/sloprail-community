@@ -1,6 +1,7 @@
 predicate: >-
-  A {@ent:variables:Variable} the line has assigned takes its
-  {@fld:variables:Variable.value} from the latest assignment before the reference in its
-  {@ent:line:Scope}, not from {@fld:line:Context.env}.
+  A {@ent:variables:Variable} assigned on the line before a reference, in the
+  reference's {@ent:line:Scope} or one enclosing it, never takes its
+  {@fld:variables:Variable.value} there from {@fld:line:Context.env}: when it has a
+  value, it is the one the latest such assignment gave it.
 why: >-
   A stale or ambient value would be reported.

@@ -1,5 +1,6 @@
 predicate: >-
-  A `cd` inside a `{ …; }` group that is neither backgrounded nor a pipeline stage changes
-  the {@fld:line:Invocation.cwd} of the Invocations after the group.
+  A `{ …; }` group that is neither backgrounded nor a pipeline stage does not end the
+  reach of a `cd` inside it: the Invocations after the group are among those whose
+  {@fld:line:Invocation.cwd} the cd sets.
 why: >-
   A group would be treated as a subshell.
