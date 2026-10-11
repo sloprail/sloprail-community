@@ -1,5 +1,0 @@
-predicate: >-
-  A command whose program is a bash builtin, a name `compgen -b` lists in bash 5, yields
-  an {@ent:line:Invocation} like any other program, however its name is quoted.
-why: >-
-  Which builtins appear would depend on a hidden list and on spelling.

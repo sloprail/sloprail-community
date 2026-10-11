@@ -1,6 +1,7 @@
 predicate: >-
   A {@ent:variables:Variable} NAME has no {@fld:variables:Variable.value} after any of
-  these written outside a function body in its {@ent:line:Scope}, up to the next plain
+  these, written outside a function body or in the text of a current-shell
+  {@ent:command-strings:CommandString}, in its {@ent:line:Scope}, up to the next plain
   `NAME=value` assignment: an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is
   `read` with NAME as an operand or as the value of `-a`, or with no operand when NAME
   is REPLY; one whose bin is `.` or `source`; one whose bin is `let` with an argument

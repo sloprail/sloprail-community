@@ -1,7 +1,6 @@
 predicate: >-
   A bare assignment, a redirection with no command, a `[[ … ]]` test, a `(( … ))`
   expression and the reserved words of the {@ent:line:Grammar} yield no
-  {@ent:line:Invocation} of their own; the commands of a substitution inside them still
-  yield theirs.
+  {@ent:line:Invocation} of their own.
 why: >-
   Shell syntax would be reported as a program.

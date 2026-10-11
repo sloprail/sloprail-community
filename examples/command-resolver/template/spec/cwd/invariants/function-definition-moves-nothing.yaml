@@ -1,5 +1,6 @@
 predicate: >-
-  A `cd` in a function body does not change the {@fld:line:Invocation.cwd} of the
-  Invocations after the definition that no call of the function precedes.
+  A function body is resolved where it is defined, starting from the
+  {@fld:line:Scope.cwd} there, and the Scope.cwd after the definition is the one before
+  it.
 why: >-
   Defining a function would be reported as changing directory.

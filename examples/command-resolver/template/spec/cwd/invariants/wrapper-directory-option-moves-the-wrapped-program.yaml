@@ -1,7 +1,6 @@
 predicate: >-
-  A wrapped program whose {@ent:config:Wrapper} is given one of its
-  {@fld:config:Wrapper.directoryOptions} with a known value has that directory, resolved
-  against the wrapper's own, as its {@fld:line:Invocation.cwd}; the wrapper's own cwd is
-  unchanged.
+  The program a {@ent:config:Wrapper} runs when given one of its
+  {@fld:config:Wrapper.directoryOptions} with a known value has as its
+  {@fld:line:Invocation.cwd} that directory, resolved against the wrapper's own cwd.
 why: >-
   `env -C sub npm` would report npm at the start.

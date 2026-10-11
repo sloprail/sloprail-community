@@ -1,6 +1,6 @@
 predicate: >-
-  A `cd`, `export` or assignment inside a {@ent:command-strings:CommandString} whose
-  program has {@fld:config:CommandStringProgram.currentShell} true applies to the
-  {@ent:line:Invocation}s after it.
+  The text of a {@ent:command-strings:CommandString} whose program has
+  {@fld:config:CommandStringProgram.currentShell} true is resolved in its program's own
+  {@ent:line:Scope}, in place of the program's command.
 why: >-
   A `cd` inside eval would be forgotten.

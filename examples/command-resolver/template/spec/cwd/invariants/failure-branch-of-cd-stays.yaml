@@ -1,5 +1,6 @@
 predicate: >-
-  In `cd D || R`, the {@fld:line:Invocation.cwd} of R is the directory in force before the
-  cd.
+  A `cd` is taken to succeed: in `cd D || R`, R stands where the {@fld:line:Scope.cwd}
+  is the one before the cd, and after the whole list the Scope.cwd is the one the cd
+  sets.
 why: >-
   The failure path would be reported in the directory that could not be entered.

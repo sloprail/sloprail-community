@@ -1,9 +1,6 @@
 predicate: >-
-  After a `cd` whose operand has no {@fld:words:Word.value}, a `pushd` or a `popd`, the
-  later Invocations of its {@ent:line:Scope}, and of scopes started there after it, have
-  no {@fld:line:Invocation.cwd}, except those that a later `cd` to a known absolute
-  path, or a later `cd` with no operand while HOME is set, precedes in their own Scope
-  or one enclosing it; a program a {@ent:config:Wrapper} runs with one of its
-  {@fld:config:Wrapper.directoryOptions} is not among them.
+  A `cd` whose operand has no {@fld:words:Word.value}, a `pushd` and a `popd` set no
+  directory, and right after a command whose program word has no Word.value the
+  {@fld:line:Scope.cwd} is none.
 why: >-
   A command would be reported where it no longer is.

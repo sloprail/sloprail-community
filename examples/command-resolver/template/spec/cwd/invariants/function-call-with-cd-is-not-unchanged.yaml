@@ -1,7 +1,9 @@
 predicate: >-
-  When the body of a function defined on the line yields an {@ent:line:Invocation} whose
-  {@fld:line:Invocation.bin} is `cd`, the Invocation that directly follows a call of
-  that function in the call's {@ent:line:Scope} has the directory the body ends in as
-  its {@fld:line:Invocation.cwd}, or no cwd.
+  After a call of a function defined on the line, the {@fld:line:Scope.cwd} is the one
+  before the call when the body yields no {@ent:line:Invocation} whose
+  {@fld:line:Invocation.bin} is `cd`, `pushd`, `popd` or the name of a function defined
+  on the line, no current-shell {@ent:command-strings:CommandString} and no command
+  whose program word has no {@fld:words:Word.value}; otherwise it is the one the body
+  ends in, resolved from the call, or none.
 why: >-
   A real move would go unreported.

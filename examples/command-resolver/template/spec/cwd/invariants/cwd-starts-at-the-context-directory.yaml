@@ -1,10 +1,5 @@
 predicate: >-
-  An {@ent:line:Invocation} has {@fld:line:Context.cwd} as its
-  {@fld:line:Invocation.cwd} when nothing before it in its own {@ent:line:Scope}, or in
-  any scope enclosing it, is an Invocation whose {@fld:line:Invocation.bin} is `cd`,
-  `pushd` or `popd`, a call of a function defined on the line, a current-shell
-  {@ent:command-strings:CommandString} or a command whose program word has no
-  {@fld:words:Word.value}, and it is not run by a {@ent:config:Wrapper} given one of its
-  {@fld:config:Wrapper.directoryOptions}.
+  A {@ent:line:Scope} of kind line starts with {@fld:line:Context.cwd} as its
+  {@fld:line:Scope.cwd}.
 why: >-
   The first command would be reported somewhere other than where the line starts.

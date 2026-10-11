@@ -1,5 +1,5 @@
 predicate: >-
-  An option of `cd` (`-L`, `-P`, `-e`, `-@`, `--`) is never the directory that
-  {@fld:line:Invocation.cwd} takes.
+  An option of `cd` (`-L`, `-P`, `-e`, `-@`, `--`) is never the operand from which the
+  cd sets the {@fld:line:Scope.cwd}.
 why: >-
   A directory named -P would be reported.

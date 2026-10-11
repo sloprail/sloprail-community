@@ -1,12 +1,8 @@
 predicate: >-
-  A {@ent:config:Wrapper} whose words hold a wrapped program word, with none of its
-  {@fld:config:Wrapper.describingOptions}, one of its
-  {@fld:config:Wrapper.requiredOptions} when it has any, and no {@ent:words:Word}
-  without a {@fld:words:Word.value} read before the wrapped program word other than the
-  value of one of its {@fld:config:Wrapper.valueOptions} or one of its
-  {@fld:config:Wrapper.leadingOperands} bare words, yields an {@ent:line:Invocation} for
-  itself, whose {@fld:line:Invocation.argv} is the whole vector as written, immediately
-  followed by one for the wrapped program, whose argv starts at the wrapped program
-  word.
+  A {@ent:config:Wrapper} whose words hold a wrapped program word yields, besides its
+  own {@ent:line:Invocation}, one for the wrapped program, whose
+  {@fld:line:Invocation.argv} starts at the wrapped program word, unless
+  wrappers/describing-options-run-nothing, wrappers/required-options-gate-the-wrapping
+  or wrappers/unknown-word-in-an-open-slot-hides-the-program withholds it.
 why: >-
   `sudo npm publish` would hide either sudo or npm.

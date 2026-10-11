@@ -1,5 +1,5 @@
 predicate: >-
-  A {@ent:config:Wrapper} with no wrapped program word yields only its own
+  A {@ent:config:Wrapper} with no wrapped program word yields no wrapped
   {@ent:line:Invocation}.
 why: >-
   An option value or operand would be reported as a program.

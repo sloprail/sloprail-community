@@ -1,0 +1,7 @@
+predicate: >-
+  An {@ent:line:Invocation} has as its {@fld:line:Invocation.cwd} the
+  {@fld:line:Scope.cwd} where its command stands, except the program a
+  {@ent:config:Wrapper} runs when given one of its
+  {@fld:config:Wrapper.directoryOptions}.
+why: >-
+  A program would be reported in a directory other than the one the shell starts it in.

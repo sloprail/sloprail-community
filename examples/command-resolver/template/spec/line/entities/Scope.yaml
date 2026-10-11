@@ -4,3 +4,7 @@ fields:
     type: string
     doc: "What started the process."
     enum: ["line", "subshell", "pipeline-stage", "background-job", "command-substitution", "process-substitution", "child-shell"]
+  - name: cwd
+    type: string?
+    doc: "The directory in force at a point of the scope; absent when it cannot be known without running something."
+    constraint_expr: 'an absolute path, lexically clean'

@@ -1,6 +1,6 @@
 predicate: >-
-  The {@fld:line:Invocation.cwd} `cd -` sets is the directory in force before the latest
-  earlier `cd` of the {@ent:line:Scope}, or the value of OLDPWD in
-  {@fld:line:Context.env} when there was none, and none when neither is known.
+  The directory `cd -` sets is the {@fld:line:Scope.cwd} before the latest earlier `cd`,
+  `pushd` or `popd` of its Scope, or the value of OLDPWD in {@fld:line:Context.env} when
+  there was none, and none when neither is known.
 why: >-
   A command would be reported in the wrong one of two directories.
