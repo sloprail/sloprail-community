@@ -2,8 +2,8 @@ predicate: >-
   A {@ent:words:Word} whose text holds a parameter expansion with an operator of
   POSIX.1-2017 section 2.6.2 (`:-`, `-`, `:=`, `=`, `:?`, `?`, `:+`, `+`, `#` for the
   length, `%`, `%%`, `#`, `##`) or of the {@fld:line:Grammar.extensions} (`/`, `//`,
-  `:offset:length`) has no {@fld:words:Word.value}, and parameter-operation is among the
-  causes {@fld:words:Word.unknown} chooses from, whichever parameter the operator
-  applies to.
+  `:offset:length`) has no {@fld:words:Word.value}, and that expansion is an entry of
+  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is parameter-operation,
+  whichever parameter the operator applies to.
 why: >-
   A transformed value would be reported without having been computed.

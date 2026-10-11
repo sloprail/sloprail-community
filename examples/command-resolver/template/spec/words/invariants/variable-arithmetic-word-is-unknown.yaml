@@ -1,5 +1,6 @@
 predicate: >-
   A {@ent:words:Word} whose text holds an arithmetic expansion that names a variable has
-  no {@fld:words:Word.value}, and that expansion is a part whose cause is arithmetic.
+  no {@fld:words:Word.value}, and that expansion is an entry of {@fld:words:Word.parts}
+  whose {@fld:words:WordPart.cause} is arithmetic.
 why: >-
   A computed value would be guessed.

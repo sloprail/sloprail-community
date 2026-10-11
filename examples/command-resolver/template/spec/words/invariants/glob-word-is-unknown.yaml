@@ -1,6 +1,7 @@
 predicate: >-
   A {@ent:words:Word} whose text contains an unquoted `*`, `?` or bracket expression has
-  no {@fld:words:Word.value}, and each such character or bracket expression is a part
-  whose cause is glob; quoted or escaped, those characters are literal text.
+  no {@fld:words:Word.value}, and each such character or bracket expression is an entry of
+  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is glob; quoted or escaped,
+  those characters are literal text.
 why: >-
   A pattern would be reported as though it were the file names it expands to.

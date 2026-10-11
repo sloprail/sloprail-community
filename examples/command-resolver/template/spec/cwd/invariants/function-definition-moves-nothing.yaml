@@ -1,6 +1,4 @@
 predicate: >-
-  A function body is resolved once, where the function is defined, starting from the
-  {@fld:line:Scope.cwd} there, and the Scope.cwd after the definition is the one before
-  it.
+  The {@fld:line:Scope.cwd} after a function definition is the one before it.
 why: >-
   Defining a function would be reported as changing directory.

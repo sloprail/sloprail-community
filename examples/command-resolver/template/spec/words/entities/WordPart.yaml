@@ -1,0 +1,12 @@
+doc: >-
+  A stretch of a Word's text the shell replaces or matches when it runs the command: an
+  expansion, an unquoted glob character or bracket expression, a tilde prefix, or a run-time
+  placeholder.
+fields:
+  - name: text
+    type: string
+    doc: "The part as written in the word's text."
+  - name: cause
+    type: string
+    doc: "Why the part's value cannot be known without running something; not set when it can."
+    enum: ["command-substitution", "process-substitution", "glob", "special-parameter", "parameter-operation", "arithmetic", "untracked-variable", "user-home", "placeholder"]

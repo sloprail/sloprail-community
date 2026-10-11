@@ -1,7 +1,7 @@
 predicate: >-
   A {@ent:words:Word} whose text references, without an operator, a positional or special
   parameter (`$0` to `$9`, `${10}` and above, `$@`, `$*`, `$#`, `$?`, `$-`, `$$`, `$!`)
-  has no {@fld:words:Word.value}, and that reference is a part whose cause is
-  special-parameter.
+  has no {@fld:words:Word.value}, and that reference is an entry of
+  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is special-parameter.
 why: >-
   A value only the running shell has would be guessed.
