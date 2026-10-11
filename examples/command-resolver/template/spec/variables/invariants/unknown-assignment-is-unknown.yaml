@@ -1,5 +1,9 @@
 predicate: >-
-  A {@ent:variables:Variable} assigned from a word with no {@fld:words:Word.value} has
-  no {@fld:variables:Variable.value}, up to its next assignment.
+  A {@ent:variables:Variable} whose latest assignment before a reference, in the
+  reference's {@ent:line:Scope} or one enclosing it, outside a function body, through a
+  call of a function defined on the line or in the text of a current-shell
+  {@ent:command-strings:CommandString}, other than as a command's prefix, is from a word
+  with no {@fld:words:Word.value} has no {@fld:variables:Variable.value} at the
+  reference.
 why: >-
   A guessed or empty value would spread to every later reference.

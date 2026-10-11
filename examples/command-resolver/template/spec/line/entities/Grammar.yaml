@@ -1,10 +1,17 @@
 doc: >-
   The shell language a Line is read in: the Shell Command Language of the standard, with the
-  bash constructs listed in extensions added and read as bash reads them, and nothing else.
-  `((` and `$((` always open arithmetic, and an arithmetic expression is one of the standard's
-  section 2.6.4 (integer constants, variables, and the C operators it lists, `++` and `--`
-  excluded). Every other bash construct is outside it, `&>`, `|&`, `;&`, `;;&`, `coproc`,
-  `select`, `function`, associative arrays, `$"…"` and `**` among them.
+  bash constructs listed in extensions added, each only in the form its entry shows, and
+  nothing else. Its reserved words are those of reservedWords; every other word, `let`
+  included, is a plain word. `((` and `$((` always open arithmetic, and an arithmetic
+  expression is one of the standard's section 2.6.4 (integer constants, variables, and the
+  C operators it lists, `++` and `--` excluded). In a `$'…'` string a backslash starts one
+  of the escapes of ansiCEscapes or is an ordinary character. Every other bash construct is
+  outside it, `&>`, `|&`, `;&`, `;;&`, `coproc`, `select`, `function`, associative arrays,
+  `$"…"` and `**` among them, and so are: a `$'…'` string holding `\c` followed by anything
+  but a letter, an octal escape above 177, a `\x` escape above 7F, or a `\u` or `\U` escape
+  naming a surrogate or a value above 10FFFF; and a backslash-newline inside an operator, a
+  reserved word, a parameter or arithmetic expansion, a brace expression, a tilde prefix or
+  the body of a here-document whose delimiter is unquoted.
 fields:
   - name: standard
     type: string
@@ -20,8 +27,40 @@ fields:
       - "process substitution: <(…) and >(…)"
       - "[[ … ]] conditional commands"
       - "(( … )) arithmetic commands"
-      - "timed pipelines: time [-p] pipeline"
+      - "timed pipelines: time [-p] pipeline, time as the first word of a pipeline"
       - "indexed arrays: name=(…), name[i]=…, ${name[i]}, ${name[@]}"
       - "appending assignments: name+=…"
       - "declarations: local, declare and typeset"
       - "parameter operations: ${name/pattern/string}, ${name//pattern/string}, ${name:offset:length}"
+  - name: reservedWords
+    type: string[]
+    doc: "The words the grammar reads as part of its syntax where a command starts."
+    enum: ["!", "{", "}", "case", "do", "done", "elif", "else", "esac", "fi", "for", "if", "in", "then", "until", "while", "[[", "]]", "time"]
+  - name: ansiCEscapes
+    type: string[]
+    doc: "The escapes of a `$'…'` string, each with the character it names."
+    enum:
+      - '\a: alert, U+0007'
+      - '\b: backspace, U+0008'
+      - '\e and \E: escape, U+001B'
+      - '\f: form feed, U+000C'
+      - '\n: newline, U+000A'
+      - '\r: carriage return, U+000D'
+      - '\t: tab, U+0009'
+      - '\v: vertical tab, U+000B'
+      - '\\, \'', \" and \?: the character after the backslash'
+      - '\ and one to three octal digits, as many as follow: the character of that value'
+      - '\x and one or two hex digits, as many as follow: the character of that value'
+      - '\u and one to four hex digits, or \U and one to eight, as many as follow: the UTF-8 encoding of the character of that value'
+      - '\c and a letter: the character whose value is that of the letter modulo 32'
+  - name: faults
+    type: string[]
+    doc: "The ways in which a text written in the grammar at every other place stands outside it at one."
+    enum:
+      - "an unclosed quote: a ', \" or $' with no closing quote"
+      - "an unclosed substitution or expansion: a backtick, $(, ${, $((, <( or >( with no closing one"
+      - "an unclosed compound command: if with no fi, case with no esac, for, while or until with no done, ( with no ), { with no }, [[ with no ]], (( with no ))"
+      - "a stray word: then, elif, else, fi, do, done, esac, in, } or ]] where a command starts and no open compound command takes it, ) with no open (, or ! after a |"
+      - "a control operator missing an operand: |, && or || with no command before or after it, ; or & with no command before it, or ;; outside a case"
+      - "a redirection operator with no word after it"
+      - "an empty compound command: ( ), { }, [[ ]], or an if, for, while or until whose condition or body holds no command"

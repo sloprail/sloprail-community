@@ -1,5 +1,7 @@
 predicate: >-
-  A {@ent:line:Line} whose {@fld:line:Line.text} is not written in the {@ent:line:Grammar}
+  A {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar} at
+  every place but one, where it shows one of {@fld:line:Grammar.faults}, with quotes,
+  substitutions, expansions and compound commands nested in one another at most two deep,
   has a {@fld:line:Resolution.parseError} and no entry at all in
   {@fld:line:Resolution.invocations}.
 why: >-

@@ -1,5 +1,5 @@
 predicate: >-
-  A {@ent:words:Word} whose text starts with an unquoted `~name`, or with `~` when
+  A {@ent:words:Word} whose text holds a tilde prefix `~name`, or `~` alone when
   {@fld:line:Context.env} has no HOME, has no {@fld:words:Word.value}, and that tilde
   prefix is an entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is
   user-home.
