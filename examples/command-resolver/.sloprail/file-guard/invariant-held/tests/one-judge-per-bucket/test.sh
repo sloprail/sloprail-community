@@ -18,6 +18,12 @@ set -euo pipefail
 # 5. a case file belongs to the invariants whose marked tests name it: adding
 #    src/testdata/cases.jsonl judges demo/i04 alone again, and a case file beside the tests that
 #    no test names judges nothing.
+# 6. a case file belongs to the marked test that names it, not to every marked test of its file:
+#    src/many_test.go holds Test06 (sr:proves demo/i06, naming six.jsonl), Test07 (demo/i07,
+#    naming seven.jsonl) and one test marked for both demo/i08 and demo/i09 (naming
+#    shared.jsonl); a name above the first marker (top.jsonl) is every marked test's of the
+#    file. Editing seven.jsonl judges demo/i07 alone, shared.jsonl demo/i08 and demo/i09, and
+#    top.jsonl all four.
 rm -rf .sloprail; git init -q .
 mkdir -p .sloprail/file-guard src spec/demo/invariants
 cp -R "$SR_TEST_SLOPRAIL_DIR/_lib" .sloprail/
@@ -30,6 +36,23 @@ for i in 01 02 03 04 05 06 07 08 09 10 11 12; do
   printf 'package src\n\n// sr:proves demo/i%s\nfunc Test%s(t *testing.T) { if F%s; false { t.Fatal() } }\n' "$i" "$i" "$i" > "src/f${i}_test.go"
 done
 printf 'package src\n\n// sr:proves demo/i04\nfunc Test04(t *testing.T) { for c := range load("cases.jsonl") { if F04; c { t.Fatal() } } }\n' > src/f04_test.go
+mkdir -p src/testdata
+for n in six seven shared top; do printf '{"name":"%s"}\n' "$n" > "src/testdata/$n.jsonl"; done
+cat > src/many_test.go <<'GO'
+package src
+
+var top = "testdata/top.jsonl"
+
+// sr:proves demo/i06
+func Test06(t *testing.T) { for c := range load("testdata/six.jsonl") { if F06; c { t.Fatal() } } }
+
+// sr:proves demo/i07
+func Test07(t *testing.T) { for c := range load("testdata/seven.jsonl") { if F07; c { t.Fatal() } } }
+
+// sr:proves demo/i08
+// sr:proves demo/i09
+func Test0809(t *testing.T) { for c := range load("testdata/shared.jsonl") { if F08; c { t.Fatal() } } }
+GO
 git add -A && git -c user.name=t -c user.email=t@t commit -q -m base
 BASE=$(git rev-parse HEAD)
 SETUP=$(sr-test agent "$SR_TEST_CASE_DIR/agent.sh" --prompt "set up")
@@ -105,3 +128,15 @@ git checkout -q -b stray-cases "$BASE"
 mkdir -p src/testdata; printf '{}\n' > src/testdata/unnamed.jsonl; commit stray-cases
 run || dump "5: a case file no test names was refused"
 [ ! -s "$JUDGE_LOG" ] || dump "5: the judge ran for a case file no test names: $(cat "$JUDGE_LOG")"
+
+# 6. a case file is the marked test's that names it
+git checkout -q -b per-test "$BASE"
+printf '{"name":"seven2"}\n' >> src/testdata/seven.jsonl; commit seven
+run || dump "6: a changed case file of a sound test was refused"
+[ "$(calls)" = "demo/i07 |" ] || dump "6: expected demo/i07 alone, whose marked test names seven.jsonl, to be judged, the judge saw: $(calls)"
+printf '{"name":"shared2"}\n' >> src/testdata/shared.jsonl; commit shared
+run || dump "6: a changed shared case file was refused"
+[ "$(calls)" = "demo/i08 demo/i09 |" ] || dump "6: expected demo/i08 and demo/i09, marking the test that names shared.jsonl, to be judged, the judge saw: $(calls)"
+printf '{"name":"top2"}\n' >> src/testdata/top.jsonl; commit top
+run || dump "6: a changed case file named above the first marker was refused"
+[ "$(calls)" = "demo/i06 demo/i07 demo/i08 demo/i09 |" ] || dump "6: expected every invariant marked in many_test.go to be judged for top.jsonl, the judge saw: $(calls)"
