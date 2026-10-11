@@ -8,5 +8,5 @@ fields:
     doc: "The part as written in the word's text."
   - name: cause
     type: string
-    doc: "Why the part's value cannot be known without running something; not set when it can."
+    doc: "Why the part's value cannot be known without running something."
     enum: ["command-substitution", "process-substitution", "glob", "special-parameter", "parameter-operation", "arithmetic", "untracked-variable", "user-home", "placeholder"]
