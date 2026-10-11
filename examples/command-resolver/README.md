@@ -16,7 +16,7 @@ specified as invariants, built once with these rules and once without.
 | `gate/checks-judged` | a turn of the main session does not end while committed work since the rules has no verdict or a failing one; the refusal names the `sr-checks run` command (the engine's own Stop reports stored failures only, and there is no push or pull request here to ask for the rest) | 0 | written here |
 | `file-guard/structure.yaml` | where files may be written (`adr/file-placement`) | 0 | written here |
 | `file-guard/invariant-covered` | every invariant has marked code and a marked test | 0 | sloprail, changed to check every invariant instead of the touched ones |
-| `file-guard/invariant-held` | the marked code upholds its invariant and the marked tests prove it | 1 per bucket of 10 invariants touched, 10 at most | sloprail's `invariant-upheld` and `invariant-rigor`, merged |
+| `file-guard/invariant-held` | the marked code upholds its invariant and the marked tests prove it | 1 per batch: the bucket of 10 invariants holding a touched one, 10 at most; a verdict per invariant | sloprail's `invariant-upheld` and `invariant-rigor`, merged |
 | `gate/file-size`, `file-guard/file-size` | Go files at most 150 lines, tests 400 (`adr/file-size`) | 0 | harness-mocks |
 | `file-guard/module-coverage` | every Go file under `internal/` is in exactly one module | 0 | harness-mocks |
 | `file-guard/module-boundaries` | a module is imported only through its `api` | 0 | harness-mocks |

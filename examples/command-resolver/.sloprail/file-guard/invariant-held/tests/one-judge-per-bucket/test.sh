@@ -1,18 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
-# invariant-held over a committed range. The spec holds 12 invariants, demo/i01..i12: bucket b01 is
-# the first ten, b02 the last two. Each has code and a test at the base, except demo/i10 (neither).
-# 1. the judge decides both halves: code that does nothing is refused with the judge's reasoning,
-#    and so is a test that asserts nothing; the good neighbour of each passes.
-# 2. one call per bucket touched: changing code of demo/i02 and a test of demo/i11 is two calls,
-#    b01 naming its nine marked invariants (not unmarked demo/i10, not b02's), b02 naming its two.
-#    Changing demo/i02 alone is one call, and b02 is not judged again.
+# invariant-held over a committed range: one subject per invariant, judged in batches of its
+# bucket. The spec holds 12 invariants, demo/i01..i12: bucket b01 is the first ten, b02 the last
+# two. Each has code and a test at the base, except demo/i10 (neither). demo/i04's test names the
+# case file cases.jsonl.
+# 1. the judge decides both halves, per invariant: code that does nothing is refused with the
+#    judge's reasoning for that invariant, and so is a test that asserts nothing; the good
+#    neighbour of each passes.
+# 2. one subject per invariant touched, one call per batch: changing code of demo/i02 and
+#    demo/i05 and a test of demo/i11 is two calls, b01 naming demo/i02 and demo/i05 (no other
+#    invariant of b01), b02 naming demo/i11. The calls are handed `batch` ({id, subjects}), never
+#    `subject`, and each invariant gets its own verdict row in its batch. Changing demo/i02
+#    alone again is one call naming demo/i02: demo/i05 keeps its verdict.
 # 3. the prompt carries paths, not content: the spec file and the marked files are named, and
 #    neither the predicate's text nor the code's is in it.
 # 4. an unmarked Go file is not this rule's: no judge call.
-# 5. a case file is part of the tests beside it: adding src/testdata/cases.jsonl judges the buckets
-#    whose marked tests sit in src/ again (both here), and a case file beside no marked test
-#    judges nothing.
+# 5. a case file belongs to the invariants whose marked tests name it: adding
+#    src/testdata/cases.jsonl judges demo/i04 alone again, and a case file beside the tests that
+#    no test names judges nothing.
 rm -rf .sloprail; git init -q .
 mkdir -p .sloprail/file-guard src spec/demo/invariants
 cp -R "$SR_TEST_SLOPRAIL_DIR/_lib" .sloprail/
@@ -24,24 +29,29 @@ for i in 01 02 03 04 05 06 07 08 09 10 11 12; do
   printf 'package src\n\n// sr:invariant demo/i%s\nfunc F%s() { CODETEXT%s() }\n' "$i" "$i" "$i" > "src/f$i.go"
   printf 'package src\n\n// sr:proves demo/i%s\nfunc Test%s(t *testing.T) { if F%s; false { t.Fatal() } }\n' "$i" "$i" "$i" > "src/f${i}_test.go"
 done
+printf 'package src\n\n// sr:proves demo/i04\nfunc Test04(t *testing.T) { for c := range load("cases.jsonl") { if F04; c { t.Fatal() } } }\n' > src/f04_test.go
 git add -A && git -c user.name=t -c user.email=t@t commit -q -m base
 BASE=$(git rev-parse HEAD)
 SETUP=$(sr-test agent "$SR_TEST_CASE_DIR/agent.sh" --prompt "set up")
 while IFS= read -r kv; do export "$kv"; done < <(echo "$SETUP" | jq -er ".env[]")
-export JUDGE_LOG="$(mktemp)" PROMPT_LOG="$(mktemp)"
+export JUDGE_LOG="$(mktemp)" PROMPT_LOG="$(mktemp)" BATCH_LOG="$(mktemp)"
 export SR_CHECKS_JUDGE_MOCKS=$(jq -nc --arg p "$SR_TEST_CASE_DIR/judge-mock.sh" '{"file-guard/invariant-held/code-and-tests-hold": $p}')
 commit() { git add -A && git -c user.name=t -c user.email=t@t commit -q -m "$1"; }
-run() { : > "$SR_EVENTS_FILE"; : > "$JUDGE_LOG"; : > "$PROMPT_LOG"; sr-checks run --base "$BASE" --head HEAD >/dev/null 2>&1; }
-dump() { jq -c . "$SR_EVENTS_FILE" >&2; cat "$JUDGE_LOG" >&2; echo "$1" >&2; exit 1; }
+run() { : > "$SR_EVENTS_FILE"; : > "$JUDGE_LOG"; : > "$PROMPT_LOG"; : > "$BATCH_LOG"; sr-checks run --base "$BASE" --head HEAD >/dev/null 2>&1; }
+dump() { jq -c . "$SR_EVENTS_FILE" >&2; cat "$JUDGE_LOG" "$BATCH_LOG" >&2; echo "$1" >&2; exit 1; }
 refused() { jq -es --arg w "$1" 'any(.[]; .kind=="FileGuardChecked" and .rule=="invariant-held" and .outcome=="refused" and (.reason|contains($w)))' < "$SR_EVENTS_FILE" >/dev/null; }
 passed() { jq -es 'any(.[]; .kind=="FileGuardChecked" and .rule=="invariant-held" and .outcome=="passed") and (any(.[]; .kind=="FileGuardChecked" and .rule=="invariant-held" and .outcome=="refused") | not)' "$SR_EVENTS_FILE" >/dev/null; }
-B01="demo/i01 demo/i02 demo/i03 demo/i04 demo/i05 demo/i06 demo/i07 demo/i08 demo/i09 "
+calls() { sort "$JUDGE_LOG" | tr '\n' '|'; }
+# rows SUBJECT... — the judge rows of `show --json` for these subjects, as "subject batch status"
+rows() { sr-checks show --json --base "$BASE" --head HEAD | jq -r '[.[] | select(.rule == "file-guard/invariant-held" and (.kind | contains(":judge:")))
+  | "\(.subject) \(.batch // "-") \(.status)"] | sort | join("|")'; }
 
-# 1. both halves are judged
+# 1. both halves are judged, per invariant
 git checkout -q -b hollow "$BASE"
 printf 'package src\n\n// sr:invariant demo/i02\nfunc F02() {}\n' > src/f02.go; commit hollow-code
 if run; then dump "1: code that does nothing passed"; fi
 refused "MOCK code: src/f02.go does nothing" || dump "1: no refusal carrying the judge's reasoning about the code"
+refused "Failing: code." || dump "1: the refusal does not name the failing half"
 printf 'package src\n\n// sr:invariant demo/i02\nfunc F02() { CODETEXT02(); more() }\n' > src/f02.go; commit real-code
 run || dump "1: code that does the work was refused"
 passed || dump "1: no passed verdict for the working code"
@@ -53,18 +63,24 @@ printf 'package src\n\n// sr:proves demo/i03\nfunc Test03(t *testing.T) { if F03
 run || dump "1: an asserting test was refused"
 passed || dump "1: no passed verdict for the asserting test"
 
-# 2. one call per bucket touched
+# 2. one subject per invariant, one call per batch
 git checkout -q -b two "$BASE"
 printf 'package src\n\n// sr:invariant demo/i02\nfunc F02() { CODETEXT02(); two() }\n' > src/f02.go
+printf 'package src\n\n// sr:invariant demo/i05\nfunc F05() { CODETEXT05(); two() }\n' > src/f05.go
 printf 'package src\n\n// sr:proves demo/i11\nfunc Test11(t *testing.T) { if F11; true { t.Log() } }\n' > src/f11_test.go
-commit two-buckets
-run || dump "2: two sound buckets were refused"
-[ "$(sort "$JUDGE_LOG" | tr '\n' '|')" = "${B01}|demo/i11 demo/i12 |" ] || dump "2: expected one call for b01 (nine marked invariants) and one for b02, the judge saw: $(tr '\n' '|' < "$JUDGE_LOG")"
-printf 'package src\n\n// sr:invariant demo/i02\nfunc F02() { CODETEXT02(); three() }\n' > src/f02.go; commit one-bucket
+commit two-batches
+run || dump "2: three sound invariants were refused"
+[ "$(calls)" = "demo/i02 demo/i05 |demo/i11 |" ] || dump "2: expected one call for b01 naming demo/i02 and demo/i05 and one for b02 naming demo/i11, the judge saw: $(calls)"
+jq -es 'length == 2 and all(.[]; .subject == null)
+        and (map(.batch | {id, ids: [.subjects[].id]}) | sort_by(.id)
+             == [{id: "b01", ids: ["demo/i02", "demo/i05"]}, {id: "b02", ids: ["demo/i11"]}])' "$BATCH_LOG" >/dev/null ||
+  dump "2: the judge was not handed the two batches, without a subject: $(cat "$BATCH_LOG")"
+[ "$(rows)" = "demo/i02 b01 pass|demo/i05 b01 pass|demo/i11 b02 pass" ] || dump "2: expected one passing row per invariant in its batch, show has: $(rows)"
+printf 'package src\n\n// sr:invariant demo/i02\nfunc F02() { CODETEXT02(); three() }\n' > src/f02.go; commit one-invariant
 run || dump "2: the second change to demo/i02 was refused"
-[ "$(tr '\n' '|' < "$JUDGE_LOG")" = "${B01}|" ] || dump "2: expected b01 alone to be judged again, the judge saw: $(tr '\n' '|' < "$JUDGE_LOG")"
+[ "$(calls)" = "demo/i02 |" ] || dump "2: expected demo/i02 alone to be judged again, the judge saw: $(calls)"
 
-# 3. paths, not content (the prompt of the b01 call just made)
+# 3. paths, not content (the prompt of the call just made)
 grep -q '<invariant id="demo/i02" spec="spec/demo/invariants/i02.yaml">' "$PROMPT_LOG" || dump "3: the prompt does not name demo/i02's spec file"
 grep -q '<code path="src/f02.go"/>' "$PROMPT_LOG" || dump "3: the prompt does not name the marked code"
 grep -q '<test path="src/f02_test.go"/>' "$PROMPT_LOG" || dump "3: the prompt does not name the marked test"
@@ -77,12 +93,15 @@ printf 'package src\n\nfunc Helper() {}\n' > src/helper.go; commit unmarked
 run || dump "4: an unmarked file was refused"
 [ ! -s "$JUDGE_LOG" ] || dump "4: the judge ran on an unmarked file: $(cat "$JUDGE_LOG")"
 
-# 5. a case file belongs to the tests beside it
+# 5. a case file belongs to the invariants whose marked tests name it
 git checkout -q -b cases "$BASE"
 mkdir -p src/testdata; printf '{"name":"one","in":"a","want":"a"}\n' > src/testdata/cases.jsonl; commit cases
-run || dump "5: a case file beside sound tests was refused"
-[ "$(sort "$JUDGE_LOG" | tr '\n' '|')" = "${B01}|demo/i11 demo/i12 |" ] || dump "5: expected both buckets with tests in src/ to be judged, the judge saw: $(tr '\n' '|' < "$JUDGE_LOG")"
+run || dump "5: a case file named by a sound test was refused"
+[ "$(calls)" = "demo/i04 |" ] || dump "5: expected demo/i04 alone, whose test names the case file, to be judged, the judge saw: $(calls)"
+printf '{"name":"two","in":"b","want":"b"}\n' >> src/testdata/cases.jsonl; commit more-cases
+run || dump "5: a changed case file was refused"
+[ "$(calls)" = "demo/i04 |" ] || dump "5: expected demo/i04 to be judged again for its changed cases, the judge saw: $(calls)"
 git checkout -q -b stray-cases "$BASE"
-mkdir -p other/testdata; printf '{}\n' > other/testdata/cases.jsonl; commit stray-cases
-run || dump "5: a case file beside no marked test was refused"
-[ ! -s "$JUDGE_LOG" ] || dump "5: the judge ran for a case file beside no marked test: $(cat "$JUDGE_LOG")"
+mkdir -p src/testdata; printf '{}\n' > src/testdata/unnamed.jsonl; commit stray-cases
+run || dump "5: a case file no test names was refused"
+[ ! -s "$JUDGE_LOG" ] || dump "5: the judge ran for a case file no test names: $(cat "$JUDGE_LOG")"
