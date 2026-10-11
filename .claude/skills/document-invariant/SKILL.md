@@ -61,6 +61,25 @@ target must already exist.
 - ✅ `Every {@ent:order:Order} has exactly one {@ent:notification:Notification}.` (a relationship rule)
 - ❌ `An inactive product is hidden from customers.` (no typed anchor — name the field: `{@fld:catalog:Product.active}`)
 
+### An invariant is concrete: its inputs are bounded and no word can be stretched
+
+A predicate covers a space of inputs a reader can enumerate: a named grammar, standard, enum or
+listed set, defined once in the spec (an entity, or a field's `constraint_expr`) and referenced,
+never "any valid X", "something that may …", "such as" or "etc." over an open-ended space. Every
+term it uses is defined by the spec or by the standard it names, every list in it is closed, and
+every "every", "after" or "never" stops where another invariant takes over. The test: for a
+given input, can two readers agree whether the predicate covers it and what it requires? If a
+judge can always build a new, more exotic input the wording seems to reach, the invariant never
+converges: in one eval, "a Line whose text is valid shell syntax has no parseError" was refused
+in 24 of 31 judged rounds, nearly each time for a new line (`export A &>out B`, `echo ${x.$(a)}`,
+`declare -a a=(x\;y)`), because "valid shell syntax" named no grammar.
+
+- ❌ `A {@ent:line:Line} whose {@fld:line:Line.text} is valid shell syntax has no {@fld:line:Resolution.parseError}.` (valid in which shell? bash accepts lines no parser reads alike)
+- ✅ `A {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar} has no {@fld:line:Resolution.parseError}.` (the Grammar entity names POSIX.1-2017 XCU 2 plus a closed list of bash extensions)
+- ❌ `A {@ent:variables:Variable} has no value after something the line cannot follow may have changed it: read, arithmetic naming it, …` ("something … may have" and "arithmetic" reach every arithmetic context bash has)
+- ❌ `After a call of a function whose body contains a cd, …` ("contains a cd" reaches `$c /a`, `{cd,/a}`, `eval 'cd /a'`)
+- ✅ `After a call of a function whose body yields an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, …` (decided by a field the spec defines)
+
 ### A single-value field bound is a constraint_expr, not an invariant
 
 A length, range, format, or enum membership on one field's own value lives on the field
