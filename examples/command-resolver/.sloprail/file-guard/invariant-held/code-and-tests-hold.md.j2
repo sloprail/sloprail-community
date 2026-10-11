@@ -78,6 +78,12 @@ failure path, one item each; plus one item per marked test, for whether it
 proves the statement. Then find, for each condition, the test that exercises
 it.
 
+The checklist comes from the predicate's own conditions, never from the code's paths: an edge
+is an edge of a condition the predicate names, not a branch, helper or combination the code
+happens to have. A counterexample to the code is the code half's finding; it is a missing
+test only when it is also a condition, edge or failure path of the predicate that no test
+exercises.
+
 ## Your reasoning
 
 Pass or fail, one block per invariant, headed by its id:
