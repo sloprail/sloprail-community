@@ -1,6 +1,6 @@
 predicate: >-
   A {@ent:words:Word} whose text contains a process substitution has no
-  {@fld:words:Word.value}, and process-substitution is among the causes
-  {@fld:words:Word.unknown} chooses from.
+  {@fld:words:Word.value}, and the substitution is a part whose cause is
+  process-substitution.
 why: >-
   A made-up descriptor path would be reported as an argument.

@@ -1,5 +1,5 @@
 predicate: >-
-  The directory a `cd` with no operand sets is the {@fld:variables:Variable.value} of
-  HOME there, and none when HOME has none.
+  The directory a `cd` with no operand sets is the {@fld:variables:Variable.value} of HOME
+  there, and it sets no directory when HOME has no {@fld:variables:Variable.value} there.
 why: >-
   A command would be reported where the line started although it moved home.

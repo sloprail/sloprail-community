@@ -1,6 +1,6 @@
 predicate: >-
   A {@ent:words:Word} whose text starts with an unquoted `~name`, or with `~` when
-  {@fld:line:Context.env} has no HOME, has no {@fld:words:Word.value}, and user-home is
-  among the causes {@fld:words:Word.unknown} chooses from.
+  {@fld:line:Context.env} has no HOME, has no {@fld:words:Word.value}, and that tilde
+  prefix is a part whose cause is user-home.
 why: >-
   Another user's home directory would be guessed.

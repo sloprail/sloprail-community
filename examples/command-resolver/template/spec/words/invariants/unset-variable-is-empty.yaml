@@ -1,9 +1,10 @@
 predicate: >-
-  A {@ent:variables:Variable} that is not in {@fld:line:Context.env}, not assigned
-  before it, in its {@ent:line:Scope} or one enclosing it, outside a function body,
-  through a call of a function defined on the line or in the text of a current-shell
-  {@ent:command-strings:CommandString}, other than as a command's prefix, and that
-  nothing listed in variables/changed-variable-loses-its-value has changed before it,
-  has the empty string as its {@fld:variables:Variable.value} there.
+  A {@ent:variables:Variable} that is not in {@fld:line:Context.env}, not assigned before
+  a reference to it, in the reference's {@ent:line:Scope} or one enclosing it, outside a
+  function body, through a call of a function defined on the line or in the text of a
+  current-shell {@ent:command-strings:CommandString}, other than as a command's prefix,
+  and that nothing listed in variables/changed-variable-loses-its-value has changed before
+  the reference, has the empty string as its {@fld:variables:Variable.value} at the
+  reference.
 why: >-
   A word bash expands to nothing would be reported as unknown.

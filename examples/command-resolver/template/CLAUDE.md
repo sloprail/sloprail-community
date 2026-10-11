@@ -16,8 +16,9 @@ add, change or remove a file under it. `config/`, `adr/` and this file are fixed
 - `config/builtin.yaml` is the built-in table of programs the tool looks through.
 - `spec/line/entities/Grammar.yaml` is the shell language the tool reads: POSIX
   shell plus a closed list of bash constructs. A `Line` is text written in it, or
-  text bash refuses as a syntax error. Of any other text the spec requires only
-  what is said below for every line: exit 0, execute nothing.
+  text outside it on which `bash -n` of bash 5.2 reports a syntax error. Of any
+  other text the spec requires only what is said below for every line: exit 0,
+  execute nothing.
 
 The tool is finished when every invariant holds. There is no other description
 of its behaviour: where the spec is silent, the tool does the least that keeps

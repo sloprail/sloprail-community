@@ -1,5 +1,5 @@
 predicate: >-
-  A function body is resolved where it is defined, starting from the
+  A function body is resolved once, where the function is defined, starting from the
   {@fld:line:Scope.cwd} there, and the Scope.cwd after the definition is the one before
   it.
 why: >-
