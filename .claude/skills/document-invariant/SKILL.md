@@ -75,10 +75,21 @@ in 24 of 31 judged rounds, nearly each time for a new line (`export A &>out B`, 
 `declare -a a=(x\;y)`), because "valid shell syntax" named no grammar.
 
 - ❌ `A {@ent:line:Line} whose {@fld:line:Line.text} is valid shell syntax has no {@fld:line:Resolution.parseError}.` (valid in which shell? bash accepts lines no parser reads alike)
-- ✅ `A {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar} has no {@fld:line:Resolution.parseError}.` (the Grammar entity names POSIX.1-2017 XCU 2 plus a closed list of bash extensions)
+- ✅ `A {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar}, nested at most two deep, has no {@fld:line:Resolution.parseError}.` (the Grammar entity names POSIX.1-2017 XCU 2 plus a closed list of bash extensions, each in a given form)
 - ❌ `A {@ent:variables:Variable} has no value after something the line cannot follow may have changed it: read, arithmetic naming it, …` ("something … may have" and "arithmetic" reach every arithmetic context bash has)
 - ❌ `After a call of a function whose body contains a cd, …` ("contains a cd" reaches `$c /a`, `{cd,/a}`, `eval 'cd /a'`)
 - ✅ `After a call of a function whose body yields an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, …` (decided by a field the spec defines)
+
+A named grammar is bounded only when the spec lists what it covers: a predicate or entity that
+defers to a reference implementation ("as bash does", "by bash's escapes", "what `bash -n`
+rejects") reaches every corner of that implementation's source, and a judge who cannot run it
+argues each one from memory. A predicate about the grammar's sentences as such (every one of
+them read, every text outside it refused) also limits how deep they nest or combine.
+
+- ❌ `` A `$'…'` stretch contributes its decoded text to {@fld:words:Word.value}, by bash's ANSI-C escapes. `` (the escape set is whatever bash's source does)
+- ✅ `` In a `$'…'` stretch, each escape of {@fld:line:Grammar.ansiCEscapes} contributes the character its entry names to {@fld:words:Word.value}, and a backslash that starts none of them contributes itself. `` (a closed table in the spec)
+- ❌ `A {@ent:line:Line} that is not written in the {@ent:line:Grammar} has a {@fld:line:Resolution.parseError}.` (every text bash's parser rejects, at any depth)
+- ✅ `A {@ent:line:Line} written in the {@ent:line:Grammar} but at one place, where it shows one of {@fld:line:Grammar.faults}, nested at most two deep, has a {@fld:line:Resolution.parseError}.` (a closed list of faults, a bounded depth)
 
 ### A single-value field bound is a constraint_expr, not an invariant
 
