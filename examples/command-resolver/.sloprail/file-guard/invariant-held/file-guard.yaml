@@ -33,3 +33,6 @@ checks:
     # A size above the default: on the same commit it named six tests that could not fail for
     # the reason their invariant gives, where the default size (size-md) named one.
     model: size-xl
+    # A batch of ten invariants answered as a per-invariant table took up to 15 minutes at this
+    # size in a real build; the engine's default of 10 cut half of the first round off unjudged.
+    timeout: 30m
