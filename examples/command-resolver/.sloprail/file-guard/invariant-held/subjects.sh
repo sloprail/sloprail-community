@@ -34,9 +34,10 @@ if [ "${#tpaths[@]}" -gt 0 ] && [ "${#pats[@]}" -gt 0 ]; then
   [ "$rc" -le 1 ] || refuse_error "the marked tests could not be searched for the case files they name: $out"
   named="$(printf '%s\n' "$out" | jq -Rnc '[inputs | select(length > 0) | capture("^(?<t>.*):(?<n>[^:]*)$")] | unique')"
 fi
-arr="$(printf '%s' "$payload" | jq -c --argjson b "$BUCKETS" --argjson code "$code" --argjson tests "$tests" \
-    --argjson cases "$cases" --argjson named "$named" '
+arr="$(printf '%s' "$payload" | jq -c --slurpfile b <(printf '%s' "$BUCKETS") --slurpfile code <(printf '%s' "$code") \
+    --slurpfile tests <(printf '%s' "$tests") --slurpfile cases <(printf '%s' "$cases") --slurpfile named <(printf '%s' "$named") '
   def dir: if test("/") then sub("/[^/]*$"; "") else "" end;
+  $b[0] as $b | $code[0] as $code | $tests[0] as $tests | $cases[0] as $cases | $named[0] as $named |
   [.changeset.files[] | {path, ids: [((.newMarkers // []) + (.oldMarkers // []))[]
      | select(.kind == "invariant" or .kind == "proves") | .fqn]}] as $cf
   | [$b[] | .id as $id | .path as $spec
@@ -52,5 +53,5 @@ arr="$(printf '%s' "$payload" | jq -c --argjson b "$BUCKETS" --argjson code "$co
   refuse_error "the invariants the change touches could not be worked out"
 # sub_finish keeps only {id, files, fingerprint}: put each subject's batch back on it
 out="$(sub_finish unclaimed "$arr")" || exit $?
-jq -c --argjson a "$arr" '($a | map({(.id): .batch}) | add // {}) as $bt
+jq -c --slurpfile a <(printf '%s' "$arr") '($a[0] | map({(.id): .batch}) | add // {}) as $bt
   | map(if $bt[.id] then . + {batch: $bt[.id]} else . end)' <<<"$out"

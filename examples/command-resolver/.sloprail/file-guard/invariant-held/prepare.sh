@@ -23,7 +23,9 @@ case "$(subject_id)" in
   *) refuse_error "invariant-held puts its subjects in batches, and this sloprail handed one alone; it needs a sloprail with batched file-guards" ;;
 esac
 want="$(cs_json '[(.batch.subjects // [])[].id]')"
-listed="$(jq -nc --argjson b "$BUCKETS" --argjson code "$code" --argjson tests "$tests" --argjson want "$want" '
+listed="$(jq -nc --slurpfile b <(printf '%s' "$BUCKETS") --slurpfile code <(printf '%s' "$code") \
+    --slurpfile tests <(printf '%s' "$tests") --slurpfile want <(printf '%s' "$want") '
+  $b[0] as $b | $code[0] as $code | $tests[0] as $tests | $want[0] as $want |
   [$b[] | select(.id as $id | $want | index($id)) | .id as $id
    | {id, path,
       code: ([$code[] | select(.q == $id) | .p] | unique),
@@ -31,4 +33,4 @@ listed="$(jq -nc --argjson b "$BUCKETS" --argjson code "$code" --argjson tests "
   | {invariants: map(select((.code + .tests) | length > 0)),
      unmarked: map(select((.code + .tests) | length == 0) | .id)}')"
 if [ "$(jq '.invariants | length' <<<"$listed")" -eq 0 ]; then echo '{"skip": true}'; exit 0; fi
-jq -n -c --argjson l "$listed" '{additionalContext: $l}'
+printf '%s' "$listed" | jq -c '{additionalContext: .}'
