@@ -1,5 +1,6 @@
 predicate: >-
-  When {@fld:stdin:HereDocument.stripsTabs} is true, the leading tabs of every body line,
-  and only tabs, are absent from {@fld:line:Invocation.stdin}.
+  When the here-document that is the command's last redirection of descriptor 0 has
+  {@fld:stdin:HereDocument.stripsTabs} true, the leading tabs of every body line, and
+  only tabs, are absent from {@fld:line:Invocation.stdin}.
 why: >-
   Indentation the shell removes would be reported as input.

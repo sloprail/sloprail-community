@@ -1,6 +1,7 @@
 predicate: >-
-  A {@ent:words:Word} whose text references, outside an arithmetic expansion and without
-  an operator, a positional or special parameter (`$0` to `$9`, `${10}` and above, `$@`,
-  `$*`, `$#`, `$?`, `$-`, `$$`, `$!`) has {@fld:words:Word.unknown} special-parameter.
+  A {@ent:words:Word} whose text references, without an operator, a positional or
+  special parameter (`$0` to `$9`, `${10}` and above, `$@`, `$*`, `$#`, `$?`, `$-`,
+  `$$`, `$!`) has no {@fld:words:Word.value}, and special-parameter is among the causes
+  {@fld:words:Word.unknown} chooses from.
 why: >-
   A value only the running shell has would be guessed.

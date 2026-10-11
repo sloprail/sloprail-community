@@ -5,7 +5,8 @@ predicate: >-
   defined on the line; a current-shell {@ent:command-strings:CommandString}; the end of
   the `&&` or `||` list in which the cd is not the first command; the end of the `if`,
   `case`, `while`, `until` or `for` whose condition, branch or body holds it; the end of
-  the function body holding it. The right side R of `cd D || R` is not among them, and
-  the cd's own cwd is the directory in force before it.
+  the function body holding it. The right side R of `cd D || R`, and a program a
+  {@ent:config:Wrapper} runs with one of its {@fld:config:Wrapper.directoryOptions}, are
+  not among them, and the cd's own cwd is the directory in force before it.
 why: >-
   A command would be reported in the directory it left, or cd in the one it is entering.

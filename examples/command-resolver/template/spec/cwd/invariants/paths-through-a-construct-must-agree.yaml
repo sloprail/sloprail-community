@@ -1,6 +1,7 @@
 predicate: >-
   After an `if`, `case`, `while`, `until` or `for`, {@fld:line:Invocation.cwd} is
   present only when every path through it, running no branch or zero iterations
-  included, ends in the same directory.
+  included, ends in the same directory, a program a {@ent:config:Wrapper} runs with one
+  of its {@fld:config:Wrapper.directoryOptions} excepted.
 why: >-
   One branch's directory would be reported for all.

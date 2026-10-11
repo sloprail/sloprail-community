@@ -3,6 +3,8 @@ predicate: >-
   that list in its {@ent:line:Scope}, and in scopes started there after it, have no
   {@fld:line:Invocation.cwd} unless the cd sets the directory already in force, except
   those that a later `cd` to a known absolute path, or a later `cd` with no operand
-  while HOME is set, precedes in their own Scope or one enclosing it.
+  while HOME is set, precedes in their own Scope or one enclosing it; a program a
+  {@ent:config:Wrapper} runs with one of its {@fld:config:Wrapper.directoryOptions} is
+  not among them.
 why: >-
   A cd that may not have run would be reported as certain.

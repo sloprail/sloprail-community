@@ -1,5 +1,6 @@
 predicate: >-
   A {@ent:words:Word} that references a {@ent:variables:Variable} with no
-  {@fld:variables:Variable.value} has {@fld:words:Word.unknown} untracked-variable.
+  {@fld:variables:Variable.value} has no {@fld:words:Word.value}, and untracked-variable
+  is among the causes {@fld:words:Word.unknown} chooses from.
 why: >-
   The context's old value, or an empty string, would stand in for a changed one.

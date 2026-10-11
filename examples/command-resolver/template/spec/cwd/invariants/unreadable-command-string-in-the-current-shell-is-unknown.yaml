@@ -5,6 +5,7 @@ predicate: >-
   {@ent:line:Scope}, and of scopes started there after it, have no
   {@fld:line:Invocation.cwd}, except those that a later `cd` to a known absolute path,
   or a later `cd` with no operand while HOME is set, precedes in their own Scope or one
-  enclosing it.
+  enclosing it; a program a {@ent:config:Wrapper} runs with one of its
+  {@fld:config:Wrapper.directoryOptions} is not among them.
 why: >-
   A move hidden in an unreadable eval would go unreported.

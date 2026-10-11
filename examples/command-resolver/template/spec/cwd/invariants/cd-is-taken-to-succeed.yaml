@@ -1,5 +1,0 @@
-predicate: >-
-  In `cd D; X` and `cd D && X`, where D has a {@fld:words:Word.value}, X has the
-  {@fld:line:Invocation.cwd} the cd sets, as though the cd succeeded.
-why: >-
-  Every command after a cd would be unknown.

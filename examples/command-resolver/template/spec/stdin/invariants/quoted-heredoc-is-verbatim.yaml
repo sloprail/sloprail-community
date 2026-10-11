@@ -1,6 +1,7 @@
 predicate: >-
-  When {@fld:stdin:HereDocument.quotedDelimiter} is true, no expansion is carried out in
-  the command's {@fld:line:Invocation.stdin}: every `$`, backtick and backslash of
+  When the here-document that is the command's last redirection of descriptor 0 has
+  {@fld:stdin:HereDocument.quotedDelimiter} true, no expansion is carried out in the
+  command's {@fld:line:Invocation.stdin}: every `$`, backtick and backslash of its
   {@fld:stdin:HereDocument.body} is in it as written.
 why: >-
   Text the shell passes untouched would be reported altered.

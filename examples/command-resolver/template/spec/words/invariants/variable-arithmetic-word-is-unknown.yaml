@@ -1,5 +1,6 @@
 predicate: >-
   A {@ent:words:Word} whose text holds an arithmetic expansion that names a variable has
-  {@fld:words:Word.unknown} arithmetic.
+  no {@fld:words:Word.value}, and arithmetic is among the causes
+  {@fld:words:Word.unknown} chooses from.
 why: >-
   A computed value would be guessed.
