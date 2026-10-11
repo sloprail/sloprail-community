@@ -9,6 +9,9 @@ setup: setup.sh
 variants:
   sloprail: {}
   bare: {noSloprail: true}
+  review-whole: {noSloprail: true}
+  review-batched: {noSloprail: true}
+  review-once: {noSloprail: true}
 freshMachine: true
 harnesses: [claude]
 model: size-sm

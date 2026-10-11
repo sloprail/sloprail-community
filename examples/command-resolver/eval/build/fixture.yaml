@@ -2,10 +2,21 @@ description: >
   Build the whole command resolver from its specification: 13 entities and 125
   invariants, an empty Go repository, one prompt, no user to ask.
 
-  One fixture, two variants, prepared by ../../prepare.sh from SR_EVAL_VARIANT:
+  One fixture, five variants, prepared by ../../prepare.sh from SR_EVAL_VARIANT:
   `sloprail` (the default) starts from template/ plus this example's rules;
   `bare` starts from template/ alone. CLAUDE.md, spec/, config/ and adr/ are the
   same in both.
+
+  Three more ask whether a reviewer alone is enough. Each is `bare` plus review/
+  (the judges' rubrics word for word and the scripted rules in words, as a
+  reviewer's instructions) and a last section of CLAUDE.md telling the builder
+  to have its work reviewed by read-only sub-agents of its own model and effort:
+  `review-whole`, one reviewer reads everything, again after every fix, until it
+  finds nothing; `review-batched`, one reviewer per ten invariants, one for the
+  modules and one for the mechanical rules, each launched again when its
+  material changed, until all are clean; `review-once`, one reviewer reads
+  everything once and its findings are fixed. No plugin, no rules, nothing
+  outside the session checks the work.
 
   freshMachine: the agent's machine has no sr* binaries, jq or yq until the
   plugin's own install.sh puts them there at session start, the way a newcomer
@@ -21,6 +32,9 @@ setup: ../../prepare.sh
 variants:
   sloprail: {}
   bare: {noSloprail: true}
+  review-whole: {noSloprail: true}
+  review-batched: {noSloprail: true}
+  review-once: {noSloprail: true}
 freshMachine: true
 harnesses: [claude]
 model: size-sm
