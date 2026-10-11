@@ -1,6 +1,7 @@
 predicate: >-
   After `export NAME=value`, every later {@ent:line:Invocation} of the same
   {@ent:line:Scope}, and of scopes started later from it, has NAME in its
-  {@fld:line:Invocation.env}.
+  {@fld:line:Invocation.env}, up to the next `unset NAME` or `export -n NAME` of that
+  Scope.
 why: >-
   A variable exported one statement earlier would be missing.

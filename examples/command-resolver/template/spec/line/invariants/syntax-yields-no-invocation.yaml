@@ -1,5 +1,6 @@
 predicate: >-
   A bare assignment, a redirection with no command, a `[[ … ]]` test, a `(( … ))`
-  expression and the shell's keywords yield no {@ent:line:Invocation}.
+  expression and the reserved words of the {@ent:line:Grammar} yield no
+  {@ent:line:Invocation}.
 why: >-
   Shell syntax would be reported as a program.

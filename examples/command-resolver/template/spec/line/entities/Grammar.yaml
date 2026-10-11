@@ -1,0 +1,27 @@
+doc: >-
+  The shell language a Line is read in: the Shell Command Language of the standard, with the
+  bash constructs listed in extensions added and read as bash reads them, and nothing else.
+  `((` and `$((` always open arithmetic, and an arithmetic expression is one of the standard's
+  section 2.6.4 (integer constants, variables, and the C operators it lists, `++` and `--`
+  excluded). Every other bash construct is outside it, `&>`, `|&`, `;&`, `;;&`, `coproc`,
+  `select`, `function`, associative arrays, `$"…"` and `**` among them.
+fields:
+  - name: standard
+    type: string
+    doc: "The standard whose language the grammar starts from."
+    enum: ["POSIX.1-2017 XCU chapter 2, Shell Command Language"]
+  - name: extensions
+    type: string[]
+    doc: "The bash constructs the grammar adds to the standard's language."
+    enum:
+      - "$'…' ANSI-C quoting"
+      - "brace expansion: {a,b} and {1..3}"
+      - "here-strings: <<< word"
+      - "process substitution: <(…) and >(…)"
+      - "[[ … ]] conditional commands"
+      - "(( … )) arithmetic commands"
+      - "timed pipelines: time [-p] pipeline"
+      - "indexed arrays: name=(…), name[i]=…, ${name[i]}, ${name[@]}"
+      - "appending assignments: name+=…"
+      - "declarations: local, declare and typeset"
+      - "parameter operations: ${name/pattern/string}, ${name//pattern/string}, ${name:offset:length}"

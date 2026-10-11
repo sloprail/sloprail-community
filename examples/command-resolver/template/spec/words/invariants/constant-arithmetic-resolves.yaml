@@ -1,5 +1,6 @@
 predicate: >-
-  An arithmetic expansion made only of integer constants and operators contributes its
-  decimal result to {@fld:words:Word.value}.
+  An arithmetic expansion whose expression holds only integer constants and operators,
+  in which every value lies within the signed 64-bit range and nothing is divided by
+  zero, contributes its decimal result to {@fld:words:Word.value}.
 why: >-
   A value the line fixes would be reported as unknown.

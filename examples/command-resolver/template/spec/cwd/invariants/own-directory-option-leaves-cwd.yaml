@@ -1,5 +1,5 @@
 predicate: >-
-  A program's own directory option (`git -C`, `make -C`, `tar -C`, `npm --prefix`) does
-  not change its {@fld:line:Invocation.cwd}.
+  No option of a program changes its own {@fld:line:Invocation.cwd}, its directory
+  options (`git -C`, `make -C`, `tar -C`, `npm --prefix`) included.
 why: >-
   The directory the shell starts the program in would be misreported.

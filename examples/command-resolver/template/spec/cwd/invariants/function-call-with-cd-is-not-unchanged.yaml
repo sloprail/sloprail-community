@@ -1,5 +1,7 @@
 predicate: >-
-  After a call of a function whose body contains a `cd`, {@fld:line:Invocation.cwd} is the
-  body's resulting directory or absent, never the directory before the call.
+  When the body of a function defined on the line yields an {@ent:line:Invocation} whose
+  {@fld:line:Invocation.bin} is `cd`, the Invocation that directly follows a call of
+  that function in the call's {@ent:line:Scope} has the directory the body ends in as
+  its {@fld:line:Invocation.cwd}, or no cwd.
 why: >-
   A real move would go unreported.

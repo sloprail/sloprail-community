@@ -1,5 +1,5 @@
 predicate: >-
-  A {@ent:line:Line} whose {@fld:line:Line.text} is not valid shell syntax has a
+  A {@ent:line:Line} whose {@fld:line:Line.text} bash refuses as a syntax error has a
   {@fld:line:Resolution.parseError} and no entry in {@fld:line:Resolution.invocations},
   not even for the statements before the error.
 why: >-

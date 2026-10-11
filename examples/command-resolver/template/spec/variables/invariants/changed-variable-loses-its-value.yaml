@@ -1,7 +1,13 @@
 predicate: >-
-  A {@ent:variables:Variable} has no {@fld:variables:Variable.value} after something the
-  line cannot follow may have changed it: `read`, `+=`, an array assignment, a `for` loop
-  naming it, arithmetic naming it, `source`, or a current-shell
-  {@ent:command-strings:CommandString} with no text.
+  A {@ent:variables:Variable} NAME has no {@fld:variables:Variable.value} after any of
+  these in its {@ent:line:Scope}, up to the next plain `NAME=value` assignment: an
+  {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is `read` with NAME as an
+  operand or as the value of `-a`, or with no operand when NAME is REPLY; one whose bin
+  is `.` or `source`; one whose bin is `let` with an argument naming NAME; a `NAME+=…`
+  assignment that is not a command's prefix; an assignment of an array or of an array
+  element to NAME; a `for NAME` loop; a `$((…))` or `((…))` whose expression names NAME;
+  a current-shell {@ent:command-strings:CommandString} with no
+  {@fld:command-strings:CommandString.text}; a call of a function defined on the line
+  whose body holds one of these.
 why: >-
   A value that no longer holds would be reported.

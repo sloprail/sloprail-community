@@ -1,5 +1,7 @@
 predicate: >-
-  After an assignment that may or may not have run, a {@ent:variables:Variable} has a
-  {@fld:variables:Variable.value} only when every path leaves it with the same one.
+  After an `if`, `case`, `while`, `until` or `for`, or an `&&` or `||` list, that
+  assigns a {@ent:variables:Variable} on some path, the Variable has a
+  {@fld:variables:Variable.value} only when every path through it, running no branch,
+  zero iterations or one side of the list included, leaves it with the same one.
 why: >-
   One branch's value would be reported for all.

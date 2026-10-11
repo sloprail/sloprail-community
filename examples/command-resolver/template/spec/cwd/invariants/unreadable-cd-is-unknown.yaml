@@ -1,5 +1,6 @@
 predicate: >-
   After a `cd` whose operand has no {@fld:words:Word.value}, a `pushd` or a `popd`, the
-  later Invocations of the {@ent:line:Scope} have no {@fld:line:Invocation.cwd}.
+  later Invocations of the {@ent:line:Scope} have no {@fld:line:Invocation.cwd}, up to
+  the next `cd` whose destination is a known absolute path.
 why: >-
   A command would be reported where it no longer is.

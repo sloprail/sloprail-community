@@ -1,5 +1,8 @@
 predicate: >-
-  {@fld:line:Invocation.stdin} is absent when the command's input is a pipe, a file, a
-  duplicated or closed descriptor, or nothing the line states.
+  {@fld:line:Invocation.stdin} is absent unless a here-document or here-string is
+  written on the command or on a group, subshell or compound command enclosing it, and
+  absent when the command's last redirection of descriptor 0 is from a file or a
+  descriptor or closes it, or when the command is a pipeline stage after the first with
+  no redirection of descriptor 0 of its own.
 why: >-
   Input the line does not contain would be invented.

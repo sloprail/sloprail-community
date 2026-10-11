@@ -2,6 +2,7 @@ predicate: >-
   After a {@ent:command-strings:CommandString} with no
   {@fld:command-strings:CommandString.text} whose program has
   {@fld:config:CommandStringProgram.currentShell} true, the later Invocations of the
-  {@ent:line:Scope} have no {@fld:line:Invocation.cwd}.
+  {@ent:line:Scope} have no {@fld:line:Invocation.cwd}, up to the next `cd` whose
+  destination is a known absolute path.
 why: >-
   A move hidden in an unreadable eval would go unreported.

@@ -1,5 +1,5 @@
 predicate: >-
-  A {@ent:line:Line} whose {@fld:line:Line.text} is valid shell syntax has no
-  {@fld:line:Resolution.parseError}.
+  A {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar}
+  has no {@fld:line:Resolution.parseError}.
 why: >-
   A readable line would be flagged as unreadable.

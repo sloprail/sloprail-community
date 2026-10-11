@@ -1,5 +1,8 @@
 predicate: >-
-  A {@ent:words:Word} whose text applies a parameter operator (`${X:-d}`, `${#X}`,
-  `${X%p}`) has {@fld:words:Word.unknown} parameter-operation.
+  A {@ent:words:Word} whose text holds, outside an arithmetic expansion, a parameter
+  expansion with an operator of POSIX.1-2017 section 2.6.2 (`:-`, `-`, `:=`, `=`, `:?`,
+  `?`, `:+`, `+`, `#` for the length, `%`, `%%`, `#`, `##`) or of the
+  {@fld:line:Grammar.extensions} (`/`, `//`, `:offset:length`) has
+  {@fld:words:Word.unknown} parameter-operation, whichever parameter it applies to.
 why: >-
   A transformed value would be reported without having been computed.
