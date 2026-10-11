@@ -1,6 +1,7 @@
 predicate: >-
   In a {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar},
-  every simple command whose program word is not the empty string yields exactly one entry
+  with quotes, substitutions, expansions and compound commands nested in one another at
+  most two deep, every simple command whose program word is not the empty string yields exactly one entry
   of {@fld:line:Resolution.invocations} whose {@fld:line:Invocation.argv} starts at its
   own program word, wherever it stands: in a pipeline, an `&&`, `||` or `;` list, a
   subshell, a brace group, a background job, after `!` or `time`, in the condition or any

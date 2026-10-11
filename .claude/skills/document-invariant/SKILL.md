@@ -83,8 +83,8 @@ in 24 of 31 judged rounds, nearly each time for a new line (`export A &>out B`, 
 A named grammar is bounded only when the spec lists what it covers: a predicate or entity that
 defers to a reference implementation ("as bash does", "by bash's escapes", "what `bash -n`
 rejects") reaches every corner of that implementation's source, and a judge who cannot run it
-argues each one from memory. A predicate about the grammar's sentences as such (every one of
-them read, every text outside it refused) also limits how deep they nest or combine.
+argues each one from memory. A predicate that quantifies over the grammar's sentences (every one
+of them read, every command in them reported) also limits how deep they nest or combine.
 
 - ❌ `` A `$'…'` stretch contributes its decoded text to {@fld:words:Word.value}, by bash's ANSI-C escapes. `` (the escape set is whatever bash's source does)
 - ✅ `` In a `$'…'` stretch, each escape of {@fld:line:Grammar.ansiCEscapes} contributes the character its entry names to {@fld:words:Word.value}, and a backslash that starts none of them contributes itself. `` (a closed table in the spec)
