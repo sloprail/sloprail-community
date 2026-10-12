@@ -99,7 +99,7 @@ meets it, without being an interpreter of the domain? A 40-character line
 not state is a fresh violation in every round.
 
 - ❌ `A {@ent:command-strings:CommandString} whose text is known yields the Invocations its text holds, read by the same rules as a Line.` (a self-feeding string needs an interpreter run to its end)
-- ✅ `A {@ent:command-strings:CommandString} has a {@fld:command-strings:CommandString.text} only when its {@fld:command-strings:CommandString.depth} is at most 3; …` (past the bound it has no text, and the spec's "no text" invariants say what is reported)
+- ✅ `A {@ent:command-strings:CommandString} has a {@fld:command-strings:CommandString.text} only when its {@fld:command-strings:CommandString.depth} is at most 8; …` (past the bound it has no text, and the spec's "no text" invariants say what is reported)
 - ❌ `After a while, a Variable has a value only when every path through it leaves it with the same one.` (a loop's paths are unbounded)
 - ✅ `At the start of a while, until or for, each Variable a Change in it names has no value up to its first Change there.` (the body is read once, from a defined state)
 

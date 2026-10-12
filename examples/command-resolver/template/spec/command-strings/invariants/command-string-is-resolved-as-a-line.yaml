@@ -2,7 +2,7 @@ predicate: >-
   A {@ent:command-strings:CommandString} that has a
   {@fld:command-strings:CommandString.text}, which
   command-strings/command-string-text-is-bounded gives it only up to a
-  {@fld:command-strings:CommandString.depth} of 3, yields, when that text is written in the
+  {@fld:command-strings:CommandString.depth} of 8, yields, when that text is written in the
   {@ent:line:Grammar}, the Invocations it holds, read by the same rules as the text of a
   {@ent:line:Line}, each CommandString in it standing one deeper; a text not written in the
   Grammar yields no Invocation.
