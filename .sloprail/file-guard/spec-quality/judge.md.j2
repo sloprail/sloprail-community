@@ -61,6 +61,11 @@ what happens when …", nor a value a doc or invariant leaves free. A boundary t
 readers would apply differently, or that a program cannot check, IS a finding.
 
 ## How to answer
+Before you answer `concrete`, `decidable` and `one_owner` for an invariant, probe it: for each
+clause of its predicate, try inputs at the edge of the boundary that clause draws (each way of
+writing what it names, one nested inside another, one repeated or combined, one that another
+invariant of the index also covers) and check that it says one thing on each. Answer `ok` only
+when every probe inside the boundary has one reading.
 Walk the files in order and answer every item for each; do not stop at the first failing item.
 An item fails only for a concrete reason you can quote: the words at fault and, for every item
 but `mentions_complete` and `no_missing_field`, a concrete input INSIDE the invariant's stated

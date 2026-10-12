@@ -4,7 +4,7 @@ set -euo pipefail
 # (response.schema.json, items.json), and post-process.py makes one verdict per file.
 # 1. the prompt asks to answer every item, not to stop at the first failing one, and lists the
 #    checklist.
-# 2. three flawed invariants judged in one call are refused one by one, each listing both of
+# 2. three flawed invariants, each judged in its own call, are refused one by one, each listing both of
 #    its failing items.
 # 3. an answer that leaves a judged file out, or an item of one, is rejected as unusable, naming
 #    that file.
@@ -33,7 +33,7 @@ git add -A && git -c user.name=t -c user.email=t@t commit -q -m three
 if sr-checks run --base "$BASE" --head HEAD >"$OUT" 2>&1; then dump "2: three flawed invariants passed"; fi
 grep -q 'do not stop at the first failing item' "$PROMPT_LOG" || dump "1: the prompt does not ask for every item"
 grep -q '^- `mentions_complete`' "$PROMPT_LOG" || dump "1: the checklist is not in the prompt"
-grep -q 'judged "spec-quality" batch .* (3 subjects)' "$OUT" || dump "2: the three invariants were not judged in one call"
+[ "$(grep -c 'judged "spec-quality"' "$OUT")" -ge 3 ] || dump "2: the three invariants were not judged one to a call"
 for n in one two three; do
   grep -qF "file-guard \"spec-quality\" $S/invariants/$n.yaml: refused" "$OUT" || dump "2: $n was not refused on its own"
   awk -v p="  - $S/invariants/$n.yaml:" '$0==p{on=1;next} on&&/^  - /{on=0} on' "$OUT" > "$OUT.$n"

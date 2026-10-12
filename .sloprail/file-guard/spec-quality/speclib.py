@@ -12,7 +12,7 @@ import hashlib, json, re, subprocess, sys
 MENTION = re.compile(r"\{@(ent|fld):([a-z0-9-]+):([A-Za-z0-9]+)(?:\.([A-Za-z0-9_]+))?\}")
 SKILLS = [".claude/skills/document-invariant/SKILL.md", ".claude/skills/document-entity/SKILL.md"]
 BATCH = 10
-QUALITY_BATCH = 5
+QUALITY_BATCH = 1
 CAP = 30
 
 

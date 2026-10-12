@@ -3,8 +3,8 @@
 # the project rules (harness-neutral, observable), and whether it writes every entity or field
 # it talks about as its typed mention, using the spec's entity catalog. The judge answers a
 # fixed checklist (items.json) per file, each item ok or not with one line of evidence
-# (response.schema.json); post-process.py makes one verdict per file. Files are batched five to
-# a call (subjects.py); each file's verdict is its own and is kept until the file, the entities
+# (response.schema.json); post-process.py makes one verdict per file. Each file is judged in a
+# call of its own (subjects.py); each file's verdict is its own and is kept until the file, the entities
 # it cites, the catalog, the skills or this rule change. Conflicts between invariants are
 # spec-conflicts'; mentions that do not resolve, across the whole spec, are spec-mentions'.
 match: path matches "^examples/.+/spec/[a-z0-9-]+/(invariants|entities)/[^/]+\\.yaml$"

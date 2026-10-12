@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""One subject per changed spec file, id = its path, batched five to a call by speclib.batches
-(a judge answering the checklist for ten files missed real faults a later call found). Its verdict
+"""One subject per changed spec file, id = its path, judged one to a call (speclib.QUALITY_BATCH:
+three runs on one unchanged spec, five files to a call, each found a different sample of its real faults). Its verdict
 depends on its own content (the engine keys on its files) and on its fingerprint: this rule's
 files, the two skills, the entities it cites and the spec's entity catalog, as at head. An
 entity change thus re-judges a changed file against it; an unchanged invariant is not a
