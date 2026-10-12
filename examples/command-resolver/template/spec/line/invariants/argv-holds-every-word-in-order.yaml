@@ -1,10 +1,11 @@
 predicate: >-
-  An {@ent:line:Invocation} that no {@ent:config:Wrapper} and no {@ent:wrappers:FindClause}
-  runs has as its {@fld:line:Invocation.argv}, in the order written, the {@ent:words:Word}s
-  the {@fld:words:Word.text}s of its command yield from its program word on, none from a
-  `NAME=value` {@ent:words:Word} before it, a {@ent:line:Redirection} or a
-  {@fld:stdin:HereDocument.body}; a {@fld:words:Word.text} yields one {@ent:words:Word}, but
-  where words/brace-expansion-yields-several-words, variables/unquoted-substitution-splits
-  or words/comment-yields-no-word says otherwise.
+  An {@ent:line:Invocation} of a program that no {@ent:config:Wrapper} runs (command and
+  builtin included) and no {@ent:wrappers:FindClause} runs has as its
+  {@fld:line:Invocation.argv} the {@ent:words:Word}s that the written words of its simple
+  command yield, in the order written, from its program word on; none from a `NAME=value`
+  {@ent:words:Word} before the program word, a {@ent:line:Redirection} or a
+  {@fld:stdin:HereDocument.body}. A written word yields one {@ent:words:Word}, but where
+  words/brace-expansion-yields-several-words, variables/unquoted-substitution-splits or
+  words/comment-yields-no-word says otherwise.
 why: >-
   A consumer could not tell `git -C $(x) push` from `git -C push`.

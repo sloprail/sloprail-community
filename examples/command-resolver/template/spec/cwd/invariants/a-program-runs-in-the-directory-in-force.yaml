@@ -1,7 +1,7 @@
 predicate: >-
   An {@ent:line:Invocation} whose command stands outside every {@fld:line:Function.body} has
   as its {@fld:line:Invocation.cwd} the {@fld:line:Scope.cwd} of the {@ent:line:Scope} that
-  command stands in, right before it, unless a {@ent:config:Wrapper} given one of its
-  {@fld:config:Wrapper.directoryOptions} runs it, directly or not.
+  command stands in, right before it, unless a {@ent:config:Wrapper} runs it, directly or not, one of whose words before the word
+  of the program it runs starts with one of its {@fld:config:Wrapper.directoryOptions}.
 why: >-
   A program would be reported in a directory other than the one the shell starts it in.

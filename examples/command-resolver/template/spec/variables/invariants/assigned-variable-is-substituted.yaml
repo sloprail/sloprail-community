@@ -4,8 +4,8 @@ predicate: >-
   its {@ent:words:Word}, when that {@ent:words:Word} has one, in two cases: it stands inside
   double quotes or in a {@fld:variables:Change.word}; or it stands unquoted in a
   {@ent:words:Word} whose {@fld:words:Word.text} holds a character outside every expansion,
-  no {@ent:variables:Change} names the {@ent:variables:Variable} whose
-  {@fld:variables:Variable.name} is IFS, and the value holds no space, tab, newline, `*`,
+  no {@ent:variables:Change} naming the {@ent:variables:Variable} whose
+  {@fld:variables:Variable.name} is IFS precedes the {@ent:words:Word}, and the value holds no space, tab, newline, `*`,
   `?` or `[`.
 why: >-
   `X=a; rm "$X"` would be reported without its argument.

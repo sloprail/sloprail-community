@@ -1,8 +1,7 @@
 predicate: >-
   Where no {@ent:variables:Change} names the {@ent:variables:Variable} whose
   {@fld:variables:Variable.name} is IFS, a written word ({@fld:words:Word.text}) of a
-  command from its program word on, outside every {@ent:line:Redirection}, or a word a brace
-  expression makes of one, that is only an unquoted `$X` or `${X}` referencing a
+  command from its program word on, outside every {@ent:line:Redirection}, that is only an unquoted `$X` or `${X}` referencing a
   {@ent:variables:Variable} with a {@fld:variables:Variable.value} that holds no `*`, `?` or
   `[`, yields one {@ent:words:Word} per field of that value, in order, the field its
   {@fld:words:Word.value}, a field being a longest run of characters other than space, tab

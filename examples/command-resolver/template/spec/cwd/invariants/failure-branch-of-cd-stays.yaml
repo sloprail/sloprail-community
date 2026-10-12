@@ -1,5 +1,5 @@
 predicate: >-
-  In `A || B`, an and-or list of two simple commands, A holding no substitution and having a
+  In `A || B`, an and-or list of two simple commands, the text of A holding no `$(`, `` ` ``, `<(` or `>(` and A having a
   program {@ent:words:Word} whose {@fld:words:Word.value} is cd, no {@ent:line:Function}
   being named cd, and B holding no move (as {@ent:line:Scope} defines one), B starts with
   the {@fld:line:Scope.cwd} right before A, and right after the list the

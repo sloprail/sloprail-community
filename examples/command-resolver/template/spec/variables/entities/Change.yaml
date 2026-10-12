@@ -3,7 +3,7 @@ doc: >-
   of a line.Function (a call stands for what its bodies change); a form that is an argument of a
   program is one of a line.Invocation the shell runs. One word may be several Changes. A Change
   stands at the end of the word that is its form, or of the command for a form that is a
-  command; one of kind entry at the start of its construct, one of kind end at its end. It
+  command; one of kind entry at the start of its construct, one of kind end at its end, after every Change inside it. It
   precedes a point outside every Function body when it stands before that point in the point's
   line.Scope, or in a Scope enclosing it no farther out than the point's shell; the text of a current-shell command-strings.CommandString whose depth is at
   most 8 and whose program the shell runs stands where that program's command does. Of the

@@ -1,7 +1,8 @@
 predicate: >-
   At a point outside every {@fld:line:Function.body} whose shell is the {@ent:line:Scope}
   whose {@fld:line:Scope.kind} is line, a {@ent:variables:Variable} that no
-  {@ent:variables:Change} naming it precedes, whose {@fld:variables:Variable.name} is in
+  {@ent:variables:Change} naming it precedes, whose {@fld:variables:Variable.name} is made
+  of letters, digits and underscores, does not start with a digit, and is in
   none of {@fld:line:Context.env}, {@fld:variables:Variable.shellSet} and
   {@fld:variables:Variable.shellDefaulted}, has the empty string as its
   {@fld:variables:Variable.value}.
