@@ -56,17 +56,20 @@ fine when the field is self-evident.
 - ✅ entity doc `A platform user.`; ✅ field doc `The user's login email.`
 - ❌ field doc `The email. Must be unique and lowercased.`
 
-### An absent value is decided by a closed rule
+### An absent value has a meaning; where it is absent is stated by closed rules, case by case
 
-A field that may be absent to mean "unknown" says exactly when it is absent: by a closed list,
-or by naming the invariants that make it absent. "When it cannot be known without running
-something" is not a rule: someone can always know one step more by running it in their head.
-A per-item field keeps its meaning when one source item yields several items: say which source
-they share and whether each can have a value.
+A field that may be absent says what absence means (`unknown`, `none given`). Each case in which
+it must be absent, or must have a value, is stated by a closed rule: in an invariant, or in the
+doc as a closed list. Those rules hold within the cases they state only: elsewhere the field may
+be absent or not (unstated is unconstrained), so a doc never claims to decide every case
+("absent exactly where …"). "When it cannot be known without running something" is no rule:
+someone can always know one step more by running it in their head. A per-item field keeps its
+meaning when one source item yields several items: say which source they share.
 
 - ❌ `Variable.value: Its value at a point of the line; absent when it cannot be known without running something.`
-- ✅ `Variable.value: Its value at a point of a Scope; absent exactly where an invariant of the variables domain says it has none.`
-- ❌ `Word.text: The word as written.` (one written `$X$(c)` can yield several Words: which text, and can one of them have a value?)
+- ❌ `Variable.value: …; absent exactly where an invariant says it has none.` (turns every case no invariant states into a demand for the exact value)
+- ✅ `Variable.value: Its value at a point of a Scope; absent when the resolver does not know it.` (invariants state the cases where it is known, or is not)
+- ❌ `Word.text: The word as written.` (one written `$X$(c)` can yield several Words: which text?)
 - ✅ `Word.text: The written word it comes from; every Word one written word yields has its text.`
 
 ### An entity is a domain concept, not a wire format
