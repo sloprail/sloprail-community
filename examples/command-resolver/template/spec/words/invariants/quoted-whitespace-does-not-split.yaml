@@ -1,10 +1,11 @@
 predicate: >-
-  Whitespace other than the newline of a backslash-newline (which
-  words/line-continuation-joins removes) that a written word's own text quotes or escapes,
-  in a {@fld:line:Line.text} written in the {@ent:line:Grammar}, ends no written word and is
-  no point at which variables/unquoted-substitution-splits splits: in a {@ent:words:Word}
-  that has a {@fld:words:Word.value}, it stays inside that {@fld:words:Word.value}.
-  Whitespace in the value an unquoted expansion contributes is not quoted by the text it
-  came from: variables/unquoted-substitution-splits splits it.
+  A space, tab or newline, other than the newline of a backslash-newline (which
+  words/line-continuation-joins removes), that is quoted or escaped in the
+  {@fld:words:Word.text} of a written word, in a {@fld:line:Line.text} written in the
+  {@ent:line:Grammar}, ends no written word and is no point at which
+  variables/unquoted-substitution-splits splits: in a {@ent:words:Word} that has a
+  {@fld:words:Word.value}, it stays inside that {@fld:words:Word.value}. A space, tab or
+  newline in the value an unquoted expansion (a {@ent:words:WordPart}) contributes is not
+  quoted by the text it came from: variables/unquoted-substitution-splits splits it.
 why: >-
   One argument holding a space would be reported as two.

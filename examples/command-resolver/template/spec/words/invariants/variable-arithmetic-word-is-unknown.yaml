@@ -1,10 +1,9 @@
 predicate: >-
   A {@ent:words:Word} whose {@fld:words:Word.text} holds an arithmetic expansion, read as
   POSIX.1-2017 section 2.6.4 reads it, that names a {@ent:variables:Variable}, whatever that
-  {@ent:variables:Variable}'s {@fld:variables:Variable.value}, or that has a `/`, `%`, `/=`
-  or `%=` whose right operand is zero, shifts by a negative count or by 64 or more, or
-  reaches, as its result or at any intermediate step, a value outside the signed 64-bit
-  range, has no {@fld:words:Word.value}, and that expansion is an entry of
-  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is arithmetic.
+  {@ent:variables:Variable}'s {@fld:variables:Variable.value}, or that holds one of the
+  arithmetic faults words/constant-arithmetic-resolves lists, has no
+  {@fld:words:Word.value}, and that expansion is an entry of {@fld:words:Word.parts} whose
+  {@fld:words:WordPart.cause} is arithmetic.
 why: >-
   A computed value would be guessed.

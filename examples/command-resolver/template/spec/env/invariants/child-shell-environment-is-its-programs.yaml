@@ -9,10 +9,10 @@ predicate: >-
   {@fld:line:Invocation.unknownEnv} holds. Of each other {@fld:variables:Variable.name} that
   the {@fld:line:Scope.env} or the {@fld:line:Scope.unknownEnv} of the shell that
   {@ent:line:Invocation}'s command stands in holds, and that no {@ent:variables:Change}
-  other than one whose {@fld:variables:Change.kind} is every precedes at that command: its
-  {@fld:line:Scope.env} holds the name with that shell's {@fld:line:Scope.env} value where
-  that shell's {@fld:line:Scope.env} holds it and {@fld:variables:Variable.exported} is true
-  there; its {@fld:line:Scope.unknownEnv} holds the name otherwise. Less, in both, what
-  env/env-clears-what-it-is-told removes.
+  naming it, other than one whose {@fld:variables:Change.kind} is every, precedes at that
+  command: its {@fld:line:Scope.env} holds the name with that shell's {@fld:line:Scope.env}
+  value where that shell's {@fld:line:Scope.env} holds it and
+  {@fld:variables:Variable.exported} is true there; its {@fld:line:Scope.unknownEnv} holds
+  the name otherwise. Less, in both, what env/env-clears-what-it-is-told removes.
 why: >-
   A child shell would be reported seeing variables it is never given, or missing ones it is.
