@@ -1,8 +1,10 @@
 predicate: >-
   {@fld:config:Config.wrappers} and {@fld:config:Config.commandStringPrograms} hold, between
-  them, an entry for every {@fld:config:Wrapper.name} and
-  {@fld:config:CommandStringProgram.name} the built-in tables hold, whether or not a user
-  supplies a configuration; which entry, and in which table,
+  them, an entry for every {@fld:config:Wrapper.name} of
+  {@fld:config:Config.builtinWrappers} and every {@fld:config:CommandStringProgram.name} of
+  {@fld:config:Config.builtinCommandStringPrograms}, whether or not
+  {@fld:config:Config.userWrappers} and {@fld:config:Config.userCommandStringPrograms} are
+  empty; which entry, and in which of the two,
   config/user-entry-replaces-the-built-in-of-the-same-name decides.
 why: >-
   Adding one program would switch off the looking-through of sudo or bash.

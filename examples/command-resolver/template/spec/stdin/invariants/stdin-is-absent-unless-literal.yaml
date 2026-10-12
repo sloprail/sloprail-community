@@ -2,8 +2,7 @@ predicate: >-
   {@fld:line:Invocation.stdin} is absent unless the command's {@ent:stdin:InputRedirection}
   has {@fld:stdin:InputRedirection.kind} here-document or here-string, and so absent when
   that kind is file, descriptor or close and when the command has no
-  {@ent:stdin:InputRedirection}, as {@ent:stdin:InputRedirection} defines which one a
-  command has (a pipeline stage after the first has none from a group enclosing the whole
-  pipeline).
+  {@ent:stdin:InputRedirection}, which one a command has being as
+  {@ent:stdin:InputRedirection} defines it.
 why: >-
   Input the line does not contain would be invented.

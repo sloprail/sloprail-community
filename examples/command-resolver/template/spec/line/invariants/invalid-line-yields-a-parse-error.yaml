@@ -2,7 +2,8 @@ predicate: >-
   A {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar} at
   every place but one, where it shows one of {@fld:line:Grammar.faults}, with quotes,
   substitutions, expansions and compound commands nested in one another at most two deep,
-  has a {@fld:line:Resolution.parseError} and no entry at all in
-  {@fld:line:Resolution.invocations}.
+  has a {@fld:line:Resolution.parseError} and no {@ent:line:Invocation} at all in
+  {@fld:line:Resolution.invocations}, not even one a {@ent:command-strings:CommandString}
+  written in it would yield (command-strings/command-string-is-resolved-as-a-line).
 why: >-
   An unreadable line would look like a line that runs nothing.

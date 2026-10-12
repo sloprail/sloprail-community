@@ -1,10 +1,10 @@
 predicate: >-
-  A {@ent:wrappers:FindClause} whose {@fld:wrappers:FindClause.terminator} is `;` ends at
-  the first {@ent:words:Word} after its {@fld:wrappers:FindClause.introducer} whose
-  {@fld:words:Word.value} is `;`, and one whose {@fld:wrappers:FindClause.terminator} is `+`
-  at the first {@ent:words:Word} whose {@fld:words:Word.value} is `+` and that directly
-  follows a {@ent:words:Word} whose {@fld:words:Word.text} is `{}`. The {@ent:words:Word}s
-  from an introducer that no such {@ent:words:Word} ends (which the
+  A {@ent:wrappers:FindClause} ends at whichever comes first after its
+  {@fld:wrappers:FindClause.introducer}: a {@ent:words:Word} whose {@fld:words:Word.value}
+  is `;`, its {@fld:wrappers:FindClause.terminator} then being `;`, or a {@ent:words:Word}
+  whose {@fld:words:Word.value} is `+` and that directly follows a {@ent:words:Word} whose
+  {@fld:words:Word.text} is `{}`, its {@fld:wrappers:FindClause.terminator} then being `+`.
+  The {@ent:words:Word}s from an introducer that neither ends (which the
   {@ent:wrappers:FindClause} doc says make no {@ent:wrappers:FindClause}) yield no
   {@ent:line:Invocation}.
 why: >-

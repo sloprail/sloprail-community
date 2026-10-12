@@ -1,9 +1,13 @@
 predicate: >-
-  Right after a command that starts a {@ent:line:Scope} whose {@fld:line:Scope.kind} is not
-  line (a subshell, a pipeline stage, a background job, a command or process substitution,
-  or a program that starts a child shell), the {@fld:line:Scope.cwd} of the
-  {@ent:line:Scope} the command stands in is the one right before that command, whatever
-  moves the inner {@ent:line:Scope} holds; cwd/cd-moves-what-follows leaves these commands
-  to this invariant.
+  A move a {@ent:line:Scope} whose {@fld:line:Scope.kind} is not line holds (a subshell, a
+  pipeline stage, a background job, a command or process substitution, or a child shell a
+  program starts) changes the {@fld:line:Scope.cwd} of no {@ent:line:Scope} outside it:
+  right after a command that starts such a {@ent:line:Scope} and is itself no move of the
+  {@ent:line:Scope} it stands in, the {@fld:line:Scope.cwd} there is the one right before
+  that command, whatever moves the inner {@ent:line:Scope} holds; a command that is such a
+  move, a {@ent:variables:Change} whose {@fld:variables:Change.kind} is cd with a process
+  substitution in a word or redirection among them, moves as cwd/cd-moves-what-follows says,
+  and cwd/cd-moves-what-follows leaves the other commands that start such a
+  {@ent:line:Scope} to this invariant.
 why: >-
   A subshell's cd would move the commands after it.

@@ -2,9 +2,25 @@ doc: "The tables of programs the resolver looks through: the built-in ones, in c
 fields:
   - name: wrappers
     type: Wrapper[]
-    doc: "The programs that run another program from their arguments."
+    doc: "The programs that run another program from their arguments, as the resolver looks them up."
     constraint_expr: 'names are unique'
   - name: commandStringPrograms
     type: CommandStringProgram[]
-    doc: "The programs that run one of their arguments as a shell command line."
+    doc: "The programs that run one of their arguments as a shell command line, as the resolver looks them up."
+    constraint_expr: 'names are unique'
+  - name: builtinWrappers
+    type: Wrapper[]
+    doc: "The wrappers config/builtin.yaml lists."
+    constraint_expr: 'names are unique'
+  - name: builtinCommandStringPrograms
+    type: CommandStringProgram[]
+    doc: "The command-string programs config/builtin.yaml lists."
+    constraint_expr: 'names are unique'
+  - name: userWrappers
+    type: Wrapper[]
+    doc: "The wrappers the user's configuration lists; empty when the user supplies none."
+    constraint_expr: 'names are unique'
+  - name: userCommandStringPrograms
+    type: CommandStringProgram[]
+    doc: "The command-string programs the user's configuration lists; empty when the user supplies none."
     constraint_expr: 'names are unique'
