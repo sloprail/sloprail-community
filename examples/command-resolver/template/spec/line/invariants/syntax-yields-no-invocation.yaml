@@ -1,8 +1,8 @@
 predicate: >-
   A command made only of `NAME=value` words (each a {@ent:variables:Change} whose
-  {@fld:variables:Change.kind} is assignment), a redirection with no command, a `[[ … ]]`
-  test and a `(( … ))` expression (each in the form {@fld:line:Grammar.extensions} shows),
-  and each of the {@fld:line:Grammar.reservedWords} of the {@ent:line:Grammar}, yield no
-  {@ent:line:Invocation} of their own.
+  {@fld:variables:Change.kind} is assignment), a {@ent:line:Redirection} with no command, a
+  `[[ … ]]` test and a `(( … ))` expression (each in the form {@fld:line:Grammar.extensions}
+  shows), and each of the {@fld:line:Grammar.reservedWords} of the {@ent:line:Grammar},
+  yield no {@ent:line:Invocation} of their own.
 why: >-
   Shell syntax would be reported as a program.

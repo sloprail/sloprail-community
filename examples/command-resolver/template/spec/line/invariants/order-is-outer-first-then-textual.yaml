@@ -7,8 +7,12 @@ predicate: >-
   or the commands of its {@ent:wrappers:FindClause}s in clause order, then the commands of
   its {@ent:command-strings:CommandString}, then the commands of the {@ent:line:Scope}s
   whose {@fld:line:Scope.kind} is command-substitution or process-substitution in its
-  written words (each a {@fld:words:Word.text}, its `NAME=value` words included), its
-  redirections and its {@fld:stdin:HereDocument.body}s, in the order written. The commands
-  of such a {@ent:line:Scope} that belongs to no simple command stand where it is written.
+  written words (each a {@fld:words:Word.text}, its `NAME=value` words included), the
+  {@fld:line:Redirection.word}s of its {@ent:line:Redirection}s and its
+  {@fld:stdin:HereDocument.body}s, in the order written; a written word that is also a
+  written word of an {@ent:line:Invocation} it gives rise to (a {@ent:config:Wrapper}'s
+  wrapped program and its words) belongs to the innermost such {@ent:line:Invocation} only.
+  The commands of such a {@ent:line:Scope} that belongs to no simple command stand where it
+  is written.
 why: >-
   Two resolvers would list the same programs in different orders.

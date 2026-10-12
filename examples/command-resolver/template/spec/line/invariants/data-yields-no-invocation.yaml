@@ -6,7 +6,7 @@ predicate: >-
   {@ent:command-strings:CommandString}, as the string
   wrappers/env-split-string-is-one-command splits, or from a {@ent:line:Scope} whose
   {@fld:line:Scope.kind} is command-substitution or process-substitution that it holds
-  outside a single-quoted string, outside a `$'…'` string and outside the
+  outside a comment, outside a single-quoted string, outside a `$'…'` string and outside the
   {@fld:stdin:HereDocument.body} of a {@ent:stdin:HereDocument} whose
   {@fld:stdin:HereDocument.quotedDelimiter} is true.
 why: >-

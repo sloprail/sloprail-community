@@ -1,0 +1,12 @@
+doc: >-
+  A redirection written on a command or on a group, subshell or compound command: an operator
+  of the Grammar's redirection operators, with the descriptor number written before it, if any,
+  and the word written after it.
+fields:
+  - name: operator
+    type: string
+    doc: "The operator as written."
+    enum: ["<", ">", ">|", ">>", "<>", "<&", ">&", "<<", "<<-", "<<<"]
+  - name: word
+    type: words.Word
+    doc: "The word written after the operator: a file name, a descriptor, a here-document's delimiter or a here-string."

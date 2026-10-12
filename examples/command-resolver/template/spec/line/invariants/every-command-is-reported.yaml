@@ -5,7 +5,7 @@ predicate: >-
   {@fld:command-strings:CommandString.text} of a {@ent:command-strings:CommandString} only
   where command-strings/command-string-text-is-bounded gives it that text, whose program
   word's {@fld:words:Word.value} is not the empty string yields exactly one
-  {@ent:line:Invocation} in {@fld:line:Resolution.invocations}, whose
+  {@ent:line:Invocation} of its own in {@fld:line:Resolution.invocations}, whose
   {@fld:line:Invocation.argv} line/argv-holds-every-word-in-order decides, wherever it
   stands: in a pipeline, an `&&`, `||` or `;` list, a brace group, after `!` or `time`, in
   the condition or in every branch of an `if`, `case`, `while`, `until` or `for`, whether or

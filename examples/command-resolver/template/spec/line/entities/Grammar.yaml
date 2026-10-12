@@ -22,7 +22,7 @@ fields:
     doc: "The bash constructs the grammar adds to the standard's language."
     enum:
       - "$'…' ANSI-C quoting"
-      - "brace expansion: {a,b} and {1..3}"
+      - "brace expansion: {x,y,…} with at least one unquoted comma at its own level, nested to any depth, and {m..n} or {m..n..s}, m and n both decimal integers (a leading zero on either pads every word to the wider of the two) or both single letters, s a decimal integer"
       - "here-strings: <<< word"
       - "process substitution: <(…) and >(…)"
       - "[[ … ]] conditional commands, with the unary operators -a -b -c -d -e -f -g -h -k -n -o -p -r -s -t -u -v -w -x -z -G -L -N -O -R -S, the binary operators = == != < > =~ -eq -ne -lt -le -gt -ge -ef -nt -ot, and !, &&, || and ( )"
