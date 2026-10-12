@@ -1,9 +1,9 @@
 predicate: >-
-  When a bare word (as the {@ent:config:Wrapper} doc defines it) of a {@ent:config:Wrapper},
-  past the ones wrappers/leading-operands-precede-the-program sets aside, up to and
-  including its wrapped program word, other than an assignment
+  When a bare {@ent:words:Word} (as the {@ent:config:Wrapper} doc defines it) of a
+  {@ent:config:Wrapper}, past the ones wrappers/leading-operands-precede-the-program sets
+  aside, up to and including its wrapped program {@ent:words:Word}, other than an assignment
   wrappers/assignments-are-not-the-wrapped-program makes, has no {@fld:words:Word.value},
-  {@fld:line:Resolution.invocations} holds no {@ent:line:Invocation} of a program that
-  {@ent:config:Wrapper} runs.
+  {@fld:line:Resolution.invocations} holds no {@ent:line:Invocation} whose
+  {@fld:line:Invocation.argv} starts at or after it.
 why: >-
   `sudo $(x) npm` would report npm although the unknown word may be the program.

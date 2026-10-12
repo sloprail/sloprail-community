@@ -1,5 +1,5 @@
 predicate: >-
-  Right after an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, run by the
+  Right after {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, run by the
   shell (as {@ent:line:Invocation} defines it) and no call of a {@ent:line:Function}, not
   given -P, with one operand (cwd/cd-options-are-not-the-destination) whose
   {@fld:words:Word.value} is an absolute path, the {@fld:line:Scope.cwd} is that path

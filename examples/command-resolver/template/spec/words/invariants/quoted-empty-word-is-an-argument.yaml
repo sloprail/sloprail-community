@@ -1,6 +1,5 @@
 predicate: >-
-  A {@fld:words:Word.text} made only of empty quotes, outside the {@fld:words:Word.text}
-  that is the value of the `-S` option of env, which
+  A {@fld:words:Word.text} that is only `''` or `""`, and is not the value
   wrappers/env-split-string-is-one-command splits, yields one {@ent:words:Word}, whose
   {@fld:words:Word.value} is the empty string.
 why: >-

@@ -1,10 +1,10 @@
 predicate: >-
-  Right after an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, run by the
+  Right after {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, run by the
   shell (as {@ent:line:Invocation} defines it) and no call of a {@ent:line:Function}, given
-  -P, given more than one operand (cwd/cd-options-are-not-the-destination), or given an
-  operand with no {@fld:words:Word.value}, right after an {@ent:line:Invocation} whose
+  -P, more than one operand, or an operand with no {@fld:words:Word.value}
+  (cwd/cd-options-are-not-the-destination), after an {@ent:line:Invocation} whose
   {@fld:line:Invocation.bin} is pushd or popd, run by the shell and no call of a
-  {@ent:line:Function}, and right after a simple command whose program word has no
+  {@ent:line:Function}, and after a simple command whose program {@ent:words:Word} has no
   {@fld:words:Word.value}, the {@fld:line:Scope.cwd} is absent.
 why: >-
   A command would be reported where it no longer is.

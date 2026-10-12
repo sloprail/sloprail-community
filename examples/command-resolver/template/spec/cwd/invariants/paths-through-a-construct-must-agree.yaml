@@ -1,9 +1,10 @@
 predicate: >-
-  Right after an `if`, `case`, `while`, `until` or `for` that is not the body of a
-  {@ent:line:Function} definition, or an `&&` or `||` list whose first command is no
-  {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, the {@fld:line:Scope.cwd}
-  is the one right before it when it holds no move of the {@ent:line:Scope} it stands in (as
-  {@ent:line:Scope} defines a move), and absent when it holds one; this invariant decides
-  that point in place of every other invariant of the cwd domain.
+  Right after an `if`, `case`, `while`, `until` or `for` that is no
+  {@fld:line:Function.body}, or an `&&` or `||` list whose first pipeline is not a simple
+  command whose program {@ent:words:Word} has cd as its {@fld:words:Word.value}, the
+  {@fld:line:Scope.cwd} is the one right before it when it holds no move of the
+  {@ent:line:Scope} it stands in (as {@ent:line:Scope} defines a move), and absent when it
+  holds one; this invariant decides that point in place of every other invariant of the cwd
+  domain.
 why: >-
   One branch's directory would be reported for all.

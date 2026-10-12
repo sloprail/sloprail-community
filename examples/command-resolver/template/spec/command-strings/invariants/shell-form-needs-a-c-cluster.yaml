@@ -1,8 +1,9 @@
 predicate: >-
-  For a {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form} is
-  shell, given a single-dash option cluster containing `c` before every bare word (as the
-  {@ent:config:CommandStringProgram} doc defines options, their values and bare words), its
-  {@ent:command-strings:CommandString} is the first bare word after that cluster, when there
-  is one; it has no other {@ent:command-strings:CommandString}.
+  For an {@ent:line:Invocation} of a {@ent:config:CommandStringProgram} whose
+  {@fld:config:CommandStringProgram.form} is shell, whose {@fld:line:Invocation.argv} holds
+  the option `-c` as a word of its own before every bare word, the
+  {@fld:command-strings:CommandString.text} of its {@ent:command-strings:CommandString} is
+  the {@fld:words:Word.value} of the first bare {@ent:words:Word} after it, when there is
+  one; it has no other {@ent:command-strings:CommandString}.
 why: >-
   `bash -lc 'cmd'` would be missed, or `bash --rcfile x` misread.

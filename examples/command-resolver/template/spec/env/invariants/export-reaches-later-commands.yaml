@@ -1,11 +1,12 @@
 predicate: >-
-  An {@ent:line:Invocation} not run by the {@ent:config:Wrapper} whose
-  {@fld:config:Wrapper.name} is env given an option, at whose command, of the
-  {@ent:variables:Change}s of a {@ent:variables:Variable} that precede it and whose
-  {@fld:variables:Change.kind} is export, unexport, unset, call, entry, end or every, the
-  one written last is of kind export, has the {@ent:variables:Variable}'s
-  {@fld:variables:Variable.name} in its {@fld:line:Invocation.env} with its
-  {@fld:variables:Variable.value} there, or in its {@fld:line:Invocation.unknownEnv} when it
-  has none there, unless a closer setting decides (env/closest-setting-wins).
+  An {@ent:line:Invocation} whose command stands outside every {@fld:line:Function.body},
+  not run by the {@ent:config:Wrapper} whose {@fld:config:Wrapper.name} is env given an
+  option, at whose command, of the {@ent:variables:Change}s of a {@ent:variables:Variable}
+  that precede it and whose {@fld:variables:Change.kind} is export, unexport, unset, call,
+  entry, end or every, the one written last is of kind export, has the
+  {@ent:variables:Variable}'s {@fld:variables:Variable.name} in its
+  {@fld:line:Invocation.env} with its {@fld:variables:Variable.value} there, or in its
+  {@fld:line:Invocation.unknownEnv} when it has none there, unless a closer setting decides
+  (env/closest-setting-wins).
 why: >-
   A variable exported one statement earlier would be missing.

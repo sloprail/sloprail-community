@@ -7,8 +7,8 @@ doc: >-
   value, each such letter taking the next unused word in the order of the letters, unless the
   letter is the cluster's last and characters follow it in the same word. An option's value may
   also be attached: what follows `=` in a word `--name=value` whose `--name` takes a value, and
-  what follows the letter x in a single-dash word whose `-x` takes a value. Any other word is a
-  bare word.
+  what follows the letter x in a single-dash word whose `-x` takes a value. The first `--` ends
+  the options and is neither an option nor a bare word. Any other word is a bare word.
 fields:
   - name: name
     type: string

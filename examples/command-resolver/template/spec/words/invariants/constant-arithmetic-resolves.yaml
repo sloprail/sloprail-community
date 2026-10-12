@@ -1,10 +1,9 @@
 predicate: >-
   Where no {@ent:variables:Change} that precedes it names the {@ent:variables:Variable}
-  whose {@fld:variables:Variable.name} is IFS, an arithmetic expansion in the
-  {@fld:words:Word.text} of a {@ent:words:Word} whose expression holds, blanks aside, only
-  constants written as decimal digits with no leading zero, parentheses and the binary
-  operators `+`, `-` and `*`, every value of which, intermediate ones included, lies within
-  the signed 64-bit range, contributes its decimal result to the {@fld:words:Word.value} of
-  that {@ent:words:Word}.
+  whose {@fld:variables:Variable.name} is IFS, an arithmetic expansion, the only `$` or
+  backtick of the {@fld:words:Word.text} of a {@ent:words:Word}, whose expression is well
+  formed of decimal constants with no leading zero, parentheses, blanks and the binary
+  operators `+`, `-` and `*`, every value of which lies within the signed 64-bit range,
+  contributes its decimal result to the {@fld:words:Word.value} of that {@ent:words:Word}.
 why: >-
   A value the line fixes would be reported as unknown.

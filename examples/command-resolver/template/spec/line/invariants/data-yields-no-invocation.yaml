@@ -1,6 +1,6 @@
 predicate: >-
-  The literal characters of a quoted string, a comment and a {@fld:stdin:HereDocument.body},
-  outside every command and process substitution, are never read as commands: an
+  The literal characters of a quoted string and a {@fld:stdin:HereDocument.body}, outside
+  every command and process substitution, are never read as commands: an
   {@ent:line:Invocation} comes from them only through the {@fld:words:Word.value} of a
   {@ent:words:Word} that is the first entry of an {@fld:line:Invocation.argv}, as the
   {@fld:command-strings:CommandString.text} of a {@ent:command-strings:CommandString}, or as

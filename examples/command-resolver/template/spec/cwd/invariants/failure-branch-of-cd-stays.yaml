@@ -1,9 +1,9 @@
 predicate: >-
-  In an `||` list whose left side is one simple command yielding exactly one
+  In an and-or list of exactly two simple commands joined by `||`, the left one yielding one
   {@ent:line:Invocation}, whose {@fld:line:Invocation.bin} is cd, run by the shell (as
-  {@ent:line:Invocation} defines it), the right side starts with the {@fld:line:Scope.cwd}
-  right before that cd, and right after the whole list the {@fld:line:Scope.cwd} is the one
-  right after the cd; this invariant decides those two points in place of every other
-  invariant of the cwd domain.
+  {@ent:line:Invocation} defines it), the right one starts with the {@fld:line:Scope.cwd}
+  right before the cd, and right after the list the {@fld:line:Scope.cwd} is the one right
+  after the cd; this invariant decides those two points in place of every other invariant of
+  the cwd domain.
 why: >-
   The failure path would be reported in the directory that could not be entered.

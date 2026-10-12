@@ -1,7 +1,7 @@
 predicate: >-
   When the {@ent:stdin:InputRedirection} of the command of an {@ent:line:Invocation} has a
   {@fld:stdin:InputRedirection.hereDocument} whose {@fld:stdin:HereDocument.stripsTabs} is
-  true, the tabs that begin each line of its {@fld:stdin:HereDocument.body}, and only those,
-  are absent from {@fld:line:Invocation.stdin}.
+  true, the tabs that begin each line of its {@fld:stdin:HereDocument.body} are absent from
+  {@fld:line:Invocation.stdin}.
 why: >-
   Indentation the shell removes would be reported as input.

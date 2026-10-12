@@ -1,10 +1,8 @@
 predicate: >-
-  When every {@ent:words:Word} a {@fld:words:Word.text} yields has a
-  {@fld:words:Word.value}, a space, tab or newline that is quoted or escaped in that
-  {@fld:words:Word.text}, outside the {@fld:words:Word.text} that is the value of the `-S`
-  option of env, which wrappers/env-split-string-is-one-command splits, other than the
-  newline of a backslash-newline, is part of the {@fld:words:Word.value} of one
-  {@ent:words:Word}: no {@ent:words:Word} that {@fld:words:Word.text} yields ends or starts
-  at it.
+  In a {@fld:words:Word.text} that holds no `$`, backtick or backslash-newline and is not
+  the value wrappers/env-split-string-is-one-command splits, a quoted or escaped space, tab
+  or newline is part of the {@fld:words:Word.value} of one {@ent:words:Word} when every
+  {@ent:words:Word} that {@fld:words:Word.text} yields has a {@fld:words:Word.value}: none
+  of them ends or starts at it.
 why: >-
   One argument holding a space would be reported as two.

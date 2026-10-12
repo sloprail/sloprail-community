@@ -1,7 +1,8 @@
 predicate: >-
   A {@ent:line:Scope} whose {@fld:line:Scope.kind} is neither line nor child-shell starts
   with the {@fld:line:Scope.cwd} in force where it stands; one whose {@fld:line:Scope.kind}
-  is child-shell starts with the {@fld:line:Invocation.cwd} of the {@ent:line:Invocation}
-  that starts it.
+  is child-shell starts with the {@fld:line:Invocation.cwd} of the
+  {@fld:command-strings:CommandString.invocation} of the
+  {@ent:command-strings:CommandString} it resolves.
 why: >-
   Commands in a subshell, or in `env -C /x bash -c`, would be reported back at the start.

@@ -1,12 +1,11 @@
 predicate: >-
-  An unquoted brace expression, in one of the forms the brace expansion entry of
-  {@fld:line:Grammar.extensions} shows, in the {@fld:words:Word.text} of a {@ent:words:Word}
-  of a command from its program word on, outside every {@ent:line:Redirection}, makes of
-  that {@fld:words:Word.text} one written word per alternative, left to right, each yielding
-  {@ent:words:Word}s as a written word does, when the brace expressions of that
-  {@fld:words:Word.text} together make at most 1024 words; the alternatives of `{m..n..s}`
-  run from m to n by steps of the absolute value of s, 1 when s is absent or 0, downward
-  when m is above n, letters by their ASCII codes. A quoted or escaped brace, and one in
-  none of those forms, is literal text.
+  In a {@fld:words:Word.text} of a command from its program {@ent:words:Word} on, outside
+  every {@ent:line:Redirection}, that holds exactly one unquoted brace expression, in one of
+  the forms the brace expansion entry of {@fld:line:Grammar.extensions} shows and making at
+  most 1024 words, and no quote, `$` or backtick, the brace expression makes of that
+  {@fld:words:Word.text} one written word per alternative, left to right, each yielding
+  {@ent:words:Word}s as a written word does; the alternatives of `{m..n..s}`, m and n
+  written with no sign or leading zero, run from m to n by steps of the absolute value of s,
+  1 when s is absent or 0, downward when m is above n, letters by their ASCII codes.
 why: >-
   `rm {a,b}` would be reported as one argument.

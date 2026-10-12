@@ -1,7 +1,8 @@
 predicate: >-
-  A {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar} at
-  every place but one, where it shows one of {@fld:line:Grammar.faults}, of depth at most
-  two (as the {@ent:line:Grammar} defines depth), has a {@fld:line:Resolution.parseError}
-  and no entry at all in {@fld:line:Resolution.invocations}.
+  A {@ent:line:Line} whose {@fld:line:Line.text}, of depth at most two (as the
+  {@ent:line:Grammar} defines depth), is written in the {@ent:line:Grammar} but for exactly
+  one occurrence of one of the {@fld:line:Grammar.faults}, has a
+  {@fld:line:Resolution.parseError} and no entry at all in
+  {@fld:line:Resolution.invocations}.
 why: >-
   An unreadable line would look like a line that runs nothing.

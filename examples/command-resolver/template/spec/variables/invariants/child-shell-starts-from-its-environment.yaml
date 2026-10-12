@@ -5,8 +5,7 @@ predicate: >-
   {@fld:variables:Variable.name} is not in {@fld:variables:Variable.shellSet} and that no
   {@ent:variables:Change} of that {@ent:line:Scope} naming it precedes has as its
   {@fld:variables:Variable.value} the value that {@ent:line:Invocation}'s
-  {@fld:line:Invocation.env} holds for its name, none when its
-  {@fld:line:Invocation.unknownEnv} holds the name, and otherwise the
-  {@fld:variables:Variable.value} it has right before that {@ent:line:Invocation}'s command.
+  {@fld:line:Invocation.env} holds for its name, and none when its
+  {@fld:line:Invocation.unknownEnv} holds the name.
 why: >-
   `X=1; bash -c 'rm $X'` would be reported as `rm 1`, where the child shell has no X.

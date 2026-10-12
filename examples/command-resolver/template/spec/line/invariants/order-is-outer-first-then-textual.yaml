@@ -6,10 +6,9 @@ predicate: >-
   in turn by its own: first the program it runs as a {@ent:config:Wrapper}, or the commands
   of its {@ent:wrappers:FindClause}s in clause order, then the commands of its
   {@ent:command-strings:CommandString}, then those of the command and process substitutions
-  in the {@fld:words:Word.text}s of its {@ent:words:Word}s, its {@ent:line:Redirection}s and
-  its {@fld:stdin:HereDocument.body}s, in the order written, a {@ent:words:Word} that is
-  also in the {@fld:line:Invocation.argv} of an {@ent:line:Invocation} it gives rise to
-  belonging to the innermost such {@ent:line:Invocation}. The commands of a substitution
-  that belongs to no simple command stand where it is written.
+  in its {@ent:words:Word}s (`NAME=value` ones included), {@ent:line:Redirection}s and
+  {@fld:stdin:HereDocument.body}s, in the order written, a {@ent:words:Word} also in the
+  {@fld:line:Invocation.argv} of an {@ent:line:Invocation} it gives rise to belonging to the
+  innermost such {@ent:line:Invocation}.
 why: >-
   Two resolvers would list the same programs in different orders.

@@ -1,12 +1,12 @@
 predicate: >-
   In the {@fld:line:Invocation.argv} of the {@ent:line:Invocation} a
-  {@ent:wrappers:FindClause} runs, a {@ent:words:Word} whose {@fld:words:Word.text}, its
-  quotes removed as words/quotes-are-removed says, is `{}` has no {@fld:words:Word.value};
-  and in that of the {@ent:line:Invocation} the {@ent:config:Wrapper} whose
-  {@fld:config:Wrapper.name} is xargs runs, a {@ent:words:Word} whose
-  {@fld:words:Word.text}, its quotes removed so, contains the {@fld:words:Word.value} of the
-  value of its last `-I` option, when that value has one that is not empty, has none. That
-  `{}` or value is an entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is
-  placeholder.
+  {@ent:wrappers:FindClause} runs, a {@ent:words:Word} whose {@fld:words:Word.text} is `{}`,
+  `'{}'` or `"{}"` has no {@fld:words:Word.value}, and its {@fld:words:Word.text} is an
+  entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is placeholder. In that
+  of the {@ent:line:Invocation} the {@ent:config:Wrapper} whose {@fld:config:Wrapper.name}
+  is xargs runs, when its only `-I` option is a word of its own followed by a
+  {@ent:words:Word} whose {@fld:words:Word.value} is not empty, a {@ent:words:Word} whose
+  {@fld:words:Word.text} holds no quote, backslash, `$` or backtick and contains that value
+  has no {@fld:words:Word.value}, and each occurrence of it is such an entry.
 why: >-
   A placeholder would be reported as the file name it stands for.

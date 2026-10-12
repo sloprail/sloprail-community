@@ -1,8 +1,9 @@
 predicate: >-
   Of the {@ent:words:Word}s of the {@fld:line:Invocation.argv} of an {@ent:line:Invocation}
   whose {@fld:line:Invocation.bin} is cd, after its program word, its options are those
-  before the first {@ent:words:Word} whose {@fld:words:Word.value} is none of -L, -P, -e, -@
-  and --, or that follows a --; every {@ent:words:Word} from there on is an operand, and no
-  option is. It is given -P when the {@fld:words:Word.value} of one of its options is -P.
+  before the first {@ent:words:Word} with no {@fld:words:Word.value} or a
+  {@fld:words:Word.value} other than -L, -P, -e, -@ and --, or that follows a --; every
+  {@ent:words:Word} from there on is an operand. It is given -P when one of its options has
+  -P as its {@fld:words:Word.value}.
 why: >-
   A directory named -P would be reported.

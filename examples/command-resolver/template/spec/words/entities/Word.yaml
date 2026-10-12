@@ -2,7 +2,7 @@ doc: "One word of a command, as the shell would pass it."
 fields:
   - name: text
     type: string
-    doc: "The written word it comes from, quoting included; every Word one written word yields has its text."
+    doc: "The written word it comes from, quoting included; every Word one written word yields has its text. For a Word a brace expression makes, it is the written word the brace expression makes."
   - name: value
     type: string?
     doc: "The string the shell would pass for it; absent when the resolver does not know it."

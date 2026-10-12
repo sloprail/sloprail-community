@@ -1,8 +1,8 @@
 predicate: >-
   Right after a call of a {@ent:line:Function} (as {@ent:line:Function} defines a call), the
-  {@fld:line:Scope.cwd} is the one right before it when no {@fld:line:Function.body} of a
-  {@ent:line:Function} of that {@fld:line:Function.name} holds a move of the
-  {@ent:line:Scope} that {@ent:line:Function} is defined in (as {@ent:line:Scope} defines a
-  move), and absent when one does.
+  {@fld:line:Scope.cwd} of the {@ent:line:Scope} the call stands in is the one right before
+  it when no {@fld:line:Function.body} of a {@ent:line:Function} of that
+  {@fld:line:Function.name} holds a move of the {@ent:line:Scope} that {@ent:line:Function}
+  is defined in (as {@ent:line:Scope} defines a move), and absent when one does.
 why: >-
   A real move would go unreported.

@@ -1,7 +1,7 @@
 predicate: >-
-  Of the bare words (as the doc defines them) of a {@ent:config:Wrapper} that are no
-  assignment it takes (as its {@fld:config:Wrapper.takesAssignments} allows), the first
-  {@fld:config:Wrapper.leadingOperands} are its own operands: none of them is its wrapped
-  program word.
+  The first {@fld:config:Wrapper.leadingOperands} bare {@ent:words:Word}s (as the
+  {@ent:config:Wrapper} doc defines them) of a {@ent:config:Wrapper}, whatever their
+  {@fld:words:Word.text}, are its own operands: none of them is its wrapped program
+  {@ent:words:Word} or an assignment.
 why: >-
   `timeout 5 npm` would report a program named 5.

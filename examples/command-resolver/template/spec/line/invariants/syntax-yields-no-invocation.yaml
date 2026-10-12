@@ -1,6 +1,7 @@
 predicate: >-
-  A command made only of `NAME=value` words, a {@ent:line:Redirection} with no command, a
-  `[[ … ]]` test, a `(( … ))` expression and the {@fld:line:Grammar.reservedWords} of the
-  {@ent:line:Grammar} yield no {@ent:line:Invocation} of their own.
+  A command made only of `NAME=value` {@ent:words:Word}s, a {@ent:line:Redirection} with no
+  command, a `[[ … ]]` test, a `(( … ))` expression and the
+  {@fld:line:Grammar.reservedWords} of the {@ent:line:Grammar} yield no
+  {@ent:line:Invocation} of their own.
 why: >-
   Shell syntax would be reported as a program.

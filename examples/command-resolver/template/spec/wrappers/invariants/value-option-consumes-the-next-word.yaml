@@ -1,7 +1,7 @@
 predicate: >-
-  The word after one of a {@ent:config:Wrapper}'s {@fld:config:Wrapper.valueOptions} written
-  as a whole word of its own, among its options, is that option's value and never the first
-  entry of the {@fld:line:Invocation.argv} of the {@ent:line:Invocation} of the program it
-  runs.
+  The {@ent:words:Word} after one of a {@ent:config:Wrapper}'s
+  {@fld:config:Wrapper.valueOptions} written as a whole word of its own, among its options,
+  is that option's value and never the first entry of the {@fld:line:Invocation.argv} of the
+  {@ent:line:Invocation} of the program it runs.
 why: >-
   `sudo -u root npm` would report a program named root.

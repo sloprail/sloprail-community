@@ -1,8 +1,8 @@
 predicate: >-
-  When the value of the `-S` option of the {@ent:config:Wrapper} whose
-  {@fld:config:Wrapper.name} is env has a {@fld:words:Word.value} holding no quote,
-  backslash, `$` or `#`, the words that value makes, split at runs of space and tab, stand
-  in its place among env's own words, and `;`, `&&` and `|` in them are ordinary characters,
-  never shell operators.
+  When the {@ent:config:Wrapper} whose {@fld:config:Wrapper.name} is env has exactly one
+  option `-S`, as a word of its own, and the {@ent:words:Word} after it has a
+  {@fld:words:Word.value} holding no `'`, `"`, backtick, backslash, `$` or `#`, the
+  {@ent:words:Word}s that value makes, split at runs of space and tab, stand in its place
+  among env's own words, and `;`, `&&` and `|` in them are ordinary characters.
 why: >-
   A second program that env never runs would be reported.
