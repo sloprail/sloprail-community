@@ -8,6 +8,9 @@ predicate: >-
   `..` or starts with `./` or `../`, or when the {@ent:variables:Variable} whose
   {@fld:variables:Variable.name} is CDPATH has the empty string as its
   {@fld:variables:Variable.value} there; it is absent when that {@fld:line:Scope.cwd} is
-  absent, or when the path is none of those and CDPATH has no value or a non-empty one.
+  absent, or when the path is none of those and CDPATH has no value or a non-empty one. An
+  operand whose {@fld:words:Word.value} is the empty string is no path: the
+  {@fld:variables:Change.directory} of such a cd, not given -P and with that one operand, is
+  the {@fld:line:Scope.cwd} right before it, absent when that is absent.
 why: >-
   `cd a && cd b` would be reported at b.

@@ -6,8 +6,6 @@ predicate: >-
   read by the same rules, and within the same bounds, as a {@fld:line:Line.text}
   (line/order-is-outer-first-then-textual): when that text is written in the
   {@ent:line:Grammar} it yields what a {@fld:line:Line.text} written in it would; when it is
-  not, it yields no {@ent:line:Invocation}. In a {@ent:line:Line} that has a
-  {@fld:line:Resolution.parseError}, it yields none
-  (line/invalid-line-yields-a-parse-error).
+  not, it yields no {@ent:line:Invocation}.
 why: >-
   `bash -c 'npm publish'` would hide npm.
