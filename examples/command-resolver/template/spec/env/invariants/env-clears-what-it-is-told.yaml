@@ -1,0 +1,9 @@
+predicate: >-
+  The program that the env {@ent:config:Wrapper} runs, given `-i`, `--ignore-environment` or
+  a lone `-`, or a single-dash cluster holding `i`, has in its {@fld:line:Invocation.env}
+  and {@fld:line:Invocation.unknownEnv} only the names env's own assignments set; given `-u
+  NAME`, `-uNAME`, `--unset NAME` or `--unset=NAME`, it has NAME in neither unless env's own
+  assignments set it after that option. Every other invariant of the env domain yields to
+  this one, and the environment such a program starts with holds no name it removes.
+why: >-
+  `env -i npm` would be reported with variables env clears.

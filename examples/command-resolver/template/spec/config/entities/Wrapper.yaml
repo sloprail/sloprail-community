@@ -1,7 +1,9 @@
 doc: >-
   A program whose arguments are the argument vector of another program it runs. The program it
   runs is run by the wrapper, not by the shell, unless the wrapper's name is command or
-  builtin: those two have the shell itself run it.
+  builtin: those two have the shell itself run it. Its own words are those before the program it
+  runs; among them an option is a word that starts with `-` and comes before any `--`, and a
+  bare word is a word that is neither an option nor an option's value.
 fields:
   - name: name
     type: string
