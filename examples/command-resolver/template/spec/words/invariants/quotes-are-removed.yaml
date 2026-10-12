@@ -1,7 +1,7 @@
 predicate: >-
   Quoting never reaches a {@fld:words:Word.value}: the quote characters of
   {@fld:words:Word.text} that open and close a quoted stretch are absent from it, a
-  single-quoted stretch other than a `$'…'` one appears verbatim, an unquoted backslash
+  single-quoted stretch other than a `$'…'` one appears verbatim, a backslash outside every quoted stretch
   before any character but a newline is absent and the character stays, and adjacent quoted
   and unquoted stretches form one string.
 why: >-
