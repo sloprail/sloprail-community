@@ -64,7 +64,7 @@ target must already exist.
 ### Everything a predicate constrains or reads is a typed mention, under one name
 
 Not only the anchor: every entity and every field the predicate constrains or reads is written as
-its mention at least once in the predicate, and never under another name: no synonym, no
+its mention where the predicate first refers to it, and never under another name: no synonym, no
 paraphrase, no plain `Entity.field`. Once the mention is written, the predicate may refer to the
 same thing again by its own name (`its kind`, `the value`); a different wording is a synonym. A
 reader, and a check, must see which value is meant without guessing whether "the directory a cd
