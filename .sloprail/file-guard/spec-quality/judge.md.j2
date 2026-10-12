@@ -61,16 +61,31 @@ what happens when …", nor a value a doc or invariant leaves free. A boundary t
 readers would apply differently, or that a program cannot check, IS a finding.
 
 ## How to answer
-Before you answer `concrete`, `decidable` and `one_owner` for an invariant, probe it: for each
-clause of its predicate, try inputs at the edge of the boundary that clause draws (each way of
-writing what it names, one nested inside another, one repeated or combined, one that another
-invariant of the index also covers) and check that it says one thing on each. Answer `ok` only
-when every probe inside the boundary has one reading.
 Walk the files in order and answer every item for each; do not stop at the first failing item.
-An item fails only for a concrete reason you can quote: the words at fault and, for every item
-but `mentions_complete` and `no_missing_field`, a concrete input INSIDE the invariant's stated
-boundary on which two careful readers would decide differently what it requires, or on which it
-and another invariant require different things, or a boundary that cannot be applied alike. Do
-not fail an item to ask for a rewording of a text that already says one thing, for a case
-outside the boundary, nor for what an entity's doc already settles when the file reads it as the
-doc defines it.
+First write `probes` for the file, then its items. For an invariant: split its predicate into
+clauses (each condition of the boundary and each requirement), and for each try the edge inputs:
+each way of writing what it names (quoted, escaped, attached, clustered, braced, nested inside a
+substitution or expansion), one repeated or combined, one placed before, after or inside another
+construct (a Function body, a subshell, a list), and one another invariant of the index also
+covers. Compare parallel clauses word by word: a qualifier one clause has and its sibling lacks
+("directly", "only", "exactly", "first") changes what the sibling covers. For a condition on the
+characters of a text, try a text in which those characters sit inside a construct of another
+kind that the condition does not name. Each probe is the input and what the text requires there; where the words allow two
+answers, write both. Then answer the items from the probes.
+
+An item fails for a reason you can quote: the words at fault. A failing item BLOCKS only when it
+is material: you give a concrete input INSIDE the invariant's stated boundary, two readings of the
+words at fault that careful readers could hold, and the output each reading requires
+(`material`), and those outputs differ; or two invariants require different outputs on that
+input. A boundary two readings apply differently is material: on that input one reading requires
+an output and the other requires none (write "nothing required: outside the boundary" as its
+output). Whenever you found two readings of the words at fault on a concrete input, fill
+`material`; leave it out only when no reading changes what any output must be. The input of a
+material answer must be one a coding agent could plausibly run in its work (`bash -lc 'npm
+test'`, `cd "$HOME" || exit`, `sudo -u bob npm ci`), not a line contrived only to stress the
+wording (an empty `--user=`, a function named `cd` defined after the cd, `[:digit:]` as a file
+name); a contrived edge is a note. Every other failing item is a note and does not block: a missing
+typed mention where the meaning is clear, a restatement or duplicate that agrees with its source,
+a term re-worded from a doc, an invariant that defines terms, a field the model could add. Do not
+write a material answer whose two outputs are the same, nor one for a case outside the boundary,
+nor one that asks what happens where the invariant is silent.

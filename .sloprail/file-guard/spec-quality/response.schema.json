@@ -1,7 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "required": ["files"],
+  "required": [
+    "files"
+  ],
   "additionalProperties": false,
   "properties": {
     "files": {
@@ -9,19 +11,73 @@
       "description": "One entry for every file under \"The files to judge\", keyed by its path, and for no other.",
       "additionalProperties": {
         "type": "object",
-        "required": ["items"],
+        "required": [
+          "probes",
+          "items"
+        ],
         "additionalProperties": false,
         "properties": {
+          "probes": {
+            "type": "array",
+            "minItems": 1,
+            "description": "Before the items: for an invariant, one entry per clause of its predicate and per edge of the boundary that clause draws, each a concrete input at that edge and what the text requires there, or the two things it could require. For an entity, the cases its docs decide.",
+            "items": {
+              "type": "string"
+            }
+          },
           "items": {
             "type": "object",
             "description": "Every item of the checklist for the file's kind, keyed by the item's name, each answered.",
             "additionalProperties": {
               "type": "object",
-              "required": ["ok", "evidence"],
+              "required": [
+                "ok",
+                "evidence"
+              ],
               "additionalProperties": false,
               "properties": {
-                "ok": {"type": "boolean", "description": "Whether the file meets this item."},
-                "evidence": {"type": "string", "description": "One line: why. On a fail, the words at fault, one concrete input where it matters, and a one-line fix."}
+                "ok": {
+                  "type": "boolean",
+                  "description": "Whether the file meets this item."
+                },
+                "evidence": {
+                  "type": "string",
+                  "description": "One line: why. On a fail, the words at fault, one concrete input where it matters, and a one-line fix."
+                },
+                "material": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "input",
+                    "reading_a",
+                    "output_a",
+                    "reading_b",
+                    "output_b"
+                  ],
+                  "description": "Only on a failing item whose defect is material: a concrete input inside the invariant's boundary on which two careful readings of its text require different outputs. Leave it out otherwise.",
+                  "properties": {
+                    "input": {
+                      "type": "string",
+                      "description": "The concrete input (a line, a config, a context), inside the boundary."
+                    },
+                    "reading_a": {
+                      "type": "string",
+                      "description": "One reading of the words at fault."
+                    },
+                    "output_a": {
+                      "type": "string",
+                      "description": "The output (field values) the invariant requires under reading A."
+                    },
+                    "reading_b": {
+                      "type": "string",
+                      "description": "The other reading."
+                    },
+                    "output_b": {
+                      "type": "string",
+                      "description": "The output it requires under reading B; different from output_a."
+                    }
+                  }
+                }
               }
             }
           }

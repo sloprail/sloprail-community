@@ -21,8 +21,10 @@ def decide(path, kind, content):
     if "Change.kind} is unset" in content and "A gap is never a" not in prompt:
         return {"one_owner": "MOCK gap: no invariant decides what read does to the value"}
     return {}
+# Every failing item is material (it blocks): an input inside the boundary, two readings, two outputs.
+MATERIAL = {"input": "cd /a", "reading_a": "A", "output_a": "cwd /a", "reading_b": "B", "output_b": "cwd unknown"}
 out = {}
 for path, kind, content in files:
     fails = decide(path, kind, content)
-    out[path] = {"items": {i: {"ok": i not in fails, "evidence": fails.get(i, "mock ok")} for i in items[kind]}}
+    out[path] = {"probes": ["mock probe"], "items": {i: ({"ok": False, "evidence": fails[i], "material": MATERIAL} if i in fails else {"ok": True, "evidence": "mock ok"}) for i in items[kind]}}
 print(json.dumps({"files": out}))
