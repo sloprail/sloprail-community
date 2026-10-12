@@ -1,10 +1,12 @@
 # Every changed spec invariant and entity is judged against the document-invariant /
-# document-entity skills (.claude/skills/, copied verbatim from a10n). The changed files
-# are split into buckets of at most 25 (subjects.py, the union-find + size-cap
-# bucketing of a10n's invariant-buckets): invariants citing the same entity, and that
-# entity when it changed too, land in one bucket, so each judge sees a cluster with the
-# entities it anchors on. A bucket's fingerprint covers the skills and the cited entities
-# that are not in it, so a change to either re-judges only the buckets that read it.
+# document-entity skills (.claude/skills/). The changed files are grouped by what they
+# constrain (subjects.py, speclib.buckets): every changed invariant that mentions a field or
+# entity lands in one group with all the others that mention it, whatever their domain, so
+# the judge checks each such pair for a conflict; an invariant may be in several groups, and
+# groups are merged up to 30 members to keep the judge calls few. Unchanged invariants that
+# share a field or entity with a member come along as context for that pairwise check. A
+# group's fingerprint covers the skills, the cited entities that are not in it and those
+# related invariants, so a change to any of them re-judges only the groups that read it.
 match: path matches "^examples/.+/spec/[a-z0-9-]+/(invariants|entities)/[^/]+\\.yaml$"
 subjects: ./subjects.py
 checks:
