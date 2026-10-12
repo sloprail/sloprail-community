@@ -1,0 +1,26 @@
+{
+  "invariant": {
+    "harness_neutral": "It names no event, payload field, tool, env var or file path of one agent harness; what a harness provides is in `needs:`.",
+    "domain_truth": "document-invariant: it states a domain truth, not an implementation mechanism.",
+    "violable": "document-invariant: the system could get it wrong and it matters (not a restated schema).",
+    "always_true": "document-invariant: an always-true condition, not a narrated runtime sequence.",
+    "observable": "A promise a rule author or the person running the agent can observe and relies on, not a hidden mechanism.",
+    "mentions_complete": "document-invariant: Everything it talks about that the entity catalog holds (an entity or a field, under any wording: a synonym, a paraphrase, a plain name) is written as that entry's typed mention. On a fail, quote the words and the token to use.",
+    "no_missing_field": "document-invariant: Every concept it constrains or reads that is a value of the domain matches an entry of the catalog; a concept that matches none is a field the entity model is missing. On a fail, name the concept and the entity it belongs on.",
+    "concrete": "document-invariant: its inputs are bounded, no word can be stretched, every list in it is closed.",
+    "decidable": "document-invariant: it asks only for what a program can decide; where exactness would need running the domain's rules without limit, it states where exactness stops and what is reported there.",
+    "terms_defined_once": "document-invariant: a term several invariants rely on is defined once (an entity, a field's doc or enum, an invariant) and cited, not re-worded here.",
+    "one_owner": "document-invariant: an effect it decides on a tracked value is decided by it alone; one another invariant owns is cited, not restated.",
+    "entity_rules": "document-entity, as it bears on an invariant: each field it mentions is used as its doc defines it; a bound, format or enum on one field's own value is on the field (constraint_expr or enum), not here; a reference to another entity goes through a field's type; it does not contradict or redefine a cited entity's or field's doc; an absent or unknown value follows that field's closed rule."
+  },
+  "entity": {
+    "domain_facts": "document-entity: every field carries a domain fact, not a storage artifact.",
+    "constraints_on_field": "document-entity: a value constraint is in constraint_expr or enum, not prose.",
+    "enum_shape": "document-entity: an enum field is a string type plus an enum array.",
+    "reference_by_type": "document-entity: a reference to another entity is the field's type.",
+    "docs_define": "document-entity: docs define the construct, never state a rule.",
+    "domain_concept": "document-entity: a domain concept, not a wire format.",
+    "once_per_domain": "document-entity: it exists once per domain.",
+    "closed_absence": "document-entity: a field that may be absent says exactly when, by a closed rule; a per-item field keeps its meaning when one source item yields several."
+  }
+}

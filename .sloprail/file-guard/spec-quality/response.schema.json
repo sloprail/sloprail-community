@@ -9,25 +9,19 @@
       "description": "One entry for every file under \"The files to judge\", keyed by its path, and for no other.",
       "additionalProperties": {
         "type": "object",
-        "required": ["checked", "findings"],
+        "required": ["items"],
         "additionalProperties": false,
         "properties": {
-          "checked": {
-            "type": "string",
-            "description": "What you checked for this file: the rules, and each other file you paired it with and the input you built for that pair."
-          },
-          "findings": {
-            "type": "array",
-            "description": "Every finding for this file, none left out and none merged into another; empty when it follows every rule.",
-            "items": {
+          "items": {
+            "type": "object",
+            "description": "Every item of the checklist for the file's kind, keyed by the item's name, each answered.",
+            "additionalProperties": {
               "type": "object",
-              "required": ["rule", "ids", "input", "fix"],
+              "required": ["ok", "evidence"],
               "additionalProperties": false,
               "properties": {
-                "rule": {"type": "string", "description": "The rule it breaks, by its heading or the project rule."},
-                "ids": {"type": "array", "items": {"type": "string"}, "description": "This file's id and, for a conflict, the other file's (domain/name)."},
-                "input": {"type": "string", "description": "One concrete input on which the problem shows, quoted in full."},
-                "fix": {"type": "string", "description": "A one-line fix."}
+                "ok": {"type": "boolean", "description": "Whether the file meets this item."},
+                "evidence": {"type": "string", "description": "One line: why. On a fail, the words at fault, one concrete input where it matters, and a one-line fix."}
               }
             }
           }

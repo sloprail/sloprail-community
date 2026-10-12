@@ -22,7 +22,7 @@ BASE=$(git rev-parse HEAD)
 SETUP=$(sr-test agent "$SR_TEST_CASE_DIR/agent.sh" --prompt "set up")
 while IFS= read -r kv; do export "$kv"; done < <(echo "$SETUP" | jq -er ".env[]")
 export PROMPT_LOG="$(mktemp)"
-export SR_CHECKS_JUDGE_MOCKS=$(jq -nc --arg p "$SR_TEST_CASE_DIR/judge-mock.sh" '{"file-guard/spec-quality/judge": $p}')
+export SR_CHECKS_JUDGE_MOCKS=$(jq -nc --arg p "$SR_TEST_CASE_DIR/judge-mock.py" '{"file-guard/spec-quality/judge": $p}')
 commit() { git add -A && git -c user.name=t -c user.email=t@t commit -q -m "$1"; }
 run() { : > "$SR_EVENTS_FILE"; : > "$PROMPT_LOG"; sr-checks run --base "$BASE" --head HEAD >/dev/null 2>&1; }
 dump() { jq -c . "$SR_EVENTS_FILE" >&2; echo "$1" >&2; exit 1; }
@@ -35,7 +35,7 @@ printf 'predicate: >-\n  A {@ent:line:Line} whose {@fld:line:Line.text} is valid
 commit open-ended
 if run; then dump "2: an open-ended invariant passed"; fi
 grep -q '^### An invariant is concrete' "$PROMPT_LOG" || dump "1: the skill's rule on concreteness is not in the judge's prompt"
-refused "- $S/invariants/valid-line-has-no-parse-error.yaml [mock] ($S/invariants/valid-line-has-no-parse-error.yaml): MOCK not concrete" || dump "2: no refusal naming the open-ended invariant"
+refused "- concrete: MOCK not concrete" && refused "$S/invariants/valid-line-has-no-parse-error.yaml:" || dump "2: no refusal naming the open-ended invariant"
 
 # 3: bounded by the grammar the spec defines, it passes
 printf 'predicate: >-\n  A {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar}\n  has no {@fld:line:Line.parseError}.\nwhy: >-\n  A readable line would be flagged as unreadable.\n' > "$S/invariants/valid-line-has-no-parse-error.yaml"

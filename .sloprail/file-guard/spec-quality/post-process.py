@@ -1,28 +1,29 @@
 #!/usr/bin/env python3
-"""post_process: the judge's per-file findings (response.schema.json) become the group's verdict.
-
-stdin           {files: {"<path>": {checked, findings: [{rule, ids, input, fix}]}}}
-SR_JUDGE_INPUT  what the prompt was rendered with: additionalContext.members are the judged files
-
-Every judged file must have an entry and no other file may: otherwise exit 65 and the judge is
-asked again. The group passes when no file has a finding; the reasoning lists every finding,
-one per line, so the agent sees all of them at once. metadata: the number of findings per file."""
+"""post_process: the judge's checklist (response.schema.json, items.json) becomes one verdict per
+file of the batch. Every file must be answered, and every item of its kind's checklist, or the
+answer is sent back (exit 65). A file passes when every item is ok; its reasoning lists each
+failing item with its evidence. metadata: the items, as answered."""
 import json, os, sys
 
+here = os.path.dirname(os.path.abspath(__file__))
+items = json.load(open(os.path.join(here, "items.json")))
 answer = json.load(sys.stdin)
 given = json.load(open(os.environ["SR_JUDGE_INPUT"]))
-want = [m["path"] for m in given["additionalContext"]["members"]]
+want = {m["path"]: m["kind"] for m in given["additionalContext"]["members"]}
 got = answer.get("files") or {}
 problems = [f"no entry for {p}" for p in want if p not in got] + [f"{p} is not a file you were given" for p in got if p not in want]
+for p, kind in want.items():
+    if p in got:
+        missing = [i for i in items[kind] if i not in got[p].get("items", {})]
+        if missing:
+            problems.append(f"{p} lacks the items {', '.join(missing)}")
 if problems:
-    print("; ".join(problems) + ". Give one entry in `files` for each file under \"The files to judge\", and for no other.", file=sys.stderr)
+    print("; ".join(problems) + ". Answer every file under \"The files to judge\", and every item of its kind's checklist.", file=sys.stderr)
     sys.exit(65)
-lines = []
-for p in want:
-    for f in got[p]["findings"]:
-        lines.append(f"- {p} [{f['rule']}] ({', '.join(f['ids'])}): {f['input']} -> {f['fix']}")
-print(json.dumps({
-    "pass": not lines,
-    "reasoning": f"{len(lines)} finding(s):\n" + "\n".join(lines) if lines else "",
-    "metadata": {"findings": {p: len(got[p]["findings"]) for p in want}},
-}))
+out = {}
+for p, kind in want.items():
+    fails = [f"- {i}: {got[p]['items'][i]['evidence']}" for i in items[kind] if not got[p]["items"][i]["ok"]]
+    out[p] = {"pass": not fails, "metadata": {"items": got[p]["items"]}}
+    if fails:
+        out[p]["reasoning"] = f"{p}:\n" + "\n".join(fails)
+print(json.dumps({"verdicts": out}))

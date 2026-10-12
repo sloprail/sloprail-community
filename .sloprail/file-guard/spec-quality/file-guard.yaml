@@ -1,22 +1,18 @@
-# Every changed spec invariant and entity is judged against the document-invariant /
-# document-entity skills (.claude/skills/). The changed files are grouped by what they
-# constrain (subjects.py, speclib.buckets): every changed invariant that mentions a field or
-# entity lands in one group with all the others that mention it, whatever their domain, so
-# the judge checks each such pair for a conflict; an invariant may be in several groups, and
-# groups are merged up to 30 members to keep the judge calls few. Unchanged invariants that
-# share a field or entity with a member come along as context for that pairwise check. A
-# group's fingerprint covers the skills, the cited entities that are not in it and those
-# related invariants, so a change to any of them re-judges only the groups that read it.
+# Every changed spec file of an example, judged ON ITS OWN against the document-invariant and
+# document-entity skills (.claude/skills/): an invariant against both, as they bear on it, plus
+# the project rules (harness-neutral, observable), and whether it writes every entity or field
+# it talks about as its typed mention, using the spec's entity catalog. The judge answers a
+# fixed checklist (items.json) per file, each item ok or not with one line of evidence
+# (response.schema.json); post-process.py makes one verdict per file. Files are batched ten to
+# a call (subjects.py); each file's verdict is its own and is kept until the file, the entities
+# it cites, the catalog, the skills or this rule change. Conflicts between invariants are
+# spec-conflicts'; mentions that do not resolve, across the whole spec, are spec-mentions'.
 match: path matches "^examples/.+/spec/[a-z0-9-]+/(invariants|entities)/[^/]+\\.yaml$"
 subjects: ./subjects.py
 checks:
   - script: ./shape.py
-  - script: ./mentions-resolve.py
   - prepare: ./prepare.py
     judge: ./judge.md.j2
-    # One entry per judged file with every finding (response.schema.json), turned into the
-    # verdict by post-process.py: the default one-sentence answer named one or two problems
-    # per call, so each run sampled a different few.
     response_schema: ./response.schema.json
     post_process: ./post-process.py
     model: size-md

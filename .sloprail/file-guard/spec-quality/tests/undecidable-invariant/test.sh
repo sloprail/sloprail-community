@@ -23,7 +23,7 @@ BASE=$(git rev-parse HEAD)
 SETUP=$(sr-test agent "$SR_TEST_CASE_DIR/agent.sh" --prompt "set up")
 while IFS= read -r kv; do export "$kv"; done < <(echo "$SETUP" | jq -er ".env[]")
 export PROMPT_LOG="$(mktemp)"
-export SR_CHECKS_JUDGE_MOCKS=$(jq -nc --arg p "$SR_TEST_CASE_DIR/judge-mock.sh" '{"file-guard/spec-quality/judge": $p}')
+export SR_CHECKS_JUDGE_MOCKS=$(jq -nc --arg p "$SR_TEST_CASE_DIR/judge-mock.py" '{"file-guard/spec-quality/judge": $p}')
 commit() { git add -A && git -c user.name=t -c user.email=t@t commit -q -m "$1"; }
 run() { : > "$SR_EVENTS_FILE"; : > "$PROMPT_LOG"; sr-checks run --base "$BASE" --head HEAD >/dev/null 2>&1; }
 dump() { jq -c . "$SR_EVENTS_FILE" >&2; echo "$1" >&2; exit 1; }
@@ -36,7 +36,7 @@ printf 'predicate: >-\n  A {@ent:cs:CommandString} whose {@fld:cs:CommandString.
 commit unbounded
 if run; then dump "2: an undecidable invariant passed"; fi
 grep -q 'an invariant asks only for what a program can decide' "$PROMPT_LOG" || dump "1: the skill's rule on deciding is not in the judge's prompt"
-refused "- $F [mock] ($F): MOCK undecidable" || dump "2: no refusal naming the undecidable invariant"
+refused "- decidable: MOCK undecidable" && refused "$F:" || dump "2: no refusal naming the undecidable invariant"
 
 # 3: the bound stated
 printf 'predicate: >-\n  A {@ent:cs:CommandString} whose {@fld:cs:CommandString.text} is known and whose\n  {@fld:cs:CommandString.depth} is at most 3 yields the Invocations its text holds; past that\n  depth it has no text.\nwhy: >-\n  `bash -c npm` would hide npm.\n' > "$F"

@@ -1,0 +1,17 @@
+# Changed invariants of an example's spec, checked against each other and against the
+# invariants they share a field with, the way a10n buckets its conflict check: the changed
+# invariants are clustered by the fields they mention and batched (subjects.py); each batch is
+# shown its neighbours, the other invariants of the spec that share a field (more weakly an
+# entity, or an entity one field type away), ranked and capped (prepare.py, speclib.py). The
+# judge reports pairs with a judged side only, a conflict (one concrete input where both cannot
+# hold) or a duplicate (one effect decided twice). A judged invariant's verdict is keyed on its
+# own text and this rule: editing one re-judges that one, and no cascade to its neighbours.
+# A size-md judge, to keep the cost of judging a whole spec low.
+match: path matches "^examples/.+/spec/[a-z0-9-]+/invariants/[^/]+\\.yaml$"
+subjects: ./subjects.py
+checks:
+  - prepare: ./prepare.py
+    judge: ./judge.md.j2
+    response_schema: ./response.schema.json
+    post_process: ./post-process.py
+    model: size-md

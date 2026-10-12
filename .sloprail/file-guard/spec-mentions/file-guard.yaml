@@ -1,0 +1,13 @@
+# Deterministic, whole spec: on any change to an example's spec file (added, changed, deleted or
+# renamed, invariant or entity), every invariant of that spec as committed at head has a
+# predicate with at least one typed mention, every mention resolves to an entity file and a
+# field it declares, and no predicate names an entity in plain words. Checking the whole spec
+# makes it two-way by construction: an invariant left mentioning a field, entity or domain that
+# an entity change removed or renamed is refused as surely as a new invariant with a typo.
+# One subject per spec tree; its fingerprint is that tree (and this rule), so any spec change
+# runs it again. No judge: it costs nothing.
+match: path matches "^examples/.+/spec/[a-z0-9-]+/(invariants|entities)/[^/]+\\.yaml$"
+deletions: include
+subjects: ./subjects.py
+checks:
+  - script: ./mentions-resolve.py
