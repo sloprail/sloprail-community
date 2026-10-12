@@ -1,14 +1,18 @@
 predicate: >-
-  The {@fld:line:Scope.env} of a {@ent:line:Scope} whose {@fld:line:Scope.kind} is
-  child-shell holds the names and values its program's {@fld:line:Invocation.env} holds, and
-  its {@fld:line:Scope.unknownEnv} the names its program's {@fld:line:Invocation.unknownEnv}
-  holds; of each other {@fld:variables:Variable.name} that {@fld:line:Context.env} holds and
-  that no {@ent:variables:Change} other than one whose {@fld:variables:Change.kind} is every
-  precedes at the program's command, its {@fld:line:Scope.env} holds the name with its
-  {@fld:line:Context.env} value where {@fld:variables:Variable.exported} is true there, and
-  its {@fld:line:Scope.unknownEnv} the name where {@fld:variables:Variable.exported} is
-  absent there; less, in both, what env/env-clears-what-it-is-told removes. The
-  {@fld:line:Scope.env} of the {@ent:line:Scope} whose {@fld:line:Scope.kind} is line is
-  {@fld:line:Context.env}, and its {@fld:line:Scope.unknownEnv} is empty.
+  The {@fld:line:Scope.env} of a {@ent:line:Scope} whose {@fld:line:Scope.kind} is line is
+  {@fld:line:Context.env}, and its {@fld:line:Scope.unknownEnv} is empty. A
+  {@ent:line:Scope} whose {@fld:line:Scope.kind} is child-shell is started by the
+  {@ent:line:Invocation} of the {@fld:command-strings:CommandString.program} of a
+  {@ent:command-strings:CommandString}; its {@fld:line:Scope.env} holds the names and values
+  that {@ent:line:Invocation}'s {@fld:line:Invocation.env} holds, and its
+  {@fld:line:Scope.unknownEnv} the names that {@ent:line:Invocation}'s
+  {@fld:line:Invocation.unknownEnv} holds. Of each other {@fld:variables:Variable.name} that
+  the {@fld:line:Scope.env} or the {@fld:line:Scope.unknownEnv} of the shell that
+  {@ent:line:Invocation}'s command stands in holds, and that no {@ent:variables:Change}
+  other than one whose {@fld:variables:Change.kind} is every precedes at that command: its
+  {@fld:line:Scope.env} holds the name with that shell's {@fld:line:Scope.env} value where
+  that shell's {@fld:line:Scope.env} holds it and {@fld:variables:Variable.exported} is true
+  there; its {@fld:line:Scope.unknownEnv} holds the name otherwise. Less, in both, what
+  env/env-clears-what-it-is-told removes.
 why: >-
   A child shell would be reported seeing variables it is never given, or missing ones it is.

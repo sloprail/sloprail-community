@@ -1,0 +1,15 @@
+doc: >-
+  The redirection that gives a command its standard input: the last redirection of descriptor 0
+  written on the command or, when it has none, on the nearest group, subshell or compound command
+  enclosing it that has one. A command with neither has none.
+fields:
+  - name: kind
+    type: string
+    doc: "What the redirection gives the command."
+    enum: ["here-document: a `<<` or `<<-` operator", "here-string: a `<<<` operator", "file: a `<`, `<>` operator with a file name", "descriptor: `<&` with a descriptor number", "close: `<&-`"]
+  - name: word
+    type: words.Word?
+    doc: "The word written after the operator; absent exactly for kind here-document."
+  - name: hereDocument
+    type: HereDocument?
+    doc: "The here-document; absent exactly for every kind other than here-document."

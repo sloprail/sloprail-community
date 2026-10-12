@@ -1,6 +1,6 @@
 predicate: >-
-  When the command's input redirection (stdin/stdin-is-absent-unless-literal) is a
-  here-string whose {@ent:words:Word} has no {@fld:words:Word.value},
+  When the command's {@ent:stdin:InputRedirection} has {@fld:stdin:InputRedirection.kind}
+  here-string and its {@fld:stdin:InputRedirection.word} has no {@fld:words:Word.value},
   {@fld:line:Invocation.stdin} is absent.
 why: >-
   A guessed input would be reported.

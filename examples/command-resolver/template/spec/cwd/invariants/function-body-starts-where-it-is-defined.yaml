@@ -1,7 +1,9 @@
 predicate: >-
   In a {@fld:line:Function.body}, the {@fld:line:Scope.cwd} at its start is the one where
-  the {@ent:line:Function} is defined when no move ({@ent:line:Scope}) other than a call of
-  a {@ent:line:Function} of that {@fld:line:Function.name} stands anywhere in the
-  {@ent:line:Line} outside that {@fld:line:Function.body}, and absent otherwise.
+  the {@ent:line:Function} is defined when no move ({@ent:line:Scope}) stands anywhere in
+  the {@ent:line:Line} outside that {@fld:line:Function.body}, a call of a
+  {@ent:line:Function} of that {@fld:line:Function.name} counting as a move only when a
+  {@fld:line:Function.body} of a {@ent:line:Function} of that {@fld:line:Function.name}
+  holds a move; it is absent otherwise.
 why: >-
   `f() { rm x; }; cd /tmp; f` would report rm where f was defined, not where it runs.

@@ -1,10 +1,10 @@
 predicate: >-
   A {@ent:words:Word} whose {@fld:words:Word.text} holds, outside any expansion, an unquoted
   `*`, `?` or bracket expression (as POSIX.1-2017 section 2.13.1 defines it, an unclosed `[`
-  being literal), or an unquoted expansion other than a tilde prefix (whose value is never
-  matched as a pattern) whose value holds `*`, `?` or such a bracket expression, has no
-  {@fld:words:Word.value}, and each such character, bracket expression or expansion is an
-  entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is glob; quoted or
-  escaped, those characters are literal text.
+  being literal), or an unquoted reference ({@ent:words:WordPart}) to a
+  {@ent:variables:Variable} whose {@fld:variables:Variable.value} holds `*`, `?` or such a
+  bracket expression, has no {@fld:words:Word.value}, and each such character, bracket
+  expression or reference is an entry of {@fld:words:Word.parts} whose
+  {@fld:words:WordPart.cause} is glob; quoted or escaped, those characters are literal text.
 why: >-
   A pattern would be reported as though it were the file names it expands to.

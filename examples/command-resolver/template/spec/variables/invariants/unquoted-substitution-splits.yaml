@@ -5,20 +5,20 @@ predicate: >-
   per field of its value, each field that {@ent:words:Word}'s {@fld:words:Word.value}: the
   values unquoted expansions ({@ent:words:WordPart}s) other than a tilde prefix contribute
   are split at every run of space, tab and newline, as POSIX.1-2017 section 2.6.5 splits
-  with IFS unset, the text around them joining the first and last field, nothing inside
-  quotes and nothing a tilde prefix contributes is split, and a word with no quoted stretch
-  whose value is empty leaves no field and so yields no {@ent:words:Word}. A written word
-  one of whose {@fld:words:Word.parts} has a {@fld:words:WordPart.cause} is not split: it
-  yields the {@ent:words:Word}s words/brace-expansion-yields-several-words makes of it, one
-  when it has no brace expression. Where a {@ent:variables:Change} naming the
-  {@ent:variables:Variable} IFS precedes the word, each unquoted expansion in it that no
-  other invariant gives a {@fld:words:WordPart.cause} is instead an entry of
-  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is field-splitting. The word of
-  a redirection yields one {@ent:words:Word}: the word of a here-string is neither split nor
-  brace-expanded; the word of any other redirection keeps its {@fld:words:Word.value} when
-  it would make exactly one field and its brace expressions exactly one word, and otherwise
-  (bash refuses it as an ambiguous redirect) has no {@fld:words:Word.value}, its whole
-  {@fld:words:Word.text} being an entry of {@fld:words:Word.parts} whose
-  {@fld:words:WordPart.cause} is field-splitting.
+  with IFS unset, the text around them joining the first and last field, nothing quoted or
+  escaped is split (words/quoted-whitespace-does-not-split), nor anything a tilde prefix
+  contributes, and a word with no quoted stretch whose value is empty leaves no field and so
+  yields no {@ent:words:Word}. A written word one of whose {@fld:words:Word.parts} has a
+  {@fld:words:WordPart.cause} is not split: it yields the {@ent:words:Word}s
+  words/brace-expansion-yields-several-words makes of it, one when it has no brace
+  expression. Where a {@ent:variables:Change} naming the {@ent:variables:Variable} IFS
+  precedes the word, each unquoted expansion in it that no other invariant gives a
+  {@fld:words:WordPart.cause} is instead an entry of {@fld:words:Word.parts} whose
+  {@fld:words:WordPart.cause} is field-splitting. The word of a redirection yields one
+  {@ent:words:Word}: the word of a here-string is neither split nor brace-expanded; the word
+  of any other redirection keeps its {@fld:words:Word.value} when it would make exactly one
+  field and its brace expressions exactly one word, and otherwise (bash refuses it as an
+  ambiguous redirect) has no {@fld:words:Word.value}, its whole {@fld:words:Word.text} being
+  an entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is field-splitting.
 why: >-
   `X='a b'; rm $X` would be reported as one file, or `$EMPTY npm` as running nothing.

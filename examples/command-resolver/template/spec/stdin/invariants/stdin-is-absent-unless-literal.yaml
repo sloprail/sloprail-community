@@ -1,9 +1,8 @@
 predicate: >-
-  A command's input redirection is the last redirection of descriptor 0 written on the
-  command or, when it has none, on the nearest group, subshell or compound command enclosing
-  it that has one. {@fld:line:Invocation.stdin} is absent unless the command's input
-  redirection is a {@ent:stdin:HereDocument} or a here-string, and so absent when it is from
-  a file or a descriptor or closes it, when there is none, and when the command is a
-  pipeline stage after the first with no redirection of descriptor 0 of its own.
+  {@fld:line:Invocation.stdin} is absent unless the command's {@ent:stdin:InputRedirection}
+  has {@fld:stdin:InputRedirection.kind} here-document or here-string, and so absent when
+  that kind is file, descriptor or close, when the command has no
+  {@ent:stdin:InputRedirection}, and when the command is a pipeline stage after the first
+  with no redirection of descriptor 0 written on it.
 why: >-
   Input the line does not contain would be invented.

@@ -1,8 +1,8 @@
 predicate: >-
-  When the command's input redirection (stdin/stdin-is-absent-unless-literal) is a
-  {@ent:stdin:HereDocument} whose {@fld:stdin:HereDocument.quotedDelimiter} is false, its
-  {@fld:stdin:HereDocument.body} is read as inside double quotes, except that a backslash
-  before `"` stays, and {@fld:line:Invocation.stdin} is present only when no
+  When the command's {@ent:stdin:InputRedirection} has a
+  {@fld:stdin:InputRedirection.hereDocument} whose {@fld:stdin:HereDocument.quotedDelimiter}
+  is false, its {@fld:stdin:HereDocument.body} is read as inside double quotes, except that
+  a backslash before `"` stays, and {@fld:line:Invocation.stdin} is present only when no
   {@ent:words:WordPart} of it has a {@fld:words:WordPart.cause}, and then is the body, less
   the tabs stdin/dash-heredoc-strips-leading-tabs removes first, with each
   {@ent:words:WordPart} replaced by what the invariants of the words and variables domains

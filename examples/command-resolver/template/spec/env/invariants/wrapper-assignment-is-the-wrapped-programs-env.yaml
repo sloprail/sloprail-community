@@ -2,8 +2,9 @@ predicate: >-
   A `NAME=value` word a {@ent:config:Wrapper} whose {@fld:config:Wrapper.takesAssignments}
   is true takes as an assignment puts the {@fld:variables:Variable.name} NAME in the
   {@fld:line:Invocation.env} or the {@fld:line:Invocation.unknownEnv}, as
-  env/unknown-value-is-listed-apart picks, of the program it runs, unless a closer setting
-  decides (env/closest-setting-wins) (env/env-clears-what-it-is-told decides what env
-  removes).
+  env/unknown-value-is-listed-apart picks, of the program it runs and of every
+  {@ent:line:Invocation} nested in that program's (as
+  env/prefix-assignment-is-the-commands-env lists nesting), unless a closer setting decides
+  (env/closest-setting-wins) (env/env-clears-what-it-is-told decides what env removes).
 why: >-
   `env FOO=1 npm` would report FOO on env and not on npm.

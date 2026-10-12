@@ -1,8 +1,8 @@
 predicate: >-
-  Nothing inside a {@ent:line:Scope} whose {@fld:line:Scope.kind} is not line changes the
-  {@fld:line:Scope.cwd} of a {@ent:line:Scope} outside it: a move written inside it is that
-  {@ent:line:Scope}'s own and never a move of a {@ent:line:Scope} outside it (as
-  {@ent:line:Scope} defines a move), and a {@ent:line:Function} defined inside it has no
-  call outside it (as {@ent:line:Function} defines a call).
+  Right after a command that starts a {@ent:line:Scope} whose {@fld:line:Scope.kind} is not
+  line (a subshell, a pipeline stage, a background job, a command or process substitution,
+  or a program that starts a child shell), the {@fld:line:Scope.cwd} of the
+  {@ent:line:Scope} the command stands in is the one right before that command, whatever
+  moves the inner {@ent:line:Scope} holds.
 why: >-
   A subshell's cd would move the commands after it.

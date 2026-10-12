@@ -1,8 +1,7 @@
 predicate: >-
   A {@ent:command-strings:CommandString} whose {@fld:command-strings:CommandString.program}
-  has {@fld:config:CommandStringProgram.currentShell} false, or is run by a
-  {@ent:config:Wrapper} whose {@fld:config:Wrapper.name} is other than command and builtin,
-  is resolved in a {@ent:line:Scope} whose {@fld:line:Scope.kind} is child-shell started
-  where it stands.
+  has {@fld:config:CommandStringProgram.currentShell} false, or is not run by the shell (see
+  {@ent:config:Wrapper}), is resolved in a {@ent:line:Scope} whose {@fld:line:Scope.kind} is
+  child-shell started where it stands.
 why: >-
   A `cd` inside `bash -c` or `sudo eval` would move the commands after it.

@@ -1,6 +1,6 @@
 predicate: >-
-  When the command's input redirection (stdin/stdin-is-absent-unless-literal) is a
-  here-string whose {@ent:words:Word} has a {@fld:words:Word.value},
+  When the command's {@ent:stdin:InputRedirection} has {@fld:stdin:InputRedirection.kind}
+  here-string and its {@fld:stdin:InputRedirection.word} has a {@fld:words:Word.value},
   {@fld:line:Invocation.stdin} is that value followed by exactly one newline.
 why: >-
   The reported input would differ from what the program reads by a newline.

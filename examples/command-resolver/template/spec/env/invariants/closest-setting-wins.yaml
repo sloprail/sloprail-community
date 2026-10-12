@@ -8,6 +8,7 @@ predicate: >-
   {@ent:variables:Change} that precedes its command, written in the same text (the
   {@fld:line:Line.text}, or the {@fld:command-strings:CommandString.text} of an
   {@ent:line:Invocation} it is nested in); and a setting made for an {@ent:line:Invocation}
-  it is nested in, itself decided by this same order.
+  it is nested in (as env/prefix-assignment-is-the-commands-env lists nesting), itself
+  decided by this same order.
 why: >-
   The overridden value would be reported.

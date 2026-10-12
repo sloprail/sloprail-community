@@ -2,6 +2,7 @@ predicate: >-
   Quoting never reaches a {@fld:words:Word.value}: the quote characters of
   {@fld:words:Word.text} that open and close a quoted stretch are absent from it, a
   single-quoted stretch appears verbatim, an unquoted backslash is absent before the
-  character it escapes, and adjacent quoted and unquoted stretches form one string.
+  character it escapes, other than a newline (words/line-continuation-joins), and adjacent
+  quoted and unquoted stretches form one string.
 why: >-
   A program spelled `n\pm` or `n""pm` would not be reported as npm.

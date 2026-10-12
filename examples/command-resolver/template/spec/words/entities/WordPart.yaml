@@ -1,7 +1,7 @@
 doc: >-
   A stretch of a Word's text, or of a stdin.HereDocument's body read for expansion, the shell replaces or matches when it runs the command: an
   expansion, an unquoted glob character or bracket expression, a tilde prefix, a run-time
-  placeholder, or the whole text, for a limit. A tilde prefix is an unquoted `~` and the
+  placeholder, or the whole text, for a limit or for a redirection word that is not one word. A tilde prefix is an unquoted `~` and the
   unquoted characters after it up to the first `/` or the end of the word, standing at the
   start of the word or, in a word of the form NAME=value, at the start of the value or after an
   unquoted `:` in it, where it ends at a `:` too; a `~` followed by a quoted or escaped

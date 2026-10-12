@@ -1,6 +1,11 @@
 predicate: >-
   {@fld:line:Invocation.argv} holds the {@ent:words:Word}s that the written words of its
-  command (each a {@fld:words:Word.text}) yield, by the invariants of the words and
-  variables domains, one entry each in the order written, program word first.
+  command from its program word on (each a {@fld:words:Word.text}) yield, by the invariants
+  of the words and variables domains, one entry each in the order written, program word
+  first; it holds none from the `NAME=value` words before the program word, from a
+  redirection operator or the word after it, or from a {@fld:stdin:HereDocument.body}. The
+  words of a command a {@ent:config:Wrapper} or a {@ent:wrappers:FindClause} runs are in the
+  {@fld:line:Invocation.argv} of the {@ent:line:Invocation} of the {@ent:config:Wrapper} or
+  of the `find` too.
 why: >-
   A consumer could not tell `git -C $(x) push` from `git -C push`.

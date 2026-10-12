@@ -1,10 +1,11 @@
 predicate: >-
   A {@ent:words:Word} whose {@fld:words:Word.text} holds a reference ({@ent:words:WordPart})
-  `$X` or `${X}`, with no operator, to a {@ent:variables:Variable} with no
-  {@fld:variables:Variable.value}, or any reference `${X[index]}`, `${X[@]}` or `${X[*]}`
-  with no operator, whatever X's value, has no {@fld:words:Word.value}, and that reference
-  is an entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is
-  untracked-variable.
+  written `$X` or `${X}` to a {@ent:variables:Variable} with no
+  {@fld:variables:Variable.value}, or one written `${X[index]}`, `${X[@]}` or `${X[*]}`,
+  whatever X's {@fld:variables:Variable.value}, has no {@fld:words:Word.value}, and that
+  reference is an entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is
+  untracked-variable. A reference written in any other form is a parameter operation, which
+  words/parameter-operation-word-is-unknown decides.
 why: >-
   The context's old value, an empty string, or an array element nobody tracks would stand in
   for a changed one.
