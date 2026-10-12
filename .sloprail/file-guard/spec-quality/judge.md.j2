@@ -14,6 +14,10 @@ The rules of this project that come on top of the skills:
   different outputs, or one requires what the other forbids, fail and quote both predicates
   and the input. Check the related invariants against the judged ones the same way, but fail
   only for a judged file.
+- A group holds only part of the spec. Before failing because no invariant decides something
+  (an operation's effect, a case of a field), look for it in the index of every invariant id
+  at the end: when an id there names it, do not fail for it here; the group holding that
+  invariant judges it.
 - An invariant is a promise a rule author or the person running the agent can observe and
   relies on. A predicate worded as behaviour but describing a mechanism they cannot observe
   (concurrency slots, locks, where or when results are stored or pushed) is not one.
@@ -49,6 +53,9 @@ The rules of this project that come on top of the skills:
 </file>
 {% endfor %}
 
+## Every invariant of the spec, by id (for the rule on gaps above)
+{% for i in additionalContext.index %}{{ i }}
+{% endfor %}
 Pass only if every file follows every rule for its kind. When you fail, list each failing file
 by path with the rule it breaks and a one-line fix (rewrite, merge into another file, move the
 bound onto an entity field, or drop).

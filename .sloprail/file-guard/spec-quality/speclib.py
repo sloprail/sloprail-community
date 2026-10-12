@@ -66,6 +66,16 @@ def invariants_at(head, roots):
     return out
 
 
+def index(head, members):
+    """Every invariant id (<domain>/<name>) of the spec trees the members belong to, at head."""
+    out = []
+    for path in invariants_at(head, [spec_root(m) for m in members]):
+        m = re.match(r".*spec/([a-z0-9-]+)/invariants/([^/]+)\.yaml$", path)
+        if m:
+            out.append(f"{m.group(1)}/{m.group(2)}")
+    return sorted(out)
+
+
 def related(head, members, files):
     """Invariants at head that are not in the change but mention a field or entity a member
     invariant mentions: the judge checks the members against them for conflicts."""

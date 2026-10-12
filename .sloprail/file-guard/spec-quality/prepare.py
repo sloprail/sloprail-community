@@ -14,5 +14,6 @@ print(json.dumps({"additionalContext": {
     "entity_rules": s.at_head(head, s.SKILLS[1]) or "",
     "members": [{"path": m, "content": content.get(m, "")} for m in members],
     "cited": [{"path": e, "content": s.at_head(head, e) or "<missing>"} for e in cited],
+    "index": s.index(head, members),
     "related": [{"path": r, "content": t} for r, t in sorted(s.related(head, members, content).items())],
 }}))

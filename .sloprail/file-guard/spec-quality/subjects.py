@@ -2,7 +2,8 @@
 """One subject per group of changed spec files (see speclib.buckets). Fingerprint: this rule's
 own files (the verdict cache does not cover the rule's definition), the two skills, every
 entity a member cites that is not itself a member, and every unchanged invariant that shares a
-field or entity with a member (speclib.related), as committed at head."""
+field or entity with a member (speclib.related), and the spec's invariant ids (speclib.index),
+as committed at head."""
 import glob, hashlib, json, os
 import speclib as s
 
@@ -18,6 +19,7 @@ for members in s.buckets(files):
         h.update(os.path.basename(own).encode() + b"\0" + open(own, "rb").read() + b"\0")
     for path in s.SKILLS + outside:
         h.update(path.encode() + b"\0" + (s.at_head(head, path) or "<absent>").encode() + b"\0")
+    h.update("\n".join(s.index(head, members)).encode() + b"\0")
     for path, text in sorted(s.related(head, members, files).items()):
         h.update(path.encode() + b"\0" + text.encode() + b"\0")
     out.append({"id": "bucket-" + s.hash16(members), "files": members, "fingerprint": h.hexdigest()[:32]})
