@@ -1,14 +1,9 @@
 predicate: >-
-  Right after an `if`, `case`, `while`, `until` or `for`, or an `&&` or `||` list, the
-  {@fld:line:Scope.cwd} is the one it was right before it when every move of the
-  {@ent:line:Scope} it is written in (as {@ent:line:Scope} defines a move: none written in a
-  {@ent:line:Scope} inside it) that stands inside it is either a {@ent:variables:Change}
-  whose {@fld:variables:Change.kind} is cd whose {@fld:variables:Change.directory} is that
-  very directory, or a call of a {@ent:line:Function} when no {@fld:line:Function.body} of
-  that {@fld:line:Function.name} holds a move; and absent otherwise, even where the moves
-  inside agree with one another. A cd that is the first command of an `&&` or `||` list is
-  taken to succeed: it is not inside the list, and "right before" is right after it. Inside
-  a `while`, `until` or `for` that holds a move of that {@ent:line:Scope} other than such a
-  call, the {@fld:line:Scope.cwd} is absent from its start up to the first such move.
+  Right after an `if`, `case`, `while`, `until` or `for` that is not the body of a
+  {@ent:line:Function} definition, or an `&&` or `||` list whose first command is no
+  {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, the {@fld:line:Scope.cwd}
+  is the one right before it when it holds no move of the {@ent:line:Scope} it stands in (as
+  {@ent:line:Scope} defines a move), and absent when it holds one; this invariant decides
+  that point in place of every other invariant of the cwd domain.
 why: >-
   One branch's directory would be reported for all.

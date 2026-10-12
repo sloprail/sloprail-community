@@ -1,6 +1,6 @@
 predicate: >-
-  A {@ent:line:Line} of any length whose {@fld:line:Line.text} is written in the {@ent:line:Grammar},
-  with quotes, substitutions, expansions and compound commands nested in one another at
-  most two deep, has no {@fld:line:Resolution.parseError}.
+  A {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar}, of
+  depth at most two (as the {@ent:line:Grammar} defines depth), has no
+  {@fld:line:Resolution.parseError}.
 why: >-
   A readable line would be flagged as unreadable.

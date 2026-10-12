@@ -1,11 +1,10 @@
 predicate: >-
-  A space, tab or newline, other than the newline of a backslash-newline (which
-  words/line-continuation-joins removes), that is quoted or escaped in the
-  {@fld:words:Word.text} of a written word, in a {@fld:line:Line.text} written in the
-  {@ent:line:Grammar}, ends no written word and is no point at which
-  variables/unquoted-substitution-splits splits: in a {@ent:words:Word} that has a
-  {@fld:words:Word.value}, it stays inside that {@fld:words:Word.value}. A space, tab or
-  newline in the value an unquoted expansion (a {@ent:words:WordPart}) contributes is not
-  quoted by the text it came from: variables/unquoted-substitution-splits splits it.
+  When every {@ent:words:Word} a {@fld:words:Word.text} yields has a
+  {@fld:words:Word.value}, a space, tab or newline that is quoted or escaped in that
+  {@fld:words:Word.text}, outside the {@fld:words:Word.text} that is the value of the `-S`
+  option of env, which wrappers/env-split-string-is-one-command splits, other than the
+  newline of a backslash-newline, is part of the {@fld:words:Word.value} of one
+  {@ent:words:Word}: no {@ent:words:Word} that {@fld:words:Word.text} yields ends or starts
+  at it.
 why: >-
   One argument holding a space would be reported as two.

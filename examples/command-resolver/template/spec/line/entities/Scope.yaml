@@ -1,11 +1,10 @@
 doc: >-
   A shell process within the line. Its shell is the nearest Scope, itself included, whose kind
-  is line or child-shell. A move of a Scope's directory is one of these, written in the Scope,
-  not in a Scope inside it and not in a body of a Function (one written in a body is that
-  body's): an Invocation whose bin is cd,
-  pushd or popd, that the shell runs (see config.Wrapper) and that is no call of a Function; a
-  call of a Function; a current-shell command-strings.CommandString with no text whose program
-  the shell runs; a command whose program word has no words.Word.value.
+  is line or child-shell. A move of a Scope is a simple command written in it, not in a Scope
+  inside it, that has a program word whose words.Word.value is absent, or is cd, pushd, popd,
+  command, builtin, exec, `.` or source, the name of a Function, or the name of a
+  config.CommandStringProgram whose currentShell is true. A text (a compound command, a list, a
+  Function's body) holds a move of a Scope when that move is written in it.
 fields:
   - name: kind
     type: string
@@ -13,11 +12,5 @@ fields:
     enum: ["line", "subshell", "pipeline-stage", "background-job", "command-substitution", "process-substitution", "child-shell"]
   - name: cwd
     type: string?
-    doc: "The directory in force at a point of the scope. Absent exactly where an invariant of the cwd domain says it is. Lexically cleaning a path removes its `.` components, its empty ones (a repeated or trailing `/`) and each `..` with the component before it, a `..` at the root staying there."
+    doc: "The directory in force at a point of the scope; absent when the resolver does not know it. Lexically cleaning a path removes its `.` components, its empty ones (a repeated or trailing `/`) and each `..` with the component before it, a `..` at the root staying there."
     constraint_expr: 'an absolute path, lexically clean'
-  - name: env
-    type: Record<string>
-    doc: "The environment variables its process starts with whose values are known, with those values, for a Scope whose kind is line or child-shell; empty for every other kind."
-  - name: unknownEnv
-    type: string[]
-    doc: "The names of the environment variables its process starts with whose values are unknown, for a Scope whose kind is line or child-shell; empty for every other kind."

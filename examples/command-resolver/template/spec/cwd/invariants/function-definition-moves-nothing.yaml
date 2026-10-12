@@ -1,7 +1,5 @@
 predicate: >-
   The {@fld:line:Scope.cwd} right after a definition of a {@ent:line:Function} is the one
-  right before it. Right after a definition that ends an `if`, `case`, `while`, `until` or
-  `for`, or an `&&` or `||` list, cwd/paths-through-a-construct-must-agree decides in place
-  of this invariant.
+  right before it.
 why: >-
   Defining a function would be reported as changing directory.

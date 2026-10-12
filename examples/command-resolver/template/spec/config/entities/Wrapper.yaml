@@ -1,13 +1,11 @@
 doc: >-
-  A program whose arguments are the argument vector of another program it runs. The program it
-  runs is run by the wrapper, not by the shell, unless the wrapper's name is command or
-  builtin: those two have the shell itself run it. Its own words are those before the program it
-  runs; among them an option is a word that starts with `-` and comes before the first `--`
-  that is no option's value (that `--` ends its options), and a bare word is a word that is
-  neither an option, nor an option's value, nor that `--`. The value of one of its valueOptions
-  is the word after it, or, written in the same word, the characters after a one-letter
-  single-dash option, written alone or after other one-letter options in one cluster (`-uroot`,
-  `-tI{}`), or after the `=` of a double-dash one (`--user=root`).
+  A program whose arguments are the argument vector of another program it runs. Its own words
+  are those before the program it runs; among them an option is a word that starts with `-` and
+  comes before the first `--` that is no option's value (that `--` ends its options), and a bare
+  word is a word that is neither an option, nor an option's value, nor that `--`. The value of
+  one of its valueOptions is the word after it, or, written in the same word, the characters
+  after a one-letter single-dash option, written alone or after other one-letter options in one
+  cluster (`-uroot`, `-tI{}`), or after the `=` of a double-dash one (`--user=root`).
 fields:
   - name: name
     type: string

@@ -1,41 +1,34 @@
 doc: >-
-  One place where the line changes Variables: a form of kind. A form is a Change of the Scope
-  it is written in when the shell runs it (see config.Wrapper), and when it is not written in a
-  Scope inside that one, in a body of a line.Function (a body holds its own Changes, for which
-  a call stands), or as a command's prefix (NAME=word before a program word); a command that
-  is a call of a line.Function is a Change of kind call and of no other kind. One word may be
-  the place of several Changes. A Change of kind every names every Variable, one of kind cd
-  PWD and OLDPWD, one of kind call or entry the Variables its entry lists, any other its NAME.
-  A Change precedes a point of a Scope when it is written before the point in that Scope (the
-  text of a current-shell command-strings.CommandString standing where its program's command
-  does), or when the Scope's kind is not child-shell and the Change precedes the point where
-  the Scope starts, in the Scope it starts in; unless an invariant of the cwd domain reads it
-  as not written at that point.
+  One place where the line changes Variables: a form its kind lists, written outside every body
+  of a line.Function (a call stands for what its bodies change); a form that is an argument of a
+  program is one of a line.Invocation the shell runs. One word may be several Changes. A Change
+  stands at the end of the word that is its form, or of the command for a form that is a
+  command; one of kind entry at the start of its construct, one of kind end at its end. It
+  precedes a point outside every Function body when it stands before that point in the point's
+  line.Scope, or in a Scope enclosing it no farther out than the point's shell; the text of a current-shell command-strings.CommandString whose depth is at
+  most 8 and whose program the shell runs stands where that program's command does. Of the
+  Changes naming a Variable that precede a point, those of kind export and unexport aside, the
+  one written last is the Variable's latest Change there.
 fields:
   - name: kind
     type: string
-    doc: "Its form."
+    doc: "Its form, and the Variables it names: its NAME, but where the entry says otherwise."
     enum:
-      - "assignment: NAME=word as a word of a command with no program word, or as an argument of export, readonly, declare, typeset or local"
+      - "assignment: NAME=word as a word of a command that has no program word, or as an argument of export or readonly, or of declare, typeset or local given no option word"
       - "append: NAME+=word in those places"
       - "array: NAME=(…), NAME+=(…) or NAME[index]=word in those places"
       - "unset: an operand of unset given no option or -v"
-      - "export: NAME or NAME=word as an argument of export, or of declare or typeset given -x"
-      - "unexport: an operand of export given -n, or of declare or typeset given +x"
-      - "read: an operand of read (whose -a, -d, -i, -n, -N, -p, -t and -u take a value), its -a value, or REPLY when it has neither; the second operand of getopts, and OPTARG and OPTIND; the -v value of printf; the operand of mapfile or readarray (whose -d, -n, -O, -s, -u, -C and -c take a value), or MAPFILE when it has none"
+      - "export: NAME or NAME=word as an argument of export given no option"
+      - "unexport: an operand of export given -n"
+      - "read: an operand of read (whose -a, -d, -i, -n, -N, -p, -t and -u take a value), its -a value, or REPLY when it has neither; the second operand of getopts, and OPTARG and OPTIND; the -v value of printf; the -p value of wait; the operand of mapfile or readarray (whose -d, -n, -O, -s, -u, -C and -c take a value), or MAPFILE when it has none"
       - "for: the NAME of a for loop"
       - "arithmetic: an assignment operator of POSIX.1-2017 section 2.6.4 whose left operand is NAME, in an arithmetic expression: the text of a $((…)) or ((…)), an argument of let, the index of an indexed array, the offset or length of ${name:offset:length}, or an operand of -eq, -ne, -lt, -le, -gt or -ge in [[ … ]]"
       - "default: a ${NAME:=word} or ${NAME=word} expansion"
-      - "cd: an Invocation whose bin is cd, pushd or popd"
-      - "call: a call of a line.Function, for every Variable a Change in a body of a Function of that name names, a call written in such a body counting there as a Change of kind every"
-      - "entry: the start of a while, until or for, for every Variable a Change in it names; the start of a body of a line.Function, for every Variable a Change on the line outside that body names"
-      - "every: a command whose program word has no words.Word.value; an Invocation whose bin is . or source; a set given -a, a single-dash option cluster holding a, or -o allexport; a declare, typeset or local given an option word holding i, l, n, u or I; let with an argument that has no Word.value; a form above whose NAME has no Word.value; an arithmetic expression holding an expansion or naming a Variable whose value there is neither empty nor a decimal integer constant; a current-shell command-strings.CommandString with no text"
-  - name: name
-    type: string?
-    doc: "The NAME of the form; absent for kind every, cd, call and entry."
+      - "cd: an Invocation whose bin is cd, pushd or popd, naming PWD and OLDPWD"
+      - "call: a call of a line.Function, naming each Variable that a form of a kind above, written in a body of a Function of that name, names, and every Variable when such a body holds a call or a form of kind every"
+      - "entry: the start of a while, until or for, naming each Variable that a form of a kind above, written inside it, names, and every Variable when one of those is of kind call or every"
+      - "end: the end of an if, case, while, until or for, or of an && or || list, naming each Variable that a form of a kind above, written inside it, names, and every Variable when one of those is of kind call or every"
+      - "every: naming every Variable: a command whose program word has no words.Word.value; an Invocation whose bin is . or source; a declare, typeset or local given an option word; let with an argument that has no Word.value; a form above whose NAME has no Word.value; an arithmetic expression holding an expansion or naming a Variable whose value there is neither empty nor a decimal integer constant; a current-shell command-strings.CommandString with no text, or whose depth is above 8"
   - name: word
     type: words.Word?
-    doc: "The word whose value an assignment or append gives; absent for every other kind."
-  - name: directory
-    type: string?
-    doc: "For a Change of kind cd, the directory it makes the current one; absent for every other kind, and for a cd exactly where an invariant of the cwd domain says it sets none."
+    doc: "For an assignment or append, the part after `=` of its NAME=word or NAME+=word, read as a Word whose text is that part; absent for every other kind."

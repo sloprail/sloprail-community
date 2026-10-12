@@ -1,9 +1,10 @@
 predicate: >-
   The {@fld:command-strings:CommandString.text} of a {@ent:command-strings:CommandString}
-  whose {@fld:command-strings:CommandString.program} has
-  {@fld:config:CommandStringProgram.currentShell} true and is run by the shell (see
-  {@ent:config:Wrapper}) is resolved in its program's own {@ent:line:Scope}, in place of the
-  command of the program's {@ent:line:Invocation}, so the moves and the
-  {@ent:variables:Change}s it holds are that {@ent:line:Scope}'s.
+  whose {@fld:command-strings:CommandString.depth} is at most 8, whose
+  {@fld:command-strings:CommandString.program} has
+  {@fld:config:CommandStringProgram.currentShell} true and whose
+  {@fld:command-strings:CommandString.invocation} is run by the shell (as
+  {@ent:line:Invocation} defines it) is resolved in the {@ent:line:Scope} of that
+  {@ent:line:Invocation}, in place of its command.
 why: >-
   A `cd` inside eval would be forgotten.

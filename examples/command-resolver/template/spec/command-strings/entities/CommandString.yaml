@@ -3,10 +3,13 @@ fields:
   - name: program
     type: config.CommandStringProgram
     doc: "The program given the string."
+  - name: invocation
+    type: line.Invocation
+    doc: "The Invocation of the program given the string."
   - name: depth
     type: int32
     doc: "How many CommandStrings it stands inside: 0 when its program is written in the Line's text, and one more than the CommandString in whose text its program is written otherwise."
     constraint_expr: '>= 0'
   - name: text
     type: string?
-    doc: "The string the program runs. Absent exactly where an invariant of the command-strings domain says it has none."
+    doc: "The string the program runs; absent when the resolver does not know it."

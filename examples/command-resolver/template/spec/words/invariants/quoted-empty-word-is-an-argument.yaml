@@ -1,5 +1,7 @@
 predicate: >-
-  A written word made only of empty quotes yields exactly one {@ent:words:Word}, whose
-  {@fld:words:Word.text} is that word and whose {@fld:words:Word.value} is the empty string.
+  A {@fld:words:Word.text} made only of empty quotes, outside the {@fld:words:Word.text}
+  that is the value of the `-S` option of env, which
+  wrappers/env-split-string-is-one-command splits, yields one {@ent:words:Word}, whose
+  {@fld:words:Word.value} is the empty string.
 why: >-
   An explicitly empty argument would vanish and shift the ones after it.

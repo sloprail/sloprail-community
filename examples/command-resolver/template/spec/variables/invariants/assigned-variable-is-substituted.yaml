@@ -1,7 +1,11 @@
 predicate: >-
   A {@ent:words:WordPart} `$X` or `${X}` that references a {@ent:variables:Variable} with a
-  {@fld:variables:Variable.value} contributes that value, before any splitting
-  (variables/unquoted-substitution-splits), to the {@fld:words:Word.value} of a
-  {@ent:words:Word} that has one, bare, inside double quotes or joined to other text.
+  {@fld:variables:Variable.value} contributes that value to the {@fld:words:Word.value} of
+  its {@ent:words:Word}, when that {@ent:words:Word} has one, in two cases: it stands inside
+  double quotes or in a {@fld:variables:Change.word}; or it stands unquoted in a
+  {@ent:words:Word} whose {@fld:words:Word.text} holds a character outside every expansion,
+  no {@ent:variables:Change} names the {@ent:variables:Variable} whose
+  {@fld:variables:Variable.name} is IFS, and the value holds no space, tab, newline, `*`,
+  `?` or `[`.
 why: >-
-  `X=a; rm $X` would be reported without its argument.
+  `X=a; rm "$X"` would be reported without its argument.

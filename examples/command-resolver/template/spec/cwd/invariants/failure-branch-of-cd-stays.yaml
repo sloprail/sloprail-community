@@ -1,12 +1,9 @@
 predicate: >-
-  In an `||` list whose left side is one simple command that is a {@ent:variables:Change}
-  whose {@fld:variables:Change.kind} is cd, that {@ent:variables:Change} is read as not
-  written on the right side, so it precedes no point there (the reading
-  {@ent:variables:Change}'s definition of preceding defers to): at the right side's start
-  the {@fld:line:Scope.cwd} is the one right before it, and the {@ent:variables:Variable}s
-  whose {@fld:variables:Variable.name} is PWD or OLDPWD have the
-  {@fld:variables:Variable.value} and the {@fld:variables:Variable.exported} they had right
-  before it; the right side's own commands then move and change as anywhere else. Right
-  after the whole list, cwd/paths-through-a-construct-must-agree decides.
+  In an `||` list whose left side is one simple command yielding exactly one
+  {@ent:line:Invocation}, whose {@fld:line:Invocation.bin} is cd, run by the shell (as
+  {@ent:line:Invocation} defines it), the right side starts with the {@fld:line:Scope.cwd}
+  right before that cd, and right after the whole list the {@fld:line:Scope.cwd} is the one
+  right after the cd; this invariant decides those two points in place of every other
+  invariant of the cwd domain.
 why: >-
   The failure path would be reported in the directory that could not be entered.

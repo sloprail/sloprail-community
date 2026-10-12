@@ -1,12 +1,10 @@
 predicate: >-
   An {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is the
-  {@fld:config:Wrapper.name} of no entry of {@fld:config:Config.wrappers} and the
+  {@fld:config:Wrapper.name} of no entry of {@fld:config:Config.wrappers}, the
   {@fld:config:CommandStringProgram.name} of no entry of
-  {@fld:config:Config.commandStringPrograms}, and is not `find`, reads none of the
+  {@fld:config:Config.commandStringPrograms}, and not find, reads none of the
   {@ent:words:Word}s of its {@fld:line:Invocation.argv} after the program word as another
   program: no {@ent:line:Invocation} comes from them but those of the command and process
-  substitutions among the {@ent:words:WordPart}s of their {@fld:words:Word.parts} (each a
-  {@ent:line:Scope} whose {@fld:line:Scope.kind} is command-substitution or
-  process-substitution).
+  substitutions they hold.
 why: >-
   An ordinary argument would be reported as a program.

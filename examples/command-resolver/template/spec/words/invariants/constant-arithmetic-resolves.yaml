@@ -1,12 +1,10 @@
 predicate: >-
-  An arithmetic expansion ({@ent:words:WordPart}) in a {@fld:words:Word.text} whose
-  expression, read as POSIX.1-2017 section 2.6.4 reads it, holds only integer constants and
-  operators, in which every value, intermediate ones included, lies within the signed 64-bit
-  range, no `/`, `%`, `/=` or `%=` has a right operand of zero, and no shift is by a
-  negative count or by 64 or more, contributes its decimal result to that
-  {@ent:words:Word}'s {@fld:words:Word.value}, split, where the expansion is unquoted, as
-  variables/unquoted-substitution-splits says (which also decides what a
-  {@ent:variables:Change} naming the {@ent:variables:Variable} whose
-  {@fld:variables:Variable.name} is IFS that precedes it makes of it).
+  Where no {@ent:variables:Change} that precedes it names the {@ent:variables:Variable}
+  whose {@fld:variables:Variable.name} is IFS, an arithmetic expansion in the
+  {@fld:words:Word.text} of a {@ent:words:Word} whose expression holds, blanks aside, only
+  constants written as decimal digits with no leading zero, parentheses and the binary
+  operators `+`, `-` and `*`, every value of which, intermediate ones included, lies within
+  the signed 64-bit range, contributes its decimal result to the {@fld:words:Word.value} of
+  that {@ent:words:Word}.
 why: >-
   A value the line fixes would be reported as unknown.

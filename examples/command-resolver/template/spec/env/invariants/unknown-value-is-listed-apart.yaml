@@ -1,11 +1,9 @@
 predicate: >-
-  A {@fld:variables:Variable.name} that a `NAME=value` word sets for the program of an
-  {@ent:line:Invocation}, as its command's prefix or as an assignment a
-  {@ent:config:Wrapper} takes (as its {@fld:config:Wrapper.takesAssignments} allows), is in
-  that {@ent:line:Invocation}'s {@fld:line:Invocation.env}, with the value set, when the
-  value part of that word, as a {@ent:words:Word}, has a {@fld:words:Word.value}, and in its
-  {@fld:line:Invocation.unknownEnv}, not its {@fld:line:Invocation.env}, when it has none,
-  unless a closer setting decides (env/closest-setting-wins) or
-  env/env-clears-what-it-is-told removes it.
+  A name that env/prefix-assignment-is-the-commands-env or
+  env/wrapper-assignment-is-the-wrapped-programs-env puts in an {@ent:line:Invocation} from
+  a `NAME=value` {@ent:words:Word} is in its {@fld:line:Invocation.env} with the
+  {@fld:words:Word.value} of the value part when that part, read as a {@ent:words:Word}, has
+  one, and in its {@fld:line:Invocation.unknownEnv}, not its {@fld:line:Invocation.env},
+  when it has none, unless a closer setting decides (env/closest-setting-wins).
 why: >-
   An unknown value would be reported as empty.

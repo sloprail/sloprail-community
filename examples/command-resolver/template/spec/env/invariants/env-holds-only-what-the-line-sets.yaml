@@ -1,10 +1,10 @@
 predicate: >-
-  {@fld:line:Invocation.env} and {@fld:line:Invocation.unknownEnv} hold a
-  {@fld:variables:Variable.name} only when the {@ent:line:Line} sets it for that program: by
-  its command's prefix, by an assignment the {@ent:config:Wrapper} that runs it takes (as
-  its {@fld:config:Wrapper.takesAssignments} allows), by a {@ent:variables:Change} that
-  precedes its command (env/export-reaches-later-commands), or by one of these for an
-  {@ent:line:Invocation} it is nested in (env/prefix-assignment-is-the-commands-env); a name
-  that is only in {@fld:line:Context.env} is in neither.
+  An {@ent:line:Invocation} whose command stands outside every {@fld:line:Function.body},
+  whose {@ent:line:Scope}'s shell has line as its {@fld:line:Scope.kind}, and that no
+  {@ent:wrappers:FindClause} runs, holds a name in its {@fld:line:Invocation.env} or
+  {@fld:line:Invocation.unknownEnv} only when a `NAME=value` word before its command's
+  program word, an assignment a {@ent:config:Wrapper} that runs it takes (as its
+  {@fld:config:Wrapper.takesAssignments} allows), or a {@ent:variables:Change} that precedes
+  its command, names it.
 why: >-
   Every program would be reported with the whole ambient environment.

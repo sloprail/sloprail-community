@@ -1,10 +1,10 @@
 predicate: >-
-  A {@ent:config:Wrapper} whose words hold a wrapped program {@ent:words:Word} yields,
-  besides its own {@ent:line:Invocation}, one for the wrapped program, whose
-  {@fld:line:Invocation.argv} starts at that {@ent:words:Word}, unless
-  wrappers/describing-options-run-nothing, wrappers/required-options-gate-the-wrapping,
-  wrappers/unknown-word-in-an-open-slot-hides-the-program,
-  wrappers/run-time-placeholder-is-unknown or wrappers/env-split-string-is-one-command
-  withholds it.
+  A {@ent:config:Wrapper} that has its wrapped program {@ent:words:Word} (the one
+  wrappers/assignments-are-not-the-wrapped-program and
+  wrappers/other-wrappers-take-no-assignments name) yields, besides its own
+  {@ent:line:Invocation}, one for the wrapped program, whose {@fld:line:Invocation.argv}
+  starts at that {@ent:words:Word}, unless wrappers/describing-options-run-nothing,
+  wrappers/required-options-gate-the-wrapping or
+  wrappers/unknown-word-in-an-open-slot-hides-the-program withholds it.
 why: >-
   `sudo npm publish` would hide either sudo or npm.

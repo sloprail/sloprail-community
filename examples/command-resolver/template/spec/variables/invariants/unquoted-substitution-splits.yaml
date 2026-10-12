@@ -1,37 +1,11 @@
 predicate: >-
-  A written word (the {@fld:words:Word.text} of the {@ent:words:Word}s it yields) other than
-  the {@fld:line:Redirection.word} of a {@ent:line:Redirection} and the
-  {@fld:variables:Change.word} of a {@ent:variables:Change} (which is never split nor
-  brace-expanded and yields one {@ent:words:Word}, its {@fld:words:Word.value} the empty
-  string included), or each word its brace expressions make of it, none of whose
-  {@fld:words:Word.parts} has a {@fld:words:WordPart.cause}, yields one {@ent:words:Word}
-  per field of its value, each field that {@ent:words:Word}'s {@fld:words:Word.value}: the
-  values unquoted expansions ({@ent:words:WordPart}s) other than a tilde prefix contribute
-  are split at every run of space, tab and newline, as POSIX.1-2017 section 2.6.5 splits
-  with IFS unset, the text around them joining the first and last field, nothing quoted or
-  escaped is split (words/quoted-whitespace-does-not-split), nor anything a tilde prefix
-  contributes, and a word with no quoted stretch whose value is empty leaves no field and so
-  yields no {@ent:words:Word}. A written word one of whose {@fld:words:Word.parts} has a
-  {@fld:words:WordPart.cause} is not split: it yields the {@ent:words:Word}s
-  words/brace-expansion-yields-several-words makes of it, one when it has no brace
-  expression. Where a {@ent:variables:Change} naming the {@ent:variables:Variable} whose
-  {@fld:variables:Variable.name} is IFS precedes the word, a {@fld:line:Redirection.word}
-  included but not the {@fld:stdin:InputRedirection.word} of a here-string, each unquoted
-  expansion in it that no other invariant of the words or variables domain gives a
-  {@fld:words:WordPart.cause}, an arithmetic expansion words/constant-arithmetic-resolves
-  gives a value included, is instead an entry of {@fld:words:Word.parts} whose
-  {@fld:words:WordPart.cause} is field-splitting. The {@fld:line:Redirection.word} of a
-  {@ent:line:Redirection} yields one {@ent:words:Word}: the
-  {@fld:stdin:InputRedirection.word} of an {@ent:stdin:InputRedirection} whose
-  {@fld:stdin:InputRedirection.kind} is here-string is neither split nor brace-expanded; the
-  {@fld:line:Redirection.word} of a {@ent:line:Redirection} whose
-  {@fld:line:Redirection.operator} is none of `<<`, `<<-` and `<<<`, none of whose
-  {@fld:words:Word.parts} has a {@fld:words:WordPart.cause} another invariant of the words
-  or variables domain gives it (such a word is not split, as said above), keeps its
-  {@fld:words:Word.value} when it would make exactly one field and its brace expressions
-  exactly one word, and otherwise (bash refuses it as an ambiguous redirect) has no
-  {@fld:words:Word.value}, and an entry of its {@fld:words:Word.parts} whose
-  {@fld:words:WordPart.text} is its whole {@fld:words:Word.text} has the
-  {@fld:words:WordPart.cause} field-splitting.
+  Where no {@ent:variables:Change} names the {@ent:variables:Variable} whose
+  {@fld:variables:Variable.name} is IFS, a written word ({@fld:words:Word.text}) of a
+  command from its program word on, outside every {@ent:line:Redirection}, or a word a brace
+  expression makes of one, that is only an unquoted `$X` or `${X}` referencing a
+  {@ent:variables:Variable} with a {@fld:variables:Variable.value} that holds no `*`, `?` or
+  `[`, yields one {@ent:words:Word} per field of that value, in order, the field its
+  {@fld:words:Word.value}, a field being a longest run of characters other than space, tab
+  and newline; with no field it yields no {@ent:words:Word}.
 why: >-
   `X='a b'; rm $X` would be reported as one file, or `$EMPTY npm` as running nothing.

@@ -1,7 +1,7 @@
 predicate: >-
   {@fld:line:Invocation.bin} is the text after the last `/` of the {@fld:words:Word.value}
   of the first entry of {@fld:line:Invocation.argv}, once every trailing `/` is removed from
-  that value (the whole value when it holds no `/`; `/` when it is made of `/` alone), and
-  that entry keeps the full path.
+  that value (the whole value when it holds no `/`, and `/` when it is made of `/` alone),
+  and that entry keeps the full path.
 why: >-
   The same program reached by different paths would be reported under different names.

@@ -1,8 +1,5 @@
 predicate: >-
   Resolving a {@ent:line:Line} runs no program, and no command or process substitution,
-  written in {@fld:line:Line.text}: every {@fld:words:Word.value} and
-  {@fld:variables:Variable.value} it relies on is read from what
-  line/output-depends-only-on-line-context-and-config lets a {@ent:line:Resolution} depend
-  on, without running anything.
+  written in {@fld:line:Line.text}.
 why: >-
   Reading a dangerous line would carry it out.

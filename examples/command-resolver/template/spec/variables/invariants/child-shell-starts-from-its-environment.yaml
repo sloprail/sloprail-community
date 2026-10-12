@@ -1,11 +1,12 @@
 predicate: >-
-  At a reference ({@ent:words:WordPart}) whose shell is a {@ent:line:Scope} whose
-  {@fld:line:Scope.kind} is child-shell, a {@ent:variables:Variable} that no
-  {@ent:variables:Change} precedes and whose {@fld:variables:Variable.name} is not in
-  {@fld:variables:Variable.shellSet} has as its {@fld:variables:Variable.value}: the value
-  that {@ent:line:Scope}'s {@fld:line:Scope.env} holds for its
-  {@fld:variables:Variable.name}; none when its {@fld:line:Scope.unknownEnv} holds the name,
-  or when neither holds it and the name is in {@fld:variables:Variable.shellDefaulted}; and
-  the empty string otherwise.
+  At a point outside every {@fld:line:Function.body} of a {@ent:line:Scope} whose
+  {@fld:line:Scope.kind} is child-shell, started by an {@ent:line:Invocation} the shell runs
+  (as {@ent:line:Invocation} defines it), a {@ent:variables:Variable} whose
+  {@fld:variables:Variable.name} is not in {@fld:variables:Variable.shellSet} and that no
+  {@ent:variables:Change} of that {@ent:line:Scope} naming it precedes has as its
+  {@fld:variables:Variable.value} the value that {@ent:line:Invocation}'s
+  {@fld:line:Invocation.env} holds for its name, none when its
+  {@fld:line:Invocation.unknownEnv} holds the name, and otherwise the
+  {@fld:variables:Variable.value} it has right before that {@ent:line:Invocation}'s command.
 why: >-
   `X=1; bash -c 'rm $X'` would be reported as `rm 1`, where the child shell has no X.

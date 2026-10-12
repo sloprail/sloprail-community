@@ -1,12 +1,10 @@
 predicate: >-
-  {@fld:line:Invocation.argv} holds the {@ent:words:Word}s that the written words of its
-  command from its program word on (each a {@fld:words:Word.text}) yield, by the invariants
-  of the words and variables domains, one entry each in the order written, program word
-  first; it holds none from the `NAME=value` words before the program word, from a
-  {@ent:line:Redirection} (its {@fld:line:Redirection.operator} or its
-  {@fld:line:Redirection.word}), or from a {@fld:stdin:HereDocument.body}. The words of a
-  command a {@ent:config:Wrapper} or a {@ent:wrappers:FindClause} runs are in the
-  {@fld:line:Invocation.argv} of the {@ent:line:Invocation} of the {@ent:config:Wrapper} or
-  of the {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is find too.
+  An {@ent:line:Invocation} that no {@ent:wrappers:FindClause} runs and that is not made
+  from the value of env's `-S` option has as its {@fld:line:Invocation.argv}, in the order
+  written, the {@ent:words:Word}s the written words of its command yield from its program
+  word on, none from a `NAME=value` word before it, a {@ent:line:Redirection} or a
+  {@fld:stdin:HereDocument.body}; a written word yields one {@ent:words:Word}, but where
+  words/brace-expansion-yields-several-words, variables/unquoted-substitution-splits or
+  words/comment-yields-no-word says otherwise.
 why: >-
   A consumer could not tell `git -C $(x) push` from `git -C push`.

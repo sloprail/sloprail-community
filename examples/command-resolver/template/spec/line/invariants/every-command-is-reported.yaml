@@ -1,16 +1,12 @@
 predicate: >-
   In a {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar},
-  with quotes, substitutions, expansions and compound commands nested in one another at most
-  two deep, every simple command, one written in the
-  {@fld:command-strings:CommandString.text} of a {@ent:command-strings:CommandString} only
-  where command-strings/command-string-text-is-bounded gives it that text, whose program
-  word's {@fld:words:Word.value} is not the empty string yields exactly one
-  {@ent:line:Invocation} of its own in {@fld:line:Resolution.invocations}, whose
-  {@fld:line:Invocation.argv} line/argv-holds-every-word-in-order decides, wherever it
-  stands: in a pipeline, an `&&`, `||` or `;` list, a brace group, after `!` or `time`, in
-  the condition or in every branch of an `if`, `case`, `while`, `until` or `for`, whether or
-  not that branch would run, in a {@fld:line:Function.body} whether or not it is called, or
-  in a {@ent:line:Scope} of any {@fld:line:Scope.kind} (subshell, pipeline-stage,
-  background-job, command-substitution, process-substitution, child-shell).
+  of depth at most two (as the {@ent:line:Grammar} defines depth), every simple command that
+  has a program word whose {@fld:words:Word.value} is not the empty string yields exactly
+  one entry of {@fld:line:Resolution.invocations} whose {@fld:line:Invocation.argv} starts
+  at its own program word, wherever it stands: in a pipeline, an `&&`, `||` or `;` list, a
+  subshell, a brace group, a background job, after `!` or `time`, in the condition and in
+  every branch of an `if`, `case`, `while`, `until` or `for` whether or not it would run, in
+  a {@fld:line:Function.body} whether or not the {@ent:line:Function} is called, or in a
+  command or process substitution.
 why: >-
   A program behind an operator would escape whoever reads the output.

@@ -1,15 +1,8 @@
 predicate: >-
-  Right after a call of a {@ent:line:Function}, a call being one as {@ent:line:Function}
-  defines it (so none stands outside the {@ent:line:Scope} the definition is written in),
-  the {@fld:line:Scope.cwd} is the one right before the call when no
-  {@fld:line:Function.body} of a {@ent:line:Function} of that {@fld:line:Function.name}
-  holds a move ({@ent:line:Scope}). When the {@ent:line:Line} defines the
-  {@fld:line:Function.name} once and every move its {@fld:line:Function.body} holds is a
-  {@ent:variables:Change} whose {@fld:variables:Change.kind} is cd, it is the
-  {@fld:line:Scope.cwd} at the end of the {@fld:line:Function.body}, the body starting where
-  cwd/function-body-starts-where-it-is-defined says, if the {@fld:line:Scope.cwd} right
-  before the call is the one where the {@ent:line:Function} is defined. It is absent
-  otherwise. At the end of an `if`, `case`, `while`, `until`, `for`, `&&` or `||` list the
-  call ends, cwd/paths-through-a-construct-must-agree decides instead.
+  Right after a call of a {@ent:line:Function} (as {@ent:line:Function} defines a call), the
+  {@fld:line:Scope.cwd} is the one right before it when no {@fld:line:Function.body} of a
+  {@ent:line:Function} of that {@fld:line:Function.name} holds a move of the
+  {@ent:line:Scope} that {@ent:line:Function} is defined in (as {@ent:line:Scope} defines a
+  move), and absent when one does.
 why: >-
   A real move would go unreported.

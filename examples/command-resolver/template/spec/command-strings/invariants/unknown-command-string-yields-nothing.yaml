@@ -1,8 +1,5 @@
 predicate: >-
   A {@ent:command-strings:CommandString} with no {@fld:command-strings:CommandString.text}
-  yields no {@ent:line:Invocation} from it; which other {@ent:words:Word}s of the
-  {@fld:line:Invocation.argv} of its {@fld:command-strings:CommandString.program}'s
-  {@ent:line:Invocation} yield one command-strings/words-after-a-shell-string-are-parameters
-  and command-strings/option-form-bare-words-are-not-programs decide.
+  yields no {@ent:line:Invocation} from its text.
 why: >-
   A program would be invented from a string nobody can read.

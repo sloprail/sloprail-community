@@ -1,11 +1,12 @@
 predicate: >-
-  When the command's {@ent:stdin:InputRedirection} has a
+  When the {@ent:stdin:InputRedirection} of the command of an {@ent:line:Invocation} has a
   {@fld:stdin:InputRedirection.hereDocument} whose {@fld:stdin:HereDocument.quotedDelimiter}
-  is false, its {@fld:stdin:HereDocument.body} is read as inside double quotes, except that
-  a backslash before `"` stays, and {@fld:line:Invocation.stdin} is present only when no
-  {@ent:words:WordPart} of it has a {@fld:words:WordPart.cause}, and then is the body, less
-  the tabs stdin/dash-heredoc-strips-leading-tabs removes first, with each
-  {@ent:words:WordPart} replaced by what the invariants of the words and variables domains
-  have it contribute to a {@fld:words:Word.value}.
+  is false and whose {@fld:stdin:HereDocument.body} holds no backtick or backslash, and
+  every `$` in it starts a reference `$NAME` or `${NAME}` (NAME being letters, digits and
+  underscores, not starting with a digit) to the {@ent:variables:Variable} whose
+  {@fld:variables:Variable.name} is NAME: {@fld:line:Invocation.stdin} is that body, less
+  the tabs stdin/dash-heredoc-strips-leading-tabs removes, with each reference replaced by
+  its {@ent:variables:Variable}'s {@fld:variables:Variable.value} there when every one of
+  them has one, and absent when one has none.
 why: >-
   Half-expanded text would be reported as what the program reads.

@@ -1,23 +1,7 @@
 predicate: >-
-  A move a {@ent:line:Scope} whose {@fld:line:Scope.kind} is not line holds (a subshell, a
-  pipeline stage, a background job, a command or process substitution, or a child shell a
-  program starts) changes the {@fld:line:Scope.cwd} of no {@ent:line:Scope} outside it:
-  right after a command that starts such a {@ent:line:Scope} and is itself neither a move of
-  the {@ent:line:Scope} it stands in nor a program given a
-  {@ent:command-strings:CommandString} whose {@fld:command-strings:CommandString.program}
-  has {@fld:config:CommandStringProgram.currentShell} true and that has a
-  {@fld:command-strings:CommandString.text} (whose moves are that {@ent:line:Scope}'s, as
-  cwd/cd-moves-what-follows says), the {@fld:line:Scope.cwd} there is the one right before
-  that command, whatever moves the inner {@ent:line:Scope} holds; a command that is such a
-  move moves as the invariant that owns its kind of move says (cwd/cd-moves-what-follows for
-  a {@ent:variables:Change} whose {@fld:variables:Change.kind} is cd,
-  cwd/function-call-with-cd-is-not-unchanged for a call, cwd/unreadable-cd-is-unknown for a
-  program word with no {@fld:words:Word.value},
-  cwd/unreadable-command-string-in-the-current-shell-is-unknown for a current-shell
-  {@ent:command-strings:CommandString} with no {@fld:command-strings:CommandString.text}),
-  and cwd/cd-moves-what-follows leaves the other commands that start such a
-  {@ent:line:Scope} to this invariant. Right after a command that ends an `if`, `case`,
-  `while`, `until` or `for`, or an `&&` or `||` list,
-  cwd/paths-through-a-construct-must-agree decides in place of this invariant.
+  A move inside a {@ent:line:Scope} whose {@fld:line:Scope.kind} is not line changes the
+  {@fld:line:Scope.cwd} of no {@ent:line:Scope} outside it: right after a subshell, a
+  background job or a pipeline of more than one command, the {@fld:line:Scope.cwd} is the
+  one right before it.
 why: >-
   A subshell's cd would move the commands after it.

@@ -1,12 +1,8 @@
 predicate: >-
   For a {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form} is
-  shell, an argument is a {@ent:command-strings:CommandString} (whose
-  {@fld:command-strings:CommandString.program} is that program) only when a single-dash
-  cluster containing `c` precedes every bare word (as the {@ent:config:CommandStringProgram}
-  doc defines options, their values and bare words), and it is then the first bare word
-  after that cluster; with no such argument (a bare word before any such cluster, as in a
-  script file, `-s`, or `-c` with no bare word after it) the program reads none of its
-  arguments as a program (command-strings/words-after-a-shell-string-are-parameters decides
-  what comes from them).
+  shell, given a single-dash option cluster containing `c` before every bare word (as the
+  {@ent:config:CommandStringProgram} doc defines options, their values and bare words), its
+  {@ent:command-strings:CommandString} is the first bare word after that cluster, when there
+  is one; it has no other {@ent:command-strings:CommandString}.
 why: >-
   `bash -lc 'cmd'` would be missed, or `bash --rcfile x` misread.

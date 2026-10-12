@@ -1,13 +1,10 @@
 predicate: >-
-  {@fld:config:Config.wrappers} holds every entry of {@fld:config:Config.userWrappers}, and
-  {@fld:config:Config.commandStringPrograms} every entry of
-  {@fld:config:Config.userCommandStringPrograms} whose
-  {@fld:config:CommandStringProgram.name} is the {@fld:config:Wrapper.name} of no entry of
-  {@fld:config:Config.userWrappers}, each whole, as the user wrote it. An entry of
-  {@fld:config:Config.builtinWrappers} or {@fld:config:Config.builtinCommandStringPrograms}
-  is held as it is, in the one of the two its own list matches, exactly when no entry of
-  {@fld:config:Config.userWrappers} or {@fld:config:Config.userCommandStringPrograms} has
-  its {@fld:config:Wrapper.name} or {@fld:config:CommandStringProgram.name}; otherwise
-  neither holds it.
+  When no name is both a {@fld:config:Wrapper.name} of {@fld:config:Config.userWrappers} and
+  a {@fld:config:CommandStringProgram.name} of
+  {@fld:config:Config.userCommandStringPrograms}, {@fld:config:Config.wrappers} holds each
+  entry of {@fld:config:Config.userWrappers}, whole and as written, and no other entry with
+  its {@fld:config:Wrapper.name}, and {@fld:config:Config.commandStringPrograms} holds each
+  entry of {@fld:config:Config.userCommandStringPrograms}, whole and as written, and no
+  other entry with its {@fld:config:CommandStringProgram.name}.
 why: >-
   A corrected option table would be merged with the wrong one, or would wipe the rest.

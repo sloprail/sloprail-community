@@ -1,9 +1,8 @@
 predicate: >-
-  In a `$'…'` stretch of {@fld:words:Word.text} that stands outside double quotes (inside
-  double quotes `$'` is literal text, which words/double-quote-backslash-is-selective
-  reads), each escape of {@fld:line:Grammar.ansiCEscapes} contributes the character its
-  entry names to {@fld:words:Word.value}, a backslash that starts none of them contributes
-  itself and the character after it, any other character contributes itself, and a NUL an
-  escape names ends the stretch's contribution there.
+  In a `$'…'` stretch of {@fld:words:Word.text} outside double quotes, each escape of
+  {@fld:line:Grammar.ansiCEscapes} contributes the character its entry names to
+  {@fld:words:Word.value}, a backslash that starts none of them contributes itself and the
+  character after it, any other character contributes itself, and a NUL an escape names ends
+  the stretch's contribution there.
 why: >-
   A program spelled with `\x` escapes would be reported under another name.

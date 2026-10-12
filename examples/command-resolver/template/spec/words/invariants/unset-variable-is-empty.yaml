@@ -1,9 +1,9 @@
 predicate: >-
-  A {@ent:variables:Variable} that no {@ent:variables:Change} precedes at a reference
-  ({@ent:words:WordPart}) whose shell is the {@ent:line:Scope} whose {@fld:line:Scope.kind}
-  is line, and whose {@fld:variables:Variable.name} is in none of
-  {@fld:variables:Variable.shellSet}, {@fld:variables:Variable.shellDefaulted} and
-  {@fld:line:Context.env}, has the empty string as its {@fld:variables:Variable.value}
-  there.
+  At a point outside every {@fld:line:Function.body} whose shell is the {@ent:line:Scope}
+  whose {@fld:line:Scope.kind} is line, a {@ent:variables:Variable} that no
+  {@ent:variables:Change} naming it precedes, whose {@fld:variables:Variable.name} is in
+  none of {@fld:line:Context.env}, {@fld:variables:Variable.shellSet} and
+  {@fld:variables:Variable.shellDefaulted}, has the empty string as its
+  {@fld:variables:Variable.value}.
 why: >-
   A word bash expands to nothing would be reported as unknown.

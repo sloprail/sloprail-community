@@ -1,11 +1,9 @@
 predicate: >-
-  The {@ent:words:Word}s a {@ent:config:CommandStringProgram} whose
-  {@fld:config:CommandStringProgram.form} is shell is given, other than the
-  {@ent:command-strings:CommandString} whose {@fld:command-strings:CommandString.program} it
-  is (the words after that string are positional parameters; with no such string, a script
-  file and its arguments), are never read as a program: no {@ent:line:Invocation} comes from
-  them but those of the command and process substitutions among the {@ent:words:WordPart}s
-  of their {@fld:words:Word.parts} (each a {@ent:line:Scope} whose {@fld:line:Scope.kind} is
-  command-substitution or process-substitution).
+  The {@ent:words:Word}s of the {@fld:line:Invocation.argv} of an {@ent:line:Invocation}
+  whose {@fld:line:Invocation.bin} is the {@fld:config:CommandStringProgram.name} of a
+  {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form} is shell,
+  after its program word, other than its {@ent:command-strings:CommandString}, are never
+  read as a program: no {@ent:line:Invocation} comes from them but those of the command and
+  process substitutions they hold.
 why: >-
   `bash -c 'echo' rm` would report rm.

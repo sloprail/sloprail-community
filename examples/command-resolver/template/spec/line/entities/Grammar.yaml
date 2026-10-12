@@ -11,7 +11,9 @@ doc: >-
   but a letter, an octal escape above 177, a `\x` escape above 7F, or a `\u` or `\U` escape
   naming a surrogate or a value above 10FFFF; and a backslash-newline inside an operator, a
   reserved word, a parameter or arithmetic expansion, a brace expression, a tilde prefix or
-  the body of a here-document whose delimiter is unquoted.
+  the body of a here-document whose delimiter is unquoted. The depth of a text is the largest
+  number of quotes, substitutions, expansions and compound commands in it that stand one
+  inside another: `a "$(b)"` has depth two.
 fields:
   - name: standard
     type: string

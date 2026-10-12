@@ -1,10 +1,8 @@
 predicate: >-
-  Of the {@fld:line:Invocation.argv} of a {@ent:variables:Change} whose
-  {@fld:variables:Change.kind} is cd, after its program word, the options are the words
-  before the first that has no {@fld:words:Word.value} or whose {@fld:words:Word.value} is
-  `--`, is `-` or does not start with `-`, plus that word when its value is `--`; the rest
-  are its operands. An option is never an operand, so never the one from which its
-  {@fld:variables:Change.directory} is read. It is given -P when, of the letters L and P its
-  options hold, read in order, the last is P.
+  Of the {@ent:words:Word}s of the {@fld:line:Invocation.argv} of an {@ent:line:Invocation}
+  whose {@fld:line:Invocation.bin} is cd, after its program word, its options are those
+  before the first {@ent:words:Word} whose {@fld:words:Word.value} is none of -L, -P, -e, -@
+  and --, or that follows a --; every {@ent:words:Word} from there on is an operand, and no
+  option is. It is given -P when the {@fld:words:Word.value} of one of its options is -P.
 why: >-
   A directory named -P would be reported.

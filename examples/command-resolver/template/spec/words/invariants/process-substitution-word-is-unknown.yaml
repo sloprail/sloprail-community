@@ -1,6 +1,7 @@
 predicate: >-
-  A {@ent:words:Word} whose {@fld:words:Word.text} contains a process substitution has no
-  {@fld:words:Word.value}, and the substitution is an entry of {@fld:words:Word.parts} whose
-  {@fld:words:WordPart.cause} is process-substitution.
+  A {@ent:words:Word} whose {@fld:words:Word.text} contains, unquoted and outside every
+  other expansion, a process substitution has no {@fld:words:Word.value}, and the
+  substitution is an entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is
+  process-substitution.
 why: >-
   A made-up descriptor path would be reported as an argument.

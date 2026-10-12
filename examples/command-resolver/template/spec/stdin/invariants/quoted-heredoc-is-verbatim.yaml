@@ -1,7 +1,7 @@
 predicate: >-
-  When the command's {@ent:stdin:InputRedirection} has a
+  When the {@ent:stdin:InputRedirection} of the command of an {@ent:line:Invocation} has a
   {@fld:stdin:InputRedirection.hereDocument} whose {@fld:stdin:HereDocument.quotedDelimiter}
-  is true, no expansion is carried out in the command's {@fld:line:Invocation.stdin}: every
-  `$`, backtick and backslash of its {@fld:stdin:HereDocument.body} is in it as written.
+  is true, {@fld:line:Invocation.stdin} is its {@fld:stdin:HereDocument.body} as written,
+  less the tabs stdin/dash-heredoc-strips-leading-tabs removes.
 why: >-
   Text the shell passes untouched would be reported altered.

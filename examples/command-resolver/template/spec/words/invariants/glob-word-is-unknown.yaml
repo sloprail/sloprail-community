@@ -1,12 +1,10 @@
 predicate: >-
-  A {@ent:words:Word} whose {@fld:words:Word.text} holds, outside any expansion, an unquoted
-  `*`, `?` or bracket expression (as POSIX.1-2017 section 2.13.1 defines it, an unclosed `[`
-  being literal), or an unquoted reference ({@ent:words:WordPart}) written `$X` or `${X}` to
-  a {@ent:variables:Variable} whose {@fld:variables:Variable.value} holds `*`, `?` or such a
-  bracket expression, has no {@fld:words:Word.value}, and each such character, bracket
-  expression or reference is an entry of {@fld:words:Word.parts} whose
-  {@fld:words:WordPart.cause} is glob; quoted or escaped, those characters are literal text.
-  A reference written `${X[index]}`, `${X[@]}` or `${X[*]}` is
-  variables/reference-to-a-valueless-variable-is-untracked's, never this one's.
+  A {@ent:words:Word} of an {@fld:line:Invocation.argv} whose {@fld:words:Word.text}
+  contains, outside every expansion, an unquoted `*`, `?` or bracket expression has no
+  {@fld:words:Word.value}, and each such character or bracket expression is an entry of
+  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is glob. A bracket expression
+  runs from an unquoted `[` to the first unquoted `]` after it that is neither directly
+  after that `[` or after its `!` or `^`, nor the end of a `[:name:]` class; a `*` or `?`
+  inside it is part of it. Quoted or escaped, those characters are literal text.
 why: >-
   A pattern would be reported as though it were the file names it expands to.

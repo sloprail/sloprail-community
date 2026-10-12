@@ -1,6 +1,6 @@
 predicate: >-
   A {@ent:words:Word} with no {@fld:words:Word.value} has as its {@fld:words:Word.unknown}
-  the {@fld:words:WordPart.cause} of the first entry of its {@fld:words:Word.parts} that
-  has one.
+  the {@fld:words:WordPart.cause} of the first entry of its {@fld:words:Word.parts} that has
+  one.
 why: >-
   Two resolvers would classify the same word differently.

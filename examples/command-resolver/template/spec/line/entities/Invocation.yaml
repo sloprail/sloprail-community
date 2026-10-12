@@ -1,14 +1,16 @@
-doc: "One program the line would run."
+doc: >-
+  One program the line would run. It is run by the shell when no config.Wrapper runs it, or when
+  the Wrapper that runs it is named command or builtin; otherwise it is run by that Wrapper.
 fields:
   - name: bin
     type: string?
-    doc: "The program's name without its directory. Absent exactly when its program word has no words.Word.value."
+    doc: "The program's name without its directory; absent when its program word has no words.Word.value."
   - name: argv
     type: words.Word[]
     doc: "The words the program would receive, program word first."
   - name: cwd
     type: string?
-    doc: "The directory the program runs in. Absent exactly where an invariant of the cwd domain says it is."
+    doc: "The directory the program runs in; absent when the resolver does not know it."
     constraint_expr: 'an absolute path, lexically clean'
   - name: env
     type: Record<string>
@@ -18,4 +20,4 @@ fields:
     doc: "The names the line sets for the program to a value that is unknown."
   - name: stdin
     type: string?
-    doc: "The literal text the line feeds the program on standard input. Absent exactly where an invariant of the stdin domain says it is."
+    doc: "The literal text the line feeds the program on standard input; absent when it feeds none or the resolver does not know it."

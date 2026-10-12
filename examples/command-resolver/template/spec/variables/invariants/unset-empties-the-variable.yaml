@@ -1,6 +1,6 @@
 predicate: >-
-  Right after a {@ent:variables:Change} whose {@fld:variables:Change.kind} is unset, the
-  {@ent:variables:Variable} it names has the empty string as its
+  Where the latest {@ent:variables:Change} of a {@ent:variables:Variable} has unset as its
+  {@fld:variables:Change.kind}, the {@ent:variables:Variable} has the empty string as its
   {@fld:variables:Variable.value}.
 why: >-
   `X=1; unset X; rm "$X"` would be reported as `rm 1`, where bash runs `rm ''`.

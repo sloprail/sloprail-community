@@ -1,9 +1,7 @@
 predicate: >-
-  For a {@ent:config:Wrapper} whose {@fld:config:Wrapper.takesAssignments} is false, a
-  {@ent:words:Word} whose {@fld:words:Word.text} is written `NAME=value`, NAME literal, and
-  that is the first {@ent:words:Word} after its options and its
-  {@fld:config:Wrapper.leadingOperands} bare words
-  (wrappers/leading-operands-precede-the-program) is the program word of the
-  {@ent:line:Invocation} the {@ent:config:Wrapper} runs.
+  For a {@ent:config:Wrapper} whose {@fld:config:Wrapper.takesAssignments} is false, the
+  first bare word (as the {@ent:config:Wrapper} doc defines it) past the ones
+  wrappers/leading-operands-precede-the-program sets aside is the wrapped program word,
+  whatever its {@fld:words:Word.text}.
 why: >-
   `nohup FOO=1 npm` would be reported as running npm, which it does not.

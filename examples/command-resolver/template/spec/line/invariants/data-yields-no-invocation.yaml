@@ -1,13 +1,9 @@
 predicate: >-
-  The literal text of a quoted string, of a comment and of a {@fld:stdin:HereDocument.body}
-  is never read as commands: an {@ent:line:Invocation} comes from it only through the
-  {@fld:words:Word.value} of a {@ent:words:Word} of a command (a quoted program word
-  included), as the {@fld:command-strings:CommandString.text} of a
-  {@ent:command-strings:CommandString}, as the string
-  wrappers/env-split-string-is-one-command splits, or from a {@ent:line:Scope} whose
-  {@fld:line:Scope.kind} is command-substitution or process-substitution that it holds
-  outside a comment, outside a single-quoted string, outside a `$'…'` string and outside the
-  {@fld:stdin:HereDocument.body} of a {@ent:stdin:HereDocument} whose
-  {@fld:stdin:HereDocument.quotedDelimiter} is true.
+  The literal characters of a quoted string, a comment and a {@fld:stdin:HereDocument.body},
+  outside every command and process substitution, are never read as commands: an
+  {@ent:line:Invocation} comes from them only through the {@fld:words:Word.value} of a
+  {@ent:words:Word} that is the first entry of an {@fld:line:Invocation.argv}, as the
+  {@fld:command-strings:CommandString.text} of a {@ent:command-strings:CommandString}, or as
+  the string wrappers/env-split-string-is-one-command splits.
 why: >-
   A program name that is only mentioned would be reported as run.

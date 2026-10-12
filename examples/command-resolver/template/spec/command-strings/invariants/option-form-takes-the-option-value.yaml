@@ -1,11 +1,8 @@
 predicate: >-
-  For a {@ent:command-strings:CommandString} whose
-  {@fld:command-strings:CommandString.program} is a {@ent:config:CommandStringProgram} whose
-  {@fld:config:CommandStringProgram.form} is option, the
-  {@ent:command-strings:CommandString} is the value of the last `-c` or `--command` option
-  among that program's options, separate, attached or taken by the letter `c` of a
-  single-dash cluster, as the {@ent:config:CommandStringProgram} doc defines an option's
-  value; and it is one only when at least {@fld:config:CommandStringProgram.leadingOperands}
-  bare words precede that option.
+  For a {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form} is
+  option and that is given one `-c` or `--command` option, after at least
+  {@fld:config:CommandStringProgram.leadingOperands} bare words, its
+  {@ent:command-strings:CommandString} is that option's value, as the
+  {@ent:config:CommandStringProgram} doc defines it.
 why: >-
   `su -c 'npm publish'` would hide npm, or `flock -c x file` be misread.

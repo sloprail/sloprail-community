@@ -1,16 +1,11 @@
 predicate: >-
-  At a reference ({@ent:words:WordPart}) to a {@ent:variables:Variable} where the latest
-  {@ent:variables:Change} naming it that precedes, those whose {@fld:variables:Change.kind}
-  is export or unexport aside, is of kind assignment or append, its
-  {@fld:variables:Variable.value}, when it has one (the other invariants of the variables
-  domain, variables/conditional-assignment-must-agree among them, say when it has none), is
-  the one that {@ent:variables:Change} gave it, never one from {@fld:line:Context.env} or
-  {@fld:line:Scope.env}: one of kind assignment gives the {@fld:words:Word.value} of its
-  {@fld:variables:Change.word}, and one of kind append the {@fld:variables:Variable.value}
-  right before it followed by the {@fld:words:Word.value} of its
-  {@fld:variables:Change.word}. {@ent:variables:Change}s whose {@fld:variables:Change.kind}
-  is export and unexport give no value: where only such {@ent:variables:Change}s naming the
-  {@ent:variables:Variable} precede, it has the {@fld:variables:Variable.value} it would
-  have were none to precede.
+  Where the latest {@ent:variables:Change} of a {@ent:variables:Variable} has assignment as
+  its {@fld:variables:Change.kind} and its {@fld:variables:Change.word} has a
+  {@fld:words:Word.value} at most 65536 bytes long, the {@ent:variables:Variable}'s
+  {@fld:variables:Variable.value} is that value; where it has append and both the
+  {@fld:variables:Variable.value} right before it and its {@fld:variables:Change.word}'s
+  {@fld:words:Word.value} are known, together at most 65536 bytes long, the
+  {@ent:variables:Variable}'s {@fld:variables:Variable.value} is the one followed by the
+  other.
 why: >-
   A stale or ambient value would be reported.

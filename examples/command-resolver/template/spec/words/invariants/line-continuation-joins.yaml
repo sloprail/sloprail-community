@@ -1,9 +1,7 @@
 predicate: >-
   In a {@fld:line:Line.text} written in the {@ent:line:Grammar}, a backslash that no
-  backslash before it escapes, followed by a newline, between written words or in an
-  unquoted or double-quoted stretch of a {@fld:words:Word.text}, outside a comment,
-  contributes nothing to {@fld:words:Word.value} and ends no {@ent:words:Word}: it is
-  removed before words are split, and words/quoted-whitespace-does-not-split does not apply
-  to that newline; in a comment it is part of the comment, which ends at that newline.
+  backslash before it escapes, followed by a newline, between words or in an unquoted or
+  double-quoted stretch of a {@fld:words:Word.text}, outside a comment, contributes nothing
+  to {@fld:words:Word.value} and ends no {@ent:words:Word}.
 why: >-
   A command split over two lines would be reported as two, or with a stray backslash.

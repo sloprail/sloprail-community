@@ -1,7 +1,5 @@
 predicate: >-
-  Among a {@ent:config:Wrapper}'s own words, one of its {@fld:config:Wrapper.valueOptions}
-  written with its value in the same {@ent:words:Word} (as the {@ent:config:Wrapper} doc
-  defines that form) consumes no further {@ent:words:Word}: the {@ent:words:Word} after it
-  is read as it would be after an option that takes no value.
+  One of a {@ent:config:Wrapper}'s {@fld:config:Wrapper.valueOptions} written with its value
+  in the same word (as the {@ent:config:Wrapper} doc defines it) consumes no further word.
 why: >-
   The program word would be swallowed as an option value.

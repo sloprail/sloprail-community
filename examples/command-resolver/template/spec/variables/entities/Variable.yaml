@@ -5,10 +5,7 @@ fields:
     doc: "The variable's name."
   - name: value
     type: string?
-    doc: "Its value at a point of a Scope. Absent exactly where an invariant of the variables, words or cwd domain says it has none."
-  - name: exported
-    type: bool?
-    doc: "Whether, at a point of a Scope, it is in the environment of the programs started there. Absent exactly where an invariant of the env domain says it is."
+    doc: "Its value at a point of a Scope; absent when the resolver does not know it."
   - name: shellSet
     type: string[]
     doc: "The names bash 5.2 gives a value of its own as it starts or runs, whatever its environment holds."

@@ -3,7 +3,7 @@
 A template for growing a whole tool under sloprail: a bash command resolver,
 specified as invariants, built once with these rules and once without.
 
-- `template/`: what every run starts from. `CLAUDE.md`, `spec/` (19 entities, 108 invariants), `config/builtin.yaml` and `adr/` (the four decisions `CLAUDE.md` links: markers, modules, file size, file placement).
+- `template/`: what every run starts from. `CLAUDE.md`, `spec/` (19 entities, 100 invariants), `config/builtin.yaml` and `adr/` (the four decisions `CLAUDE.md` links: markers, modules, file size, file placement).
 - `.sloprail/`: the rules that check those decisions. Only the `sloprail` variant gets them.
 - `prepare.sh`: turns the project into one variant. `sloprail` leaves it as copied; `bare` removes `.sloprail/` and the line of each ADR that names its rules. Nothing else differs.
 - `eval/build/`: the one fixture. `prompt.md` is the whole instruction: build it, ask nothing, the invariants are the only source of truth, stop when all hold.

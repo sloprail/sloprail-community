@@ -1,11 +1,10 @@
 predicate: >-
-  The {@ent:line:Invocation} of the program a {@ent:config:Wrapper} runs, when the value of
-  the last of its {@fld:config:Wrapper.directoryOptions} it is given, whether a separate
-  word (wrappers/value-option-consumes-the-next-word) or attached to the option
-  (wrappers/attached-option-value-consumes-nothing), has a {@fld:words:Word.value}, has as
-  its {@fld:line:Invocation.cwd} that {@fld:words:Word.value} lexically cleaned (as
-  {@fld:line:Scope.cwd} defines it) when it is an absolute path, and otherwise the wrapper's
-  own {@fld:line:Invocation.cwd} joined with it and lexically cleaned, absent when the
-  wrapper's own is absent.
+  The {@ent:line:Invocation} of the program a {@ent:config:Wrapper} runs, when the
+  {@ent:config:Wrapper} is given one of its {@fld:config:Wrapper.directoryOptions} once and
+  no other, and that option's value (as the {@ent:config:Wrapper} doc defines it) has a
+  {@fld:words:Word.value}, has as its {@fld:line:Invocation.cwd} that value lexically
+  cleaned when it is an absolute path, and otherwise the {@ent:config:Wrapper}'s own
+  {@fld:line:Invocation.cwd} joined with it and lexically cleaned, absent when the
+  {@ent:config:Wrapper}'s own is absent.
 why: >-
   `env -C sub npm` would report npm at the start.

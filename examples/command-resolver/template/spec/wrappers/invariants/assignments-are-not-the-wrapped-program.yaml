@@ -1,10 +1,9 @@
 predicate: >-
-  Among the own words of a {@ent:config:Wrapper} whose
-  {@fld:config:Wrapper.takesAssignments} is true, after its options (and the `--` that ends
-  them, wrappers/double-dash-ends-wrapper-options) and its
-  {@fld:config:Wrapper.leadingOperands} bare words, each {@ent:words:Word} whose
-  {@fld:words:Word.text} is written `NAME=value`, NAME literal, is an assignment for the
-  wrapped program, and the wrapped program {@ent:words:Word} is the first {@ent:words:Word}
-  after those that is not.
+  For a {@ent:config:Wrapper} whose {@fld:config:Wrapper.takesAssignments} is true, each
+  bare word (as the {@ent:config:Wrapper} doc defines it) past the ones
+  wrappers/leading-operands-precede-the-program sets aside whose {@fld:words:Word.text} is
+  `NAME=value`, NAME a name of POSIX.1-2017 section 3.235 written with no quote or
+  backslash, up to the first that is not, is an assignment for the wrapped program, and that
+  first one is the wrapped program word.
 why: >-
   `env FOO=1 npm` would report a program named FOO=1.
