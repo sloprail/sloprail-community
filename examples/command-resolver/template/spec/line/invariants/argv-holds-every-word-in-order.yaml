@@ -1,6 +1,6 @@
 predicate: >-
-  An {@ent:line:Invocation} of a program that no {@ent:config:Wrapper} runs (command and
-  builtin included) and no {@ent:wrappers:FindClause} runs has as its
+  An {@ent:line:Invocation} of a program that no {@ent:config:Wrapper} runs, counting the
+  {@ent:config:Wrapper}s named command and builtin, and that no {@ent:wrappers:FindClause} runs, has as its
   {@fld:line:Invocation.argv} the {@ent:words:Word}s that the written words of its simple
   command yield, in the order written, from its program word on; none from a `NAME=value`
   {@ent:words:Word} before the program word, a {@ent:line:Redirection} or a

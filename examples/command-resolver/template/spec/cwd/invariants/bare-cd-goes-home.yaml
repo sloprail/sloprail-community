@@ -1,8 +1,8 @@
 predicate: >-
   Right after {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, run by the
   shell (as {@ent:line:Invocation} defines it) where no {@ent:line:Function} is named cd,
-  not given -P and with no operand in its {@fld:line:Invocation.argv}
-  (cwd/cd-options-are-not-the-destination), where the {@ent:variables:Variable} whose
+  not given -P and with no operand in its {@fld:line:Invocation.argv}, as
+  cwd/cd-options-are-not-the-destination defines both (a cluster such as `-LP` is an operand), where the {@ent:variables:Variable} whose
   {@fld:variables:Variable.name} is HOME has, right before it, an absolute path as its
   {@fld:variables:Variable.value}, the {@fld:line:Scope.cwd} is that path lexically cleaned.
 why: >-

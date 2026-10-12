@@ -1,6 +1,6 @@
 predicate: >-
-  At a point outside every {@fld:line:Function.body} whose shell is the {@ent:line:Scope}
-  whose {@fld:line:Scope.kind} is line, a {@ent:variables:Variable} that no
+  At a point whose shell is the {@ent:line:Scope} whose {@fld:line:Scope.kind} is line
+  and that stands outside every {@fld:line:Function.body}, a {@ent:variables:Variable} that no
   {@ent:variables:Change} naming it precedes, whose {@fld:variables:Variable.name}
   {@fld:line:Context.env} holds and is not in {@fld:variables:Variable.shellSet}, has as its
   {@fld:variables:Variable.value} the value {@fld:line:Context.env} holds for that name.

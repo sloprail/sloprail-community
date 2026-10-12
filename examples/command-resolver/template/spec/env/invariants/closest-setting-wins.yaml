@@ -2,9 +2,11 @@ predicate: >-
   When more than one of the settings env/env-holds-only-what-the-line-sets lists names the
   same name for an {@ent:line:Invocation}, the closest alone decides its
   {@fld:line:Invocation.env} or {@fld:line:Invocation.unknownEnv} entry for that name: an
-  assignment its {@ent:config:Wrapper} takes (as its {@fld:config:Wrapper.takesAssignments}
-  allows) over a `NAME=value` {@ent:words:Word} before its command's program word, either of
-  them over a {@ent:variables:Change}, and of two {@ent:variables:Change}s, or two such
-  words of one command, the later written.
+  assignment the {@ent:config:Wrapper} that runs it directly takes (as its
+  {@fld:config:Wrapper.takesAssignments} allows) over one a {@ent:config:Wrapper} farther out
+  in its chain takes, any of those over a `NAME=value` {@ent:words:Word} before its command's
+  program word, either kind over a {@ent:variables:Change}; and of two
+  {@ent:variables:Change}s, of two such words of one command, or of two assignments one
+  {@ent:config:Wrapper} takes, the later written.
 why: >-
   The overridden value would be reported.

@@ -1,5 +1,6 @@
 predicate: >-
-  A `NAME=value` {@ent:words:Word} a {@ent:config:Wrapper} whose
+  A {@ent:words:Word} whose {@fld:words:Word.text} is an unquoted `NAME=value`, NAME made of
+  letters, digits and underscores and not starting with a digit, that a {@ent:config:Wrapper} whose
   {@fld:config:Wrapper.takesAssignments} is true takes as an assignment puts NAME in the
   {@fld:line:Invocation.env} or the {@fld:line:Invocation.unknownEnv}, as
   env/unknown-value-is-listed-apart says, of the {@ent:line:Invocation} of the program it

@@ -1,7 +1,8 @@
 predicate: >-
   In a {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar},
   of depth at most two (as the {@ent:line:Grammar} defines depth), every simple command that
-  has a program word whose {@fld:words:Word.value} is present and not the empty string yields exactly
+  has a program word whose {@fld:words:Word.value} is present and is neither the empty string nor command
+  or builtin yields exactly
   one entry of {@fld:line:Resolution.invocations} whose {@fld:line:Invocation.argv} starts
   at its own program word, wherever it stands: in a pipeline, an `&&`, `||` or `;` list, a
   subshell, a brace group, a background job, after `!` or `time`, in the condition and in

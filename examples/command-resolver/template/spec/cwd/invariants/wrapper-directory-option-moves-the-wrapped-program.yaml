@@ -1,8 +1,9 @@
 predicate: >-
   The {@ent:line:Invocation} of the program a {@ent:config:Wrapper} runs directly (its own
   wrapped program, not one that a {@ent:config:Wrapper} it runs runs), when exactly one of
-  the {@ent:config:Wrapper}'s words before that program's word starts with one of its
-  {@fld:config:Wrapper.directoryOptions}, that word is equal to the option, and the word after
+  the {@ent:config:Wrapper}'s words names one of its
+  {@fld:config:Wrapper.directoryOptions} (as the {@ent:config:Wrapper} doc defines it), that
+  word is equal to the option, and the word after
   it, the option's value, has a {@fld:words:Word.value}, has as its
   {@fld:line:Invocation.cwd} that value lexically cleaned when it is an absolute path, and
   otherwise the {@ent:config:Wrapper}'s own {@fld:line:Invocation.cwd} joined with it and

@@ -7,7 +7,10 @@ doc: >-
   it, or, written in the same word, the characters after a one-letter single-dash option,
   written alone or after other one-letter options in one cluster (`-uroot`, `-tI{}`), or after
   the `=` of a double-dash one (`--user=root`). An option is given when one of its options is
-  a word equal to it.
+  a word equal to it. A word before the wrapped program's word names one of its
+  directoryOptions when it is equal to it, starts with it followed by `=` (a double-dash one),
+  or is a single-dash cluster that is no option's value and holds its letter (a one-letter
+  one).
 fields:
   - name: name
     type: string
