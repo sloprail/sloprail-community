@@ -5,12 +5,13 @@ predicate: >-
   {@fld:words:Word.value}, and that `{}` is an entry of {@fld:words:Word.parts} whose
   {@fld:words:WordPart.cause} is placeholder. For a {@ent:config:Wrapper} whose
   {@fld:config:Wrapper.name} is xargs, the value of its `-I` option is the
-  {@fld:words:Word.value} of the word after `-I` or of the rest of the word `-I` starts
-  (`-I{}`), the last `-I` counting; when that value is known and not empty, every
-  {@ent:words:Word} of the {@fld:line:Invocation.argv} of the {@ent:line:Invocation} it runs
-  whose {@fld:words:Word.text} contains it has no {@fld:words:Word.value}, and each
-  occurrence is an entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is
-  placeholder; when it has no {@fld:words:Word.value}, no {@ent:line:Invocation} of the
-  program xargs runs is in {@fld:line:Resolution.invocations}.
+  {@fld:words:Word.value} of that option's value, written as the {@ent:config:Wrapper} doc
+  defines it (wrappers/value-option-consumes-the-next-word,
+  wrappers/attached-option-value-consumes-nothing), the last `-I` counting; when that value
+  is known and not empty, every {@ent:words:Word} of the {@fld:line:Invocation.argv} of the
+  {@ent:line:Invocation} it runs whose {@fld:words:Word.text} contains it has no
+  {@fld:words:Word.value}, and each occurrence is an entry of {@fld:words:Word.parts} whose
+  {@fld:words:WordPart.cause} is placeholder; when it has no {@fld:words:Word.value}, no
+  {@ent:line:Invocation} of the program xargs runs is in {@fld:line:Resolution.invocations}.
 why: >-
   A placeholder would be reported as the file name it stands for.

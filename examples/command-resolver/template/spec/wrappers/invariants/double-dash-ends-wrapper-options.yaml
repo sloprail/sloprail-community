@@ -2,7 +2,6 @@ predicate: >-
   The {@ent:words:Word} that ends a {@ent:config:Wrapper}'s options (the `--` its doc
   defines) is never the wrapped program word: the wrapped {@ent:line:Invocation}'s program
   word is a later {@ent:words:Word}, the one wrappers/leading-operands-precede-the-program
-  and wrappers/assignments-are-not-the-wrapped-program decide, and no {@ent:words:Word}
-  after that `--` is read as an option of the {@ent:config:Wrapper}.
+  and wrappers/assignments-are-not-the-wrapped-program decide.
 why: >-
   A program whose name starts with a dash would be lost, or `--` reported as a program.
