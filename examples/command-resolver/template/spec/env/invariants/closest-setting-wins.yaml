@@ -2,8 +2,10 @@ predicate: >-
   When the line sets the same name for a program in more than one of the ways
   env/env-holds-only-what-the-line-sets lists, the closest alone decides its
   {@fld:line:Invocation.env} or {@fld:line:Invocation.unknownEnv} entry for the name: the
-  assignment of the {@ent:config:Wrapper} that runs it over its command's prefix, that
-  prefix over a {@ent:variables:Change} before its command, and any of these over a setting
-  made for an Invocation it is nested in, which is itself decided by this same order.
+  assignment of the {@ent:config:Wrapper} that runs it over its command's prefix; that
+  prefix over a setting made for an Invocation it is nested in; such a setting, itself
+  decided by this same order, over a {@ent:variables:Change} before the command of that
+  outer Invocation; and a Change written in that outer Invocation's CommandString text,
+  before the program's command, over the setting made for the outer Invocation.
 why: >-
   The overridden value would be reported.

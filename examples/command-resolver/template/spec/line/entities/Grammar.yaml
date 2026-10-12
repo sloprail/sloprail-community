@@ -25,12 +25,12 @@ fields:
       - "brace expansion: {a,b} and {1..3}"
       - "here-strings: <<< word"
       - "process substitution: <(…) and >(…)"
-      - "[[ … ]] conditional commands"
+      - "[[ … ]] conditional commands, with the unary operators -a -b -c -d -e -f -g -h -k -n -o -p -r -s -t -u -v -w -x -z -G -L -N -O -R -S, the binary operators = == != < > =~ -eq -ne -lt -le -gt -ge -ef -nt -ot, and !, &&, || and ( )"
       - "(( … )) arithmetic commands"
       - "timed pipelines: time [-p] pipeline, time as the first word of a pipeline"
       - "indexed arrays: name=(…), name[i]=…, ${name[i]}, ${name[@]}"
       - "appending assignments: name+=…"
-      - "declarations: local, declare and typeset"
+      - "declarations: local, declare and typeset, with the options -a -f -F -g -i -I -l -n -p -r -t -u -x and their + forms"
       - "parameter operations: ${name/pattern/string}, ${name//pattern/string}, ${name:offset:length}"
   - name: reservedWords
     type: string[]

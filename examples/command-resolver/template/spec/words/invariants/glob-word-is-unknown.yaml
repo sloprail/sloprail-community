@@ -1,8 +1,9 @@
 predicate: >-
-  A {@ent:words:Word} whose text holds an unquoted `*`, `?` or bracket expression, or an
-  unquoted expansion whose value holds `*`, `?` or `[`, has no {@fld:words:Word.value}, and
-  each such character, bracket expression or expansion is an entry of
-  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is glob; quoted or escaped,
-  those characters are literal text.
+  A {@ent:words:Word} whose text holds an unquoted `*`, `?` or bracket expression (as
+  POSIX.1-2017 section 2.13.1 defines it, an unclosed `[` being literal), or an unquoted
+  expansion whose value holds `*`, `?` or such a bracket expression, has no
+  {@fld:words:Word.value}, and each such character, bracket expression or expansion is an
+  entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is glob; quoted or
+  escaped, those characters are literal text.
 why: >-
   A pattern would be reported as though it were the file names it expands to.
