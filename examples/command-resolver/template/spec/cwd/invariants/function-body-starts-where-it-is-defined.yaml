@@ -1,8 +1,9 @@
 predicate: >-
   In a {@fld:line:Function.body}, the {@fld:line:Scope.cwd} at its start is the one where
   the {@ent:line:Function} is defined when every move ({@ent:line:Scope}) that stands in the
-  {@ent:line:Line} outside that {@fld:line:Function.body} is a call of a
-  {@ent:line:Function} of that {@fld:line:Function.name}, and no {@fld:line:Function.body}
+  {@fld:line:Line.text} or in the {@fld:command-strings:CommandString.text} of a
+  {@ent:command-strings:CommandString}, outside that {@fld:line:Function.body}, is a call of
+  a {@ent:line:Function} of that {@fld:line:Function.name}, and no {@fld:line:Function.body}
   of a {@ent:line:Function} of that {@fld:line:Function.name} holds a move other than such a
   call; it is absent otherwise.
 why: >-

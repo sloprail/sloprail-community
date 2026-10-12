@@ -5,7 +5,7 @@ predicate: >-
   {@ent:command-strings:CommandString} is the value of the last `-c` or `--command` option
   among that program's options, separate, attached or taken by the letter `c` of a
   single-dash cluster, as the {@ent:config:CommandStringProgram} doc defines an option's
-  value; and it is one only when {@fld:config:CommandStringProgram.leadingOperands} bare
-  words precede that option.
+  value; and it is one only when at least {@fld:config:CommandStringProgram.leadingOperands}
+  bare words precede that option.
 why: >-
   `su -c 'npm publish'` would hide npm, or `flock -c x file` be misread.
