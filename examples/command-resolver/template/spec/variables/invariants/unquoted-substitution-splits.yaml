@@ -20,11 +20,10 @@ predicate: >-
   {@fld:words:WordPart.cause}, an arithmetic expansion words/constant-arithmetic-resolves
   gives a value included, is instead an entry of {@fld:words:Word.parts} whose
   {@fld:words:WordPart.cause} is field-splitting. The {@fld:line:Redirection.word} of a
-  {@ent:line:Redirection} yields one {@ent:words:Word}, and that of one whose
-  {@fld:line:Redirection.operator} is `<<` or `<<-` is a delimiter no invariant of the words
-  domain expands: the {@fld:stdin:InputRedirection.word} of an {@ent:stdin:InputRedirection}
-  whose {@fld:stdin:InputRedirection.kind} is here-string is neither split nor
-  brace-expanded; the {@fld:line:Redirection.word} of a {@ent:line:Redirection} whose
+  {@ent:line:Redirection} yields one {@ent:words:Word}: the
+  {@fld:stdin:InputRedirection.word} of an {@ent:stdin:InputRedirection} whose
+  {@fld:stdin:InputRedirection.kind} is here-string is neither split nor brace-expanded; the
+  {@fld:line:Redirection.word} of a {@ent:line:Redirection} whose
   {@fld:line:Redirection.operator} is none of `<<`, `<<-` and `<<<`, none of whose
   {@fld:words:Word.parts} has a {@fld:words:WordPart.cause} another invariant of the words
   or variables domain gives it (such a word is not split, as said above), keeps its

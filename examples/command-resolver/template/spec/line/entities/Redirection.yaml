@@ -8,5 +8,5 @@ fields:
     doc: "The operator as written."
     enum: ["<", ">", ">|", ">>", "<>", "<&", ">&", "<<", "<<-", "<<<"]
   - name: word
-    type: words.Word
-    doc: "The word written after the operator: a file name, a descriptor, a here-document's delimiter or a here-string."
+    type: words.Word?
+    doc: "The word written after the operator: a file name, a descriptor or a here-string. Absent exactly when the operator is << or <<-, whose delimiter is no Word: the shell expands nothing in it, and stdin.HereDocument holds whether it is quoted."
