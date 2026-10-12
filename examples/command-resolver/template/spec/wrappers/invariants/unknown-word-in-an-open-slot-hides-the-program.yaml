@@ -1,8 +1,9 @@
 predicate: >-
   When, reading a {@ent:config:Wrapper}'s words in order, a {@ent:words:Word} with no
-  {@fld:words:Word.value} comes before its wrapped program word is found and is neither
-  the value of one of its {@fld:config:Wrapper.valueOptions} nor one of its
-  {@fld:config:Wrapper.leadingOperands} bare words, no wrapped {@ent:line:Invocation} is
-  reported.
+  {@fld:words:Word.value} comes before its wrapped program word is found and is neither the
+  value of one of its {@fld:config:Wrapper.valueOptions}, nor one of its
+  {@fld:config:Wrapper.leadingOperands} bare words, nor a word written `NAME=value`, NAME
+  literal, that a Wrapper whose {@fld:config:Wrapper.takesAssignments} is true takes as an
+  assignment, no wrapped {@ent:line:Invocation} is reported.
 why: >-
   `sudo $(x) npm` would report npm although the unknown word may be the program.

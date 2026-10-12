@@ -1,7 +1,9 @@
 predicate: >-
-  When the line sets the same name for a program in more than one of those ways, the closest
-  alone decides its {@fld:line:Invocation.env} or {@fld:line:Invocation.unknownEnv} entry:
-  the {@ent:config:Wrapper}'s assignment over the command's prefix, and the prefix over a
-  {@ent:variables:Change} before the command.
+  When the line sets the same name for a program in more than one of these ways: by the
+  assignment of the {@ent:config:Wrapper} that runs it, by its command's prefix, or by a
+  {@ent:variables:Change} before its command (env/export-reaches-later-commands), the
+  closest alone decides its {@fld:line:Invocation.env} or {@fld:line:Invocation.unknownEnv}
+  entry for the name: the Wrapper's assignment over the prefix, and the prefix over the
+  Change.
 why: >-
   The overridden value would be reported.

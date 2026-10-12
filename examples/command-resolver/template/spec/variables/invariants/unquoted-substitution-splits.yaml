@@ -7,7 +7,7 @@ predicate: >-
   with no quoted stretch whose value is empty leaves no field and so yields no Word. A
   written word one of whose parts has a cause is not split: it yields one Word per word its
   brace expressions make, one when it has none. Where a {@ent:variables:Change} of IFS
-  precedes the word, each unquoted expansion in it is instead an entry of Word.parts whose
-  cause is field-splitting.
+  precedes the word, each unquoted expansion in it that no other invariant gives a cause is
+  instead an entry of Word.parts whose cause is field-splitting.
 why: >-
   `X='a b'; rm $X` would be reported as one file, or `$EMPTY npm` as running nothing.

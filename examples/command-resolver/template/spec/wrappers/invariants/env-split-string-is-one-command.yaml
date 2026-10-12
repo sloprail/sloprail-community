@@ -4,7 +4,7 @@ predicate: >-
   followed by `\`, `"`, `'`, `$` or `#` contributing that character; those words are the
   words of the one command that {@ent:config:Wrapper} runs, and `;`, `&&` and `|` in them
   are ordinary characters, never shell operators. A string holding `${`, a `#` at the start
-  of a word, or a backslash followed by any other character yields no wrapped
-  {@ent:line:Invocation}.
+  of a word, an unclosed quote, or a backslash that is last or followed by any other
+  character yields no wrapped {@ent:line:Invocation}.
 why: >-
   A second program that env never runs would be reported, or a split env never makes.
