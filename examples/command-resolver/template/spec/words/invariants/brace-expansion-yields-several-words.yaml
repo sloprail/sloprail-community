@@ -4,10 +4,13 @@ predicate: >-
   variables/unquoted-substitution-splits decides), an unquoted brace expression, in one of
   the forms the brace expansion entry of {@fld:line:Grammar.extensions} shows, makes of its
   written word (the {@fld:words:Word.text} of the {@ent:words:Word}s it yields) one word per
-  alternative, left to right, each of which yields {@ent:words:Word}s as
-  variables/unquoted-substitution-splits says; a quoted or escaped brace, and one in none of
-  those forms, is literal text. A written word whose brace expressions would make more than
-  1024 words yields one {@ent:words:Word}, and an entry of its {@fld:words:Word.parts} whose
+  alternative, left to right (the alternatives of `{m..n..s}` run from m to n by steps of
+  the absolute value of s, 1 when s is absent or 0, downward when m is above n, letters by
+  their ASCII codes, and nested expressions, at any depth, multiply out under the limit
+  below), each of which yields {@ent:words:Word}s as variables/unquoted-substitution-splits
+  says; a quoted or escaped brace, and one in none of those forms, is literal text. A
+  written word whose brace expressions would make more than 1024 words yields one
+  {@ent:words:Word}, and an entry of its {@fld:words:Word.parts} whose
   {@fld:words:WordPart.text} is its whole {@fld:words:Word.text} has the
   {@fld:words:WordPart.cause} limit.
 why: >-

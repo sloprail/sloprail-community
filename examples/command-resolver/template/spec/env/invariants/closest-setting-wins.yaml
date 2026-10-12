@@ -10,6 +10,7 @@ predicate: >-
   {@fld:line:Line.text}, or the {@fld:command-strings:CommandString.text} of an
   {@ent:line:Invocation} it is nested in); and a setting made for an {@ent:line:Invocation}
   it is nested in (as env/prefix-assignment-is-the-commands-env lists nesting), itself
-  decided by this same order.
+  decided by this same order; of two settings made the same way, the later written is the
+  closer.
 why: >-
   The overridden value would be reported.

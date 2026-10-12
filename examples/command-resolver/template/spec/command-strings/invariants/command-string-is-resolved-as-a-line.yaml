@@ -3,8 +3,10 @@ predicate: >-
   {@fld:command-strings:CommandString.text}
   (command-strings/command-string-text-is-bounded), in a {@ent:line:Line} that has no
   {@fld:line:Resolution.parseError}, yields the {@ent:line:Invocation}s that text holds,
-  read by the same rules, and within the same bounds, as a {@fld:line:Line.text}
-  (line/order-is-outer-first-then-textual): when that text is written in the
+  read by the same rules as a {@fld:line:Line.text}, within the nesting
+  line/order-is-outer-first-then-textual bounds (its
+  {@fld:command-strings:CommandString.depth} being bounded by
+  command-strings/command-string-text-is-bounded): when that text is written in the
   {@ent:line:Grammar} it yields what a {@fld:line:Line.text} written in it would; when it is
   not, it yields no {@ent:line:Invocation}.
 why: >-

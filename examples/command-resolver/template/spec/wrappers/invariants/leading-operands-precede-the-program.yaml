@@ -1,7 +1,8 @@
 predicate: >-
-  The program word of the {@ent:line:Invocation} a {@ent:config:Wrapper} runs is the first
-  bare word after the {@fld:config:Wrapper.leadingOperands} bare words (as the
-  {@ent:config:Wrapper} doc defines a bare word) that come first among its own words, its
-  assignments aside (wrappers/assignments-are-not-the-wrapped-program).
+  The program word, first entry of the {@fld:line:Invocation.argv} of the
+  {@ent:line:Invocation} a {@ent:config:Wrapper} runs, is the first bare {@ent:words:Word}
+  (as the {@ent:config:Wrapper} doc defines a bare word) after the
+  {@fld:config:Wrapper.leadingOperands} bare {@ent:words:Word}s that come first among its
+  own words, its assignments aside (wrappers/assignments-are-not-the-wrapped-program).
 why: >-
   `timeout 5 npm` would report a program named 5.
