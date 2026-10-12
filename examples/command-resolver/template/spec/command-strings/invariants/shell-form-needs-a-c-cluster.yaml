@@ -1,10 +1,14 @@
 predicate: >-
-  For a {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form}
-  is shell, an argument is a {@ent:command-strings:CommandString} only when a
-  single-dash option cluster containing `c` precedes it, and it is then the first word
-  that is neither an option nor an option's value; with no such argument (a script file,
-  `-s`, or `-c` with no word after it) the program reads none of its arguments as a
-  program, and no {@ent:line:Invocation} comes from them but those of the substitutions
-  they hold.
+  For a {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form} is
+  shell (an option is a word that starts with `-` or `+` and comes before any `--`; a word
+  is the value of an option when it follows, as a separate word, one of
+  {@fld:config:CommandStringProgram.valueOptions} or a single-dash cluster one of whose
+  letters x after the first has `-x` among them, each such letter taking the next unused
+  word in the order of the letters; any other word is a bare word), an argument is a
+  {@ent:command-strings:CommandString} only when a single-dash cluster containing `c`
+  precedes it, and it is then the first bare word after that cluster; with no such argument
+  (a script file, `-s`, or `-c` with no bare word after it) the program reads none of its
+  arguments as a program, and no {@ent:line:Invocation} comes from them but those of the
+  substitutions they hold.
 why: >-
   `bash -lc 'cmd'` would be missed, or `bash --rcfile x` misread.

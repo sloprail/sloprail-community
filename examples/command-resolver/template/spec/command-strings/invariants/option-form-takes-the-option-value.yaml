@@ -1,7 +1,12 @@
 predicate: >-
   For a program whose {@fld:config:CommandStringProgram.form} is option, the
-  {@ent:command-strings:CommandString} is the value of its `-c` or `--command` option, and
-  only when {@fld:config:CommandStringProgram.leadingOperands} bare words precede that
-  option.
+  {@ent:command-strings:CommandString} is the value of its `-c` or `--command` option,
+  written as the next word or attached (`-cX`, `--command=X`), and only when
+  {@fld:config:CommandStringProgram.leadingOperands} bare words precede that option, where
+  an option is a word that starts with `-` or `+` and comes before any `--`; a word is the
+  value of an option when it follows, as a separate word, one of
+  {@fld:config:CommandStringProgram.valueOptions} or a single-dash cluster one of whose
+  letters x after the first has `-x` among them, each such letter taking the next unused
+  word in the order of the letters; any other word is a bare word.
 why: >-
   `su -c 'npm publish'` would hide npm, or `flock -c x file` be misread.

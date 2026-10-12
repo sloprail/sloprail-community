@@ -1,8 +1,9 @@
 predicate: >-
-  Right after an `if`, `case`, `while`, `until` or `for`, or an `&&` or `||` list, a
-  {@ent:variables:Variable} that a {@ent:variables:Change} inside it, other than one of kind
-  entry, names has a {@fld:variables:Variable.value} only when it had one right before it
-  and every such Change is an assignment whose word's {@fld:words:Word.value} is that same
-  value.
+  Right after an `if`, `case`, `while`, `until` or `for`, or an `&&` or `||` list, whatever
+  the invariant of the last Change inside it says, a {@ent:variables:Variable} that a
+  {@ent:variables:Change} inside it, other than one of kind entry, names has a
+  {@fld:variables:Variable.value} only when it had one right before it and every such Change
+  gives that same value: an assignment whose word's {@fld:words:Word.value} is that value,
+  or an unset when it is the empty string.
 why: >-
   One branch's value would be reported for all.

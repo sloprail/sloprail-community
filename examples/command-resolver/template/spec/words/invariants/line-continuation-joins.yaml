@@ -1,6 +1,7 @@
 predicate: >-
   In a {@fld:line:Line.text} written in the {@ent:line:Grammar}, a backslash followed by a
   newline, between words or in an unquoted or double-quoted stretch of a
-  {@fld:words:Word.text}, contributes nothing to {@fld:words:Word.value} and ends no word.
+  {@fld:words:Word.text}, outside a comment, contributes nothing to {@fld:words:Word.value}
+  and ends no word; in a comment it is part of the comment, which ends at that newline.
 why: >-
   A command split over two lines would be reported as two, or with a stray backslash.
