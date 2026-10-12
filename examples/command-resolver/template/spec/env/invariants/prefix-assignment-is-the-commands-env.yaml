@@ -1,11 +1,11 @@
 predicate: >-
-  A `NAME=value` {@ent:words:Word} before a command's program {@ent:words:Word}, where no
-  {@ent:config:Wrapper} of the chain of {@ent:config:Wrapper}s that runs from that command
-  (command and builtin included) has env as its {@fld:config:Wrapper.name} and a word that
-  starts with `-` before the word of the program it runs, puts NAME in the
-  {@fld:line:Invocation.env} or the {@fld:line:Invocation.unknownEnv}, as
+  A `NAME=value` {@ent:words:Word} before a command's program {@ent:words:Word} puts NAME in
+  the {@fld:line:Invocation.env} or the {@fld:line:Invocation.unknownEnv}, as
   env/unknown-value-is-listed-apart says, of that command's {@ent:line:Invocation} and of each
-  {@ent:line:Invocation} that chain runs, unless a closer setting decides
-  (env/closest-setting-wins).
+  {@ent:line:Invocation} that {@ent:line:Invocation} runs as a {@ent:config:Wrapper}, directly
+  or not (command and builtin included), unless a closer setting decides
+  (env/closest-setting-wins). This holds only where none of those {@ent:line:Invocation}s is
+  of a {@ent:config:Wrapper} whose {@fld:config:Wrapper.name} is env and that has, among its own
+  words before the word of the program it runs, one that starts with `-`.
 why: >-
   A variable set for one command would be missing from it, or leak into the next.

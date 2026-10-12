@@ -1,5 +1,5 @@
 predicate: >-
-  An unquoted `#` at the start of a word starts a comment: it and the rest of that physical
+  An unquoted `#` at the start of a word, outside every here-document body, starts a comment: it and the rest of that physical
   line of the text it is written in (the {@fld:line:Line.text} or a
   {@fld:command-strings:CommandString.text}) contribute no {@ent:words:Word}.
 why: >-

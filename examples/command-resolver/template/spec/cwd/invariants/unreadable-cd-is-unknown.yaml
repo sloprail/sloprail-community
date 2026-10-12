@@ -2,8 +2,8 @@ predicate: >-
   The {@fld:line:Scope.cwd} is absent right after each of these: an {@ent:line:Invocation}
   whose {@fld:line:Invocation.bin} is cd, run by the shell (as {@ent:line:Invocation} defines
   it) where no {@ent:line:Function} is named cd, that is given -P, has more than one operand,
-  or has an operand with no {@fld:words:Word.value} in its {@fld:line:Invocation.argv}
-  (cwd/cd-options-are-not-the-destination); an {@ent:line:Invocation} whose
+  or has an operand with no {@fld:words:Word.value} in its {@fld:line:Invocation.argv}, as
+  cwd/cd-options-are-not-the-destination defines options and operands; an {@ent:line:Invocation} whose
   {@fld:line:Invocation.bin} is pushd or popd, run by the shell where no {@ent:line:Function}
   has its name; a simple command whose program {@ent:words:Word} has no
   {@fld:words:Word.value}.

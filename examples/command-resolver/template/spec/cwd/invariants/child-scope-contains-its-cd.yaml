@@ -1,7 +1,6 @@
 predicate: >-
-  A move inside a {@ent:line:Scope} whose {@fld:line:Scope.kind} is not line changes the
-  {@fld:line:Scope.cwd} of no {@ent:line:Scope} outside it: right after a subshell, a
-  background job or a pipeline of more than one command, the {@fld:line:Scope.cwd} is the
-  one right before it.
+  Right after a subshell `( … )`, a background job or a pipeline of more than one command, the
+  {@fld:line:Scope.cwd} is the one right before it: a move inside one of them changes the
+  {@fld:line:Scope.cwd} of no {@ent:line:Scope} outside it.
 why: >-
   A subshell's cd would move the commands after it.
