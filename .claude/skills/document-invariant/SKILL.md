@@ -80,6 +80,29 @@ in 24 of 31 judged rounds, nearly each time for a new line (`export A &>out B`, 
 - ❌ `After a call of a function whose body contains a cd, …` ("contains a cd" reaches `$c /a`, `{cd,/a}`, `eval 'cd /a'`)
 - ✅ `After a call of a function whose body yields an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, …` (decided by a field the spec defines)
 
+A term several invariants rely on ("assigned", "a call", "the scopes a reference sees") is
+defined once, in an entity, a field's doc or enum, and every invariant that uses it cites that
+definition. It is not re-worded in each predicate, and not left to a standard that has several
+overlapping notions of it: each re-wording is a new place where judges draw the line apart.
+
+- ❌ `An export NAME of a {@ent:variables:Variable} the line assigned, …` (judges ruled `$((FOO))` is not assigning, `$((FOO=1))` is, and `unset` neither, in different rounds)
+- ✅ `… while a {@ent:variables:Change} of the Variable precedes the command …` (the Change entity's kind enum lists every form once: plain, append, array, read, for, arithmetic, `${X:=}`, unset, …)
+
+Bounded inputs are not enough: an invariant asks only for what a program can decide. Where the
+predicate requires a value the system computes by following the domain's own rules, and those
+rules feed into themselves (code inside code, loops, recursion, references to references), the
+predicate states where exactness stops and what is reported there: the domain's existing
+"unknown" outcome, by a closed, checkable rule, never "absent when it cannot be known". The
+test: could someone write a program that, for every input the predicate covers, finishes and
+meets it, without being an interpreter of the domain? A 40-character line
+(`s='eval "$s"'; eval "$s"`) can denote a computation that never ends; a cut-off the spec does
+not state is a fresh violation in every round.
+
+- ❌ `A {@ent:command-strings:CommandString} whose text is known yields the Invocations its text holds, read by the same rules as a Line.` (a self-feeding string needs an interpreter run to its end)
+- ✅ `A {@ent:command-strings:CommandString} has a {@fld:command-strings:CommandString.text} only when its {@fld:command-strings:CommandString.depth} is at most 3; …` (past the bound it has no text, and the spec's "no text" invariants say what is reported)
+- ❌ `After a while, a Variable has a value only when every path through it leaves it with the same one.` (a loop's paths are unbounded)
+- ✅ `At the start of a while, until or for, each Variable a Change in it names has no value up to its first Change there.` (the body is read once, from a defined state)
+
 A named grammar is bounded only when the spec lists what it covers: a predicate or entity that
 defers to a reference implementation ("as bash does", "by bash's escapes", "what `bash -n`
 rejects") reaches every corner of that implementation's source, and a judge who cannot run it
@@ -90,6 +113,18 @@ of them read, every command in them reported) also limits how deep they nest or 
 - ✅ `` In a `$'…'` stretch, each escape of {@fld:line:Grammar.ansiCEscapes} contributes the character its entry names to {@fld:words:Word.value}, and a backslash that starts none of them contributes itself. `` (a closed table in the spec)
 - ❌ `A {@ent:line:Line} that is not written in the {@ent:line:Grammar} has a {@fld:line:Resolution.parseError}.` (every text bash's parser rejects, at any depth)
 - ✅ `A {@ent:line:Line} written in the {@ent:line:Grammar} but at one place, where it shows one of {@fld:line:Grammar.faults}, nested at most two deep, has a {@fld:line:Resolution.parseError}.` (a closed list of faults, a bounded depth)
+
+### Every operation that changes a tracked value has one invariant deciding its effect
+
+For each value that evolves along the input (a variable's value, the current directory, what is
+exported), every operation of the named grammar that can change it is decided by exactly one
+invariant: its effect on that value, in that invariant alone. An operation decided by none is
+argued anew by each judge; one decided by two is a conflict waiting for an input both cover.
+Several operations may share one invariant; an invariant that merely lists the operations
+another one decides cites it instead of restating the effect.
+
+- ❌ no invariant says what `unset NAME` does to {@fld:variables:Variable.value} (three judges ruled three ways, and the tool shipped `X=1; unset X; rm "$X"` as `rm 1`, where bash runs `rm ''`)
+- ✅ `Right after a {@ent:variables:Change} of kind unset, the Variable it names has the empty string as its {@fld:variables:Variable.value}.` (one owner; the other value-changing kinds are decided by their own invariants)
 
 ### A single-value field bound is a constraint_expr, not an invariant
 

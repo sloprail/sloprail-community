@@ -56,6 +56,19 @@ fine when the field is self-evident.
 - ✅ entity doc `A platform user.`; ✅ field doc `The user's login email.`
 - ❌ field doc `The email. Must be unique and lowercased.`
 
+### An absent value is decided by a closed rule
+
+A field that may be absent to mean "unknown" says exactly when it is absent: by a closed list,
+or by naming the invariants that make it absent. "When it cannot be known without running
+something" is not a rule: someone can always know one step more by running it in their head.
+A per-item field keeps its meaning when one source item yields several items: say which source
+they share and whether each can have a value.
+
+- ❌ `Variable.value: Its value at a point of the line; absent when it cannot be known without running something.`
+- ✅ `Variable.value: Its value at a point of a Scope; absent exactly where an invariant of the variables domain says it has none.`
+- ❌ `Word.text: The word as written.` (one written `$X$(c)` can yield several Words: which text, and can one of them have a value?)
+- ✅ `Word.text: The written word it comes from; every Word one written word yields has its text.`
+
 ### An entity is a domain concept, not a wire format
 
 An entity models a domain noun, not an HTTP request/response shape, a DB row layout, or an internal
