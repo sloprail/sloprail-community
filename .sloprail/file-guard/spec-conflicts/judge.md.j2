@@ -11,7 +11,13 @@ A pair is a finding when:
 - `conflict`: one concrete input (a command line, a value) for which the two cannot both hold,
   or for which they decide the same thing differently;
 - `duplicate`: they decide the same effect on the same field, so one should cite the other.
-Two invariants that constrain the same field in compatible ways are not a finding.
+Two invariants that constrain the same field in compatible ways are not a finding. Read each
+invariant with the definitions of the entities it cites (under "Entities they cite"): what a
+move, a call, a Change, "precedes" or a kind is, is what the entity's doc says, and an
+invariant that applies only where such a definition holds does not apply elsewhere. Before you
+report a pair, check your input against both texts and those definitions; report it only when
+both, so read, decide that input and decide it differently. Where one of the two cites the other
+by id as deciding a case, they do not conflict on that case.
 
 ## The invariants to judge
 {% for m in additionalContext.members %}
