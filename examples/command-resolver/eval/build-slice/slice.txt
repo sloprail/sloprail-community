@@ -1,0 +1,49 @@
+# The invariants eval/build-slice keeps: every invariant of cwd, variables and env (the domains
+# the full build did not converge on), plus the line and words invariants they lean on: what an
+# Invocation's bin and argv are, which commands are reported, which lines parse, and how a word
+# that reads a variable or a substitution resolves, and the two word rules argv's
+# order cites (brace expansion, comments). Every entity stays.
+cwd/a-program-runs-in-the-directory-in-force
+cwd/absolute-cd-names-the-directory
+cwd/bare-cd-goes-home
+cwd/cd-dash-goes-back
+cwd/cd-moves-what-follows
+cwd/cd-options-are-not-the-destination
+cwd/child-scope-contains-its-cd
+cwd/child-scope-inherits-the-directory
+cwd/cwd-starts-at-the-context-directory
+cwd/failure-branch-of-cd-stays
+cwd/function-call-with-cd-is-not-unchanged
+cwd/function-definition-moves-nothing
+cwd/paths-through-a-construct-must-agree
+cwd/relative-cd-composes
+cwd/unreadable-cd-is-unknown
+cwd/unreadable-command-string-in-the-current-shell-is-unknown
+cwd/wrapper-directory-option-moves-the-wrapped-program
+cwd/wrapper-directory-unknown
+variables/assigned-variable-is-substituted
+variables/changed-variable-loses-its-value
+variables/child-shell-starts-from-its-environment
+variables/conditional-assignment-must-agree
+variables/line-assignment-overrides-the-context
+variables/reference-to-a-valueless-variable-is-untracked
+variables/unknown-assignment-is-unknown
+variables/unquoted-substitution-splits
+variables/unset-empties-the-variable
+env/closest-setting-wins
+env/env-holds-only-what-the-line-sets
+env/export-reaches-later-commands
+env/prefix-assignment-is-the-commands-env
+env/unknown-value-is-listed-apart
+env/wrapper-assignment-is-the-wrapped-programs-env
+line/argv-holds-every-word-in-order
+line/bin-is-the-basename
+line/every-command-is-reported
+line/valid-line-has-no-parse-error
+words/brace-expansion-yields-several-words
+words/command-substitution-word-is-unknown
+words/comment-yields-no-word
+words/context-variable-resolves
+words/quotes-are-removed
+words/unknown-is-set-exactly-without-a-value
+words/unset-variable-is-empty
