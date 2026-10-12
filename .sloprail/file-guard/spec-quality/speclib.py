@@ -12,6 +12,7 @@ import hashlib, json, re, subprocess, sys
 MENTION = re.compile(r"\{@(ent|fld):([a-z0-9-]+):([A-Za-z0-9]+)(?:\.([A-Za-z0-9_]+))?\}")
 SKILLS = [".claude/skills/document-invariant/SKILL.md", ".claude/skills/document-entity/SKILL.md"]
 BATCH = 10
+QUALITY_BATCH = 5
 CAP = 30
 
 
@@ -137,11 +138,11 @@ def cluster_keys(text, root):
     return fl or {f"{root}{d}:{e}" for k, d, e, f in ms}
 
 
-def batches(changed):
+def batches(changed, size=BATCH):
     """changed: {path: content} of the changed spec files. Returns [[path, ...], ...]: invariants
     clustered by shared fields (union-find), each cluster ordered so the files of one field stay
     together, the clusters laid end to end (largest first) and the changed entities after them,
-    packed greedily into batches of BATCH. A batch is only how files share a prompt: each keeps
+    packed greedily into batches of size (BATCH unless given). A batch is only how files share a prompt: each keeps
     its own verdict, so small clusters fill one call instead of a call each."""
     invs = sorted(p for p in changed if is_invariant(p))
     parent = {p: p for p in invs}
@@ -168,7 +169,7 @@ def batches(changed):
                 if m in c and m not in seen:
                     seen.add(m); seq.append(m)
     seq += sorted(p for p in changed if not is_invariant(p))
-    return [seq[i:i + BATCH] for i in range(0, len(seq), BATCH)]
+    return [seq[i:i + size] for i in range(0, len(seq), size)]
 
 
 def neighbours(members, spec):
