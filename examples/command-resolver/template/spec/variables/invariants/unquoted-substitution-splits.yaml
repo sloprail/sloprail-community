@@ -15,13 +15,13 @@ predicate: >-
   {@fld:words:WordPart.cause} is not split: it yields the {@ent:words:Word}s
   words/brace-expansion-yields-several-words makes of it, one when it has no brace
   expression. Where a {@ent:variables:Change} naming the {@ent:variables:Variable} whose
-  {@fld:variables:Variable.name} is IFS precedes the word, each unquoted expansion in it
-  that no other invariant of the words or variables domain gives a
-  {@fld:words:WordPart.cause}, an arithmetic expansion words/constant-arithmetic-resolves
-  gives a value included, is instead an entry of {@fld:words:Word.parts} whose
-  {@fld:words:WordPart.cause} is field-splitting. The {@fld:line:Redirection.word} of a
-  {@ent:line:Redirection} yields one {@ent:words:Word}: the
-  {@fld:stdin:InputRedirection.word} of an {@ent:stdin:InputRedirection} whose
+  {@fld:variables:Variable.name} is IFS precedes the word, a {@fld:line:Redirection.word}
+  included, each unquoted expansion in it that no other invariant of the words or variables
+  domain gives a {@fld:words:WordPart.cause}, an arithmetic expansion
+  words/constant-arithmetic-resolves gives a value included, is instead an entry of
+  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is field-splitting. The
+  {@fld:line:Redirection.word} of a {@ent:line:Redirection} yields one {@ent:words:Word}:
+  the {@fld:stdin:InputRedirection.word} of an {@ent:stdin:InputRedirection} whose
   {@fld:stdin:InputRedirection.kind} is here-string is neither split nor brace-expanded; the
   {@fld:line:Redirection.word} of a {@ent:line:Redirection} whose
   {@fld:line:Redirection.operator} is none of `<<`, `<<-` and `<<<`, none of whose

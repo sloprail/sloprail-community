@@ -2,12 +2,9 @@ predicate: >-
   A {@ent:command-strings:CommandString} that has a
   {@fld:command-strings:CommandString.text}
   (command-strings/command-string-text-is-bounded), in a {@ent:line:Line} that has no
-  {@fld:line:Resolution.parseError}, yields the {@ent:line:Invocation}s that text holds,
-  read by the same rules as a {@fld:line:Line.text}, within the nesting
-  line/order-is-outer-first-then-textual bounds (its
-  {@fld:command-strings:CommandString.depth} being bounded by
-  command-strings/command-string-text-is-bounded): when that text is written in the
-  {@ent:line:Grammar} it yields what a {@fld:line:Line.text} written in it would; when it is
-  not, it yields no {@ent:line:Invocation}.
+  {@fld:line:Resolution.parseError}, is read as a {@fld:line:Line.text} is: when that text
+  is written in the {@ent:line:Grammar}, its commands yield the {@ent:line:Invocation}s
+  line/every-command-is-reported and line/order-is-outer-first-then-textual give them; when
+  it is not, it yields no {@ent:line:Invocation}.
 why: >-
   `bash -c 'npm publish'` would hide npm.
