@@ -1,8 +1,9 @@
 predicate: >-
   The {@fld:variables:Change.directory} of a {@ent:variables:Change} whose
-  {@fld:variables:Change.kind} is cd not given -P whose one operand's
-  {@fld:words:Word.value} is an absolute path is that path lexically cleaned (as
-  {@fld:line:Scope.cwd} defines it), whatever the {@fld:line:Scope.cwd} right before it,
-  absent included.
+  {@fld:variables:Change.kind} is cd and whose {@fld:line:Invocation.bin} is cd, not given
+  -P, whose one operand's {@fld:words:Word.value} is an absolute path (its options and
+  operands being those cwd/cd-options-are-not-the-destination reads from its
+  {@fld:line:Invocation.argv}) is that path lexically cleaned (as {@fld:line:Scope.cwd}
+  defines it), whatever the {@fld:line:Scope.cwd} right before it, absent included.
 why: >-
   An unknown directory would never recover, or a previous one be prepended.

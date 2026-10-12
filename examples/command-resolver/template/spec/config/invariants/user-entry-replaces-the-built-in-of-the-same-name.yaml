@@ -1,6 +1,8 @@
 predicate: >-
   A user-supplied {@ent:config:Wrapper} or {@ent:config:CommandStringProgram} replaces,
-  whole, the built-in entry of the same name, whichever table that one is in, and leaves
+  whole, the built-in entry whose {@fld:config:Wrapper.name} or
+  {@fld:config:CommandStringProgram.name} is its own, whether that one is in
+  {@fld:config:Config.wrappers} or in {@fld:config:Config.commandStringPrograms}, and leaves
   every other entry as it was.
 why: >-
   A corrected option table would be merged with the wrong one, or would wipe the rest.

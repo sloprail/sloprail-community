@@ -1,6 +1,8 @@
 predicate: >-
-  `NAME=value` words between a {@ent:config:Wrapper} whose
-  {@fld:config:Wrapper.takesAssignments} is true and the wrapped program are never the
-  wrapped program word.
+  After the own words of a {@ent:config:Wrapper} whose
+  {@fld:config:Wrapper.takesAssignments} is true, each {@ent:words:Word} whose
+  {@fld:words:Word.text} is written `NAME=value`, NAME literal, is an assignment for the
+  wrapped program, and the wrapped program {@ent:words:Word} is the first one after them
+  that is not.
 why: >-
   `env FOO=1 npm` would report a program named FOO=1.

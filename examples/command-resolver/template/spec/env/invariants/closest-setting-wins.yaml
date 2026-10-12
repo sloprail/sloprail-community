@@ -1,13 +1,12 @@
 predicate: >-
-  When the line sets the same name for a program in more than one of the ways
-  env/env-holds-only-what-the-line-sets lists, the closest alone decides its
-  {@fld:line:Invocation.env} or {@fld:line:Invocation.unknownEnv} entry for the name: the
-  assignment of the {@ent:config:Wrapper} that runs it (one it takes as its
-  {@fld:config:Wrapper.takesAssignments} allows) over its command's prefix; that prefix over
-  a setting made for an {@ent:line:Invocation} it is nested in; such a setting, itself
-  decided by this same order, over a {@ent:variables:Change} before the command of that
-  outer {@ent:line:Invocation}; and a {@ent:variables:Change} written in that outer
-  {@ent:line:Invocation}'s {@fld:command-strings:CommandString.text}, before the program's
-  command, over the setting made for the outer {@ent:line:Invocation}.
+  When the line sets the same {@fld:variables:Variable.name} for a program in more than one
+  of the ways env/env-holds-only-what-the-line-sets lists, the closest alone decides its
+  {@fld:line:Invocation.env} or {@fld:line:Invocation.unknownEnv} entry for the name,
+  closest first: an assignment the {@ent:config:Wrapper} that runs it takes (as its
+  {@fld:config:Wrapper.takesAssignments} allows); its command's prefix; a
+  {@ent:variables:Change} that precedes its command, written in the same text (the
+  {@fld:line:Line.text}, or the {@fld:command-strings:CommandString.text} of an
+  {@ent:line:Invocation} it is nested in); and a setting made for an {@ent:line:Invocation}
+  it is nested in, itself decided by this same order.
 why: >-
   The overridden value would be reported.

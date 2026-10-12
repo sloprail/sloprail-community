@@ -1,6 +1,6 @@
 predicate: >-
-  A {@ent:words:Word} whose text contains a command substitution has no
-  {@fld:words:Word.value}, and the substitution is an entry of {@fld:words:Word.parts}
-  whose {@fld:words:WordPart.cause} is command-substitution.
+  A {@ent:words:Word} whose {@fld:words:Word.text} contains a command substitution has no
+  {@fld:words:Word.value}, and the substitution is an entry of {@fld:words:Word.parts} whose
+  {@fld:words:WordPart.cause} is command-substitution.
 why: >-
   The output of a command that never ran would be guessed.

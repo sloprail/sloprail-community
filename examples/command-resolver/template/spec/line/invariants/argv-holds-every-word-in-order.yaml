@@ -1,6 +1,6 @@
 predicate: >-
-  {@fld:line:Invocation.argv} holds the {@ent:words:Word}s its command's written words
-  yield, by the invariants of the words and variables domains, one entry each in the order
-  written, program word first.
+  {@fld:line:Invocation.argv} holds the {@ent:words:Word}s that the written words of its
+  command (each a {@fld:words:Word.text}) yield, by the invariants of the words and
+  variables domains, one entry each in the order written, program word first.
 why: >-
   A consumer could not tell `git -C $(x) push` from `git -C push`.

@@ -1,8 +1,9 @@
 predicate: >-
-  {@fld:line:Invocation.stdin} is absent unless a here-document or here-string is
-  written on the command or on a group, subshell or compound command enclosing it, and
-  absent when the command's last redirection of descriptor 0 is from a file or a
-  descriptor or closes it, or when the command is a pipeline stage after the first with
-  no redirection of descriptor 0 of its own.
+  A command's input redirection is the last redirection of descriptor 0 written on the
+  command or, when it has none, on the nearest group, subshell or compound command enclosing
+  it that has one. {@fld:line:Invocation.stdin} is absent unless the command's input
+  redirection is a {@ent:stdin:HereDocument} or a here-string, and so absent when it is from
+  a file or a descriptor or closes it, when there is none, and when the command is a
+  pipeline stage after the first with no redirection of descriptor 0 of its own.
 why: >-
   Input the line does not contain would be invented.

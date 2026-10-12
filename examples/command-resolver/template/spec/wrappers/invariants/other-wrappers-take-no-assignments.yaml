@@ -1,5 +1,6 @@
 predicate: >-
   After a {@ent:config:Wrapper} whose {@fld:config:Wrapper.takesAssignments} is false, a
-  `NAME=value` word in the program position is the wrapped program word.
+  {@ent:words:Word} whose {@fld:words:Word.text} is written `NAME=value` in the program
+  position is the wrapped program {@ent:words:Word}.
 why: >-
   `nohup FOO=1 npm` would be reported as running npm, which it does not.

@@ -1,9 +1,9 @@
 predicate: >-
-  Of the words a {@ent:variables:Change} whose {@fld:variables:Change.kind} is cd is given
-  after its program word, the options are those before the first that is `--`, is `-` or
-  does not start with `-`, and that `--`; the rest are its operands. An option is never an
-  operand, so never the one from which the {@ent:variables:Change} of kind cd's
-  {@fld:variables:Change.directory} is read. A {@ent:variables:Change} of kind cd is given
-  -P when, of the letters L and P its options hold, read in order, the last is P.
+  Of the {@fld:line:Invocation.argv} of a {@ent:variables:Change} whose
+  {@fld:variables:Change.kind} is cd, after its program word, the options are those words
+  before the first whose {@fld:words:Word.value} is `--`, is `-` or does not start with `-`,
+  and that `--`; the rest are its operands. An option is never an operand, so never the one
+  from which its {@fld:variables:Change.directory} is read. It is given -P when, of the
+  letters L and P its options hold, read in order, the last is P.
 why: >-
   A directory named -P would be reported.

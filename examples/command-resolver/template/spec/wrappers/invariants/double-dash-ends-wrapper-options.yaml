@@ -1,5 +1,5 @@
 predicate: >-
-  After a `--` among a {@ent:config:Wrapper}'s own words no later word is one of its
-  options, and the `--` itself is never the wrapped program word.
+  A `--` among a {@ent:config:Wrapper}'s own words is never the wrapped program
+  {@ent:words:Word}.
 why: >-
   A program whose name starts with a dash would be lost, or `--` reported as a program.

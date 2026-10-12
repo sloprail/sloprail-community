@@ -1,6 +1,10 @@
 predicate: >-
-  For a program whose {@fld:config:CommandStringProgram.form} is arguments, the string its
-  {@ent:command-strings:CommandString} runs is all its arguments joined by single spaces,
-  and it has a value only when every one of them has a {@fld:words:Word.value}.
+  For a {@ent:command-strings:CommandString} whose
+  {@fld:command-strings:CommandString.program} has arguments as its
+  {@fld:config:CommandStringProgram.form}, the string it runs, from which
+  command-strings/command-string-text-is-bounded reads its
+  {@fld:command-strings:CommandString.text}, is the {@fld:words:Word.value}s of all its
+  program's arguments joined by single spaces, and has a value only when every one of them
+  has a {@fld:words:Word.value}.
 why: >-
   A partly unknown `eval` would be resolved as if complete.

@@ -1,6 +1,6 @@
 predicate: >-
-  A bare assignment, a redirection with no command, a `[[ … ]]` test, a `(( … ))`
-  expression and the reserved words of the {@ent:line:Grammar} yield no
+  A bare assignment, a redirection with no command, a `[[ … ]]` test, a `(( … ))` expression
+  and each of the {@fld:line:Grammar.reservedWords} of the {@ent:line:Grammar} yield no
   {@ent:line:Invocation} of their own.
 why: >-
   Shell syntax would be reported as a program.

@@ -1,7 +1,7 @@
 predicate: >-
-  A {@ent:config:Wrapper} whose words hold a wrapped program word yields, besides its
-  own {@ent:line:Invocation}, one for the wrapped program, whose
-  {@fld:line:Invocation.argv} starts at the wrapped program word, unless
+  A {@ent:config:Wrapper} whose words hold a wrapped program {@ent:words:Word} yields,
+  besides its own {@ent:line:Invocation}, one for the wrapped program, whose
+  {@fld:line:Invocation.argv} starts at that {@ent:words:Word}, unless
   wrappers/describing-options-run-nothing, wrappers/required-options-gate-the-wrapping,
   wrappers/unknown-word-in-an-open-slot-hides-the-program or
   wrappers/env-split-string-is-one-command withholds it.

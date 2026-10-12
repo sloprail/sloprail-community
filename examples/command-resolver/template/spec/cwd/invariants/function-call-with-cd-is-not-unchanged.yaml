@@ -6,6 +6,8 @@ predicate: >-
   {@ent:variables:Change} whose {@fld:variables:Change.kind} is cd, it is the
   {@fld:line:Scope.cwd} at the end of the {@fld:line:Function.body} as resolved where the
   {@ent:line:Function} is defined, if the {@fld:line:Scope.cwd} right before the call is the
-  one where the {@ent:line:Function} is defined. It is absent otherwise.
+  one where the {@ent:line:Function} is defined. It is absent otherwise. At the end of an
+  `if`, `case`, `while`, `until`, `for`, `&&` or `||` list the call ends,
+  cwd/paths-through-a-construct-must-agree decides instead.
 why: >-
   A real move would go unreported.

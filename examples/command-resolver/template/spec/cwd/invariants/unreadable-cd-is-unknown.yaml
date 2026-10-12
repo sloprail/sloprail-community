@@ -1,8 +1,10 @@
 predicate: >-
-  The {@fld:variables:Change.directory} is absent for a {@ent:variables:Change} whose
-  {@fld:variables:Change.kind} is cd one of whose operands has no {@fld:words:Word.value},
-  one given -P, one with more than one operand, and one whose program's
-  {@fld:line:Invocation.bin} is pushd or popd; and right after a command whose program word
-  has no {@fld:words:Word.value} the {@fld:line:Scope.cwd} is absent.
+  The {@fld:variables:Change.directory} of a {@ent:variables:Change} whose
+  {@fld:variables:Change.kind} is cd (its options and operands being those
+  cwd/cd-options-are-not-the-destination reads from its {@fld:line:Invocation.argv}) is
+  absent when one of its operands has no {@fld:words:Word.value}, when it is given -P, when
+  it has more than one operand, and when its {@fld:line:Invocation.bin} is pushd or popd;
+  and right after a command whose program word has no {@fld:words:Word.value} the
+  {@fld:line:Scope.cwd} is absent.
 why: >-
   A command would be reported where it no longer is.

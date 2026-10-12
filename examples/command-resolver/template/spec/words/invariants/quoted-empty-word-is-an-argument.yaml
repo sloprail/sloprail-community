@@ -1,5 +1,5 @@
 predicate: >-
-  A word made only of empty quotes is one {@ent:words:Word} whose {@fld:words:Word.value}
-  is the empty string.
+  A written word made only of empty quotes yields exactly one {@ent:words:Word}, whose
+  {@fld:words:Word.text} is that word and whose {@fld:words:Word.value} is the empty string.
 why: >-
   An explicitly empty argument would vanish and shift the ones after it.

@@ -1,7 +1,8 @@
 predicate: >-
-  The words after the {@ent:command-strings:CommandString} of a program whose
-  {@fld:config:CommandStringProgram.form} is shell are positional parameters, never read
-  as a program: no {@ent:line:Invocation} comes from them but those of the substitutions
-  they hold.
+  The {@ent:words:Word}s after the {@ent:command-strings:CommandString} whose
+  {@fld:command-strings:CommandString.program} is a {@ent:config:CommandStringProgram} whose
+  {@fld:config:CommandStringProgram.form} is shell are positional parameters, never read as
+  a program: no {@ent:line:Invocation} comes from them but those of the substitutions they
+  hold.
 why: >-
   `bash -c 'echo' rm` would report rm.

@@ -1,10 +1,10 @@
 predicate: >-
   {@fld:line:Invocation.env} and {@fld:line:Invocation.unknownEnv} hold a
   {@fld:variables:Variable.name} only when the line sets it for that program: by its
-  command's prefix, by the assignment of the {@ent:config:Wrapper} that runs it, by a
-  {@ent:variables:Change} that precedes its command (env/export-reaches-later-commands), or
-  by one of these for an {@ent:line:Invocation} it is nested in
-  (env/prefix-assignment-is-the-commands-env); a name that is only in
-  {@fld:line:Context.env} is in neither.
+  command's prefix, by an assignment the {@ent:config:Wrapper} that runs it takes (as its
+  {@fld:config:Wrapper.takesAssignments} allows), by a {@ent:variables:Change} that precedes
+  its command (env/export-reaches-later-commands), or by one of these for an
+  {@ent:line:Invocation} it is nested in (env/prefix-assignment-is-the-commands-env); a name
+  that is only in {@fld:line:Context.env} is in neither.
 why: >-
   Every program would be reported with the whole ambient environment.

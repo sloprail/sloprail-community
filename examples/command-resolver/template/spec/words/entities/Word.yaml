@@ -8,7 +8,7 @@ fields:
     doc: "The string the shell would pass for it. Absent exactly when an entry of parts has a cause."
   - name: unknown
     type: string?
-    doc: "Why the word has no value."
+    doc: "Why the word has no value. Absent exactly when value is present."
     enum: ["command-substitution", "process-substitution", "glob", "special-parameter", "parameter-operation", "arithmetic", "untracked-variable", "user-home", "placeholder", "field-splitting", "limit"]
   - name: parts
     type: WordPart[]

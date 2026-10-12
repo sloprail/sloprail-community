@@ -1,12 +1,13 @@
 predicate: >-
   The {@fld:variables:Change.directory} of a {@ent:variables:Change} whose
-  {@fld:variables:Change.kind} is cd not given -P whose one operand's
-  {@fld:words:Word.value} is a relative path other than `-` is the {@fld:line:Scope.cwd}
-  right before it joined with that path and lexically cleaned (as {@fld:line:Scope.cwd}
-  defines it), when the path is `.` or `..` or starts with `./` or `../`, or when the
-  {@ent:variables:Variable} CDPATH has the empty string as its
-  {@fld:variables:Variable.value} there; it is absent when that {@fld:line:Scope.cwd} is
-  absent, or when the path is none of those and CDPATH has no
-  {@fld:variables:Variable.value} or a non-empty one.
+  {@fld:variables:Change.kind} is cd and whose {@fld:line:Invocation.bin} is cd, not given
+  -P, whose one operand's {@fld:words:Word.value} is a relative path other than `-` (its
+  options and operands being those cwd/cd-options-are-not-the-destination reads from its
+  {@fld:line:Invocation.argv}) is the {@fld:line:Scope.cwd} right before it joined with that
+  path and lexically cleaned (as {@fld:line:Scope.cwd} defines it), when the path is `.` or
+  `..` or starts with `./` or `../`, or when the {@ent:variables:Variable} CDPATH has the
+  empty string as its {@fld:variables:Variable.value} there; it is absent when that
+  {@fld:line:Scope.cwd} is absent, or when the path is none of those and CDPATH has no value
+  or a non-empty one.
 why: >-
   `cd a && cd b` would be reported at b.

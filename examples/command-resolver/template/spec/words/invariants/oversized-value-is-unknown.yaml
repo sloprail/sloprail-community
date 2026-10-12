@@ -1,6 +1,6 @@
 predicate: >-
   A {@ent:words:Word} whose {@fld:words:Word.value} would be longer than 65536 bytes has
-  none: its whole text is an entry of {@fld:words:Word.parts} whose
+  none: its whole {@fld:words:Word.text} is an entry of {@fld:words:Word.parts} whose
   {@fld:words:WordPart.cause} is limit.
 why: >-
   A value that doubles at each assignment (`X=$X$X`) would grow past any memory.

@@ -1,7 +1,9 @@
 predicate: >-
   The {@fld:variables:Change.directory} of a {@ent:variables:Change} whose
-  {@fld:variables:Change.kind} is cd not given -P and with no operand is the
+  {@fld:variables:Change.kind} is cd and whose {@fld:line:Invocation.bin} is cd, not given
+  -P and with no operand (its options and operands being those
+  cwd/cd-options-are-not-the-destination reads from its {@fld:line:Invocation.argv}), is the
   {@fld:variables:Variable.value} of the {@ent:variables:Variable} HOME there, and absent
-  when HOME has no {@fld:variables:Variable.value} or has the empty string.
+  when HOME has no value or has the empty string.
 why: >-
   A command would be reported where the line started although it moved home.

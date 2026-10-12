@@ -1,8 +1,10 @@
 predicate: >-
-  When the here-document that is the command's last redirection of descriptor 0 has
-  {@fld:stdin:HereDocument.quotedDelimiter} false, {@fld:line:Invocation.stdin} is present
-  only when every expansion in its {@fld:stdin:HereDocument.body}, read as inside double
-  quotes except that a backslash before `"` stays, has a {@fld:words:Word.value}, and then
-  holds their results in place of the expansions.
+  When the command's input redirection (stdin/stdin-is-absent-unless-literal) is a
+  {@ent:stdin:HereDocument} whose {@fld:stdin:HereDocument.quotedDelimiter} is false, its
+  {@fld:stdin:HereDocument.body} is read as inside double quotes, except that a backslash
+  before `"` stays, and {@fld:line:Invocation.stdin} is present only when no
+  {@ent:words:WordPart} of it has a {@fld:words:WordPart.cause}, and then is the body with
+  each {@ent:words:WordPart} replaced by what the invariants of the words and variables
+  domains have it contribute to a {@fld:words:Word.value}.
 why: >-
   Half-expanded text would be reported as what the program reads.

@@ -1,5 +1,7 @@
 predicate: >-
-  A {@ent:config:Wrapper} option written with its value in the same word (`-uroot`,
-  `--user=root`) consumes no further word.
+  Among a {@ent:config:Wrapper}'s own words, one of its {@fld:config:Wrapper.valueOptions}
+  written with its value in the same word, as `-u` followed by more characters (`-uroot`)
+  for a single-dash option of one letter, or as `--user=` followed by the value
+  (`--user=root`) for a double-dash one, consumes no further word.
 why: >-
   The program word would be swallowed as an option value.

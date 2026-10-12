@@ -1,11 +1,12 @@
 predicate: >-
-  The program that the env {@ent:config:Wrapper} runs, given `-i`, `--ignore-environment` or
-  a lone `-`, or a single-dash cluster holding `i`, has in its {@fld:line:Invocation.env}
-  and {@fld:line:Invocation.unknownEnv} only the names env's own assignments set; given `-u
-  NAME`, `-uNAME`, `--unset NAME` or `--unset=NAME`, it has NAME in neither unless env's own
-  assignments set it after that option. Every other invariant of the env domain yields to
-  this one, and the {@fld:line:Scope.env} and {@fld:line:Scope.unknownEnv} of a
-  {@ent:line:Scope} whose {@fld:line:Scope.kind} is child-shell such a program starts hold
-  no name it removes.
+  The {@fld:variables:Variable.name}s the env {@ent:config:Wrapper} removes for the program
+  it runs are: given `-i`, `--ignore-environment` or a lone `-`, or a single-dash cluster in
+  which `i` stands before any of `u`, `C` and `S`, every name its own assignments (the words
+  it takes as its {@fld:config:Wrapper.takesAssignments} allows) do not set; given `-u
+  NAME`, `-uNAME`, `--unset NAME` or `--unset=NAME`, NAME, unless its own assignments set it
+  after that option. That program has no name env removes in its {@fld:line:Invocation.env}
+  or {@fld:line:Invocation.unknownEnv}, in place of what env/export-reaches-later-commands,
+  env/prefix-assignment-is-the-commands-env and env/env-holds-only-what-the-line-sets give
+  it.
 why: >-
   `env -i npm` would be reported with variables env clears.

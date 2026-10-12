@@ -1,7 +1,9 @@
 predicate: >-
-  The program a {@ent:config:Wrapper} runs when the last of its
-  {@fld:config:Wrapper.directoryOptions} it is given has a known value has as its
-  {@fld:line:Invocation.cwd} that directory, resolved against the wrapper's own
-  {@fld:line:Invocation.cwd}.
+  The program a {@ent:config:Wrapper} runs, when the value word of the last of its
+  {@fld:config:Wrapper.directoryOptions} it is given has a {@fld:words:Word.value}, has as
+  its {@fld:line:Invocation.cwd} that {@fld:words:Word.value} lexically cleaned (as
+  {@fld:line:Scope.cwd} defines it) when it is an absolute path, and otherwise the wrapper's
+  own {@fld:line:Invocation.cwd} joined with it and lexically cleaned, absent when the
+  wrapper's own is absent.
 why: >-
   `env -C sub npm` would report npm at the start.

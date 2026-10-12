@@ -1,7 +1,9 @@
 predicate: >-
-  In the inner command's {@fld:line:Invocation.argv}, a whole-word `{}` of a
-  {@ent:wrappers:FindClause} command, and a word holding the value given to the `-I`
-  option of `xargs`, have no {@fld:words:Word.value}, and the `{}` or that value is an
-  entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is placeholder.
+  In the {@fld:line:Invocation.argv} of the {@ent:line:Invocation} a
+  {@ent:wrappers:FindClause} or a {@ent:config:Wrapper} whose {@fld:config:Wrapper.name} is
+  xargs runs, a whole-word `{}` of a {@ent:wrappers:FindClause} command, and a
+  {@ent:words:Word} holding the value given to the `-I` option of xargs, have no
+  {@fld:words:Word.value}, and the `{}` or that value is an entry of {@fld:words:Word.parts}
+  whose {@fld:words:WordPart.cause} is placeholder.
 why: >-
   A placeholder would be reported as the file name it stands for.
