@@ -61,6 +61,20 @@ target must already exist.
 - ✅ `Every {@ent:order:Order} has exactly one {@ent:notification:Notification}.` (a relationship rule)
 - ❌ `An inactive product is hidden from customers.` (no typed anchor — name the field: `{@fld:catalog:Product.active}`)
 
+### Everything a predicate constrains or reads is a typed mention, under one name
+
+Not only the anchor: every entity and every field the predicate constrains or reads is written as
+its mention, every time, never as a synonym, a paraphrase or a plain name. A reader, and a check,
+must see which value is meant without guessing whether "the directory a cd sets" and
+`{@fld:shell:Scope.cwd}` are the same thing. A value the predicate relies on that no field holds is
+a field the entity model is missing: add it to the entity it belongs on (document-entity), then
+mention it.
+
+- ✅ `After a cd, the {@fld:shell:Scope.cwd} is the directory it names.`
+- ❌ `After a cd, the directory a cd sets is the one it names.` (a synonym — write `{@fld:shell:Scope.cwd}`)
+- ❌ `After a cd, the Scope.cwd is ...` (a plain name — write `{@fld:shell:Scope.cwd}`)
+- ❌ `After umask 077, the file mode mask is 077.` (no field holds the mask — add one to the entity, then mention it)
+
 ### An invariant is concrete: its inputs are bounded and no word can be stretched
 
 A predicate covers a space of inputs a reader can enumerate: a named grammar, standard, enum or
