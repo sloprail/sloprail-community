@@ -1,8 +1,8 @@
 predicate: >-
   A {@ent:command-strings:CommandString} whose {@fld:command-strings:CommandString.depth} is
   at most 8 and whose {@fld:command-strings:CommandString.text} is written in the
-  {@ent:line:Grammar}, of depth at most two (as the {@ent:line:Grammar} defines depth),
-  yields the {@ent:line:Invocation}s that text holds, read by the same rules as the
-  {@fld:line:Line.text} of a {@ent:line:Line}.
+  {@ent:line:Grammar}, of depth at most two (as the {@ent:line:Grammar} defines depth), puts
+  in {@fld:line:Resolution.invocations} the {@ent:line:Invocation}s its text holds, read as
+  the {@fld:line:Line.text} of a {@ent:line:Line}.
 why: >-
   `bash -c 'npm publish'` would hide npm.

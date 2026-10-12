@@ -1,8 +1,8 @@
 predicate: >-
-  A {@ent:words:Word} whose {@fld:words:Word.text} references, outside single-quoted and
-  `$'…'` stretches and outside every other expansion and without an operator, a positional
-  or special parameter (`$0` to `$9`, `${10}` and above, `$@`, `$*`, `$#`, `$?`, `$-`, `$$`,
-  `$!`, each also braced) has no {@fld:words:Word.value}, and that reference is an entry of
-  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is special-parameter.
+  A {@ent:words:Word} whose {@fld:words:Word.text} references, outside `'…'`, `$'…'` and
+  every other `$` expansion and without an operator, a positional or special parameter (`$0`
+  to `$9`, `${10}` and above, `$@`, `$*`, `$#`, `$?`, `$-`, `$$`, `$!`, each also braced)
+  has no {@fld:words:Word.value}, and that reference is an entry of {@fld:words:Word.parts}
+  whose {@fld:words:WordPart.cause} is special-parameter.
 why: >-
   A value only the running shell has would be guessed.

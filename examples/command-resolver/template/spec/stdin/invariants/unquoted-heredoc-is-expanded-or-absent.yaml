@@ -4,9 +4,10 @@ predicate: >-
   is false and whose {@fld:stdin:HereDocument.body} holds no backtick or backslash, and
   every `$` in it starts a reference `$NAME` or `${NAME}` (NAME being letters, digits and
   underscores, not starting with a digit) to the {@ent:variables:Variable} whose
-  {@fld:variables:Variable.name} is NAME: {@fld:line:Invocation.stdin} is that body, less
-  the tabs stdin/dash-heredoc-strips-leading-tabs removes, with each reference replaced by
-  its {@ent:variables:Variable}'s {@fld:variables:Variable.value} there when every one of
-  them has one, and absent when one has none.
+  {@fld:variables:Variable.name} is NAME: {@fld:line:Invocation.stdin} is that body, less,
+  when its {@fld:stdin:HereDocument.stripsTabs} is true, the tabs that begin each of its
+  lines, with each reference replaced by its {@ent:variables:Variable}'s
+  {@fld:variables:Variable.value} there when every one of them has one, and absent when one
+  has none.
 why: >-
   Half-expanded text would be reported as what the program reads.

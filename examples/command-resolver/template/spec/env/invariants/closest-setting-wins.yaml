@@ -4,7 +4,7 @@ predicate: >-
   {@fld:line:Invocation.env} or {@fld:line:Invocation.unknownEnv} entry for that name: an
   assignment its {@ent:config:Wrapper} takes (as its {@fld:config:Wrapper.takesAssignments}
   allows) over a `NAME=value` {@ent:words:Word} before its command's program word, either of
-  them over a {@ent:variables:Change}, and of two such words of one command the later
-  written.
+  them over a {@ent:variables:Change}, and of two {@ent:variables:Change}s, or two such
+  words of one command, the later written.
 why: >-
   The overridden value would be reported.

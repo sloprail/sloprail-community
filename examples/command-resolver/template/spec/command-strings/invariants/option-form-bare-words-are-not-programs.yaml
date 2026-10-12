@@ -1,9 +1,10 @@
 predicate: >-
-  A {@ent:words:Word} of the {@fld:line:Invocation.argv} of an {@ent:line:Invocation} whose
-  {@fld:line:Invocation.bin} is the {@fld:config:CommandStringProgram.name} of a
-  {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form} is option
-  that is a bare word (as {@ent:config:CommandStringProgram} defines it) is never read as a
-  program: no {@ent:line:Invocation} comes from it but those of the command and process
-  substitutions it holds.
+  A {@ent:words:Word} after the first of the {@fld:line:Invocation.argv} of an
+  {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is the
+  {@fld:config:CommandStringProgram.name} of a {@ent:config:CommandStringProgram} whose
+  {@fld:config:CommandStringProgram.form} is option that is a bare word (as
+  {@ent:config:CommandStringProgram} defines it) is never read as a program: no
+  {@ent:line:Invocation} comes from it but those of the command and process substitutions it
+  holds.
 why: >-
   `su bob` would report a program named bob.

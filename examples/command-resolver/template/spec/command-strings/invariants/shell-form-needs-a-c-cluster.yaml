@@ -1,9 +1,9 @@
 predicate: >-
   For an {@ent:line:Invocation} of a {@ent:config:CommandStringProgram} whose
-  {@fld:config:CommandStringProgram.form} is shell, whose {@fld:line:Invocation.argv} holds
-  the option `-c` as a word of its own before every bare word, the
-  {@fld:command-strings:CommandString.text} of its {@ent:command-strings:CommandString} is
-  the {@fld:words:Word.value} of the first bare {@ent:words:Word} after it, when there is
-  one; it has no other {@ent:command-strings:CommandString}.
+  {@fld:config:CommandStringProgram.form} is shell, with a `-c` {@ent:words:Word} before
+  every bare word, the {@fld:command-strings:CommandString.text} of the
+  {@ent:command-strings:CommandString} whose {@fld:command-strings:CommandString.invocation}
+  is that {@ent:line:Invocation} is the {@fld:words:Word.value} of the first bare
+  {@ent:words:Word} after it, if any.
 why: >-
   `bash -lc 'cmd'` would be missed, or `bash --rcfile x` misread.

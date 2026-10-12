@@ -1,7 +1,7 @@
 predicate: >-
   Right after an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, run by the
-  shell (as {@ent:line:Invocation} defines it) and no call of a {@ent:line:Function}, not
-  given -P, with one operand (cwd/cd-options-are-not-the-destination) whose
+  shell (as {@ent:line:Invocation} defines it) where no {@ent:line:Function} is named cd,
+  not given -P, with one operand (cwd/cd-options-are-not-the-destination) whose
   {@fld:words:Word.value} is a relative path P, the {@fld:line:Scope.cwd} is the one right
   before it joined with P and lexically cleaned, absent when that one is absent. This holds
   when P is `.` or `..` or starts with `./` or `../`; and when P is any other relative path

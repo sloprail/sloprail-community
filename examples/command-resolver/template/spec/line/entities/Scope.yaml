@@ -12,5 +12,5 @@ fields:
     enum: ["line", "subshell", "pipeline-stage", "background-job", "command-substitution", "process-substitution", "child-shell"]
   - name: cwd
     type: string?
-    doc: "The directory in force at a point of the scope; absent when the resolver does not know it. Lexically cleaning a path removes its `.` components, its empty ones (a repeated or trailing `/`) and each `..` with the component before it, a `..` at the root staying there."
+    doc: "The directory in force at a point of the scope; absent when the resolver does not know it. The cwd at a point is that of the innermost Scope the point stands in. Lexically cleaning a path removes its `.` components, its empty ones (a repeated or trailing `/`) and each `..` with the component before it, a `..` at the root staying there."
     constraint_expr: 'an absolute path, lexically clean'

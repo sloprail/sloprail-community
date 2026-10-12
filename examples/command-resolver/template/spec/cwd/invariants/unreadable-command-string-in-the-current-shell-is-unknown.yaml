@@ -4,6 +4,7 @@ predicate: >-
   whose {@fld:command-strings:CommandString.program} has
   {@fld:config:CommandStringProgram.currentShell} true, when that
   {@fld:command-strings:CommandString.invocation} is run by the shell (as
-  {@ent:line:Invocation} defines it), the {@fld:line:Scope.cwd} is absent.
+  {@ent:line:Invocation} defines it) and no {@ent:line:Function} is named as its
+  {@fld:line:Invocation.bin}, the {@fld:line:Scope.cwd} is absent.
 why: >-
   A move hidden in an unreadable eval would go unreported.

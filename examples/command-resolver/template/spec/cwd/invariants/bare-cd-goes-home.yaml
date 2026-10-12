@@ -1,9 +1,9 @@
 predicate: >-
   Right after {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, run by the
-  shell (as {@ent:line:Invocation} defines it) and no call of a {@ent:line:Function}, not
-  given -P and with no operand (cwd/cd-options-are-not-the-destination), where the
-  {@ent:variables:Variable} whose {@fld:variables:Variable.name} is HOME has, right before
-  it, an absolute path as its {@fld:variables:Variable.value}, the {@fld:line:Scope.cwd} is
-  that path lexically cleaned.
+  shell (as {@ent:line:Invocation} defines it) where no {@ent:line:Function} is named cd,
+  not given -P and with no operand in its {@fld:line:Invocation.argv}
+  (cwd/cd-options-are-not-the-destination), where the {@ent:variables:Variable} whose
+  {@fld:variables:Variable.name} is HOME has, right before it, an absolute path as its
+  {@fld:variables:Variable.value}, the {@fld:line:Scope.cwd} is that path lexically cleaned.
 why: >-
   A command would be reported where the line started although it moved home.

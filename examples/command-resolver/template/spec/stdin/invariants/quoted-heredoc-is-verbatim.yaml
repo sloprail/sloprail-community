@@ -2,6 +2,7 @@ predicate: >-
   When the {@ent:stdin:InputRedirection} of the command of an {@ent:line:Invocation} has a
   {@fld:stdin:InputRedirection.hereDocument} whose {@fld:stdin:HereDocument.quotedDelimiter}
   is true, {@fld:line:Invocation.stdin} is its {@fld:stdin:HereDocument.body} as written,
-  less the tabs stdin/dash-heredoc-strips-leading-tabs removes.
+  less, when its {@fld:stdin:HereDocument.stripsTabs} is true, the tabs that begin each of
+  its lines.
 why: >-
   Text the shell passes untouched would be reported altered.

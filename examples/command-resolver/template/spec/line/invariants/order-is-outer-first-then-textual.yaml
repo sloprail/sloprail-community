@@ -1,14 +1,13 @@
 predicate: >-
   In a {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar},
-  of depth at most two (as the {@ent:line:Grammar} defines depth),
-  {@fld:line:Resolution.invocations} lists its simple commands in the order written, each
-  directly followed by the {@ent:line:Invocation}s it gives rise to, each of those followed
-  in turn by its own: first the program it runs as a {@ent:config:Wrapper}, or the commands
-  of its {@ent:wrappers:FindClause}s in clause order, then the commands of its
-  {@ent:command-strings:CommandString}, then those of the command and process substitutions
-  in its {@ent:words:Word}s (`NAME=value` ones included), {@ent:line:Redirection}s and
-  {@fld:stdin:HereDocument.body}s, in the order written, a {@ent:words:Word} also in the
-  {@fld:line:Invocation.argv} of an {@ent:line:Invocation} it gives rise to belonging to the
-  innermost such {@ent:line:Invocation}.
+  of depth at most two, with every substitution in a {@ent:words:Word} of a simple command,
+  {@fld:line:Resolution.invocations} lists its simple commands outside every substitution in
+  the order written, each directly followed by the {@ent:line:Invocation}s it gives rise to,
+  each of those followed in turn by its own: first the program it runs as a
+  {@ent:config:Wrapper}, or the commands of its {@ent:wrappers:FindClause}s in clause order,
+  then the commands of its {@ent:command-strings:CommandString}, then those of the
+  substitutions in its {@ent:words:Word}s (assignments included) in written order, a
+  {@ent:words:Word} shared with the {@fld:line:Invocation.argv} of an {@ent:line:Invocation}
+  it gives rise to belonging to the innermost one.
 why: >-
   Two resolvers would list the same programs in different orders.

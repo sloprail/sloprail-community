@@ -1,11 +1,10 @@
 predicate: >-
-  A {@ent:words:Word} of an {@fld:line:Invocation.argv} whose {@fld:words:Word.text}
-  contains, outside every expansion, an unquoted `*`, `?` or bracket expression has no
+  A {@ent:words:Word} of an {@fld:line:Invocation.argv} whose {@fld:words:Word.text} holds
+  no `~`, `$` or backtick and contains an unquoted `*`, `?` or bracket expression has no
   {@fld:words:Word.value}, and each such character or bracket expression is an entry of
   {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is glob. A bracket expression
-  runs from an unquoted `[` to the first unquoted `]` after it outside every expansion that
-  is neither directly after that `[` or after its `!` or `^`, nor the end of a `[:name:]`
-  class; a `*` or `?` inside it is part of it. Quoted or escaped, those characters are
-  literal text.
+  runs from an unquoted `[` to the first unquoted `]` after it that is neither directly
+  after that `[` or after its `!` or `^`, nor the end of a `[:name:]` class; a `*` or `?`
+  inside it is part of it. Quoted or escaped, those characters are literal text.
 why: >-
   A pattern would be reported as though it were the file names it expands to.

@@ -1,9 +1,10 @@
 predicate: >-
   For an {@ent:line:Invocation} of a {@ent:config:CommandStringProgram} whose
-  {@fld:config:CommandStringProgram.form} is option, with exactly one `-c` or `--command`
-  word among its options after {@fld:config:CommandStringProgram.leadingOperands} bare
-  words, the {@fld:command-strings:CommandString.text} of its
-  {@ent:command-strings:CommandString} is the {@fld:words:Word.value} of the
-  {@ent:words:Word} after it.
+  {@fld:config:CommandStringProgram.form} is option, with one `-c` or `--command`
+  {@ent:words:Word} alone in its {@fld:line:Invocation.argv} after
+  {@fld:config:CommandStringProgram.leadingOperands} bare words, the
+  {@fld:command-strings:CommandString.text} of the {@ent:command-strings:CommandString}
+  whose {@fld:command-strings:CommandString.invocation} is that {@ent:line:Invocation} is
+  the {@fld:words:Word.value} of the {@ent:words:Word} after it.
 why: >-
   `su -c 'npm publish'` would hide npm, or `flock -c x file` be misread.
