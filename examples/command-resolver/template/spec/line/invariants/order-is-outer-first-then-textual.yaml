@@ -6,8 +6,8 @@ predicate: >-
   those followed in turn by its own: first the program it runs as a {@ent:config:Wrapper},
   or the commands of its {@ent:wrappers:FindClause}s in clause order, then the commands of
   its {@ent:command-strings:CommandString}, then the commands of the command and process
-  substitutions in its words, assignments, redirections and here-document bodies, in the
-  order written. The commands of a substitution that belongs to no simple command stand
-  where the substitution is written.
+  substitutions in its words, assignments, redirections and {@fld:stdin:HereDocument.body}s,
+  in the order written. The commands of a substitution that belongs to no simple command
+  stand where the substitution is written.
 why: >-
   Two resolvers would list the same programs in different orders.

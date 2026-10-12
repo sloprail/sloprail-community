@@ -1,7 +1,7 @@
 predicate: >-
-  Right after a {@ent:variables:Change} of kind assignment or append whose word has no
-  {@fld:words:Word.value}, or of kind append where the {@ent:variables:Variable} had no
-  {@fld:variables:Variable.value} right before it, the {@ent:variables:Variable} it names
-  has no {@fld:variables:Variable.value}.
+  Right after a {@ent:variables:Change} whose {@fld:variables:Change.kind} is assignment or
+  append whose {@fld:variables:Change.word} has no {@fld:words:Word.value}, or of kind
+  append where the {@ent:variables:Variable} had no {@fld:variables:Variable.value} right
+  before it, the {@ent:variables:Variable} it names has no {@fld:variables:Variable.value}.
 why: >-
   A guessed or empty value would spread to every later reference.

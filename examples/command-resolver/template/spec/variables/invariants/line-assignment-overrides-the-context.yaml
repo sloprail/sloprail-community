@@ -1,10 +1,15 @@
 predicate: >-
-  At a reference that a {@ent:variables:Change} of a {@ent:variables:Variable} precedes, the
-  {@fld:variables:Variable.value}, when it has one (the other invariants of the variables
-  domain, variables/conditional-assignment-must-agree among them, say when it has none), is
-  the one the latest such {@ent:variables:Change} gave it, {@ent:variables:Change}s of kind
-  export and unexport giving none and leaving the value as it was, never one from
-  {@fld:line:Context.env}: an assignment gives the {@fld:words:Word.value} of its word, and
-  an append the value before it followed by its word's.
+  At a reference ({@ent:words:WordPart}) to a {@ent:variables:Variable} where the latest
+  {@ent:variables:Change} naming it that precedes, those of kind export and unexport aside,
+  is of kind assignment or append, its {@fld:variables:Variable.value}, when it has one (the
+  other invariants of the variables domain, variables/conditional-assignment-must-agree
+  among them, say when it has none), is the one that {@ent:variables:Change} gave it, never
+  one from {@fld:line:Context.env} or {@fld:line:Scope.env}: one of kind assignment gives
+  the {@fld:words:Word.value} of its {@fld:variables:Change.word}, and one of kind append
+  the {@fld:variables:Variable.value} right before it followed by the
+  {@fld:words:Word.value} of its {@fld:variables:Change.word}. {@ent:variables:Change}s
+  whose {@fld:variables:Change.kind} is export and unexport give no value: where only such
+  {@ent:variables:Change}s naming the {@ent:variables:Variable} precede, it has the
+  {@fld:variables:Variable.value} it would have were none to precede.
 why: >-
   A stale or ambient value would be reported.

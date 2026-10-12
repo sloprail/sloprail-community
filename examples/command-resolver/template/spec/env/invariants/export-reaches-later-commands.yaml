@@ -1,10 +1,10 @@
 predicate: >-
-  An {@ent:line:Invocation} whose command a {@ent:variables:Change}, other than one of kind
-  every, of a {@ent:variables:Variable} precedes, where that {@ent:variables:Variable}'s
-  {@fld:variables:Variable.exported} is true or absent, has its name in its
-  {@fld:line:Invocation.env} with the {@fld:variables:Variable.value} there when it is
-  exported and has a value, and in its {@fld:line:Invocation.unknownEnv} otherwise, unless a
-  closer setting decides (env/closest-setting-wins) (env/env-clears-what-it-is-told decides
-  what env removes).
+  An {@ent:line:Invocation} whose command a {@ent:variables:Change}, other than one whose
+  {@fld:variables:Change.kind} is every, of a {@ent:variables:Variable} precedes, where that
+  {@ent:variables:Variable}'s {@fld:variables:Variable.exported} is true or absent, has its
+  {@fld:variables:Variable.name} in its {@fld:line:Invocation.env} with the
+  {@fld:variables:Variable.value} there when it is exported and has a value, and in its
+  {@fld:line:Invocation.unknownEnv} otherwise, unless a closer setting decides
+  (env/closest-setting-wins) (env/env-clears-what-it-is-told decides what env removes).
 why: >-
   A variable exported one statement earlier would be missing.

@@ -1,5 +1,5 @@
 predicate: >-
-  A {@ent:line:Scope} of kind line starts with {@fld:line:Context.cwd} as its
-  {@fld:line:Scope.cwd}.
+  A {@ent:line:Scope} whose {@fld:line:Scope.kind} is line starts with
+  {@fld:line:Context.cwd} as its {@fld:line:Scope.cwd}.
 why: >-
   The first command would be reported somewhere other than where the line starts.

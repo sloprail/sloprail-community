@@ -2,6 +2,6 @@ predicate: >-
   A {@ent:command-strings:CommandString} whose program has
   {@fld:config:CommandStringProgram.currentShell} false, or is run by a
   {@ent:config:Wrapper} other than command and builtin, is resolved in a {@ent:line:Scope}
-  of kind child-shell started where it stands.
+  whose {@fld:line:Scope.kind} is child-shell started where it stands.
 why: >-
   A `cd` inside `bash -c` or `sudo eval` would move the commands after it.

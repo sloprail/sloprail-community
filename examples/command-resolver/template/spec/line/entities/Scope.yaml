@@ -15,3 +15,9 @@ fields:
     type: string?
     doc: "The directory in force at a point of the scope. Absent exactly where an invariant of the cwd domain says it is. Lexically cleaning a path removes its `.` components, its empty ones (a repeated or trailing `/`) and each `..` with the component before it, a `..` at the root staying there."
     constraint_expr: 'an absolute path, lexically clean'
+  - name: env
+    type: Record<string>
+    doc: "The environment variables its process starts with whose values are known, with those values, for a Scope whose kind is line or child-shell; empty for every other kind."
+  - name: unknownEnv
+    type: string[]
+    doc: "The names of the environment variables its process starts with whose values are unknown, for a Scope whose kind is line or child-shell; empty for every other kind."

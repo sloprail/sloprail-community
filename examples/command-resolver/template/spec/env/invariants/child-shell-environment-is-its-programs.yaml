@@ -1,11 +1,14 @@
 predicate: >-
-  The environment a {@ent:line:Scope} of kind child-shell starts with holds the names its
-  program's {@fld:line:Invocation.env} holds, with their values, and those its
-  {@fld:line:Invocation.unknownEnv} holds, with no known value; and each other name of
-  {@fld:line:Context.env} that no {@ent:variables:Change} precedes at the program's command,
-  with its {@fld:line:Context.env} value where {@fld:variables:Variable.exported} is true
-  there and with no known value where it is absent there; less what
-  env/env-clears-what-it-is-told removes. The environment the {@ent:line:Scope} of kind line
-  starts with is {@fld:line:Context.env}.
+  The {@fld:line:Scope.env} of a {@ent:line:Scope} whose {@fld:line:Scope.kind} is
+  child-shell holds the names and values its program's {@fld:line:Invocation.env} holds, and
+  its {@fld:line:Scope.unknownEnv} the names its program's {@fld:line:Invocation.unknownEnv}
+  holds; of each other {@fld:variables:Variable.name} that {@fld:line:Context.env} holds and
+  that no {@ent:variables:Change} other than one whose {@fld:variables:Change.kind} is every
+  precedes at the program's command, its {@fld:line:Scope.env} holds the name with its
+  {@fld:line:Context.env} value where {@fld:variables:Variable.exported} is true there, and
+  its {@fld:line:Scope.unknownEnv} the name where {@fld:variables:Variable.exported} is
+  absent there; less, in both, what env/env-clears-what-it-is-told removes. The
+  {@fld:line:Scope.env} of the {@ent:line:Scope} whose {@fld:line:Scope.kind} is line is
+  {@fld:line:Context.env}, and its {@fld:line:Scope.unknownEnv} is empty.
 why: >-
   A child shell would be reported seeing variables it is never given, or missing ones it is.

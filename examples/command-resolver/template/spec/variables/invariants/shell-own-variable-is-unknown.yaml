@@ -1,8 +1,9 @@
 predicate: >-
-  A {@ent:variables:Variable} that no {@ent:variables:Change} precedes at a reference has no
-  {@fld:variables:Variable.value} there when its name is in
-  {@fld:variables:Variable.shellSet}, or when the reference's shell ({@ent:line:Scope}) is
-  the one of kind line, its name is in {@fld:variables:Variable.shellDefaulted} and
-  {@fld:line:Context.env} does not hold it.
+  A {@ent:variables:Variable} that no {@ent:variables:Change} precedes at a reference
+  ({@ent:words:WordPart}) has no {@fld:variables:Variable.value} there when its
+  {@fld:variables:Variable.name} is in {@fld:variables:Variable.shellSet}, or when the
+  reference's shell ({@ent:line:Scope}) is the one whose {@fld:line:Scope.kind} is line, its
+  name is in {@fld:variables:Variable.shellDefaulted} and {@fld:line:Context.env} does not
+  hold it.
 why: >-
   `rm /tmp/$RANDOM` would be reported as `rm /tmp/`.

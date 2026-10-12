@@ -1,6 +1,6 @@
 predicate: >-
-  Right after a {@ent:variables:Change} of kind array, read, for, arithmetic, default, call,
-  entry or every, each {@ent:variables:Variable} it names has no
-  {@fld:variables:Variable.value}.
+  Right after a {@ent:variables:Change} whose {@fld:variables:Change.kind} is array, read,
+  for, arithmetic, default, call, entry or every, each {@ent:variables:Variable} it names
+  has no {@fld:variables:Variable.value}.
 why: >-
   A value that no longer holds would be reported.

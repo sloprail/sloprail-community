@@ -1,6 +1,9 @@
 predicate: >-
-  The directory a cd without -P whose one operand is `-` sets is the one a cd sets that has
-  the {@fld:variables:Variable.value} of OLDPWD there as its one operand, and it sets none
-  when OLDPWD has no value or has the empty string.
+  The {@fld:variables:Change.directory} of a {@ent:variables:Change} whose
+  {@fld:variables:Change.kind} is cd not given -P whose one operand's
+  {@fld:words:Word.value} is `-` is the one a {@ent:variables:Change} of kind cd would have
+  whose one operand's {@fld:words:Word.value} is the {@fld:variables:Variable.value} of the
+  {@ent:variables:Variable} OLDPWD there, and absent when OLDPWD has no
+  {@fld:variables:Variable.value} or has the empty string.
 why: >-
   A command would be reported in the wrong one of two directories.

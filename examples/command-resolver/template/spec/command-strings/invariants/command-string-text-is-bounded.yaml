@@ -1,15 +1,18 @@
 predicate: >-
   {@fld:command-strings:CommandString.text} is the value of the string the
-  {@ent:command-strings:CommandString} runs: for the shell and option forms the
-  {@fld:words:Word.value} of the argument that is the string, for the arguments form the
-  string command-strings/arguments-form-joins-its-arguments makes. It is absent when that
-  string has no value; when the {@ent:command-strings:CommandString}'s
-  {@fld:command-strings:CommandString.depth} is above 8; and when the texts of the
+  {@ent:command-strings:CommandString} runs: where its
+  {@fld:command-strings:CommandString.program}'s {@fld:config:CommandStringProgram.form} is
+  shell or option, the {@fld:words:Word.value} of the argument that is the string; where it
+  is arguments, the string command-strings/arguments-form-joins-its-arguments makes. It is
+  absent when that string has no value; when its {@fld:command-strings:CommandString.depth}
+  is above 8; and when the {@fld:command-strings:CommandString.text}s of the
   {@ent:command-strings:CommandString}s read before it already total 1048576 bytes or more.
-  {@ent:command-strings:CommandString}s are read in this order: those whose programs are
-  written in one text (the {@ent:line:Line}'s, or a {@ent:command-strings:CommandString}'s)
-  in the order their program words are written there, each followed, before the next, by
-  those whose programs are written in its own text, in the same order.
+  {@ent:command-strings:CommandString}s are read in this order: those whose
+  {@fld:command-strings:CommandString.program}s are written in one text (the
+  {@fld:line:Line.text}, or a {@fld:command-strings:CommandString.text}) in the order their
+  program words are written there, each followed, before the next, by those whose
+  {@fld:command-strings:CommandString.program}s are written in its own
+  {@fld:command-strings:CommandString.text}, in the same order.
 why: >-
   A string that runs itself (`s='eval "$s"'; eval "$s"`) would need an interpreter run
   without end; past the bound it is reported as a string nobody can read.

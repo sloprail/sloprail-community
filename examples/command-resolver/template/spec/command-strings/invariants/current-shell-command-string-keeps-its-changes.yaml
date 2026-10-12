@@ -1,5 +1,6 @@
 predicate: >-
-  The text of a {@ent:command-strings:CommandString} whose program has
+  The {@fld:command-strings:CommandString.text} of a {@ent:command-strings:CommandString}
+  whose {@fld:command-strings:CommandString.program} has
   {@fld:config:CommandStringProgram.currentShell} true and is run by the shell (see
   {@ent:config:Wrapper}) is resolved in its program's own {@ent:line:Scope}, in place of the
   program's command, so the moves and the {@ent:variables:Change}s it holds are that

@@ -1,10 +1,11 @@
 predicate: >-
   When, reading a {@ent:config:Wrapper}'s words in order, a {@ent:words:Word} with no
-  {@fld:words:Word.value} comes before its wrapped program word is found and is neither the
-  value of one of its {@fld:config:Wrapper.valueOptions}, nor one of those options written
-  with its value in the same word (`-uX`, `--user=X`), nor one of its
-  {@fld:config:Wrapper.leadingOperands} bare words, nor a word written `NAME=value`, NAME
-  literal, that a {@ent:config:Wrapper} whose {@fld:config:Wrapper.takesAssignments} is true
-  takes as an assignment, no wrapped {@ent:line:Invocation} is reported.
+  {@fld:words:Word.value} comes before its wrapped program word is found and is none of the
+  words those invariants of the wrappers domain that decide which words come before the
+  wrapped program consume or pass over (wrappers/value-option-consumes-the-next-word,
+  wrappers/attached-option-value-consumes-nothing,
+  wrappers/leading-operands-precede-the-program,
+  wrappers/assignments-are-not-the-wrapped-program), no {@ent:line:Invocation} of a wrapped
+  program is in {@fld:line:Resolution.invocations}.
 why: >-
   `sudo $(x) npm` would report npm although the unknown word may be the program.

@@ -1,11 +1,16 @@
 predicate: >-
-  Right after an `if`, `case`, `while`, `until` or `for`, or an `&&` or `||` list, whatever
-  the invariant of the last {@ent:variables:Change} inside it says, a
+  Right after an `if`, `case`, `while`, `until` or `for`, or an `&&` or `||` list, in place
+  of what variables/line-assignment-overrides-the-context,
+  variables/unset-empties-the-variable, variables/changed-variable-loses-its-value and
+  cwd/cd-sets-pwd-and-oldpwd say for the last {@ent:variables:Change} inside it, a
   {@ent:variables:Variable} that a {@ent:variables:Change} inside it, other than one of kind
   entry, export or unexport, names has a {@fld:variables:Variable.value} only when it had
-  one right before it and every such {@ent:variables:Change} gives that same value: an
-  assignment whose word's {@fld:words:Word.value} is that value, or an unset when it is the
-  empty string. A cd that is the first command of an `&&` or `||` list is taken to succeed,
-  as cwd/paths-through-a-construct-must-agree does: it is not inside the list.
+  one right before it and every such {@ent:variables:Change} gives it that same value: one
+  of kind assignment whose {@fld:variables:Change.word} has that {@fld:words:Word.value},
+  one of kind unset when it is the empty string, or one of kind cd that gives it that value
+  by cwd/cd-sets-pwd-and-oldpwd. A {@ent:variables:Change} whose
+  {@fld:variables:Change.kind} is cd that is the first command of an `&&` or `||` list is
+  taken to succeed, as cwd/paths-through-a-construct-must-agree does: it is not inside the
+  list.
 why: >-
   One branch's value would be reported for all.

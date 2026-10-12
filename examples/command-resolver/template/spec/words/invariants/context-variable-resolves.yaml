@@ -1,7 +1,8 @@
 predicate: >-
-  A {@ent:variables:Variable} that no {@ent:variables:Change} precedes at a reference whose
-  shell is the {@ent:line:Scope} of kind line, whose name is not in
-  {@fld:variables:Variable.shellSet} and is in {@fld:line:Context.env}, has its value in
-  {@fld:line:Context.env} as its {@fld:variables:Variable.value} there.
+  A {@ent:variables:Variable} that no {@ent:variables:Change} precedes at a reference
+  ({@ent:words:WordPart}) whose shell is the {@ent:line:Scope} whose {@fld:line:Scope.kind}
+  is line, whose {@fld:variables:Variable.name} is not in {@fld:variables:Variable.shellSet}
+  and is in {@fld:line:Context.env}, has the value {@fld:line:Context.env} holds for that
+  {@fld:variables:Variable.name} as its {@fld:variables:Variable.value} there.
 why: >-
   `$HOME/x` would be reported as unknown although the environment says what it is.

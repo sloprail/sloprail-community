@@ -1,6 +1,7 @@
 predicate: >-
-  A {@ent:variables:Variable} that no {@ent:variables:Change} precedes at a reference whose
-  shell is the {@ent:line:Scope} of kind line, whose name is in none of
+  A {@ent:variables:Variable} that no {@ent:variables:Change} precedes at a reference
+  ({@ent:words:WordPart}) whose shell is the {@ent:line:Scope} whose {@fld:line:Scope.kind}
+  is line, and whose {@fld:variables:Variable.name} is in none of
   {@fld:variables:Variable.shellSet}, {@fld:variables:Variable.shellDefaulted} and
   {@fld:line:Context.env}, has the empty string as its {@fld:variables:Variable.value}
   there.

@@ -4,6 +4,8 @@ predicate: >-
   and {@fld:line:Invocation.unknownEnv} only the names env's own assignments set; given `-u
   NAME`, `-uNAME`, `--unset NAME` or `--unset=NAME`, it has NAME in neither unless env's own
   assignments set it after that option. Every other invariant of the env domain yields to
-  this one, and the environment such a program starts with holds no name it removes.
+  this one, and the {@fld:line:Scope.env} and {@fld:line:Scope.unknownEnv} of a
+  {@ent:line:Scope} whose {@fld:line:Scope.kind} is child-shell such a program starts hold
+  no name it removes.
 why: >-
   `env -i npm` would be reported with variables env clears.

@@ -35,3 +35,6 @@ fields:
   - name: word
     type: words.Word?
     doc: "The word whose value an assignment or append gives; absent for every other kind."
+  - name: directory
+    type: string?
+    doc: "For a Change of kind cd, the directory it makes the current one; absent for every other kind, and for a cd exactly where an invariant of the cwd domain says it sets none."

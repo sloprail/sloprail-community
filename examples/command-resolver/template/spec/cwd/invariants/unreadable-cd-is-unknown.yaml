@@ -1,6 +1,8 @@
 predicate: >-
-  A cd whose operand has no {@fld:words:Word.value}, a cd given -P, a cd with more than one
-  operand, a pushd and a popd set no directory, and right after a command whose program word
+  The {@fld:variables:Change.directory} is absent for a {@ent:variables:Change} whose
+  {@fld:variables:Change.kind} is cd one of whose operands has no {@fld:words:Word.value},
+  one given -P, one with more than one operand, and one whose program's
+  {@fld:line:Invocation.bin} is pushd or popd; and right after a command whose program word
   has no {@fld:words:Word.value} the {@fld:line:Scope.cwd} is absent.
 why: >-
   A command would be reported where it no longer is.

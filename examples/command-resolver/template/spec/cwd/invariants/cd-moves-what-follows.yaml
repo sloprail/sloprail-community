@@ -1,13 +1,12 @@
 predicate: >-
-  Right after an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, pushd or
-  popd, that the shell runs (see {@ent:config:Wrapper}) and that is no call of a
-  {@ent:line:Function}, the {@fld:line:Scope.cwd} is the directory it sets, and absent when
-  it sets none, what it sets being decided by the other invariants of the cwd domain alone;
-  except where cwd/failure-branch-of-cd-stays reads the cd as not written, and at the end of
-  an `if`, `case`, `while`, `until`, `for`, `&&` or `||` list the cd ends, where
+  Right after a {@ent:variables:Change} whose {@fld:variables:Change.kind} is cd, the
+  {@fld:line:Scope.cwd} is its {@fld:variables:Change.directory}, absent when that is
+  absent; except where cwd/failure-branch-of-cd-stays reads the cd as not written, and at
+  the end of an `if`, `case`, `while`, `until`, `for`, `&&` or `||` list the cd ends, where
   cwd/paths-through-a-construct-must-agree decides. A simple command that is none of the
-  moves a {@ent:line:Scope} lists, and is no program given a current-shell
-  {@ent:command-strings:CommandString} with text (whose own moves are the
+  moves a {@ent:line:Scope} lists, and is no program given a
+  {@ent:command-strings:CommandString} whose {@fld:config:CommandStringProgram.currentShell}
+  is true and that has a {@fld:command-strings:CommandString.text} (whose own moves are the
   {@ent:line:Scope}'s), leaves the {@fld:line:Scope.cwd} as it was.
 why: >-
   A command would be reported in the directory it left, or cd in the one it is entering.

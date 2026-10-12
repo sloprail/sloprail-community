@@ -1,10 +1,11 @@
 predicate: >-
   Right after a call of a {@ent:line:Function}, the {@fld:line:Scope.cwd} is the one right
-  before the call when no body of a {@ent:line:Function} of that name holds a move
-  ({@ent:line:Scope}). When the line defines the name once and every move its body holds is
-  an {@ent:line:Invocation} whose bin is cd, pushd or popd, it is the {@fld:line:Scope.cwd}
-  at the end of the body as resolved where the {@ent:line:Function} is defined, if the
-  {@fld:line:Scope.cwd} right before the call is the one where the {@ent:line:Function} is
-  defined. It is absent otherwise.
+  before the call when no {@fld:line:Function.body} of a {@ent:line:Function} of that
+  {@fld:line:Function.name} holds a move ({@ent:line:Scope}). When the line defines the
+  {@fld:line:Function.name} once and every move its {@fld:line:Function.body} holds is a
+  {@ent:variables:Change} whose {@fld:variables:Change.kind} is cd, it is the
+  {@fld:line:Scope.cwd} at the end of the {@fld:line:Function.body} as resolved where the
+  {@ent:line:Function} is defined, if the {@fld:line:Scope.cwd} right before the call is the
+  one where the {@ent:line:Function} is defined. It is absent otherwise.
 why: >-
   A real move would go unreported.
