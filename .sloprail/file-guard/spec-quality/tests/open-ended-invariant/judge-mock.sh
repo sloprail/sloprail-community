@@ -6,13 +6,21 @@
 # case instead of passing it.
 # stdin is the rendered prompt, then the check's payload as one JSON line (a mock's extra; a
 # model gets the prompt alone). Only the prompt is kept and read.
+# answer FILES_TO_FLAG MESSAGE: prints the response.schema.json answer, one entry per file under
+# "The files to judge" in the prompt ($input), with one finding carrying MESSAGE for each flagged file.
+answer() {
+  local flagged="$1" msg="$2"
+  printf '%s\n' "$input" | awk '/^## The files to judge/{on=1} /^## Related invariants/{on=0} /^## Entities they cite/{on=0} on && /^<file path="/{sub(/.*path="/,""); sub(/".*/,""); print}' |
+    jq -Rsc --arg flagged "$flagged" --arg msg "$msg" '
+      ($flagged | split(" ") | map(select(length > 0))) as $bad
+      | {files: (split("\n") | map(select(length > 0)) | map({key: ., value: {checked: "mock",
+          findings: (if (. as $p | $bad | index($p)) then [{rule: "mock", ids: [.], input: $msg, fix: "mock"}] else [] end)}})
+        | from_entries)}'
+}
 input="$(grep -v '^{"event":' )"
 printf '%s\n' "$input" >> "$PROMPT_LOG"
 if ! printf '%s\n' "$input" | grep -q '^### An invariant is concrete'; then
-  echo '{"pass": true, "reasoning": "MOCK: no rule on concreteness in the prompt"}'; exit 0
+  answer "" ""; exit 0
 fi
 bad="$(printf '%s\n' "$input" | awk '/^## The files to judge/{on=1} /^## Entities they cite/{on=0} on && /^<file path="/{p=$0} on && p && /valid shell syntax|any valid/{print p}' | sed 's/.*path="//; s/".*//' | sort -u | tr '\n' ' ')"
-if [ -n "$bad" ]; then
-  echo "{\"pass\": false, \"reasoning\": \"MOCK not concrete: $bad\"}"; exit 0
-fi
-echo '{"pass": true, "reasoning": ""}'
+answer "$bad" "MOCK not concrete"

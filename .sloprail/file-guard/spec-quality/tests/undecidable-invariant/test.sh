@@ -36,7 +36,7 @@ printf 'predicate: >-\n  A {@ent:cs:CommandString} whose {@fld:cs:CommandString.
 commit unbounded
 if run; then dump "2: an undecidable invariant passed"; fi
 grep -q 'an invariant asks only for what a program can decide' "$PROMPT_LOG" || dump "1: the skill's rule on deciding is not in the judge's prompt"
-refused "MOCK undecidable: $F" || dump "2: no refusal naming the undecidable invariant"
+refused "- $F [mock] ($F): MOCK undecidable" || dump "2: no refusal naming the undecidable invariant"
 
 # 3: the bound stated
 printf 'predicate: >-\n  A {@ent:cs:CommandString} whose {@fld:cs:CommandString.text} is known and whose\n  {@fld:cs:CommandString.depth} is at most 3 yields the Invocations its text holds; past that\n  depth it has no text.\nwhy: >-\n  `bash -c npm` would hide npm.\n' > "$F"

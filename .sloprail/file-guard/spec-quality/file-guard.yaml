@@ -14,4 +14,9 @@ checks:
   - script: ./mentions-resolve.py
   - prepare: ./prepare.py
     judge: ./judge.md.j2
+    # One entry per judged file with every finding (response.schema.json), turned into the
+    # verdict by post-process.py: the default one-sentence answer named one or two problems
+    # per call, so each run sampled a different few.
+    response_schema: ./response.schema.json
+    post_process: ./post-process.py
     model: size-md

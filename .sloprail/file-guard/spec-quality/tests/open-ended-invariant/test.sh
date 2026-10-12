@@ -35,7 +35,7 @@ printf 'predicate: >-\n  A {@ent:line:Line} whose {@fld:line:Line.text} is valid
 commit open-ended
 if run; then dump "2: an open-ended invariant passed"; fi
 grep -q '^### An invariant is concrete' "$PROMPT_LOG" || dump "1: the skill's rule on concreteness is not in the judge's prompt"
-refused "MOCK not concrete: $S/invariants/valid-line-has-no-parse-error.yaml" || dump "2: no refusal naming the open-ended invariant"
+refused "- $S/invariants/valid-line-has-no-parse-error.yaml [mock] ($S/invariants/valid-line-has-no-parse-error.yaml): MOCK not concrete" || dump "2: no refusal naming the open-ended invariant"
 
 # 3: bounded by the grammar the spec defines, it passes
 printf 'predicate: >-\n  A {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar}\n  has no {@fld:line:Line.parseError}.\nwhy: >-\n  A readable line would be flagged as unreadable.\n' > "$S/invariants/valid-line-has-no-parse-error.yaml"
