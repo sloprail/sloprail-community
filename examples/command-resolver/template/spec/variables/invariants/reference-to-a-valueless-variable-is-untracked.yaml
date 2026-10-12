@@ -1,7 +1,9 @@
 predicate: >-
   A {@ent:words:Word} whose text holds a reference `$X` or `${X}`, with no operator, to a
-  {@ent:variables:Variable} with no {@fld:variables:Variable.value} has no
+  {@ent:variables:Variable} with no {@fld:variables:Variable.value}, or any reference
+  `${X[index]}`, `${X[@]}` or `${X[*]}` with no operator, whatever X's value, has no
   {@fld:words:Word.value}, and that reference is an entry of {@fld:words:Word.parts} whose
   {@fld:words:WordPart.cause} is untracked-variable.
 why: >-
-  The context's old value, or an empty string, would stand in for a changed one.
+  The context's old value, an empty string, or an array element nobody tracks would stand in
+  for a changed one.

@@ -1,7 +1,8 @@
 predicate: >-
   In an `||` list whose left side is one simple command, a cd that the shell runs, the right
-  side is read as though that cd were not written: there the {@fld:line:Scope.cwd} is the
-  one right before the cd, and PWD and OLDPWD have the {@fld:variables:Variable.value} they
-  had right before it.
+  side is read as though that cd were not written: within it, up to its end, the
+  {@fld:line:Scope.cwd} is the one right before the cd, and PWD and OLDPWD have the
+  {@fld:variables:Variable.value} they had right before it. Right after the whole list,
+  cwd/paths-through-a-construct-must-agree decides.
 why: >-
   The failure path would be reported in the directory that could not be entered.

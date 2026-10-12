@@ -4,6 +4,8 @@ predicate: >-
   {@ent:variables:Change} inside it, other than one of kind entry, names has a
   {@fld:variables:Variable.value} only when it had one right before it and every such Change
   gives that same value: an assignment whose word's {@fld:words:Word.value} is that value,
-  or an unset when it is the empty string.
+  or an unset when it is the empty string. A cd that is the first command of an `&&` or `||`
+  list is taken to succeed, as cwd/paths-through-a-construct-must-agree does: it is not
+  inside the list.
 why: >-
   One branch's value would be reported for all.

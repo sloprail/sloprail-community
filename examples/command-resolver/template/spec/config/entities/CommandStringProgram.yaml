@@ -1,4 +1,9 @@
-doc: "A program that runs one of its arguments as a shell command line."
+doc: >-
+  A program that runs one of its arguments as a shell command line. Among its arguments, an
+  option is a word that starts with `-` or `+` and comes before any `--`; a word is the value
+  of an option when it follows, as a separate word, one of valueOptions, or a single-dash
+  cluster one of whose letters x after the first has `-x` among valueOptions, each such letter
+  taking the next unused word in the order of the letters; any other word is a bare word.
 fields:
   - name: name
     type: string
