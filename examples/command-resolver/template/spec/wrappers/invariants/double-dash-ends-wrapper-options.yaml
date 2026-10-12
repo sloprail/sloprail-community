@@ -1,9 +1,8 @@
 predicate: >-
-  Among a {@ent:config:Wrapper}'s words, the first {@ent:words:Word} whose
-  {@fld:words:Word.value} is `--` and that is no option's value ends its options: no later
-  {@ent:words:Word} is read as an option of the {@ent:config:Wrapper}, and the `--` itself
-  is never the wrapped program word; which later {@ent:words:Word} is,
-  wrappers/leading-operands-precede-the-program and
-  wrappers/assignments-are-not-the-wrapped-program decide.
+  The {@ent:words:Word} that ends a {@ent:config:Wrapper}'s options (the `--` its doc
+  defines) is never the wrapped program word: the wrapped {@ent:line:Invocation}'s program
+  word is a later {@ent:words:Word}, the one wrappers/leading-operands-precede-the-program
+  and wrappers/assignments-are-not-the-wrapped-program decide, and no {@ent:words:Word}
+  after that `--` is read as an option of the {@ent:config:Wrapper}.
 why: >-
   A program whose name starts with a dash would be lost, or `--` reported as a program.

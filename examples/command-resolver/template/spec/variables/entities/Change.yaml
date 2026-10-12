@@ -9,7 +9,9 @@ doc: >-
   A Change precedes a point of a Scope when it is written before the point in that Scope (the
   text of a current-shell command-strings.CommandString standing where its program's command
   does), or when the Scope's kind is not child-shell and the Change precedes the point where
-  the Scope starts, in the Scope it starts in.
+  the Scope starts, in the Scope it starts in. A Change of kind cd that
+  cwd/failure-branch-of-cd-stays reads as not written precedes no point of the right side of
+  its `||` list.
 fields:
   - name: kind
     type: string

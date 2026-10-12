@@ -1,11 +1,11 @@
 predicate: >-
   In an `||` list whose left side is one simple command that is a {@ent:variables:Change}
-  whose {@fld:variables:Change.kind} is cd, the right side starts as though that
-  {@ent:variables:Change} were not written: on the right side it precedes nothing and
-  changes nothing, so at its start the {@fld:line:Scope.cwd} is the one right before it, and
-  the {@ent:variables:Variable}s PWD and OLDPWD have the {@fld:variables:Variable.value} and
-  the {@fld:variables:Variable.exported} they had right before it; its own commands then
-  move and change as anywhere else. Right after the whole list,
-  cwd/paths-through-a-construct-must-agree decides.
+  whose {@fld:variables:Change.kind} is cd, that {@ent:variables:Change} precedes no point
+  of the right side (as {@ent:variables:Change} defines preceding), so at the right side's
+  start the {@fld:line:Scope.cwd} is the one right before it, and the
+  {@ent:variables:Variable}s whose {@fld:variables:Variable.name} is PWD or OLDPWD have the
+  {@fld:variables:Variable.value} and the {@fld:variables:Variable.exported} they had right
+  before it; the right side's own commands then move and change as anywhere else. Right
+  after the whole list, cwd/paths-through-a-construct-must-agree decides.
 why: >-
   The failure path would be reported in the directory that could not be entered.

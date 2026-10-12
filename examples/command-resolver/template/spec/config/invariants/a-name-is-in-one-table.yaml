@@ -1,5 +1,6 @@
 predicate: >-
-  No name is both a {@fld:config:Wrapper.name} and a
-  {@fld:config:CommandStringProgram.name}.
+  No name is both the {@fld:config:Wrapper.name} of an entry of
+  {@fld:config:Config.wrappers} and the {@fld:config:CommandStringProgram.name} of an entry
+  of {@fld:config:Config.commandStringPrograms}.
 why: >-
   The same program would be read two ways.

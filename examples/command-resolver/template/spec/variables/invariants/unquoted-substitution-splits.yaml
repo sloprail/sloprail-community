@@ -11,14 +11,17 @@ predicate: >-
   yields no {@ent:words:Word}. A written word one of whose {@fld:words:Word.parts} has a
   {@fld:words:WordPart.cause} is not split: it yields the {@ent:words:Word}s
   words/brace-expansion-yields-several-words makes of it, one when it has no brace
-  expression. Where a {@ent:variables:Change} naming the {@ent:variables:Variable} IFS
-  precedes the word, each unquoted expansion in it that no other invariant gives a
-  {@fld:words:WordPart.cause} is instead an entry of {@fld:words:Word.parts} whose
-  {@fld:words:WordPart.cause} is field-splitting. The word of a redirection yields one
-  {@ent:words:Word}: the word of a here-string is neither split nor brace-expanded; the word
-  of any other redirection keeps its {@fld:words:Word.value} when it would make exactly one
-  field and its brace expressions exactly one word, and otherwise (bash refuses it as an
-  ambiguous redirect) has no {@fld:words:Word.value}, its whole {@fld:words:Word.text} being
-  an entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is field-splitting.
+  expression. Where a {@ent:variables:Change} naming the {@ent:variables:Variable} whose
+  {@fld:variables:Variable.name} is IFS precedes the word, each unquoted expansion in it
+  that no other invariant gives a {@fld:words:WordPart.cause} is instead an entry of
+  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is field-splitting. The word of
+  a redirection yields one {@ent:words:Word}: the {@fld:stdin:InputRedirection.word} of an
+  {@ent:stdin:InputRedirection} whose {@fld:stdin:InputRedirection.kind} is here-string is
+  neither split nor brace-expanded; the word of any other redirection keeps its
+  {@fld:words:Word.value} when it would make exactly one field and its brace expressions
+  exactly one word, and otherwise (bash refuses it as an ambiguous redirect) has no
+  {@fld:words:Word.value}, and an entry of its {@fld:words:Word.parts} whose
+  {@fld:words:WordPart.text} is its whole {@fld:words:Word.text} has the
+  {@fld:words:WordPart.cause} field-splitting.
 why: >-
   `X='a b'; rm $X` would be reported as one file, or `$EMPTY npm` as running nothing.

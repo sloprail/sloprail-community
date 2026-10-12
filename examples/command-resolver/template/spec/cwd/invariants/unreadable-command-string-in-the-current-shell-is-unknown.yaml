@@ -1,8 +1,9 @@
 predicate: >-
-  Right after a program given a {@ent:command-strings:CommandString} with no
-  {@fld:command-strings:CommandString.text}, whose
-  {@fld:command-strings:CommandString.program} has
-  {@fld:config:CommandStringProgram.currentShell} true and is run by the shell (see
-  {@ent:config:Wrapper}), the {@fld:line:Scope.cwd} is absent.
+  Right after the command of a {@ent:config:CommandStringProgram} that is the
+  {@fld:command-strings:CommandString.program} of a {@ent:command-strings:CommandString}
+  with no {@fld:command-strings:CommandString.text}, when that
+  {@ent:config:CommandStringProgram} has {@fld:config:CommandStringProgram.currentShell}
+  true and is run by the shell (see {@ent:config:Wrapper}), the {@fld:line:Scope.cwd} is
+  absent.
 why: >-
   A move hidden in an unreadable eval would go unreported.

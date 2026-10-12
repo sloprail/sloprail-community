@@ -1,7 +1,8 @@
 predicate: >-
-  Whitespace that is quoted or escaped in a {@fld:line:Line.text} written in the
-  {@ent:line:Grammar} ends no written word and is no point at which
-  variables/unquoted-substitution-splits splits: it stays inside the {@fld:words:Word.value}
-  of one {@ent:words:Word}.
+  Whitespace other than the newline of a backslash-newline (which
+  words/line-continuation-joins removes) that is quoted or escaped in a
+  {@fld:line:Line.text} written in the {@ent:line:Grammar} ends no written word and is no
+  point at which variables/unquoted-substitution-splits splits: in a {@ent:words:Word} that
+  has a {@fld:words:Word.value}, it stays inside that {@fld:words:Word.value}.
 why: >-
   One argument holding a space would be reported as two.

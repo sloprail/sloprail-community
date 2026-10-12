@@ -1,8 +1,9 @@
 predicate: >-
   A {@ent:words:Word} whose {@fld:words:Word.text} holds a tilde prefix `~name`, or `~`
-  alone where the {@ent:variables:Variable} HOME has no {@fld:variables:Variable.value} or
-  has the empty string, has no {@fld:words:Word.value}, and that tilde prefix is an entry of
-  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is user-home.
+  alone where the {@ent:variables:Variable} whose {@fld:variables:Variable.name} is HOME has
+  no {@fld:variables:Variable.value} or has the empty string, has no
+  {@fld:words:Word.value}, and that tilde prefix is an entry of {@fld:words:Word.parts}
+  whose {@fld:words:WordPart.cause} is user-home.
 why: >-
   Another user's home directory, or the one bash looks up when HOME is unset, would be
   guessed.

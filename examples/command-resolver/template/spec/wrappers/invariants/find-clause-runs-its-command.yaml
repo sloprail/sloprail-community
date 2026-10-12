@@ -1,5 +1,5 @@
 predicate: >-
-  Each complete {@ent:wrappers:FindClause} of a `find` yields the
-  {@ent:line:Invocation}s of its command.
+  Each {@ent:wrappers:FindClause} of an {@ent:line:Invocation} whose
+  {@fld:line:Invocation.bin} is find yields the {@ent:line:Invocation}s of its command.
 why: >-
   `find . -exec rm {} ;` would hide rm.

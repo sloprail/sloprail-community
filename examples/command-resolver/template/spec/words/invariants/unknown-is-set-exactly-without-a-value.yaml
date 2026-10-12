@@ -1,5 +1,5 @@
 predicate: >-
   A {@ent:words:Word} has a {@fld:words:Word.unknown} exactly when it has no
-  {@fld:words:Word.value}.
+  {@fld:words:Word.value} (which cause it is, words/first-cause-names-the-unknown decides).
 why: >-
   A consumer could not tell a known word from an unknown one, or would see both at once.

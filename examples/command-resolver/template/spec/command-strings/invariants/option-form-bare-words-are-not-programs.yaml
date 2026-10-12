@@ -1,7 +1,7 @@
 predicate: >-
-  A bare word (as {@ent:config:CommandStringProgram} defines it) of a
-  {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form} is option
-  is never read as a program: no {@ent:line:Invocation} comes from it but those of the
-  substitutions it holds.
+  A {@ent:words:Word} that is a bare word (as {@ent:config:CommandStringProgram} defines it)
+  of a {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form} is
+  option is never read as a program: no {@ent:line:Invocation} comes from it but those of
+  the command and process substitutions that are {@ent:words:WordPart}s of it.
 why: >-
   `su bob` would report a program named bob.

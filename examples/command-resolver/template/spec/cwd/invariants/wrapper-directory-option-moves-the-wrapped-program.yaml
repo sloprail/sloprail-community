@@ -1,7 +1,7 @@
 predicate: >-
-  The program a {@ent:config:Wrapper} runs, when the value of the last of its
-  {@fld:config:Wrapper.directoryOptions} it is given, whether a separate word
-  (wrappers/value-option-consumes-the-next-word) or attached to the option
+  The {@ent:line:Invocation} of the program a {@ent:config:Wrapper} runs, when the value of
+  the last of its {@fld:config:Wrapper.directoryOptions} it is given, whether a separate
+  word (wrappers/value-option-consumes-the-next-word) or attached to the option
   (wrappers/attached-option-value-consumes-nothing), has a {@fld:words:Word.value}, has as
   its {@fld:line:Invocation.cwd} that {@fld:words:Word.value} lexically cleaned (as
   {@fld:line:Scope.cwd} defines it) when it is an absolute path, and otherwise the wrapper's

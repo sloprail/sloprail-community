@@ -3,6 +3,7 @@ predicate: >-
   line (a subshell, a pipeline stage, a background job, a command or process substitution,
   or a program that starts a child shell), the {@fld:line:Scope.cwd} of the
   {@ent:line:Scope} the command stands in is the one right before that command, whatever
-  moves the inner {@ent:line:Scope} holds.
+  moves the inner {@ent:line:Scope} holds; cwd/cd-moves-what-follows leaves these commands
+  to this invariant.
 why: >-
   A subshell's cd would move the commands after it.

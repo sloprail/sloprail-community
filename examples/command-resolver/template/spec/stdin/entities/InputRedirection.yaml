@@ -1,7 +1,9 @@
 doc: >-
   The redirection that gives a command its standard input: the last redirection of descriptor 0
   written on the command or, when it has none, on the nearest group, subshell or compound command
-  enclosing it that has one. A command with neither has none.
+  enclosing it that has one; for a pipeline stage after the first, only a group, subshell or
+  compound command inside that stage counts, never one enclosing the whole pipeline. A command
+  with neither has none.
 fields:
   - name: kind
     type: string
