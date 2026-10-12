@@ -2,13 +2,13 @@ doc: "One program the line would run."
 fields:
   - name: bin
     type: string?
-    doc: "The program's name without its directory; absent when the program word is unknown."
+    doc: "The program's name without its directory. Absent exactly when its program word has no words.Word.value."
   - name: argv
     type: words.Word[]
     doc: "The words the program would receive, program word first."
   - name: cwd
     type: string?
-    doc: "The directory the program runs in; absent when unknown."
+    doc: "The directory the program runs in. Absent exactly where an invariant of the cwd domain says it is."
     constraint_expr: 'an absolute path, lexically clean'
   - name: env
     type: Record<string>
@@ -18,4 +18,4 @@ fields:
     doc: "The names the line sets for the program to a value that is unknown."
   - name: stdin
     type: string?
-    doc: "The literal text the line feeds the program on standard input."
+    doc: "The literal text the line feeds the program on standard input. Absent exactly where an invariant of the stdin domain says it is."

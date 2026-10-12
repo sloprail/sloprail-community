@@ -1,5 +1,7 @@
 predicate: >-
   A {@ent:line:Scope} whose {@fld:line:Scope.kind} is not line starts with the
-  {@fld:line:Scope.cwd} in force where it stands.
+  {@fld:line:Scope.cwd} in force where it stands; one of kind child-shell whose program a
+  {@ent:config:Wrapper} runs given one of its {@fld:config:Wrapper.directoryOptions} starts
+  with that program's {@fld:line:Invocation.cwd} instead, none when it has none.
 why: >-
-  Commands in a subshell would be reported back at the start.
+  Commands in a subshell, or in `env -C /x bash -c`, would be reported back at the start.

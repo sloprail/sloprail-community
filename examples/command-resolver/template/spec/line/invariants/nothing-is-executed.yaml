@@ -1,5 +1,6 @@
 predicate: >-
-  Resolving a {@ent:line:Line} runs no command, substitution or expansion written in
-  {@fld:line:Line.text}.
+  Resolving a {@ent:line:Line} runs no program, and no command or process substitution,
+  written in {@fld:line:Line.text}; the values the spec gives words and variables are worked
+  out from the text alone.
 why: >-
   Reading a dangerous line would carry it out.

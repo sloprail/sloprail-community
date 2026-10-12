@@ -1,6 +1,6 @@
 predicate: >-
-  An {@ent:line:Invocation} whose command a {@ent:variables:Change} of a
-  {@ent:variables:Variable} precedes, where that Variable's
+  An {@ent:line:Invocation} whose command a {@ent:variables:Change}, other than one of kind
+  every, of a {@ent:variables:Variable} precedes, where that Variable's
   {@fld:variables:Variable.exported} is true or absent, has its name in its
   {@fld:line:Invocation.env} with the {@fld:variables:Variable.value} there when it is
   exported and has a value, and in its {@fld:line:Invocation.unknownEnv} otherwise, unless a
