@@ -1,6 +1,7 @@
 predicate: >-
   A reference `$X` or `${X}` to a {@ent:variables:Variable} with a
-  {@fld:variables:Variable.value} contributes that value to the {@fld:words:Word.value} of a
-  Word that has one, bare, inside double quotes or joined to other text.
+  {@fld:variables:Variable.value} contributes that value, before any splitting
+  (variables/unquoted-substitution-splits), to the {@fld:words:Word.value} of a Word that
+  has one, bare, inside double quotes or joined to other text.
 why: >-
   `X=a; rm $X` would be reported without its argument.

@@ -1,7 +1,7 @@
 predicate: >-
   Right after a program given a {@ent:command-strings:CommandString} with no
-  {@fld:command-strings:CommandString.text} whose program has
-  {@fld:config:CommandStringProgram.currentShell} true, the {@fld:line:Scope.cwd} is
-  absent.
+  {@fld:command-strings:CommandString.text}, whose program has
+  {@fld:config:CommandStringProgram.currentShell} true and is run by the shell (see
+  {@ent:config:Wrapper}), the {@fld:line:Scope.cwd} is absent.
 why: >-
   A move hidden in an unreadable eval would go unreported.

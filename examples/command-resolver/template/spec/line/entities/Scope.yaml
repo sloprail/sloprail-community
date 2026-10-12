@@ -1,18 +1,10 @@
 doc: >-
   A shell process within the line. Its shell is the nearest Scope, itself included, whose kind
-  is line or child-shell; Variables pass from one shell to another only through the
-  environment. The environment a Scope of kind line starts with is Context.env. The
-  environment a Scope of kind child-shell starts with holds the names its program's
-  Invocation.env holds, with their values, and those its unknownEnv holds, with no known
-  value; and each other name of Context.env that the line has no variables.Change of before
-  the program's command, when variables.Variable.exported is true there (with its Context.env
-  value) or absent there (with no known value); none of those of Context.env when `env -i`
-  runs the program, and not NAME when `env -u NAME` does. A move of a Scope's directory is
-  one of: an Invocation whose bin is cd, pushd or popd, that the shell runs (see
-  config.Wrapper) and that is no call of a Function; a call of a Function; a current-shell
-  command-strings.CommandString with no text; a command whose program word has no
-  words.Word.value. A move is the Scope's when it is written in the Scope, not in a Scope
-  inside it and not in a body of a Function.
+  is line or child-shell. A move of a Scope's directory is one of these, written in the Scope,
+  not in a Scope inside it and not in a body of a Function: an Invocation whose bin is cd,
+  pushd or popd, that the shell runs (see config.Wrapper) and that is no call of a Function; a
+  call of a Function; a current-shell command-strings.CommandString with no text whose program
+  the shell runs; a command whose program word has no words.Word.value.
 fields:
   - name: kind
     type: string

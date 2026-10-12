@@ -2,9 +2,10 @@ predicate: >-
   Right after an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, pushd or
   popd, that the shell runs (see {@ent:config:Wrapper}) and that is no call of a
   {@ent:line:Function}, the {@fld:line:Scope.cwd} is the directory it sets, and absent when
-  it sets none, what a cd sets being decided by the other invariants of the cwd domain alone
-  (a pushd and a popd set none), except where cwd/failure-branch-of-cd-stays says otherwise.
-  A command that is none of the moves a {@ent:line:Scope} lists leaves the Scope.cwd as it
-  was.
+  it sets none, what it sets being decided by the other invariants of the cwd domain alone;
+  except where cwd/failure-branch-of-cd-stays reads the cd as not written, and at the end of
+  an `if`, `case`, `while`, `until`, `for`, `&&` or `||` list the cd ends, where
+  cwd/paths-through-a-construct-must-agree decides. A command that is none of the moves a
+  {@ent:line:Scope} lists leaves the Scope.cwd as it was.
 why: >-
   A command would be reported in the directory it left, or cd in the one it is entering.
