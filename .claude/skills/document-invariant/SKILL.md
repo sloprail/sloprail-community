@@ -64,9 +64,11 @@ target must already exist.
 ### Everything a predicate constrains or reads is a typed mention, under one name
 
 Not only the anchor: every entity and every field the predicate constrains or reads is written as
-its mention, every time, never as a synonym, a paraphrase or a plain name. A reader, and a check,
-must see which value is meant without guessing whether "the directory a cd sets" and
-`{@fld:shell:Scope.cwd}` are the same thing. A value the predicate relies on that no field holds is
+its mention at least once in the predicate, and never under another name: no synonym, no
+paraphrase, no plain `Entity.field`. Once the mention is written, the predicate may refer to the
+same thing again by its own name (`its kind`, `the value`); a different wording is a synonym. A
+reader, and a check, must see which value is meant without guessing whether "the directory a cd
+sets" and `{@fld:shell:Scope.cwd}` are the same thing. A value the predicate relies on that no field holds is
 a field the entity model is missing: add it to the entity it belongs on (document-entity), then
 mention it.
 
