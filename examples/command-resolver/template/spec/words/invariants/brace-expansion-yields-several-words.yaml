@@ -2,8 +2,9 @@ predicate: >-
   Outside the {@fld:stdin:InputRedirection.word} of an {@ent:stdin:InputRedirection} and the
   word of any other redirection (which variables/unquoted-substitution-splits decides), an
   unquoted brace expression, in one of the forms the brace expansion entry of
-  {@fld:line:Grammar.extensions} shows, makes of its written word one word per alternative,
-  left to right, each of which yields {@ent:words:Word}s as
+  {@fld:line:Grammar.extensions} shows, makes of its written word (the
+  {@fld:words:Word.text} of the {@ent:words:Word}s it yields) one word per alternative, left
+  to right, each of which yields {@ent:words:Word}s as
   variables/unquoted-substitution-splits says; a quoted or escaped brace, and one in none of
   those forms, is literal text. A written word whose brace expressions would make more than
   1024 words yields one {@ent:words:Word}, and an entry of its {@fld:words:Word.parts} whose

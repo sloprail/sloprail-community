@@ -8,9 +8,9 @@ predicate: >-
   export, unexport, unset, cd or every naming the {@ent:variables:Variable}, it is what it
   was right before when each of those is one that sets it to that same value (export or cd
   when it was true, unset or unexport when it was false), and absent otherwise. Where no
-  {@ent:variables:Change} of these kinds naming the {@ent:variables:Variable} precedes, it
-  is true exactly when the {@fld:line:Scope.env} or the {@fld:line:Scope.unknownEnv} of the
-  {@ent:variables:Variable}'s shell ({@ent:line:Scope}) holds its
-  {@fld:variables:Variable.name}.
+  {@ent:variables:Change} of kind export, unexport, unset, cd, every, call or entry naming
+  the {@ent:variables:Variable} precedes, it is true exactly when the {@fld:line:Scope.env}
+  or the {@fld:line:Scope.unknownEnv} of the {@ent:variables:Variable}'s shell
+  ({@ent:line:Scope}) holds its {@fld:variables:Variable.name}.
 why: >-
   A variable exported, or unset, one statement earlier would be passed on wrongly.

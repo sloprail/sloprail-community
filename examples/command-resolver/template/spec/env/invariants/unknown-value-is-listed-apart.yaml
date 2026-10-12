@@ -4,6 +4,8 @@ predicate: >-
   {@ent:config:Wrapper} takes (as its {@fld:config:Wrapper.takesAssignments} allows), is in
   that {@ent:line:Invocation}'s {@fld:line:Invocation.env}, with the value set, when the
   value part of that word, as a {@ent:words:Word}, has a {@fld:words:Word.value}, and in its
-  {@fld:line:Invocation.unknownEnv}, not its {@fld:line:Invocation.env}, when it has none.
+  {@fld:line:Invocation.unknownEnv}, not its {@fld:line:Invocation.env}, when it has none,
+  unless a closer setting decides (env/closest-setting-wins) or
+  env/env-clears-what-it-is-told removes it.
 why: >-
   An unknown value would be reported as empty.

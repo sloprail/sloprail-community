@@ -7,6 +7,6 @@ predicate: >-
   {@fld:stdin:InputRedirection.word}), or from a {@fld:stdin:HereDocument.body}. The words
   of a command a {@ent:config:Wrapper} or a {@ent:wrappers:FindClause} runs are in the
   {@fld:line:Invocation.argv} of the {@ent:line:Invocation} of the {@ent:config:Wrapper} or
-  of the `find` too.
+  of the {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is find too.
 why: >-
   A consumer could not tell `git -C $(x) push` from `git -C push`.

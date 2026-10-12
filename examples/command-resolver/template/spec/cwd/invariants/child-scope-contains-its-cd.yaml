@@ -2,8 +2,12 @@ predicate: >-
   A move a {@ent:line:Scope} whose {@fld:line:Scope.kind} is not line holds (a subshell, a
   pipeline stage, a background job, a command or process substitution, or a child shell a
   program starts) changes the {@fld:line:Scope.cwd} of no {@ent:line:Scope} outside it:
-  right after a command that starts such a {@ent:line:Scope} and is itself no move of the
-  {@ent:line:Scope} it stands in, the {@fld:line:Scope.cwd} there is the one right before
+  right after a command that starts such a {@ent:line:Scope} and is itself neither a move of
+  the {@ent:line:Scope} it stands in nor a program given a
+  {@ent:command-strings:CommandString} whose {@fld:command-strings:CommandString.program}
+  has {@fld:config:CommandStringProgram.currentShell} true and that has a
+  {@fld:command-strings:CommandString.text} (whose moves are that {@ent:line:Scope}'s, as
+  cwd/cd-moves-what-follows says), the {@fld:line:Scope.cwd} there is the one right before
   that command, whatever moves the inner {@ent:line:Scope} holds; a command that is such a
   move, a {@ent:variables:Change} whose {@fld:variables:Change.kind} is cd with a process
   substitution in a word or redirection among them, moves as cwd/cd-moves-what-follows says,

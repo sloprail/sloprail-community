@@ -3,9 +3,9 @@ predicate: >-
   {@fld:wrappers:FindClause.introducer}: a {@ent:words:Word} whose {@fld:words:Word.value}
   is `;`, its {@fld:wrappers:FindClause.terminator} then being `;`, or a {@ent:words:Word}
   whose {@fld:words:Word.value} is `+` and that directly follows a {@ent:words:Word} whose
-  {@fld:words:Word.text} is `{}`, its {@fld:wrappers:FindClause.terminator} then being `+`.
-  The {@ent:words:Word}s from an introducer that neither ends (which the
-  {@ent:wrappers:FindClause} doc says make no {@ent:wrappers:FindClause}) yield no
-  {@ent:line:Invocation}.
+  {@fld:words:Word.text}, its quotes removed as words/quotes-are-removed says, is `{}`, its
+  {@fld:wrappers:FindClause.terminator} then being `+`. The {@ent:words:Word}s from an
+  introducer that neither ends (which the {@ent:wrappers:FindClause} doc says make no
+  {@ent:wrappers:FindClause}) yield no {@ent:line:Invocation}.
 why: >-
   Words of a second clause, or of no clause at all, would be reported as a command.
