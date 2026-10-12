@@ -4,9 +4,7 @@ predicate: >-
   {@fld:variables:Variable.name} is HOME there, when it has one that is not empty, to the
   {@fld:words:Word.value} of its {@ent:words:Word}, unless
   wrappers/run-time-placeholder-is-unknown makes that {@ent:words:Word} a placeholder,
-  wherever that {@ent:words:Word} stands (an entry of {@fld:line:Invocation.argv}, the
-  program word among them, or the {@fld:variables:Change.word} of a {@ent:variables:Change}
-  whose {@fld:variables:Change.kind} is assignment), that value being neither split
+  wherever that {@ent:words:Word} stands, that value being neither split
   (variables/unquoted-substitution-splits) nor matched as a pattern
   (words/glob-word-is-unknown); a `~` that starts no tilde prefix is literal text.
 why: >-
