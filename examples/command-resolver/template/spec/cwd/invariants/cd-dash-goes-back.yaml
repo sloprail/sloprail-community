@@ -1,7 +1,8 @@
 predicate: >-
   Right after an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, run by the
   shell (as {@ent:line:Invocation} defines it) where no {@ent:line:Function} is named cd,
-  not given -P, whose one operand (cwd/cd-options-are-not-the-destination) has `-` as its
+  not given -P, whose one operand (as cwd/cd-options-are-not-the-destination defines options and
+  operands: a cluster such as -LP is an operand) has `-` as its
   {@fld:words:Word.value}, where the {@ent:variables:Variable} whose
   {@fld:variables:Variable.name} is OLDPWD has, right before it, an absolute path as its
   {@fld:variables:Variable.value}, the {@fld:line:Scope.cwd} is that path lexically cleaned.

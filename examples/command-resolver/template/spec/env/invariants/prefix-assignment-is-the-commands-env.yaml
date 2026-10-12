@@ -6,6 +6,7 @@ predicate: >-
   or not (command and builtin included), unless a closer setting decides
   (env/closest-setting-wins). This holds only where none of those {@ent:line:Invocation}s is
   of a {@ent:config:Wrapper} whose {@fld:config:Wrapper.name} is env and that has, among its own
-  words before the word of the program it runs, one that starts with `-`.
+  words before the word of the program it runs, one whose {@fld:words:Word.text} starts with `-` or that has no
+  {@fld:words:Word.value}.
 why: >-
   A variable set for one command would be missing from it, or leak into the next.

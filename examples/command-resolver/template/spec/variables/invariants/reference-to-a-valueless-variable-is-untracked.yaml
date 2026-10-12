@@ -2,7 +2,8 @@ predicate: >-
   A {@ent:words:Word} whose {@fld:words:Word.text} holds no `{` other than one right after a
   `$`, and holds, outside every single-quoted `'…'` (an apostrophe inside double quotes
   opens none), `$'…'`, backtick substitution, process
-  substitution `<(…)` or `>(…)` and every other `$` expansion, and not escaped by a backslash, a reference `$X` or `${X}` to a {@ent:variables:Variable} with no
+  substitution `<(…)` or `>(…)` and every other `$` expansion, and not escaped by a backslash, a reference `$X` or `${X}`, X made of letters, digits and underscores and not
+  starting with a digit, to a {@ent:variables:Variable} with no
   {@fld:variables:Variable.value} has no {@fld:words:Word.value}, and that reference is an
   entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is untracked-variable.
 why: >-
