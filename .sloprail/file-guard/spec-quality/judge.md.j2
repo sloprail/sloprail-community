@@ -53,10 +53,19 @@ that names the owner of a decision is enough: do not fail an item because that i
 shown.
 {% for i in additionalContext.index %}{{ i }}
 {% endfor %}
+## Unstated is unconstrained
+The spec need not be complete. An invariant states its own boundary (which inputs it covers) and
+what holds there; on an input no invariant covers, any output is acceptable. A gap is never a
+finding: not "this case is not covered", "no invariant decides X" or "the predicate does not say
+what happens when …", nor a value a doc or invariant leaves free. A boundary that two careful
+readers would apply differently, or that a program cannot check, IS a finding.
+
 ## How to answer
 Walk the files in order and answer every item for each; do not stop at the first failing item.
 An item fails only for a concrete reason you can quote: the words at fault and, for every item
-but `mentions_complete`, an input or a reading that two careful readers would decide differently
-or that breaks the rule the item names. Do not fail an item to ask for a rewording of a text that
-already says one thing, nor for what an entity's doc already settles when the file reads it as
-the doc defines it.
+but `mentions_complete` and `no_missing_field`, a concrete input INSIDE the invariant's stated
+boundary on which two careful readers would decide differently what it requires, or on which it
+and another invariant require different things, or a boundary that cannot be applied alike. Do
+not fail an item to ask for a rewording of a text that already says one thing, for a case
+outside the boundary, nor for what an entity's doc already settles when the file reads it as the
+doc defines it.
