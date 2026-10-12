@@ -97,9 +97,12 @@ A pass without the checklist is not a pass.
 On a fail, for each failing invariant say which half failed:
 
 - **code**: name the specific line or behavior that violates the predicate's wording, quoting
-  the exact clause of the invariant it fails, and say what to do: Undo the code
-  that breaks the rule. Do not reshape the requested feature to fit the rule:
-  keep the rule and tell the user the request conflicts with it. Rewording the
-  invariant needs the user's own words asking for it.
+  the exact clause of the invariant it fails, and the general cause: which rule of the
+  predicate the code's design breaks, so that every input of that kind fails, not only the one
+  you found (list each instance you found). Say what to do: fix that cause, not the one input.
+  When the code breaks the rule only by a bound it needs to finish and the predicate states
+  none, say so: the agent asks the user for a bound in the spec instead of adding one. Do not
+  reshape the requested feature to fit the rule: keep the rule and tell the user the request
+  conflicts with it. Rewording the invariant needs the user's own words asking for it.
 - **tests**: name each marked test that does not prove the statement, and each condition,
   edge or failure path no test exercises ("no test sets the cap to 0").
