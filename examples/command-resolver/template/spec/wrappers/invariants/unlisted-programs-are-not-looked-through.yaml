@@ -5,6 +5,8 @@ predicate: >-
   {@fld:config:Config.commandStringPrograms}, and is not `find`, reads none of the
   {@ent:words:Word}s of its {@fld:line:Invocation.argv} after the program word as another
   program: no {@ent:line:Invocation} comes from them but those of the command and process
-  substitutions among their {@fld:words:Word.parts}.
+  substitutions among the {@ent:words:WordPart}s of their {@fld:words:Word.parts} (each a
+  {@ent:line:Scope} whose {@fld:line:Scope.kind} is command-substitution or
+  process-substitution).
 why: >-
   An ordinary argument would be reported as a program.

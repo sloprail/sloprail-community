@@ -1,6 +1,6 @@
 predicate: >-
   The program word of the {@ent:line:Invocation} a {@ent:config:Wrapper} runs is the first
-  {@ent:words:Word} after the {@fld:config:Wrapper.leadingOperands} bare words (as the
+  bare word after the {@fld:config:Wrapper.leadingOperands} bare words (as the
   {@ent:config:Wrapper} doc defines a bare word) that come first among its own words, its
   assignments aside (wrappers/assignments-are-not-the-wrapped-program).
 why: >-
