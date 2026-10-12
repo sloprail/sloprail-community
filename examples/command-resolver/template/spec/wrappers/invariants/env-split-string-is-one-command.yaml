@@ -1,6 +1,10 @@
 predicate: >-
-  The words `env -S` splits its string into are the words of the one command that
-  {@ent:config:Wrapper} runs: `;`, `&&` and `|` inside the string are ordinary characters,
-  never shell operators.
+  The string `env -S` is given is split into words at unquoted runs of space and tab, a
+  single- or double-quoted stretch contributing its text without the quotes and a backslash
+  followed by `\`, `"`, `'`, `$` or `#` contributing that character; those words are the
+  words of the one command that {@ent:config:Wrapper} runs, and `;`, `&&` and `|` in them
+  are ordinary characters, never shell operators. A string holding `${`, a `#` at the start
+  of a word, or a backslash followed by any other character yields no wrapped
+  {@ent:line:Invocation}.
 why: >-
-  A second program that env never runs would be reported.
+  A second program that env never runs would be reported, or a split env never makes.

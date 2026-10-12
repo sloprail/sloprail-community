@@ -5,4 +5,4 @@ fields:
     doc: "The programs the line would run."
   - name: parseError
     type: string?
-    doc: "Why the line could not be read as shell; absent when it could."
+    doc: "Why the line could not be read as shell. Absent exactly where an invariant of the line domain says it is."

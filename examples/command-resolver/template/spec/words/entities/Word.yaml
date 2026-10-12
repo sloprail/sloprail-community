@@ -7,7 +7,7 @@ fields:
     type: string?
     doc: "The string the shell would pass for it. Absent exactly when an entry of parts has a cause."
   - name: unknown
-    type: string
+    type: string?
     doc: "Why the word has no value."
     enum: ["command-substitution", "process-substitution", "glob", "special-parameter", "parameter-operation", "arithmetic", "untracked-variable", "user-home", "placeholder", "field-splitting", "limit"]
   - name: parts

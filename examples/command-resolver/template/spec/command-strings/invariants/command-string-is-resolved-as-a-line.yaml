@@ -1,7 +1,9 @@
 predicate: >-
   A {@ent:command-strings:CommandString} that has a
-  {@fld:command-strings:CommandString.text} yields the Invocations its text holds, read by
-  the same rules as the text of a {@ent:line:Line}, each CommandString in it standing one
-  deeper ({@fld:command-strings:CommandString.depth}).
+  {@fld:command-strings:CommandString.text}, which
+  command-strings/command-string-text-is-bounded gives it only up to a
+  {@fld:command-strings:CommandString.depth} of 3, yields the Invocations its text holds,
+  read by the same rules as the text of a {@ent:line:Line}, each CommandString in it
+  standing one deeper.
 why: >-
   `bash -c 'npm publish'` would hide npm.

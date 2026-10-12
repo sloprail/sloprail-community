@@ -1,4 +1,4 @@
-doc: "The tables of programs the resolver looks through: the built-in ones and those a user adds."
+doc: "The tables of programs the resolver looks through: the built-in ones, in config/builtin.yaml, and those a user adds."
 fields:
   - name: wrappers
     type: Wrapper[]

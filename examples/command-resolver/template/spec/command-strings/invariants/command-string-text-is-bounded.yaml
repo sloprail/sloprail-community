@@ -1,11 +1,12 @@
 predicate: >-
   {@fld:command-strings:CommandString.text} is the value of the string the CommandString
-  runs (the argument that is the string, or for the arguments form its joined arguments),
-  and is absent when that string has no {@fld:words:Word.value}, when its
-  {@fld:command-strings:CommandString.depth} is above 3, or when the texts of the
-  CommandStrings read before it already total 1048576 bytes or more, CommandStrings being
-  read in the order their programs are written, the ones in a text right after the
-  CommandString whose text it is.
+  runs: for the shell and option forms the {@fld:words:Word.value} of the argument that is
+  the string, for the arguments form the joined arguments
+  (command-strings/arguments-form-joins-its-arguments). It is absent when that string has no
+  value, for every form; when the CommandString's {@fld:command-strings:CommandString.depth}
+  is above 3; and when the texts of the CommandStrings read before it already total 1048576
+  bytes or more, CommandStrings being read in the order their programs are written, the ones
+  in a text right after the CommandString whose text it is.
 why: >-
   A string that runs itself (`s='eval "$s"'; eval "$s"`) would need an interpreter run
   without end; past the bound it is reported as a string nobody can read.

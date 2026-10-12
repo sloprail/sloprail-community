@@ -1,8 +1,8 @@
 predicate: >-
-  The directory a cd without -P to a known relative path sets is the {@fld:line:Scope.cwd}
-  before it joined with that path and lexically cleaned, when the path is `.` or `..` or
-  starts with `./` or `../`, or CDPATH has the empty string as its
-  {@fld:variables:Variable.value} there; it sets none when that Scope.cwd is absent, or when
-  the path is none of those and CDPATH has no value or a non-empty one.
+  The directory a cd without -P whose one operand is a known relative path, other than `-`,
+  sets is the {@fld:line:Scope.cwd} before it joined with that path and lexically cleaned,
+  when the path is `.` or `..` or starts with `./` or `../`, or CDPATH has the empty string
+  as its {@fld:variables:Variable.value} there; it sets none when that Scope.cwd is absent,
+  or when the path is none of those and CDPATH has no value or a non-empty one.
 why: >-
   `cd a && cd b` would be reported at b.
