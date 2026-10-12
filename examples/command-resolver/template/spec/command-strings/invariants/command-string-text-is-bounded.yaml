@@ -2,19 +2,21 @@ predicate: >-
   {@fld:command-strings:CommandString.text} is the value of the string the
   {@ent:command-strings:CommandString} runs: where its
   {@fld:command-strings:CommandString.program}'s {@fld:config:CommandStringProgram.form} is
-  shell or option, the {@fld:words:Word.value} of the {@ent:words:Word} of its program's
-  {@fld:line:Invocation.argv} that command-strings/shell-form-needs-a-c-cluster or
-  command-strings/option-form-takes-the-option-value makes the string; where it is
-  arguments, the string command-strings/arguments-form-joins-its-arguments makes. It is
-  absent when that string has no value; when its {@fld:command-strings:CommandString.depth}
-  is above 8; and when the {@fld:command-strings:CommandString.text}s of the
-  {@ent:command-strings:CommandString}s read before it already total 1048576 bytes or more.
-  {@ent:command-strings:CommandString}s are read in this order: those whose
-  {@fld:command-strings:CommandString.program}s are written in one text (the
-  {@fld:line:Line.text}, or a {@fld:command-strings:CommandString.text}) in the order the
-  first {@ent:words:Word}s of their programs' {@fld:line:Invocation.argv} are written there,
-  each followed, before the next, by those whose
-  {@fld:command-strings:CommandString.program}s are written in its own
+  shell, the {@fld:words:Word.value} of the {@ent:words:Word} of its program's
+  {@fld:line:Invocation.argv} that command-strings/shell-form-needs-a-c-cluster makes the
+  string; where it is option, the option's value
+  command-strings/option-form-takes-the-option-value picks, as the
+  {@ent:config:CommandStringProgram} doc defines it (the part of the {@fld:words:Word.value}
+  after `=` or after the letter, for an attached value); where it is arguments, the string
+  command-strings/arguments-form-joins-its-arguments makes. It is absent when that string
+  has no value; when its {@fld:command-strings:CommandString.depth} is above 8; and when the
+  {@fld:command-strings:CommandString.text}s of the {@ent:command-strings:CommandString}s
+  read before it already total 1048576 bytes or more. {@ent:command-strings:CommandString}s
+  are read in this order: those whose {@fld:command-strings:CommandString.program}s are
+  written in one text (the {@fld:line:Line.text}, or a
+  {@fld:command-strings:CommandString.text}) in the order the first {@ent:words:Word}s of
+  their programs' {@fld:line:Invocation.argv} are written there, each followed, before the
+  next, by those whose {@fld:command-strings:CommandString.program}s are written in its own
   {@fld:command-strings:CommandString.text}, in the same order.
 why: >-
   A string that runs itself (`s='eval "$s"'; eval "$s"`) would need an interpreter run

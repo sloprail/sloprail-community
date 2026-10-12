@@ -9,11 +9,15 @@ predicate: >-
   {@fld:command-strings:CommandString.text} (whose moves are that {@ent:line:Scope}'s, as
   cwd/cd-moves-what-follows says), the {@fld:line:Scope.cwd} there is the one right before
   that command, whatever moves the inner {@ent:line:Scope} holds; a command that is such a
-  move, a {@ent:variables:Change} whose {@fld:variables:Change.kind} is cd with a process
-  substitution in a {@ent:words:Word} or a {@ent:line:Redirection} of its command among
-  them, moves as cwd/cd-moves-what-follows says, and cwd/cd-moves-what-follows leaves the
-  other commands that start such a {@ent:line:Scope} to this invariant. Right after a
-  command that ends an `if`, `case`, `while`, `until` or `for`, or an `&&` or `||` list,
+  move moves as the invariant that owns its kind of move says (cwd/cd-moves-what-follows for
+  a {@ent:variables:Change} whose {@fld:variables:Change.kind} is cd,
+  cwd/function-call-with-cd-is-not-unchanged for a call, cwd/unreadable-cd-is-unknown for a
+  program word with no {@fld:words:Word.value},
+  cwd/unreadable-command-string-in-the-current-shell-is-unknown for a current-shell
+  {@ent:command-strings:CommandString} with no {@fld:command-strings:CommandString.text}),
+  and cwd/cd-moves-what-follows leaves the other commands that start such a
+  {@ent:line:Scope} to this invariant. Right after a command that ends an `if`, `case`,
+  `while`, `until` or `for`, or an `&&` or `||` list,
   cwd/paths-through-a-construct-must-agree decides in place of this invariant.
 why: >-
   A subshell's cd would move the commands after it.
