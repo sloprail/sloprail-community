@@ -1,7 +1,7 @@
 predicate: >-
   An unquoted brace expression makes of its written word one word per alternative, left to
-  right, each of which yields Words as variables/unquoted-substitution-splits says; a
-  quoted, escaped or incomplete brace is literal text. A written word whose brace
+  right, each of which yields {@ent:words:Word}s as variables/unquoted-substitution-splits
+  says; a quoted, escaped or incomplete brace is literal text. A written word whose brace
   expressions would make more than 1024 words yields one {@ent:words:Word}, whose whole text
   is an entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is limit.
 why: >-

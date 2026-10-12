@@ -2,7 +2,7 @@ predicate: >-
   At a reference whose shell is a {@ent:line:Scope} of kind child-shell, a
   {@ent:variables:Variable} that no {@ent:variables:Change} precedes and whose name is not
   in {@fld:variables:Variable.shellSet} has as its {@fld:variables:Variable.value}: the
-  value the environment that Scope starts with
+  value the environment that {@ent:line:Scope} starts with
   (env/child-shell-environment-is-its-programs) holds for its name; none when that
   environment holds the name with no known value, or does not hold it and the name is in
   {@fld:variables:Variable.shellDefaulted}; and the empty string when it does not hold it

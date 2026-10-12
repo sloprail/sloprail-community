@@ -2,9 +2,9 @@ predicate: >-
   At a reference that a {@ent:variables:Change} of a {@ent:variables:Variable} precedes, the
   {@fld:variables:Variable.value}, when it has one (the other invariants of the variables
   domain, variables/conditional-assignment-must-agree among them, say when it has none), is
-  the one the latest such Change gave it, Changes of kind export and unexport giving none
-  and leaving the value as it was, never one from {@fld:line:Context.env}: an assignment
-  gives the {@fld:words:Word.value} of its word, and an append the value before it followed
-  by its word's.
+  the one the latest such {@ent:variables:Change} gave it, {@ent:variables:Change}s of kind
+  export and unexport giving none and leaving the value as it was, never one from
+  {@fld:line:Context.env}: an assignment gives the {@fld:words:Word.value} of its word, and
+  an append the value before it followed by its word's.
 why: >-
   A stale or ambient value would be reported.

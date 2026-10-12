@@ -6,7 +6,8 @@ predicate: >-
   except where cwd/failure-branch-of-cd-stays reads the cd as not written, and at the end of
   an `if`, `case`, `while`, `until`, `for`, `&&` or `||` list the cd ends, where
   cwd/paths-through-a-construct-must-agree decides. A simple command that is none of the
-  moves a {@ent:line:Scope} lists, and is no program given a current-shell CommandString
-  with text (whose own moves are the Scope's), leaves the Scope.cwd as it was.
+  moves a {@ent:line:Scope} lists, and is no program given a current-shell
+  {@ent:command-strings:CommandString} with text (whose own moves are the
+  {@ent:line:Scope}'s), leaves the {@fld:line:Scope.cwd} as it was.
 why: >-
   A command would be reported in the directory it left, or cd in the one it is entering.

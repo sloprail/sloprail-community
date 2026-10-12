@@ -3,8 +3,9 @@ predicate: >-
   program's {@fld:line:Invocation.env} holds, with their values, and those its
   {@fld:line:Invocation.unknownEnv} holds, with no known value; and each other name of
   {@fld:line:Context.env} that no {@ent:variables:Change} precedes at the program's command,
-  with its Context.env value where {@fld:variables:Variable.exported} is true there and with
-  no known value where it is absent there; less what env/env-clears-what-it-is-told removes.
-  The environment the Scope of kind line starts with is Context.env.
+  with its {@fld:line:Context.env} value where {@fld:variables:Variable.exported} is true
+  there and with no known value where it is absent there; less what
+  env/env-clears-what-it-is-told removes. The environment the {@ent:line:Scope} of kind line
+  starts with is {@fld:line:Context.env}.
 why: >-
   A child shell would be reported seeing variables it is never given, or missing ones it is.

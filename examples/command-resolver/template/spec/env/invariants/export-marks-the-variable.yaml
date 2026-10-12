@@ -1,13 +1,14 @@
 predicate: >-
   {@fld:variables:Variable.exported} is true right after a {@ent:variables:Change} of kind
-  export or cd, and false right after one of kind unset or unexport. Right after a Change of
-  kind every it is absent. Right after a Change of kind call or entry, or an `if`, `case`,
-  `while`, `until`, `for`, `&&` or `||` list, that stands for or holds a Change of kind
-  export, unexport, unset, cd or every naming the {@ent:variables:Variable}, it is what it
-  was right before when each of those is one that sets it to that same value (export or cd
-  when it was true, unset or unexport when it was false), and absent otherwise. Where no
-  Change of these kinds naming the Variable precedes, it is true exactly when the
-  environment the Variable's shell ({@ent:line:Scope}) starts with
+  export or cd, and false right after one of kind unset or unexport. Right after a
+  {@ent:variables:Change} of kind every it is absent. Right after a {@ent:variables:Change}
+  of kind call or entry, or an `if`, `case`, `while`, `until`, `for`, `&&` or `||` list,
+  that stands for or holds a {@ent:variables:Change} of kind export, unexport, unset, cd or
+  every naming the {@ent:variables:Variable}, it is what it was right before when each of
+  those is one that sets it to that same value (export or cd when it was true, unset or
+  unexport when it was false), and absent otherwise. Where no {@ent:variables:Change} of
+  these kinds naming the {@ent:variables:Variable} precedes, it is true exactly when the
+  environment the {@ent:variables:Variable}'s shell ({@ent:line:Scope}) starts with
   (env/child-shell-environment-is-its-programs) holds its name.
 why: >-
   A variable exported, or unset, one statement earlier would be passed on wrongly.

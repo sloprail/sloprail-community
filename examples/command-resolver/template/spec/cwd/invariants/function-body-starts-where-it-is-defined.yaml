@@ -1,6 +1,7 @@
 predicate: >-
   In a body of a {@ent:line:Function}, the {@fld:line:Scope.cwd} at its start is the one
-  where the Function is defined when no move ({@ent:line:Scope}) other than a call of a
-  Function of that name stands anywhere on the line outside that body, and absent otherwise.
+  where the {@ent:line:Function} is defined when no move ({@ent:line:Scope}) other than a
+  call of a {@ent:line:Function} of that name stands anywhere on the line outside that body,
+  and absent otherwise.
 why: >-
   `f() { rm x; }; cd /tmp; f` would report rm where f was defined, not where it runs.

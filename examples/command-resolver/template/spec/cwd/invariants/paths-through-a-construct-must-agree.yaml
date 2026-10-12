@@ -4,7 +4,7 @@ predicate: >-
   ({@ent:line:Scope}) inside it is a cd that sets that very directory, and absent otherwise,
   even where the moves inside agree with one another; a cd that is the first command of an
   `&&` or `||` list is taken to succeed: it is not inside the list, and "right before" is
-  right after it. Inside a `while`, `until` or `for` that holds a move, the Scope.cwd is
-  absent from its start up to its first move there.
+  right after it. Inside a `while`, `until` or `for` that holds a move, the
+  {@fld:line:Scope.cwd} is absent from its start up to its first move there.
 why: >-
   One branch's directory would be reported for all.

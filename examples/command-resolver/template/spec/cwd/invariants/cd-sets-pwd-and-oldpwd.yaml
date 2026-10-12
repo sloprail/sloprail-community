@@ -2,6 +2,7 @@ predicate: >-
   Right after a {@ent:variables:Change} of kind cd, outside the right side
   cwd/failure-branch-of-cd-stays reads, the {@ent:variables:Variable} OLDPWD has as its
   {@fld:variables:Variable.value} the {@fld:line:Scope.cwd} right before it, and PWD the
-  Scope.cwd right after it, each none where that Scope.cwd is absent.
+  {@fld:line:Scope.cwd} right after it, each none where that {@fld:line:Scope.cwd} is
+  absent.
 why: >-
   `cd /a; rm -r "$OLDPWD"` would be reported with the wrong directory.

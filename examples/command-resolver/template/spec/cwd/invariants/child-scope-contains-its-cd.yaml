@@ -1,5 +1,5 @@
 predicate: >-
   Nothing inside a {@ent:line:Scope} whose {@fld:line:Scope.kind} is not line changes the
-  {@fld:line:Scope.cwd} of a Scope outside it.
+  {@fld:line:Scope.cwd} of a {@ent:line:Scope} outside it.
 why: >-
   A subshell's cd would move the commands after it.

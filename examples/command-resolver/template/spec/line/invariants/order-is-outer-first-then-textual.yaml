@@ -1,14 +1,13 @@
 predicate: >-
   In a {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar},
-  with quotes, substitutions, expansions and compound commands nested in one another at
-  most two deep, {@fld:line:Resolution.invocations} lists its simple commands in the
-  order written, each directly followed by the Invocations it gives rise to, each
-  of those followed in turn by its own: first the program it runs as a
-  {@ent:config:Wrapper}, or the commands of its {@ent:wrappers:FindClause}s in clause
-  order, then the commands of its {@ent:command-strings:CommandString}, then the
-  commands of the command and process substitutions in its words, assignments,
-  redirections and here-document bodies, in the order written. The commands of a
-  substitution that belongs to no simple command stand where the substitution is
-  written.
+  with quotes, substitutions, expansions and compound commands nested in one another at most
+  two deep, {@fld:line:Resolution.invocations} lists its simple commands in the order
+  written, each directly followed by the {@ent:line:Invocation}s it gives rise to, each of
+  those followed in turn by its own: first the program it runs as a {@ent:config:Wrapper},
+  or the commands of its {@ent:wrappers:FindClause}s in clause order, then the commands of
+  its {@ent:command-strings:CommandString}, then the commands of the command and process
+  substitutions in its words, assignments, redirections and here-document bodies, in the
+  order written. The commands of a substitution that belongs to no simple command stand
+  where the substitution is written.
 why: >-
   Two resolvers would list the same programs in different orders.
