@@ -1,5 +1,6 @@
 predicate: >-
-  An unquoted brace expression, in one of the forms the brace expansion entry of
+  Outside the word of a redirection (which variables/unquoted-substitution-splits decides),
+  an unquoted brace expression, in one of the forms the brace expansion entry of
   {@fld:line:Grammar.extensions} shows, makes of its written word one word per alternative,
   left to right, each of which yields {@ent:words:Word}s as
   variables/unquoted-substitution-splits says; a quoted or escaped brace, and one in none of

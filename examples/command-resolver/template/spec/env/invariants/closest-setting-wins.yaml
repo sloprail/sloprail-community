@@ -1,8 +1,9 @@
 predicate: >-
-  When the line sets the same {@fld:variables:Variable.name} for a program in more than one
-  of the ways env/env-holds-only-what-the-line-sets lists, the closest alone decides its
-  {@fld:line:Invocation.env} or {@fld:line:Invocation.unknownEnv} entry for the name,
-  closest first: an assignment the {@ent:config:Wrapper} that runs it takes (as its
+  Except for what env/env-clears-what-it-is-told removes, which that invariant alone
+  decides, when the line sets the same {@fld:variables:Variable.name} for a program in more
+  than one of the ways env/env-holds-only-what-the-line-sets lists, the closest alone
+  decides its {@fld:line:Invocation.env} or {@fld:line:Invocation.unknownEnv} entry for the
+  name, closest first: an assignment the {@ent:config:Wrapper} that runs it takes (as its
   {@fld:config:Wrapper.takesAssignments} allows); its command's prefix; a
   {@ent:variables:Change} that precedes its command, written in the same text (the
   {@fld:line:Line.text}, or the {@fld:command-strings:CommandString.text} of an

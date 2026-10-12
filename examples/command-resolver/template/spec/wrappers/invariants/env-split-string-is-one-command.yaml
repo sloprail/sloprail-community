@@ -1,12 +1,13 @@
 predicate: >-
   The value of the `-S` option of the {@ent:config:Wrapper} whose {@fld:config:Wrapper.name}
-  is env is split into words at unquoted runs of space and tab, a single- or double-quoted
-  stretch contributing its text without the quotes and a backslash followed by `\`, `"`,
-  `'`, `$` or `#` contributing that character; those words stand in its place among env's
-  own words, read as any other of them are by the invariants of the wrappers and env domains
-  (its assignments, its options, then the wrapped program and its arguments), and `;`, `&&`
-  and `|` in them are ordinary characters, never shell operators. A string holding `${`, a
-  `#` at the start of a word, an unclosed quote, or a backslash that is last or followed by
-  any other character yields no {@ent:line:Invocation} of a wrapped program.
+  is env is split into {@ent:words:Word}s at unquoted runs of space and tab, a single- or
+  double-quoted stretch contributing its text without the quotes and a backslash followed by
+  `\`, `"`, `'`, `$` or `#` contributing that character; those {@ent:words:Word}s stand in
+  its place among env's own words, read as any other of them are by the invariants of the
+  wrappers and env domains (its assignments, its options, then the wrapped program and its
+  arguments), and `;`, `&&` and `|` in them are ordinary characters, never shell operators.
+  A string holding `${`, a `#` at the start of a word, an unclosed quote, or a backslash
+  that is last or followed by any other character yields no {@ent:line:Invocation} of a
+  wrapped program.
 why: >-
   A second program that env never runs would be reported, or a split env never makes.

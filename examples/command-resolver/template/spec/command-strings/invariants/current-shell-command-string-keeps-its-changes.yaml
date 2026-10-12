@@ -3,7 +3,7 @@ predicate: >-
   whose {@fld:command-strings:CommandString.program} has
   {@fld:config:CommandStringProgram.currentShell} true and is run by the shell (see
   {@ent:config:Wrapper}) is resolved in its program's own {@ent:line:Scope}, in place of the
-  program's command, so the moves and the {@ent:variables:Change}s it holds are that
-  {@ent:line:Scope}'s.
+  command of the program's {@ent:line:Invocation}, so the moves and the
+  {@ent:variables:Change}s it holds are that {@ent:line:Scope}'s.
 why: >-
   A `cd` inside eval would be forgotten.

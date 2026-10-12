@@ -1,4 +1,5 @@
 predicate: >-
+  Except on the right side where cwd/failure-branch-of-cd-stays reads a cd as not written,
   {@fld:variables:Variable.exported} is true right after a {@ent:variables:Change} whose
   {@fld:variables:Change.kind} is export or cd, and false right after one of kind unset or
   unexport. Right after a {@ent:variables:Change} of kind every it is absent. Right after a

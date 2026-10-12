@@ -1,6 +1,7 @@
 predicate: >-
   An {@ent:line:Invocation} whose command a {@ent:variables:Change}, other than one whose
-  {@fld:variables:Change.kind} is every, of a {@ent:variables:Variable} precedes, where that
+  {@fld:variables:Change.kind} is every and one cwd/failure-branch-of-cd-stays reads as not
+  written there, of a {@ent:variables:Variable} precedes, where that
   {@ent:variables:Variable}'s {@fld:variables:Variable.exported} is true or absent, has its
   {@fld:variables:Variable.name} in its {@fld:line:Invocation.env} with the
   {@fld:variables:Variable.value} there when it is exported and has a value, and in its

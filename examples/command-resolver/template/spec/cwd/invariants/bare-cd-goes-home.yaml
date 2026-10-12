@@ -3,7 +3,10 @@ predicate: >-
   {@fld:variables:Change.kind} is cd and whose {@fld:line:Invocation.bin} is cd, not given
   -P and with no operand (its options and operands being those
   cwd/cd-options-are-not-the-destination reads from its {@fld:line:Invocation.argv}), is the
-  {@fld:variables:Variable.value} of the {@ent:variables:Variable} HOME there, and absent
-  when HOME has no value or has the empty string.
+  one cwd/absolute-cd-names-the-directory gives a cd whose one operand's
+  {@fld:words:Word.value} is the {@fld:variables:Variable.value} of the
+  {@ent:variables:Variable} HOME there: that value lexically cleaned when it is an absolute
+  path; and it is absent when HOME has no {@fld:variables:Variable.value}, has the empty
+  string, or has a value that is not an absolute path.
 why: >-
   A command would be reported where the line started although it moved home.

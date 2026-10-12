@@ -1,5 +1,7 @@
 predicate: >-
-  A `--` among a {@ent:config:Wrapper}'s own words is never the wrapped program
-  {@ent:words:Word}.
+  Among a {@ent:config:Wrapper}'s own words, the first {@ent:words:Word} whose
+  {@fld:words:Word.value} is `--` and that is no option's value ends its options: the
+  {@ent:words:Word} after it is the wrapped program word, and no later {@ent:words:Word} is
+  read as an option of the {@ent:config:Wrapper}.
 why: >-
   A program whose name starts with a dash would be lost, or `--` reported as a program.

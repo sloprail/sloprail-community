@@ -5,10 +5,10 @@ predicate: >-
   written, each directly followed by the {@ent:line:Invocation}s it gives rise to, each of
   those followed in turn by its own: first the program it runs as a {@ent:config:Wrapper},
   or the commands of its {@ent:wrappers:FindClause}s in clause order, then the commands of
-  its {@ent:command-strings:CommandString}, then the commands of the command and process
-  substitutions in its written words (each a {@fld:words:Word.text}), its assignments, its
+  its {@ent:command-strings:CommandString}, then the commands of the {@ent:line:Scope}s
+  whose {@fld:line:Scope.kind} is command-substitution or process-substitution in its
+  written words (each a {@fld:words:Word.text}, its `NAME=value` words included), its
   redirections and its {@fld:stdin:HereDocument.body}s, in the order written. The commands
-  of a substitution that belongs to no simple command stand where the substitution is
-  written.
+  of such a {@ent:line:Scope} that belongs to no simple command stand where it is written.
 why: >-
   Two resolvers would list the same programs in different orders.

@@ -5,8 +5,9 @@ predicate: >-
   the end of an `if`, `case`, `while`, `until`, `for`, `&&` or `||` list the cd ends, where
   cwd/paths-through-a-construct-must-agree decides. A simple command that is none of the
   moves a {@ent:line:Scope} lists, and is no program given a
-  {@ent:command-strings:CommandString} whose {@fld:config:CommandStringProgram.currentShell}
-  is true and that has a {@fld:command-strings:CommandString.text} (whose own moves are the
+  {@ent:command-strings:CommandString} whose {@fld:command-strings:CommandString.program} (a
+  {@ent:config:CommandStringProgram}) has {@fld:config:CommandStringProgram.currentShell}
+  true and that has a {@fld:command-strings:CommandString.text} (whose own moves are the
   {@ent:line:Scope}'s), leaves the {@fld:line:Scope.cwd} as it was.
 why: >-
   A command would be reported in the directory it left, or cd in the one it is entering.

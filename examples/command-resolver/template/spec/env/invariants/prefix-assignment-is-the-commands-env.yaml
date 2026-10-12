@@ -1,8 +1,9 @@
 predicate: >-
-  `NAME=value cmd` sets NAME, in the {@fld:line:Invocation.env} or the
-  {@fld:line:Invocation.unknownEnv} env/unknown-value-is-listed-apart picks, for cmd's
-  {@ent:line:Invocation} and for every {@ent:line:Invocation} nested in it (the program its
-  {@ent:config:Wrapper} runs, the commands of its {@ent:wrappers:FindClause}s and of its
+  `NAME=value cmd` sets the {@fld:variables:Variable.name} NAME, in the
+  {@fld:line:Invocation.env} or the {@fld:line:Invocation.unknownEnv}
+  env/unknown-value-is-listed-apart picks, for cmd's {@ent:line:Invocation} and for every
+  {@ent:line:Invocation} nested in it (the program its {@ent:config:Wrapper} runs, the
+  commands of its {@ent:wrappers:FindClause}s and of its
   {@ent:command-strings:CommandString}) unless a closer setting decides
   (env/closest-setting-wins) (env/env-clears-what-it-is-told decides what env removes).
 why: >-
