@@ -10,10 +10,12 @@ cannot answer, for every <invariant> below:
 
 Judge every <invariant>; fail if any one fails either question.
 
-A counterexample is a concrete input, quoted in full, inside the invariant's declared scope:
-what its predicate and the entities it cites cover (a `Line` is only what
-`spec/line/entities/Line.yaml` admits). An input outside that scope is no reason to fail either
-half, and a fail on the code half names the concrete input on which the code breaks the predicate.
+A counterexample is a concrete input, quoted in full, inside the invariant's stated boundary:
+the inputs its predicate says it covers, read with the entities it cites (a `Line` is only what
+`spec/line/entities/Line.yaml` admits). A fail on the code half names the concrete input on which
+the code breaks the predicate. Unstated is unconstrained: what the code or a test does on an
+input outside the boundary is free, however surprising, and is never a reason to fail either
+half; nor is behaviour that no invariant states at all.
 
 ## Inputs
 
@@ -68,7 +70,8 @@ states, under its specific wording — not a looser or stricter reading of it.
 - **Together they cover the statement**: every condition it names (each
   value, default, limit, "unless", "only when"), its edges (the first and last
   allowed, the first not allowed, empty, zero) and its failure paths (what must
-  NOT happen) is exercised by at least one test.
+  NOT happen) is exercised by at least one test. Inputs past the boundary need
+  no test.
 
 ### How to decide
 
