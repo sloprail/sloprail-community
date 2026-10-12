@@ -1,7 +1,8 @@
 predicate: >-
-  {@fld:line:Invocation.env} and {@fld:line:Invocation.unknownEnv} hold a NAME only when
-  the line sets it for that program, by its command's prefix, by the assignment of the
-  {@ent:config:Wrapper} that runs it, or by an export that reaches it; a variable that
-  is only in {@fld:line:Context.env} is in neither.
+  {@fld:line:Invocation.env} and {@fld:line:Invocation.unknownEnv} hold a name only when the
+  line sets it for that program: by its command's prefix, by the assignment of the
+  {@ent:config:Wrapper} that runs it, or by a {@ent:variables:Change} before its command
+  (env/export-reaches-later-commands); a name that is only in {@fld:line:Context.env} is in
+  neither.
 why: >-
   Every program would be reported with the whole ambient environment.

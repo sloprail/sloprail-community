@@ -1,7 +1,7 @@
 predicate: >-
   When the here-document that is the command's last redirection of descriptor 0 has
   {@fld:stdin:HereDocument.quotedDelimiter} false, {@fld:line:Invocation.stdin} is
-  present only when every expansion in its {@fld:stdin:HereDocument.body} can be known,
-  and then holds their results in place of the expansions.
+  present only when every expansion in its {@fld:stdin:HereDocument.body}, read as inside
+  double quotes, has a {@fld:words:Word.value}, and then holds their results in place of the expansions.
 why: >-
   Half-expanded text would be reported as what the program reads.

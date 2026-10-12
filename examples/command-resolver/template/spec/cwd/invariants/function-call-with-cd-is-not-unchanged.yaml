@@ -1,10 +1,9 @@
 predicate: >-
-  After a call of a function defined on the line, the {@fld:line:Scope.cwd} is the one
-  before the call when the body yields no {@ent:line:Invocation} whose
-  {@fld:line:Invocation.bin} is `cd`, `pushd`, `popd` or the name of a function defined on
-  the line, no current-shell {@ent:command-strings:CommandString} and no command whose
-  program word has no {@fld:words:Word.value}. Otherwise it is the Scope.cwd at the end of
-  the body as resolved where the function is defined, when the Scope.cwd before the call
-  is known and is the one at the definition, and it is absent otherwise.
+  Right after a call of a {@ent:line:Function}, the {@fld:line:Scope.cwd} is the one right
+  before the call when no body of a Function of that name holds a move ({@ent:line:Scope}).
+  When the line defines the name once and every move its body holds is an Invocation whose
+  bin is cd, pushd or popd, it is the Scope.cwd at the end of the body as resolved where the
+  Function is defined, if the Scope.cwd right before the call is the one where the Function
+  is defined. It is absent otherwise.
 why: >-
   A real move would go unreported.

@@ -1,7 +1,7 @@
 predicate: >-
-  When {@fld:line:Context.env} has HOME, a tilde prefix that is `~` alone contributes
-  HOME's value, empty or not, to {@fld:words:Word.value}, in an argument, a program word,
-  an assignment and a declaration's NAME=value argument alike; a `~` that starts no tilde
-  prefix is literal text.
+  A tilde prefix that is `~` alone contributes the {@fld:variables:Variable.value} of HOME
+  there, when it has one that is not empty, to {@fld:words:Word.value}, in an argument, a
+  program word, an assignment and a declaration's NAME=value argument alike; a `~` that
+  starts no tilde prefix is literal text.
 why: >-
   A literal `~` would name a different file from the one the shell passes.

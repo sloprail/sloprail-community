@@ -1,0 +1,37 @@
+doc: >-
+  One place where the line changes Variables: a form of kind. A form is a Change of the Scope
+  it is written in when the shell runs it (see config.Wrapper), and when it is not written in a
+  Scope inside that one, in a body of a line.Function (a body holds its own Changes, for which
+  a call stands), or as a command's prefix (NAME=word before a program word); a command that
+  is a call of a line.Function is a Change of kind call and of no other kind. One word may be
+  the place of several Changes. A Change of kind every names every Variable, one of kind cd
+  PWD and OLDPWD, one of kind call or entry the Variables its entry lists, any other its NAME.
+  A Change precedes a point of a Scope when it is written before the point in that Scope (the
+  text of a current-shell command-strings.CommandString standing where its program's command
+  does), or when the Scope's kind is not child-shell and the Change precedes the point where
+  the Scope starts, in the Scope it starts in.
+fields:
+  - name: kind
+    type: string
+    doc: "Its form."
+    enum:
+      - "assignment: NAME=word as a word of a command with no program word, or as an argument of export, readonly, declare, typeset or local"
+      - "append: NAME+=word in those places"
+      - "array: NAME=(…), NAME+=(…) or NAME[index]=word in those places"
+      - "unset: an operand of unset given no option or -v"
+      - "export: NAME or NAME=word as an argument of export, or of declare or typeset given -x"
+      - "unexport: an operand of export given -n, or of declare or typeset given +x"
+      - "read: an operand of read (whose -a, -d, -i, -n, -N, -p, -t and -u take a value), its -a value, or REPLY when it has neither; the second operand of getopts, and OPTARG and OPTIND; the -v value of printf; the operand of mapfile or readarray (whose -d, -n, -O, -s, -u, -C and -c take a value), or MAPFILE when it has none"
+      - "for: the NAME of a for loop"
+      - "arithmetic: an assignment operator of POSIX.1-2017 section 2.6.4 whose left operand is NAME, in an arithmetic expression: the text of a $((…)) or ((…)), an argument of let, the index of an indexed array, the offset or length of ${name:offset:length}, or an operand of -eq, -ne, -lt, -le, -gt or -ge in [[ … ]]"
+      - "default: a ${NAME:=word} or ${NAME=word} expansion"
+      - "cd: an Invocation whose bin is cd, pushd or popd"
+      - "call: a call of a line.Function, for every Variable a Change in a body of a Function of that name names, a call written in such a body counting there as a Change of kind every"
+      - "entry: the start of a while, until or for, for every Variable a Change in it names; the start of a body of a line.Function, for every Variable a Change on the line outside that body names"
+      - "every: a command whose program word has no words.Word.value; an Invocation whose bin is . or source; a set given -a, a single-dash option cluster holding a, or -o allexport; a declare, typeset or local given an option word holding i, l, n, u or I; let with an argument that has no Word.value; a form above whose NAME has no Word.value; an arithmetic expression holding an expansion or naming a Variable whose value there is neither empty nor a decimal integer constant; a current-shell command-strings.CommandString with no text"
+  - name: name
+    type: string?
+    doc: "The NAME of the form; absent for kind every, cd, call and entry."
+  - name: word
+    type: words.Word?
+    doc: "The word whose value an assignment or append gives; absent for every other kind."

@@ -1,7 +1,9 @@
 predicate: >-
-  After an `if`, `case`, `while`, `until` or `for`, and after an `&&` or `||` list whose
-  first command is not a `cd`, the {@fld:line:Scope.cwd} is the one every path through it
-  ends in, running no branch, zero iterations or one side of the list included, and absent
-  when they differ.
+  Right after an `if`, `case`, `while`, `until` or `for`, or an `&&` or `||` list, the
+  {@fld:line:Scope.cwd} is the one right before it when every move ({@ent:line:Scope})
+  inside it is a cd that sets that same directory, and absent otherwise; a cd that is the
+  first command of an `&&` or `||` list is taken to succeed: it is not inside the list, and
+  "right before" is right after it. Inside a `while`, `until` or `for` that holds a move,
+  the Scope.cwd is absent from its start up to its first move there.
 why: >-
   One branch's directory would be reported for all.

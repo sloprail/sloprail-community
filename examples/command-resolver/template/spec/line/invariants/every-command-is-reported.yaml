@@ -5,7 +5,7 @@ predicate: >-
   of {@fld:line:Resolution.invocations} whose {@fld:line:Invocation.argv} starts at its
   own program word, wherever it stands: in a pipeline, an `&&`, `||` or `;` list, a
   subshell, a brace group, a background job, after `!` or `time`, in the condition or any
-  branch of an `if`, `case`, `while`, `until` or `for` whichever would run, in a function
-  body whether or not the function is called, or in a command or process substitution.
+  branch of an `if`, `case`, `while`, `until` or `for` whichever would run, in a body of a
+  {@ent:line:Function} whether or not it is called, or in a command or process substitution.
 why: >-
   A program behind an operator would escape whoever reads the output.

@@ -1,14 +1,6 @@
 predicate: >-
-  A {@ent:variables:Variable} NAME has no {@fld:variables:Variable.value} after any of
-  these, written outside a function body or in the text of a current-shell
-  {@ent:command-strings:CommandString}, in its {@ent:line:Scope}, up to the next plain
-  `NAME=value` assignment: an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is
-  `read` with NAME as an operand or as the value of `-a`, or with no operand when NAME
-  is REPLY; one whose bin is `.` or `source`; one whose bin is `let` with an argument
-  naming NAME; a `NAME+=…` assignment that is not a command's prefix; an assignment of
-  an array or of an array element to NAME; a `for NAME` loop; a `$((…))` or `((…))`
-  whose expression names NAME; a current-shell {@ent:command-strings:CommandString} with
-  no {@fld:command-strings:CommandString.text}; a call of a function defined on the line
-  whose body holds one of these.
+  Right after a {@ent:variables:Change} of kind array, read, for, arithmetic, default, call,
+  entry or every, each {@ent:variables:Variable} it names has no
+  {@fld:variables:Variable.value}.
 why: >-
   A value that no longer holds would be reported.

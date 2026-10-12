@@ -1,0 +1,12 @@
+doc: >-
+  A function the line defines: a function definition, `name() compound-command`, written in the
+  Line's text or in the text of a command-strings.CommandString. A call of it is a command whose
+  program word has its name as its words.Word.value, wherever on the line that command stands;
+  a line may define one name more than once, and a call of the name is a call of each.
+fields:
+  - name: name
+    type: string
+    doc: "The name it is defined under."
+  - name: body
+    type: string
+    doc: "The compound command of its definition, as written."

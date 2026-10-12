@@ -1,6 +1,8 @@
 predicate: >-
   The text of a {@ent:command-strings:CommandString} whose program has
-  {@fld:config:CommandStringProgram.currentShell} true is resolved in its program's own
-  {@ent:line:Scope}, in place of the program's command.
+  {@fld:config:CommandStringProgram.currentShell} true and is run by the shell (see
+  {@ent:config:Wrapper}) is resolved in its program's own {@ent:line:Scope}, in place of the
+  program's command, so the moves and the {@ent:variables:Change}s it holds are that
+  Scope's.
 why: >-
   A `cd` inside eval would be forgotten.

@@ -1,9 +1,8 @@
 predicate: >-
-  Right after an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is `cd`, `pushd`
-  or `popd`, the {@fld:line:Scope.cwd} is the directory it sets, and absent when it sets
-  none, except in R of `cd D || R`. No other simple command changes the Scope.cwd, except
-  a call of a function defined on the line, a program given a current-shell
-  {@ent:command-strings:CommandString} with no {@fld:command-strings:CommandString.text},
-  and a command whose program word has no {@fld:words:Word.value}.
+  Right after an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, pushd or
+  popd, that the shell runs (see {@ent:config:Wrapper}) and that is no call of a
+  {@ent:line:Function}, the {@fld:line:Scope.cwd} is the directory it sets, and absent when
+  it sets none, except where cwd/failure-branch-of-cd-stays says otherwise. A command that
+  is none of the moves a {@ent:line:Scope} lists leaves the Scope.cwd as it was.
 why: >-
   A command would be reported in the directory it left, or cd in the one it is entering.

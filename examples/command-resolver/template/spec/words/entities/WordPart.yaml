@@ -1,16 +1,16 @@
 doc: >-
   A stretch of a Word's text the shell replaces or matches when it runs the command: an
-  expansion, an unquoted glob character or bracket expression, a tilde prefix, or a run-time
-  placeholder. A tilde prefix is an unquoted `~` and the unquoted characters after it up to
-  the first `/` or the end of the word, standing at the start of the word or, in a word of
-  the form NAME=value, at the start of the value or after an unquoted `:` in it, where it
-  ends at a `:` too; a `~` followed by a quoted or escaped character before that end starts
-  none.
+  expansion, an unquoted glob character or bracket expression, a tilde prefix, a run-time
+  placeholder, or the whole text, for a limit. A tilde prefix is an unquoted `~` and the
+  unquoted characters after it up to the first `/` or the end of the word, standing at the
+  start of the word or, in a word of the form NAME=value, at the start of the value or after an
+  unquoted `:` in it, where it ends at a `:` too; a `~` followed by a quoted or escaped
+  character before that end starts none.
 fields:
   - name: text
     type: string
     doc: "The part as written in the word's text."
   - name: cause
-    type: string
-    doc: "Why the part's value cannot be known without running something."
-    enum: ["command-substitution", "process-substitution", "glob", "special-parameter", "parameter-operation", "arithmetic", "untracked-variable", "user-home", "placeholder"]
+    type: string?
+    doc: "Why the part has no value. Absent exactly when no invariant of the words, variables or wrappers domain names one for it."
+    enum: ["command-substitution", "process-substitution", "glob", "special-parameter", "parameter-operation", "arithmetic", "untracked-variable", "user-home", "placeholder", "field-splitting", "limit"]

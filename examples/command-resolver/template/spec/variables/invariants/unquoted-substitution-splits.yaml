@@ -1,5 +1,12 @@
 predicate: >-
-  An unquoted reference to a {@fld:variables:Variable.value} holding whitespace yields one
-  {@ent:words:Word} per field; inside double quotes it yields one.
+  In a written word none of whose {@fld:words:Word.parts} has a {@fld:words:WordPart.cause},
+  the value an unquoted expansion contributes is split into fields at every run of space,
+  tab and newline when it holds one, as POSIX.1-2017 section 2.6.5 splits with IFS unset,
+  the text before and after it joining the first and last field: the word yields one
+  {@ent:words:Word} per field, and none when no field is left; inside double quotes nothing
+  is split. A written word one of whose parts has a cause is not split: it yields one Word,
+  or one per alternative of its brace expressions. Where a {@ent:variables:Change} of IFS
+  precedes the word, each unquoted expansion in it is instead an entry of Word.parts whose
+  cause is field-splitting.
 why: >-
   `X='a b'; rm $X` would be reported as one file.

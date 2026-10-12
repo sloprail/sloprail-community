@@ -1,4 +1,7 @@
-doc: "A program whose arguments are the argument vector of another program it runs."
+doc: >-
+  A program whose arguments are the argument vector of another program it runs. The program it
+  runs is run by the wrapper, not by the shell, unless the wrapper's name is command or
+  builtin: those two have the shell itself run it.
 fields:
   - name: name
     type: string

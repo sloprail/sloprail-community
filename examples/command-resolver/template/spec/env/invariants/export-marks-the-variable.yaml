@@ -1,0 +1,11 @@
+predicate: >-
+  {@fld:variables:Variable.exported} is true right after a {@ent:variables:Change} of kind
+  export or cd, and false right after one of kind unset or unexport. It is absent right
+  after a Change of kind every, and right after a Change of kind call or entry, or an `if`,
+  `case`, `while`, `until`, `for`, `&&` or `||` list, that stands for or holds a Change of
+  kind export, unexport, unset, cd or every naming the {@ent:variables:Variable}, unless,
+  for a construct or list, each of those leaves the value it had right before. Where none of
+  these precedes, it is true exactly when the environment the Variable's shell starts with
+  ({@ent:line:Scope}) holds its name.
+why: >-
+  A variable exported, or unset, one statement earlier would be passed on wrongly.

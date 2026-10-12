@@ -1,10 +1,7 @@
 predicate: >-
-  A {@ent:variables:Variable} not assigned before a reference to it, in the reference's
-  {@ent:line:Scope} or one enclosing it, outside a function body, through a call of a
-  function defined on the line or in the text of a current-shell
-  {@ent:command-strings:CommandString}, other than as a command's prefix, and that nothing
-  listed in variables/changed-variable-loses-its-value has changed before the reference,
-  has its value in {@fld:line:Context.env} as its {@fld:variables:Variable.value} at the
-  reference.
+  A {@ent:variables:Variable} that no {@ent:variables:Change} precedes at a reference whose
+  shell is the {@ent:line:Scope} of kind line, whose name is not in
+  {@fld:variables:Variable.shellSet} and is in {@fld:line:Context.env}, has its value in
+  Context.env as its {@fld:variables:Variable.value} there.
 why: >-
   `$HOME/x` would be reported as unknown although the environment says what it is.

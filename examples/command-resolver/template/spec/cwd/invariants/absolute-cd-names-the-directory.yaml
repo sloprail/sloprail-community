@@ -1,5 +1,5 @@
 predicate: >-
-  The directory a `cd` to a known absolute path sets is that path lexically cleaned,
-  whatever the {@fld:line:Scope.cwd} before it, absent included.
+  The directory a cd without -P to a known absolute path sets is that path lexically
+  cleaned, whatever the {@fld:line:Scope.cwd} before it, absent included.
 why: >-
   An unknown directory would never recover, or a previous one be prepended.

@@ -5,4 +5,15 @@ fields:
     doc: "The variable's name."
   - name: value
     type: string?
-    doc: "Its value at a point of the line; absent when it cannot be known without running something."
+    doc: "Its value at a point of a Scope. Absent exactly where an invariant of the variables domain says it has none."
+  - name: exported
+    type: bool?
+    doc: "Whether, at a point of a Scope, it is in the environment of the programs started there. Absent exactly where an invariant of the env domain says it is."
+  - name: shellSet
+    type: string[]
+    doc: "The names bash 5.2 gives a value of its own as it starts or runs, whatever its environment holds."
+    enum: ["_", "BASH", "BASHOPTS", "BASHPID", "BASH_ALIASES", "BASH_ARGC", "BASH_ARGV", "BASH_CMDS", "BASH_COMMAND", "BASH_EXECUTION_STRING", "BASH_LINENO", "BASH_SOURCE", "BASH_SUBSHELL", "BASH_VERSINFO", "BASH_VERSION", "COMP_WORDBREAKS", "DIRSTACK", "EPOCHREALTIME", "EPOCHSECONDS", "FUNCNAME", "GROUPS", "HISTCMD", "IFS", "LINENO", "OLDPWD", "OPTERR", "OPTIND", "PIPESTATUS", "PPID", "PS1", "PS2", "PWD", "RANDOM", "SECONDS", "SHELLOPTS", "SHLVL", "SRANDOM"]
+  - name: shellDefaulted
+    type: string[]
+    doc: "The names bash 5.2 gives a value of its own when its environment holds none."
+    enum: ["BASH_ARGV0", "BASH_LOADABLES_PATH", "EUID", "HOSTNAME", "HOSTTYPE", "MACHTYPE", "OSTYPE", "PATH", "PS4", "SHELL", "TERM", "UID"]

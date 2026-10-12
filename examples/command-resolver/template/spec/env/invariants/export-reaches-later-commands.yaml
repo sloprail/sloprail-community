@@ -1,10 +1,9 @@
 predicate: >-
-  An `export NAME=value`, or an `export NAME` or `declare -x NAME` of a
-  {@ent:variables:Variable} the line assigned, written outside a function body or in the
-  text of a current-shell {@ent:command-strings:CommandString}, or run through a call of
-  a function defined on the line, sets NAME for every later {@ent:line:Invocation} of
-  its {@ent:line:Scope} and of scopes started there later, except those that a later
-  `unset NAME` or `export -n NAME`, written or run the same way, precedes in their own
-  Scope or one enclosing it, and a program that `env -i` or `env -u NAME` runs.
+  An {@ent:line:Invocation} whose command a {@ent:variables:Change} of a
+  {@ent:variables:Variable} precedes, where that Variable's
+  {@fld:variables:Variable.exported} is true or absent, has its name in its
+  {@fld:line:Invocation.env} with the {@fld:variables:Variable.value} there when it is
+  exported and has a value, and in its {@fld:line:Invocation.unknownEnv} otherwise; except a
+  program that `env -i` or `env -u NAME` runs.
 why: >-
   A variable exported one statement earlier would be missing.

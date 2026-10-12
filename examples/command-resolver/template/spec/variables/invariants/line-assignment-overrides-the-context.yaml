@@ -1,9 +1,8 @@
 predicate: >-
-  A {@ent:variables:Variable} assigned before a reference, in the reference's
-  {@ent:line:Scope} or one enclosing it, outside a function body, through a call of a
-  function defined on the line or in the text of a current-shell
-  {@ent:command-strings:CommandString}, other than as a command's prefix, never takes
-  its {@fld:variables:Variable.value} there from {@fld:line:Context.env}: when it has a
-  value, it is the one the latest such assignment gave it.
+  At a reference that a {@ent:variables:Change} of a {@ent:variables:Variable} precedes, the
+  {@fld:variables:Variable.value}, when it has one, is the one the latest such Change gave
+  it, never one from {@fld:line:Context.env}: an assignment gives the
+  {@fld:words:Word.value} of its word, and an append the value before it followed by its
+  word's.
 why: >-
   A stale or ambient value would be reported.

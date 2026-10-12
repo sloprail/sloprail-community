@@ -1,9 +1,8 @@
 predicate: >-
-  After an `if`, `case`, `while`, `until` or `for`, or an `&&` or `||` list, written
-  outside a function body or in the text of a current-shell
-  {@ent:command-strings:CommandString}, or run through a call of a function defined on
-  the line, that assigns a {@ent:variables:Variable} on some path, the Variable has a
-  {@fld:variables:Variable.value} only when every path through it, running no branch,
-  zero iterations or one side of the list included, leaves it with the same one.
+  Right after an `if`, `case`, `while`, `until` or `for`, or an `&&` or `||` list, a
+  {@ent:variables:Variable} that a {@ent:variables:Change} inside it, other than one of kind
+  entry, names has a {@fld:variables:Variable.value} only when it had one right before it
+  and every such Change is an assignment whose word's {@fld:words:Word.value} is that same
+  value.
 why: >-
   One branch's value would be reported for all.

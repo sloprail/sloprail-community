@@ -1,6 +1,8 @@
 predicate: >-
-  An unquoted brace expression yields one {@ent:words:Word} per alternative, left to
-  right, each with its own {@fld:words:Word.value}; a quoted, escaped or incomplete brace
-  is literal text.
+  An unquoted brace expression yields one {@ent:words:Word} per alternative, left to right,
+  each with the {@fld:words:Word.value} its alternative gives when it has one; a quoted,
+  escaped or incomplete brace is literal text. A written word whose brace expressions would
+  yield more than 1024 Words yields one Word, whose whole text is an entry of
+  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is limit.
 why: >-
   `rm {a,b}` would be reported as one argument.

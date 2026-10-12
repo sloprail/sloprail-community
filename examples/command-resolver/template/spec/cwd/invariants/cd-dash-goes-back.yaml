@@ -1,6 +1,6 @@
 predicate: >-
-  The directory `cd -` sets is the {@fld:line:Scope.cwd} before the latest earlier `cd`,
-  `pushd` or `popd` of its Scope, or the value of OLDPWD in {@fld:line:Context.env} when
-  there was none, and it sets no directory when neither is known.
+  The directory `cd -` sets is the one a cd sets that has the
+  {@fld:variables:Variable.value} of OLDPWD there as its operand, and it sets none when
+  OLDPWD has no value or has the empty string.
 why: >-
   A command would be reported in the wrong one of two directories.
