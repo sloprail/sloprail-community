@@ -1,7 +1,7 @@
 predicate: >-
   A {@ent:words:Word} whose written word holds a command substitution (as the
-  {@ent:words:Word} doc defines it), unquoted or in a `"…"` stretch, has no
-  {@fld:words:Word.value}, and the substitution is an entry of {@fld:words:Word.parts} whose
-  {@fld:words:WordPart.cause} is command-substitution.
+  {@ent:words:Word} doc defines it) that stands in no other expansion, unquoted or in a `"…"`
+  stretch, has no {@fld:words:Word.value}, and that substitution is an entry of
+  {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is command-substitution.
 why: >-
   The output of a command that never ran would be guessed.

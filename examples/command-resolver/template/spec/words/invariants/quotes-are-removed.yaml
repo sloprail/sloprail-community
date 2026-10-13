@@ -1,5 +1,5 @@
 predicate: >-
-  Quoting never reaches a {@fld:words:Word.value}: of the stretches of its written word (as
+  In a {@fld:words:Word.value}, of the stretches of its written word (as
   the {@ent:words:Word} doc defines them), the characters that open and close a quoted
   stretch (`'`, `"`, and `$'` with its `$`) are absent from it; a `'…'` stretch appears
   verbatim; an unquoted literal that is a backslash with a character other than a newline

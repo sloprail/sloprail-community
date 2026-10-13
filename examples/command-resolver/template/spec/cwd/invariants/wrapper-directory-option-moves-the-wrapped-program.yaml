@@ -1,7 +1,7 @@
 predicate: >-
   The {@ent:line:Invocation} of the program a {@ent:config:Wrapper} runs directly (its own
   wrapped program, not one that a {@ent:config:Wrapper} it runs runs), when exactly one of
-  the {@ent:config:Wrapper}'s words names one of its
+  the {@ent:config:Wrapper}'s words before the word of the program it runs names one of its
   {@fld:config:Wrapper.directoryOptions} (as the {@ent:config:Wrapper} doc defines it), that
   word is equal to the option, and the word after
   it, the option's value, has a {@fld:words:Word.value}, has as its
