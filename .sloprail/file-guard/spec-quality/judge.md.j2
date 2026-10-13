@@ -70,8 +70,17 @@ construct (a Function body, a subshell, a list), and one another invariant of th
 covers. Compare parallel clauses word by word: a qualifier one clause has and its sibling lacks
 ("directly", "only", "exactly", "first") changes what the sibling covers. For a condition on the
 characters of a text, try a text in which those characters sit inside a construct of another
-kind that the condition does not name. Each probe is the input and what the text requires there; where the words allow two
-answers, write both. Then answer the items from the probes.
+kind that the condition does not name. For each test the text applies to a thing (starts with,
+is equal to, is named, is a `-x` word, is an X), and each relation it uses between two things (the
+command of an Invocation, the Scope a point stands in), name the field or the doc definition it
+reads, its own or one it takes from a cited entity's doc. Where it names none and two fields or
+entries of the catalog could answer it (a Word's text or its value; an entity, or an entry of the
+table that holds it), or no field or doc defines the relation, try a plausible input on which the
+candidates differ (an option written quoted or in a cluster, a name a user table also lists, a
+wrapper and the program it runs sharing one command): their two answers are two readings. Each
+probe is the input and what the text requires there; where the words allow two answers, write
+both. Then answer the items from the probes. For an entity, probe each test its docs define in
+the same way, with an input on which an invariant relying on the doc then requires two outputs.
 
 An item fails for a reason you can quote: the words at fault. A failing item BLOCKS only when it
 is material: you give a concrete input INSIDE the invariant's stated boundary, two readings of the
@@ -85,7 +94,7 @@ material answer must be one a coding agent could plausibly run in its work (`bas
 test'`, `cd "$HOME" || exit`, `sudo -u bob npm ci`), not a line contrived only to stress the
 wording (an empty `--user=`, a function named `cd` defined after the cd, `[:digit:]` as a file
 name); a contrived edge is a note. Every other failing item is a note and does not block: a missing
-typed mention where the meaning is clear, a restatement or duplicate that agrees with its source,
+typed mention where only one field could be meant, a restatement or duplicate that agrees with its source,
 a term re-worded from a doc, an invariant that defines terms, a field the model could add. Do not
 write a material answer whose two outputs are the same, nor one for a case outside the boundary,
 nor one that asks what happens where the invariant is silent.

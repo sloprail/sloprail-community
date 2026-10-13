@@ -2,18 +2,19 @@
 
 The way a10n buckets invariants for its conflict check (a10n internal/specyaml/buckets.go):
 every changed spec file is a subject of its own, keyed on its own content (and this rule), so
-editing one invariant re-judges that one alone. Changed invariants are clustered by the fields
-they mention (union-find) and packed into batches of up to BATCH judged files; each batch is shown, as
-context it does not judge, its neighbours: other invariants of the spec that share a field (or,
-more weakly, an entity, or an entity one field type away) with a judged one, ranked by how much
-they share and capped so a call holds at most CAP invariants."""
+editing one invariant re-judges that one alone. Changed invariants are grouped by their domain,
+clustered within it by the fields they mention (union-find), and packed into batches of up to
+BATCH judged files; each batch is shown, as context it does not judge, its neighbours: other
+invariants of the spec that share a field (or, more weakly, an entity, or an entity one field
+type away) with a judged one, each judged invariant's own closest first, taken in turns, and
+capped so a call holds at most CAP invariants."""
 import hashlib, json, re, subprocess, sys
 
 MENTION = re.compile(r"\{@(ent|fld):([a-z0-9-]+):([A-Za-z0-9]+)(?:\.([A-Za-z0-9_]+))?\}")
 SKILLS = [".claude/skills/document-invariant/SKILL.md", ".claude/skills/document-entity/SKILL.md"]
 BATCH = 10
 QUALITY_BATCH = 1
-CAP = 30
+CAP = 40
 
 
 def payload():
@@ -141,7 +142,9 @@ def cluster_keys(text, root):
 def batches(changed, size=BATCH):
     """changed: {path: content} of the changed spec files. Returns [[path, ...], ...]: invariants
     clustered by shared fields (union-find), each cluster ordered so the files of one field stay
-    together, the clusters laid end to end (largest first) and the changed entities after them,
+    together, the clusters laid end to end (largest first), then grouped by domain (a stable sort,
+    so one domain's invariants share calls; a field-sharing cluster spans most of a spec), and the
+    changed entities after them,
     packed greedily into batches of size (BATCH unless given). A batch is only how files share a prompt: each keeps
     its own verdict, so small clusters fill one call instead of a call each."""
     invs = sorted(p for p in changed if is_invariant(p))
@@ -168,30 +171,37 @@ def batches(changed, size=BATCH):
             for m in ms:
                 if m in c and m not in seen:
                     seen.add(m); seq.append(m)
+    seq.sort(key=lambda p: (spec_root(p), inv_id(p).split("/")[0]))
     seq += sorted(p for p in changed if not is_invariant(p))
     return [seq[i:i + size] for i in range(0, len(seq), size)]
 
 
 def neighbours(members, spec):
     """The invariants of spec (at head) that are not members and share a weighted key with a
-    member invariant, ranked by the summed weight of what they share (then by path), capped so
-    members and neighbours hold at most CAP invariants."""
+    member invariant, capped so members and neighbours hold at most CAP invariants. Each member
+    ranks the others by the summed weight of what they share with it (then by path), and the
+    members take their next-ranked one in turns: a member's closest neighbours are never crowded
+    out by ones that share a little with every member of the batch."""
     types = field_types({p: t for p, t in spec.items() if not is_invariant(p)})
-    mine = {}
-    for m in members:
-        if is_invariant(m):
-            for k, v in weighted_keys(spec.get(m, ""), spec_root(m), types).items():
-                mine[k] = max(mine.get(k, 0), v)
-    scored = []
-    for p, t in spec.items():
-        if p in members or not is_invariant(p):
-            continue
-        theirs = weighted_keys(t, spec_root(p), types)
-        s = sum(min(v, mine[k]) for k, v in theirs.items() if k in mine)
-        if s > 0:
-            scored.append((-s, p))
+    keys = {p: weighted_keys(t, spec_root(p), types) for p, t in spec.items() if is_invariant(p)}
+    ranked = []
+    for m in sorted(x for x in members if is_invariant(x)):
+        mine = keys.get(m, {})
+        scored = []
+        for p, theirs in keys.items():
+            if p in members:
+                continue
+            s = sum(min(v, mine[k]) for k, v in theirs.items() if k in mine)
+            if s > 0:
+                scored.append((-s, p))
+        ranked.append([p for _, p in sorted(scored)])
     room = max(0, CAP - sum(1 for m in members if is_invariant(m)))
-    return [p for _, p in sorted(scored)[:room]]
+    out = []
+    for i in range(max((len(r) for r in ranked), default=0)):
+        for r in ranked:
+            if len(out) < room and i < len(r) and r[i] not in out:
+                out.append(r[i])
+    return out
 
 
 def catalog(spec):

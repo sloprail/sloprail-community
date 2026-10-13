@@ -6,7 +6,8 @@ set -euo pipefail
 # 1. a spec whose mentions all resolve passes.
 # 2. a new invariant naming an undeclared field is refused.
 # 3. a new invariant with no typed mention is refused; one naming an entity in plain words is
-#    refused with the token to write.
+#    refused with the token to write; one reading a field by its bare name (`whose cwd`) where it
+#    mentions only the entity is refused with the field's token.
 # 4. renaming a field an unchanged invariant mentions is refused, naming that invariant.
 # 5. deleting an entity file an unchanged invariant mentions is refused.
 # 6. renaming an entity file (git mv) an unchanged invariant mentions is refused.
@@ -58,6 +59,10 @@ reset; inv plain 'After `cd DIR`, the Scope.cwd is DIR, as the {@ent:sh:Scope} k
 commit plain
 if run; then dump "3: a plain entity name passed"; fi
 says '`Scope.cwd` names a modelled thing in plain words; write {@ent:sh:Scope} or {@fld:sh:Scope.cwd}' || dump "3: no refusal with the token to write"
+reset; inv loose 'After `cd DIR`, the {@ent:sh:Scope} whose cwd was DIR before keeps it.'
+commit loose
+if run; then dump "3: a field read by its bare name passed"; fi
+says '`whose cwd` reads a field the predicate never mentions; write {@fld:sh:Scope.cwd}' || dump "3: no refusal naming the field's token"
 
 # 4
 reset; sed -i 's/name: value/name: content/' "$S/entities/Variable.yaml"

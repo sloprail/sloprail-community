@@ -23,6 +23,22 @@ report a pair, check your input against both texts and those definitions; report
 both, so read, decide that input and decide it differently. Where one of the two cites the other
 by id as deciding a case, they do not conflict on that case.
 
+A phrase of either text may have two readings careful readers could hold. When, under one of
+them, both cover the input and decide it differently, that is a conflict too: name the phrase
+and the reading in `explanation`, and fix it by narrowing the phrase. The input must be one a
+coding agent could plausibly run in its work (`sudo -E make install`, `cd web && npm ci`,
+`git log | head -5`), not a line contrived only to stress the wording.
+Look in particular where:
+- one invariant names by id the invariants that may override it ("but where A or B says
+  otherwise"): another invariant shown that decides the same field otherwise on an input it
+  covers, and is not named, is a side of a pair;
+- one invariant moves, splits, consumes or replaces a word or a text, and another gives that
+  word or text a role (an option's value, a program word, the words of an argv);
+- one invariant reads a text as another construct ("read as a Line", "as a simple command"):
+  what the others say of that construct (where it starts, which Scope it has) applies to it;
+- two invariants decide a value right after two constructs that end at the same place (a
+  construct and its last command): unless an entity doc separates them, that is one point.
+
 ## The invariants to judge
 {% for m in additionalContext.members %}
 <file path="{{ m.path }}">
