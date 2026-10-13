@@ -1,0 +1,17 @@
+doc: >-
+  The redirection that gives a command its standard input: the last redirection of descriptor 0 (one whose operator is `<`, `<>`, `<&`, `<<`, `<<-` or `<<<`, with no number or 0 written before it)
+  written on the command or, when it has none, on the nearest group, subshell or compound command
+  enclosing it that has one; for a pipeline stage after the first, only the stage itself or a group, subshell or
+  compound command inside that stage counts, never one enclosing the whole pipeline. A command
+  with neither has none.
+fields:
+  - name: redirection
+    type: line.Redirection
+    doc: "The redirection it is."
+  - name: kind
+    type: string
+    doc: "What it gives the command, by its redirection's line.Redirection.operator: here-document for `<<` and `<<-`, here-string for `<<<`, file for `<` and `<>`, descriptor for `<&` whose word's words.Word.value is digits, close for `<&-`."
+    enum: ["here-document", "here-string", "file", "descriptor", "close"]
+  - name: hereDocument
+    type: HereDocument?
+    doc: "The here-document, for kind here-document; absent for every other kind."

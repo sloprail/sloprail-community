@@ -1,7 +1,14 @@
 predicate: >-
-  Every simple command of a {@ent:line:Line} whose program word is not the empty string
-  yields exactly one entry of {@fld:line:Resolution.invocations}, whether it stands in a
-  pipeline, an `&&`, `||` or `;` list, a subshell, a brace group, a background job, or
-  after `!` or `time`.
+  In a {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar},
+  of depth at most two (as the {@ent:line:Grammar} defines depth), every simple command that is
+  no call of a {@ent:line:Function} (as {@ent:line:Function} defines a call) and whose program
+  word (as the {@ent:words:Word} doc defines it) has a {@fld:words:Word.value}, and that value is
+  neither the empty string nor command or builtin yields exactly
+  one entry of {@fld:line:Resolution.invocations} whose {@fld:line:Invocation.argv} starts
+  at its own program word, wherever it stands: in a pipeline, an `&&`, `||` or `;` list, a
+  subshell, a brace group, a background job, after `!` or `time`, in the condition and in
+  every branch of an `if`, `case`, `while`, `until` or `for` whether or not it would run, in
+  a {@fld:line:Function.body} whether or not the {@ent:line:Function} is called, or in a
+  command or process substitution.
 why: >-
   A program behind an operator would escape whoever reads the output.

@@ -13,7 +13,7 @@
 	doc?:             string & =~"\\S"
 	constraint_expr?: string & =~"\\S"
 	enum?: [string, ...string]
-	if enum != _|_ {type: "string" | "string[]"}
+	if enum != _|_ {type: "string" | "string?" | "string[]"}
 }
 
 // spec/<domain>/invariants/<id>.yaml — one invariant (see .claude/skills/document-invariant).

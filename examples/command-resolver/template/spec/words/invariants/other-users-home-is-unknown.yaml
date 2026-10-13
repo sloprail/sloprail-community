@@ -1,5 +1,8 @@
 predicate: >-
-  A {@ent:words:Word} whose text starts with an unquoted `~name`, or with `~` when
-  {@fld:line:Context.env} has no HOME, has {@fld:words:Word.unknown} user-home.
+  A {@ent:words:Word} whose {@fld:words:Word.text} holds a {@ent:words:WordPart} that is a
+  tilde prefix whose {@fld:words:WordPart.text} is not `~`, or is `~` where the
+  {@ent:variables:Variable} whose {@fld:variables:Variable.name} is HOME has no
+  {@fld:variables:Variable.value}, has no {@fld:words:Word.value}, and that tilde prefix is
+  an entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is user-home.
 why: >-
   Another user's home directory would be guessed.

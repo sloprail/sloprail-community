@@ -1,5 +1,10 @@
 predicate: >-
-  After a `cd` whose operand has no {@fld:words:Word.value}, a `pushd` or a `popd`, the
-  later Invocations of the {@ent:line:Scope} have no {@fld:line:Invocation.cwd}.
+  The {@fld:line:Scope.cwd} is absent right after each of these: an {@ent:line:Invocation}
+  whose {@fld:line:Invocation.bin} is cd, run by the shell (as {@ent:line:Invocation} defines
+  it) whose command is no call of a {@ent:line:Function}, that is given -P, has more than one operand,
+  or has an operand with no {@fld:words:Word.value} in its {@fld:line:Invocation.argv}, as
+  cwd/cd-options-are-not-the-destination defines options and operands; an {@ent:line:Invocation} whose
+  {@fld:line:Invocation.bin} is pushd or popd, run by the shell, whose command is no call of one; a simple command whose program {@ent:words:Word} has no
+  {@fld:words:Word.value}.
 why: >-
   A command would be reported where it no longer is.

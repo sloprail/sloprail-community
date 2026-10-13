@@ -1,5 +1,10 @@
 predicate: >-
-  A user-supplied {@ent:config:Wrapper} or {@ent:config:CommandStringProgram} replaces the
-  built-in entry of the same name whole, and leaves every other entry as it was.
+  When no name is both a {@fld:config:Wrapper.name} of {@fld:config:Config.userWrappers} and
+  a {@fld:config:CommandStringProgram.name} of
+  {@fld:config:Config.userCommandStringPrograms}, {@fld:config:Config.wrappers} holds each
+  entry of {@fld:config:Config.userWrappers}, whole and as written, and no other entry with
+  its {@fld:config:Wrapper.name}, and {@fld:config:Config.commandStringPrograms} holds each
+  entry of {@fld:config:Config.userCommandStringPrograms}, whole and as written, and no
+  other entry with its {@fld:config:CommandStringProgram.name}.
 why: >-
   A corrected option table would be merged with the wrong one, or would wipe the rest.

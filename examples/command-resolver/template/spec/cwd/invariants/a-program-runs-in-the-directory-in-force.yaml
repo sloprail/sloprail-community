@@ -1,0 +1,9 @@
+predicate: >-
+  An {@ent:line:Invocation} whose command stands outside every {@fld:line:Function.body} has
+  as its {@fld:line:Invocation.cwd} the {@fld:line:Scope.cwd} of the {@ent:line:Scope} that
+  command stands in, right before it, unless one {@ent:config:Wrapper} of its chain (as the {@ent:config:Wrapper}
+  doc defines it) has a word that names
+  one of its {@fld:config:Wrapper.directoryOptions} (as the {@ent:config:Wrapper} doc defines
+  it).
+why: >-
+  A program would be reported in a directory other than the one the shell starts it in.

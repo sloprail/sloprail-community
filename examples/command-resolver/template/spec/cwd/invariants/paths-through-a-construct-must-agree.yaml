@@ -1,6 +1,10 @@
 predicate: >-
-  After an `if`, `case` or loop, {@fld:line:Invocation.cwd} is present only when every
-  path through it, running no branch or zero iterations included, ends in the same
-  directory.
+  Right after a construct written outside every {@fld:line:Function.body} that is an `if`,
+  `case`, `while`, `until` or `for`, or an `&&` or `||` list whose first pipeline is not a
+  simple command whose program {@ent:words:Word} has cd as its {@fld:words:Word.value}, the
+  {@fld:line:Scope.cwd} is the one right before it when it holds no move of the
+  {@ent:line:Scope} it stands in (as {@ent:line:Scope} defines a move), and absent when it
+  holds one; this invariant decides that point in place of every other invariant of the cwd
+  domain.
 why: >-
   One branch's directory would be reported for all.

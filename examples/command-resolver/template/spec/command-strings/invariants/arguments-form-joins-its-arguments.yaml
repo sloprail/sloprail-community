@@ -1,6 +1,9 @@
 predicate: >-
-  For a program whose {@fld:config:CommandStringProgram.form} is arguments,
-  {@fld:command-strings:CommandString.text} is all its arguments joined by single spaces,
-  and is absent when any of them has no {@fld:words:Word.value}.
+  For a {@ent:command-strings:CommandString} whose
+  {@fld:command-strings:CommandString.program} has arguments as its
+  {@fld:config:CommandStringProgram.form}, {@fld:command-strings:CommandString.text} is the
+  {@fld:words:Word.value}s of the {@ent:words:Word}s of the {@fld:line:Invocation.argv} of
+  its {@fld:command-strings:CommandString.invocation} after the program word, joined by
+  single spaces, and is absent when one of them has no {@fld:words:Word.value}.
 why: >-
   A partly unknown `eval` would be resolved as if complete.

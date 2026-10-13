@@ -1,7 +1,9 @@
 predicate: >-
-  After a {@ent:command-strings:CommandString} with no
-  {@fld:command-strings:CommandString.text} whose program has
-  {@fld:config:CommandStringProgram.currentShell} true, the later Invocations of the
-  {@ent:line:Scope} have no {@fld:line:Invocation.cwd}.
+  Right after the {@fld:command-strings:CommandString.invocation} of a
+  {@ent:command-strings:CommandString} with no {@fld:command-strings:CommandString.text}
+  whose {@fld:command-strings:CommandString.program} has
+  {@fld:config:CommandStringProgram.currentShell} true, when that
+  {@fld:command-strings:CommandString.invocation} is run by the shell (as
+  {@ent:line:Invocation} defines it) and its command is no call of a {@ent:line:Function}, the {@fld:line:Scope.cwd} is absent.
 why: >-
   A move hidden in an unreadable eval would go unreported.

@@ -46,7 +46,7 @@ while IFS=$'\t' read -r path id; do
   [[ "$path" =~ $TEST ]] || add "$path: sr:proves belongs on a test (a *_test.go, under tests/, or a rule's sr-test case)"
 done <<<"$proves"
 [ -z "$problems" ] && exit 0
-# The first Stop of a fresh repository would list two lines for each of the 125 invariants:
+# The first Stop of a fresh repository would list two lines for each of the 99 invariants:
 # show the first 30 and count the rest.
 total="$(printf '%s' "$problems" | grep -c .)"
 shown="$(printf '%s' "$problems" | head -n 30)"

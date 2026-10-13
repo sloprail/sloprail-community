@@ -1,12 +1,29 @@
-doc: "One word of a command, as the shell would pass it."
+doc: >-
+  One word of a command, as the shell would pass it. A written word, read left to right, is a
+  sequence of stretches: a quoted stretch, `'…'`, `"…"` or `$'…'`; a reference, `$NAME` or
+  `${NAME}`, NAME being letters, digits and underscores not starting with a digit; an
+  expansion of another kind: a special parameter (`$` and one of `?`, `$`, `!`, `#`, `*`, `@`, `-` or a digit, or `${`, one of those or one or more digits, and `}`), a parameter operation (any other `${…}`), a command substitution
+  (`$(…)` or a backtick one), an arithmetic expansion (`$((…))`) or a process substitution
+  (`<(…)` or `>(…)`); and a literal, any other character, a backslash with the character
+  after it being one literal. Inside a `"…"` stand literals, references and expansions;
+  inside `'…'` and `$'…'` only literals. The text inside a command or process substitution
+  is a text of its own, read anew: a stretch in it is quoted only by a `"…"` written in it.
+  A stretch is unquoted when it stands in no quoted stretch of its own text. The program word
+  of a simple command is the first Word its written words yield from the first one, outside
+  every redirection, whose text does not start with a NAME followed by `=`, `+=` or `[`; the
+  written words before that one, outside every redirection, are its prefix words.
 fields:
   - name: text
     type: string
-    doc: "The word as written, quoting included."
+    doc: "The written word it comes from, quoting included; every Word one written word yields has its text. For a Word a brace expression makes, it is the written word the brace expression makes."
   - name: value
     type: string?
-    doc: "The string the shell would pass for the word; absent when it cannot be known without running something."
+    doc: "The string the shell would pass for it; absent when the resolver does not know it."
   - name: unknown
-    type: string
-    doc: "Why the word has no value; not set when it has one."
+    type: string?
+    doc: "Why the word has no value."
     enum: ["command-substitution", "process-substitution", "glob", "special-parameter", "parameter-operation", "arithmetic", "untracked-variable", "user-home", "placeholder"]
+  - name: parts
+    type: WordPart[]
+    doc: "The parts of the written word's text."
+    constraint_expr: 'in the order they start; of two that start at the same character, the outer one first'

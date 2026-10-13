@@ -1,5 +1,9 @@
 predicate: >-
-  A `NAME=value` word a {@ent:config:Wrapper} takes as an assignment is in the
-  {@fld:line:Invocation.env} of the wrapped program and absent from the wrapper's own.
+  A {@ent:words:Word} whose {@fld:words:Word.text} is `NAME=value` with no quote or backslash in it, NAME made of
+  letters, digits and underscores and not starting with a digit, that a {@ent:config:Wrapper} whose
+  {@fld:config:Wrapper.takesAssignments} is true takes as an assignment puts NAME in the
+  {@fld:line:Invocation.env} or the {@fld:line:Invocation.unknownEnv}, as
+  env/unknown-value-is-listed-apart says, of the {@ent:line:Invocation} of the program it
+  runs, unless a closer setting decides (env/closest-setting-wins).
 why: >-
   `env FOO=1 npm` would report FOO on env and not on npm.

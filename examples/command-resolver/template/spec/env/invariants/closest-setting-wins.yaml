@@ -1,6 +1,11 @@
 predicate: >-
-  When several layers set the same NAME for a program, its {@fld:line:Invocation.env}
-  holds the value set closest to it: a wrapper's assignment over the command's prefix, a
-  prefix over an earlier export, a later export over an earlier one.
+  When more than one of the settings env/env-holds-only-what-the-line-sets lists names the
+  same name for an {@ent:line:Invocation}, the closest alone decides its
+  {@fld:line:Invocation.env} or {@fld:line:Invocation.unknownEnv} entry for that name: an
+  assignment a {@ent:config:Wrapper} of its chain (as the {@ent:config:Wrapper} doc defines
+  it) takes (as its {@fld:config:Wrapper.takesAssignments} allows) over one a
+  {@ent:config:Wrapper} farther out in that chain takes, any of those over a prefix word of its command (as the {@ent:words:Word} doc
+  defines it), either kind over a {@ent:variables:Change}; and of two such words of one command, or of two assignments one
+  {@ent:config:Wrapper} takes, the later written.
 why: >-
   The overridden value would be reported.

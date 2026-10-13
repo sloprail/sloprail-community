@@ -1,7 +1,7 @@
 predicate: >-
-  Quoting never reaches a {@fld:words:Word.value}: the quote characters of
-  {@fld:words:Word.text} are absent from it, a single-quoted part appears verbatim, an
-  unquoted backslash is absent before the character it escapes, and adjacent quoted and
-  unquoted parts form one string.
+  In the {@fld:words:Word.value} of a {@ent:words:Word} whose {@fld:words:Word.parts} is empty and whose written word is made only of quoted stretches and literals (as the {@ent:words:Word} doc defines them), of its stretches, the characters that open and close a quoted
+  stretch (`'`, `"`, and `$'` with its `$`) contribute nothing to it; a `'…'` stretch appears
+  verbatim; an unquoted literal that is a backslash with a character other than a newline
+  after it gives that character alone; and the stretches, in order, form one string.
 why: >-
   A program spelled `n\pm` or `n""pm` would not be reported as npm.

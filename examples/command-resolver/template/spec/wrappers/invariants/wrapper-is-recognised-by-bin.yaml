@@ -1,6 +1,7 @@
 predicate: >-
-  A program is looked through as a {@ent:config:Wrapper} when its
-  {@fld:line:Invocation.bin} equals the {@fld:config:Wrapper.name} of an entry of
-  {@fld:config:Config.wrappers}, however its program word is quoted or pathed.
+  An {@ent:line:Invocation} whose {@fld:line:Invocation.bin} equals the
+  {@fld:config:Wrapper.name} of an entry of {@fld:config:Config.wrappers} is a
+  {@ent:config:Wrapper} of that entry, its {@fld:line:Invocation.argv} read as the
+  {@ent:config:Wrapper} doc says.
 why: >-
   `/usr/bin/sudo` or `"sudo"` would hide the program it runs.

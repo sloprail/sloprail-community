@@ -1,5 +1,8 @@
 predicate: >-
-  A {@ent:variables:Variable} assigned from a word with no {@fld:words:Word.value} has no
+  Where the latest {@ent:variables:Change} of a {@ent:variables:Variable} has assignment or
+  append as its {@fld:variables:Change.kind} and its {@fld:variables:Change.word} has no
+  {@fld:words:Word.value}, or has append and the {@ent:variables:Variable} had no
+  {@fld:variables:Variable.value} right before it, the {@ent:variables:Variable} has no
   {@fld:variables:Variable.value}.
 why: >-
   A guessed or empty value would spread to every later reference.

@@ -1,0 +1,11 @@
+doc: >-
+  A function the line defines: a definition `name() compound-command` written in the Line's text
+  or in the text of a command-strings.CommandString. A call of it is a simple command written
+  after the definition, in the Scope the definition is written in or in a Scope inside that one with no Scope of kind child-shell between them, the call's own included, whose program word has its name as its words.Word.value.
+fields:
+  - name: name
+    type: string
+    doc: "The name it is defined under."
+  - name: body
+    type: string
+    doc: "The compound command of its definition, as written."

@@ -1,6 +1,9 @@
 predicate: >-
-  A {@ent:wrappers:FindClause} whose {@fld:wrappers:FindClause.terminator} is `;` ends at
-  the first `;` word; `+` closes a clause only directly after `{}`; a clause with no
-  terminator yields no {@ent:line:Invocation}.
+  A {@ent:wrappers:FindClause} ends at the first {@ent:words:Word} after its
+  {@fld:wrappers:FindClause.introducer} whose {@fld:words:Word.value} is `;`, its
+  {@fld:wrappers:FindClause.terminator} then being `;`, or at a {@ent:words:Word} whose
+  {@fld:words:Word.value} is `+` that directly follows a {@ent:words:Word} whose
+  {@fld:words:Word.text}, its quotes removed as words/quotes-are-removed says, is `{}`, its
+  {@fld:wrappers:FindClause.terminator} then being `+`, whichever comes first.
 why: >-
   Words of a second clause, or of no clause at all, would be reported as a command.

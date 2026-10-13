@@ -1,5 +1,9 @@
 predicate: >-
-  In `cd D || R`, the {@fld:line:Invocation.cwd} of R is the directory in force before the
-  cd.
+  In `A || B`, an and-or list of two simple commands, A holding no command substitution and no process substitution (as the
+  {@ent:words:Word} doc defines them) and having a
+  program {@ent:words:Word} whose {@fld:words:Word.value} is cd, A being no call of a {@ent:line:Function}, and B holding no move of the {@ent:line:Scope} it stands in (as {@ent:line:Scope} defines one), B starts with
+  the {@fld:line:Scope.cwd} right before A, and right after the list the
+  {@fld:line:Scope.cwd} is the one right after A; this invariant decides those two points in
+  place of every other cwd invariant.
 why: >-
   The failure path would be reported in the directory that could not be entered.

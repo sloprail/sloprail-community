@@ -1,6 +1,9 @@
 predicate: >-
-  A {@ent:command-strings:CommandString} whose {@fld:command-strings:CommandString.text}
-  is known yields, right after its program's own {@ent:line:Invocation}, every Invocation
-  that text would yield as a {@ent:line:Line} of its own.
+  A {@ent:command-strings:CommandString} whose {@fld:command-strings:CommandString.depth} is
+  at most 8 and whose {@fld:command-strings:CommandString.text} is written in the
+  {@ent:line:Grammar}, of depth at most two (as the {@ent:line:Grammar} defines depth), puts
+  in {@fld:line:Resolution.invocations} the {@ent:line:Invocation}s its text holds, read as
+  a {@fld:line:Line.text} is, but with no {@ent:line:Scope} of
+  {@fld:line:Scope.kind} line of its own.
 why: >-
   `bash -c 'npm publish'` would hide npm.

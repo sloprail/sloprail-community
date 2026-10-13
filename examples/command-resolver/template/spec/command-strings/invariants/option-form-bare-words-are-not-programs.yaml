@@ -1,5 +1,8 @@
 predicate: >-
-  A bare word of a program whose {@fld:config:CommandStringProgram.form} is option yields
-  no {@ent:line:Invocation}.
+  A {@ent:words:Word} after the first of the {@fld:line:Invocation.argv} of an
+  {@ent:line:Invocation} of a {@ent:config:CommandStringProgram} whose
+  {@fld:config:CommandStringProgram.form} is option that is a bare word (as
+  {@ent:config:CommandStringProgram} defines it) is never read as a program: no
+  {@ent:line:Invocation} comes from it but those of the command and process substitutions in its {@fld:words:Word.text}, at any depth.
 why: >-
   `su bob` would report a program named bob.

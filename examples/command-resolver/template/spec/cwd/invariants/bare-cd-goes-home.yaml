@@ -1,5 +1,9 @@
 predicate: >-
-  After a `cd` with no operand, {@fld:line:Invocation.cwd} is the value of HOME in force,
-  and absent when HOME is not set.
+  Right after an {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is cd, run by the
+  shell (as {@ent:line:Invocation} defines it) whose command is no call of a {@ent:line:Function},
+  not given -P and with no operand in its {@fld:line:Invocation.argv}, as
+  cwd/cd-options-are-not-the-destination defines both (a cluster such as `-LP` is an operand), where the {@ent:variables:Variable} whose
+  {@fld:variables:Variable.name} is HOME has, right before it, an absolute path as its
+  {@fld:variables:Variable.value}, the {@fld:line:Scope.cwd} is that path lexically cleaned.
 why: >-
   A command would be reported where the line started although it moved home.

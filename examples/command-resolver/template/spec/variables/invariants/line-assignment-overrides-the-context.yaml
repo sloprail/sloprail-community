@@ -1,6 +1,11 @@
 predicate: >-
-  A {@ent:variables:Variable} the line has assigned takes its
-  {@fld:variables:Variable.value} from the latest assignment before the reference in its
-  {@ent:line:Scope}, not from {@fld:line:Context.env}.
+  Where the latest {@ent:variables:Change} of a {@ent:variables:Variable} has assignment as
+  its {@fld:variables:Change.kind} and its {@fld:variables:Change.word} has a
+  {@fld:words:Word.value} at most 65536 bytes long, the {@ent:variables:Variable}'s
+  {@fld:variables:Variable.value} is that value; where it has append and both the
+  {@fld:variables:Variable.value} right before it and its {@fld:variables:Change.word}'s
+  {@fld:words:Word.value} are known, together at most 65536 bytes long, the
+  {@ent:variables:Variable}'s {@fld:variables:Variable.value} is the one followed by the
+  other.
 why: >-
   A stale or ambient value would be reported.

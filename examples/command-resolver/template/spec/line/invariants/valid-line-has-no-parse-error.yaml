@@ -1,5 +1,6 @@
 predicate: >-
-  A {@ent:line:Line} whose {@fld:line:Line.text} is valid shell syntax has no
+  A {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar}, of
+  depth at most two (as the {@ent:line:Grammar} defines depth), has no
   {@fld:line:Resolution.parseError}.
 why: >-
   A readable line would be flagged as unreadable.

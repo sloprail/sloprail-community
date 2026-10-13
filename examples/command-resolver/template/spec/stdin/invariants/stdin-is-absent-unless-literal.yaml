@@ -1,5 +1,6 @@
 predicate: >-
-  {@fld:line:Invocation.stdin} is absent when the command's input is a pipe, a file, a
-  duplicated or closed descriptor, or nothing the line states.
+  An {@ent:line:Invocation}'s {@fld:line:Invocation.stdin} is absent unless the
+  {@ent:stdin:InputRedirection} of its command has here-document or here-string as its
+  {@fld:stdin:InputRedirection.kind}.
 why: >-
   Input the line does not contain would be invented.

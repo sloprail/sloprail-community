@@ -1,5 +1,5 @@
 predicate: >-
-  A child {@ent:line:Scope} starts with the {@fld:line:Invocation.cwd} in force where it
-  stands.
+  A {@ent:line:Scope} whose {@fld:line:Scope.kind} is neither line nor child-shell starts
+  with the {@fld:line:Scope.cwd} in force where it stands.
 why: >-
-  Commands in a subshell would be reported back at the start.
+  Commands in a subshell, or in `env -C /x bash -c`, would be reported back at the start.

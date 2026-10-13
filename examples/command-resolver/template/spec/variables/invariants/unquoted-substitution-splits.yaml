@@ -1,5 +1,11 @@
 predicate: >-
-  An unquoted reference to a {@fld:variables:Variable.value} holding whitespace yields one
-  {@ent:words:Word} per field; inside double quotes it yields one.
+  Where no {@ent:variables:Change} naming the {@ent:variables:Variable} whose
+  {@fld:variables:Variable.name} is IFS precedes it, a written word ({@fld:words:Word.text}) of a
+  simple command written outside every {@fld:line:Function.body}, outside every {@ent:line:Redirection}, that is one unquoted reference (as the
+  {@ent:words:Word} doc defines both) and nothing else, to a {@ent:variables:Variable} with a
+  {@fld:variables:Variable.value} that holds no `*`, `?` or `[`, yields one {@ent:words:Word}
+  per field of that value, in order, the field its {@fld:words:Word.value}, a field being a
+  longest run of characters other than space, tab and newline; with no field it yields no
+  {@ent:words:Word}.
 why: >-
-  `X='a b'; rm $X` would be reported as one file.
+  `X='a b'; rm $X` would be reported as one file, or `$EMPTY npm` as running nothing.

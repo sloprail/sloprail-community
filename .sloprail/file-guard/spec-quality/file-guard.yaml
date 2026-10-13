@@ -1,15 +1,28 @@
-# Every changed spec invariant and entity is judged against the document-invariant /
-# document-entity skills (.claude/skills/, copied verbatim from a10n). The changed files
-# are split into buckets of at most 25 (subjects.py, the union-find + size-cap
-# bucketing of a10n's invariant-buckets): invariants citing the same entity, and that
-# entity when it changed too, land in one bucket, so each judge sees a cluster with the
-# entities it anchors on. A bucket's fingerprint covers the skills and the cited entities
-# that are not in it, so a change to either re-judges only the buckets that read it.
+# Every changed spec file of an example, judged ON ITS OWN against the document-invariant and
+# document-entity skills (.claude/skills/): an invariant against both, as they bear on it, plus
+# the project rules (harness-neutral, observable), and whether it writes every entity or field
+# it talks about as its typed mention, using the spec's entity catalog. The judge answers a
+# fixed checklist (items.json) per file, each item ok or not with one line of evidence
+# (response.schema.json); post-process.py makes one verdict per file. Each file is judged in a
+# call of its own (subjects.py); each file's verdict is its own and is kept until the file, the entities
+# it cites, the catalog, the skills or this rule change. Conflicts between invariants are
+# spec-conflicts'; mentions that do not resolve, across the whole spec, are spec-mentions'.
+# The judge is asked twice, as two independent samples of the same check: one sample finds
+# only part of a file's material defects, so the file is refused when EITHER sample gives a
+# material finding (an input a coding agent could plausibly run, inside the boundary, with two
+# readings that require different outputs). Every other failing item is a note
+# (metadata.notes) and does not block.
 match: path matches "^examples/.+/spec/[a-z0-9-]+/(invariants|entities)/[^/]+\\.yaml$"
 subjects: ./subjects.py
 checks:
   - script: ./shape.py
-  - script: ./mentions-resolve.py
   - prepare: ./prepare.py
     judge: ./judge.md.j2
+    response_schema: ./response.schema.json
+    post_process: ./post-process.py
+    model: size-md
+  - prepare: ./prepare.py
+    judge: ./judge.md.j2
+    response_schema: ./response.schema.json
+    post_process: ./post-process.py
     model: size-md

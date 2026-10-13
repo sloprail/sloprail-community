@@ -1,5 +1,9 @@
 predicate: >-
-  After a call of a function whose body contains a `cd`, {@fld:line:Invocation.cwd} is the
-  body's resulting directory or absent, never the directory before the call.
+  Right after a call of a {@ent:line:Function} (as {@ent:line:Function} defines a call) whose
+  {@fld:line:Function.name} exactly one definition in the line has, the
+  {@fld:line:Scope.cwd} of the {@ent:line:Scope} the call stands in is the one right before
+  it when that {@ent:line:Function}'s {@fld:line:Function.body} holds no move of the
+  {@ent:line:Scope} the {@ent:line:Function} is defined in (as {@ent:line:Scope} defines a
+  move), and absent when it holds one.
 why: >-
   A real move would go unreported.

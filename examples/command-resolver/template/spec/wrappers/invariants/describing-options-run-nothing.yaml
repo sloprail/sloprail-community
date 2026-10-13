@@ -1,5 +1,5 @@
 predicate: >-
-  A {@ent:config:Wrapper} given one of its {@fld:config:Wrapper.describingOptions} yields
-  only its own {@ent:line:Invocation}.
+  A {@ent:config:Wrapper} given one of its {@fld:config:Wrapper.describingOptions} yields no
+  wrapped {@ent:line:Invocation}.
 why: >-
   `command -v npm` would be reported as running npm.

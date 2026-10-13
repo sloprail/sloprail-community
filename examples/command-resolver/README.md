@@ -3,10 +3,12 @@
 A template for growing a whole tool under sloprail: a bash command resolver,
 specified as invariants, built once with these rules and once without.
 
-- `template/`: what every run starts from. `CLAUDE.md`, `spec/` (13 entities, 125 invariants), `config/builtin.yaml` and `adr/` (the four decisions `CLAUDE.md` links: markers, modules, file size, file placement).
+- `template/`: what every run starts from. `CLAUDE.md`, `spec/` (19 entities, 97 invariants), `config/builtin.yaml` and `adr/` (the four decisions `CLAUDE.md` links: markers, modules, file size, file placement).
 - `.sloprail/`: the rules that check those decisions. Only the `sloprail` variant gets them.
 - `prepare.sh`: turns the project into one variant. `sloprail` leaves it as copied; `bare` removes `.sloprail/` and the line of each ADR that names its rules. Nothing else differs.
-- `eval/build/`: the one fixture. `prompt.md` is the whole instruction: build it, ask nothing, the invariants are the only source of truth, stop when all hold.
+- `eval/build/`: the full build. `prompt.md` is the whole instruction: build it, ask nothing, the invariants are the only source of truth, stop when all hold.
+- `eval/build-slice/`: the same build on a closed slice of the spec, to prove the whole loop on its hardest part before a full-size run. `slice.txt` lists the 44 invariants it keeps: every invariant of `cwd`, `variables` and `env`, plus the `line` and `words` invariants they rely on or cite. `setup.sh` runs `prepare.sh` and removes every other invariant, so the agent sees only the slice; entities, `config/`, `adr/`, `CLAUDE.md`, the prompt, the rules and the score are `eval/build`'s.
+- `eval/tiny/`: 12 invariants, to see every rule fire once, cheaply.
 
 ## The rules
 
@@ -16,7 +18,7 @@ specified as invariants, built once with these rules and once without.
 | `gate/checks-judged` | a turn of the main session does not end while committed work since the rules has no verdict or a failing one; the refusal names the `sr-checks run` command (the engine's own Stop reports stored failures only, and there is no push or pull request here to ask for the rest) | 0 | written here |
 | `file-guard/structure.yaml` | where files may be written (`adr/file-placement`) | 0 | written here |
 | `file-guard/invariant-covered` | every invariant has marked code and a marked test | 0 | sloprail, changed to check every invariant instead of the touched ones |
-| `file-guard/invariant-held` | the marked code upholds its invariant and the marked tests prove it | 1 per bucket of 10 invariants touched, 13 at most | sloprail's `invariant-upheld` and `invariant-rigor`, merged |
+| `file-guard/invariant-held` | the marked code upholds its invariant and the marked tests prove it | 1 per batch: the bucket of 10 invariants holding a touched one, 10 at most; a verdict per invariant | sloprail's `invariant-upheld` and `invariant-rigor`, merged |
 | `gate/file-size`, `file-guard/file-size` | Go files at most 150 lines, tests 400 (`adr/file-size`) | 0 | harness-mocks |
 | `file-guard/module-coverage` | every Go file under `internal/` is in exactly one module | 0 | harness-mocks |
 | `file-guard/module-boundaries` | a module is imported only through its `api` | 0 | harness-mocks |
@@ -43,4 +45,5 @@ agent. `eval/build` needs an sr-eval that knows `--variant`
 ```
 sr-eval run --fixture examples/command-resolver/eval/build --variant sloprail --model <m>
 sr-eval run --fixture examples/command-resolver/eval/build --variant bare     --model <m>
+sr-eval run --fixture examples/command-resolver/eval/build-slice --variant sloprail --model <m>
 ```

@@ -1,5 +1,8 @@
 predicate: >-
-  When the value of one of {@fld:config:Wrapper.directoryOptions} has no
-  {@fld:words:Word.value}, the wrapped program has no {@fld:line:Invocation.cwd}.
+  When one of a {@ent:config:Wrapper}'s words before the word of the program it runs is equal
+  to one of its {@fld:config:Wrapper.directoryOptions} and the word after it, the option's
+  value, has no {@fld:words:Word.value}, the {@ent:line:Invocation} of the program it runs directly (its
+  own wrapped program, not one that a {@ent:config:Wrapper} it runs runs) has no
+  {@fld:line:Invocation.cwd}, whatever its other words are.
 why: >-
   The wrapped program would be reported where it does not run.

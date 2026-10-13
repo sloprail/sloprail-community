@@ -1,6 +1,8 @@
 predicate: >-
-  When {@fld:stdin:HereDocument.quotedDelimiter} is true, no expansion is carried out in
-  the command's {@fld:line:Invocation.stdin}: every `$`, backtick and backslash of
-  {@fld:stdin:HereDocument.body} is in it as written.
+  When the {@ent:stdin:InputRedirection} of the command of an {@ent:line:Invocation} has a
+  {@fld:stdin:InputRedirection.hereDocument} whose {@fld:stdin:HereDocument.quotedDelimiter}
+  is true, {@fld:line:Invocation.stdin} is its {@fld:stdin:HereDocument.body} as written,
+  less, when its {@fld:stdin:HereDocument.stripsTabs} is true, the tabs that begin each of
+  its lines.
 why: >-
   Text the shell passes untouched would be reported altered.

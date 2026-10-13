@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["invariants"],
+  "additionalProperties": false,
+  "properties": {
+    "invariants": {
+      "type": "object",
+      "description": "Your verdict on the two questions, one entry for every <invariant> above and for no other, keyed by its id.",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["code", "tests", "reasoning"],
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "enum": ["pass", "fail"],
+            "description": "Question 1 for this invariant. \"pass\" when it lists no <code>: that half is not judged here."
+          },
+          "tests": {
+            "enum": ["pass", "fail"],
+            "description": "Question 2 for this invariant. \"pass\" when it lists no <test>: that half is not judged here."
+          },
+          "reasoning": {
+            "type": "string",
+            "description": "This invariant's block of what the rubric asks for under \"Your reasoning\". On a fail it is shown to the agent that wrote the code."
+          }
+        }
+      }
+    }
+  }
+}

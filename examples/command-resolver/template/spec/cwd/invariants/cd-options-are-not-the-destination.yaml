@@ -1,5 +1,10 @@
 predicate: >-
-  An option of `cd` (`-L`, `-P`, `-e`, `-@`, `--`) is never the directory that
-  {@fld:line:Invocation.cwd} takes.
+  Of the {@ent:words:Word}s of the {@fld:line:Invocation.argv} of an {@ent:line:Invocation}
+  whose {@fld:line:Invocation.bin} is cd, after its program word, its options are the leading
+  run of {@ent:words:Word}s whose {@fld:words:Word.value} is -L, -P, -e or -@; when the
+  {@ent:words:Word} right after that run has -- as its {@fld:words:Word.value}, it is neither
+  an option nor an operand; every {@ent:words:Word} after those is an operand, a cluster such
+  as -LP included. It is given -P when one of its options has -P as its
+  {@fld:words:Word.value}.
 why: >-
   A directory named -P would be reported.

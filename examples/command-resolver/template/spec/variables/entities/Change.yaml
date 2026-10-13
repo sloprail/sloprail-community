@@ -1,0 +1,34 @@
+doc: >-
+  One place where the line changes Variables. A test below of what a word is or starts with reads its words.Word.text with its quote characters removed; an option word of a command is a word after its program word that so read starts with `-` or `+`. A Change is a form its kind lists, written outside every body
+  of a line.Function (a call stands for what its bodies change); a form that is an argument of a
+  program is one of a line.Invocation the shell runs. One word may be several Changes. A Change
+  stands at the end of the word that is its form, or of the command for a form that is a
+  command; one of kind entry at the start of its construct, one of kind end at its end, after every Change inside it. It
+  precedes a point outside every Function body when it stands before that point in the point's
+  line.Scope, or in a Scope enclosing it no farther out than the point's shell; the text of a current-shell command-strings.CommandString whose depth is at
+  most 8 and whose program the shell runs stands where that program's command does. Of the
+  Changes naming a Variable that precede a point, those of kind export and unexport aside, the
+  one written last is the Variable's latest Change there.
+fields:
+  - name: kind
+    type: string
+    doc: "Its form, and the Variables it names: its NAME, but where the entry says otherwise."
+    enum:
+      - "assignment: NAME=word as a word of a command that has no program word, or as an argument of export or readonly, or of declare, typeset or local given no option word"
+      - "append: NAME+=word in those places"
+      - "array: NAME=(…), NAME+=(…) or NAME[index]=word in those places"
+      - "unset: an operand of unset given no option or -v"
+      - "export: NAME or NAME=word as an argument of export given no option"
+      - "unexport: an operand of export given -n"
+      - "read: an operand of read (whose -a, -d, -i, -n, -N, -p, -t and -u take a value, the next word or, attached, the rest of their word, also as the last letter of a cluster such as -rp), its -a value, or REPLY when it has neither; the second operand of getopts, and OPTARG and OPTIND; the -v value of printf; the -p value of wait; the operand of mapfile or readarray (whose -d, -n, -O, -s, -u, -C and -c take a value), or MAPFILE when it has none"
+      - "for: the NAME of a for loop"
+      - "arithmetic: an assignment operator of POSIX.1-2017 section 2.6.4 whose left operand is NAME, in an arithmetic expression: the text of a $((…)) or ((…)), an argument of let, the index of an indexed array, the offset or length of ${name:offset:length}, or an operand of -eq, -ne, -lt, -le, -gt or -ge in [[ … ]]"
+      - "default: a ${NAME:=word} or ${NAME=word} expansion"
+      - "cd: an Invocation whose bin is cd, pushd or popd, naming PWD and OLDPWD"
+      - "call: a call of a line.Function, naming each Variable that a form of a kind above, written in a body of a Function of that name, names, and every Variable when such a body holds a call or a form of kind every"
+      - "entry: the start of a while, until or for, naming each Variable that a form of a kind above, written inside it, names, and every Variable when one of those is of kind call or every"
+      - "end: the end of an if, case, while, until or for, or of an && or || list, naming each Variable that a form of a kind above, written inside it, names, and every Variable when one of those is of kind call or every"
+      - "every: naming every Variable: a command whose program word has no words.Word.value; an Invocation whose bin is . or source; a declare, typeset or local given an option word; let with an argument that has no Word.value; a form above whose NAME has no Word.value; an arithmetic expression holding an expansion or naming a Variable whose value there is neither empty nor a decimal integer constant; a current-shell command-strings.CommandString with no text, or whose depth is above 8"
+  - name: word
+    type: words.Word?
+    doc: "For an assignment or append, the part after `=` of its NAME=word or NAME+=word, read as a Word whose text is that part; absent for every other kind."

@@ -1,6 +1,7 @@
 predicate: >-
-  The words after the {@ent:command-strings:CommandString} of a program whose
-  {@fld:config:CommandStringProgram.form} is shell are positional parameters and yield no
-  {@ent:line:Invocation}.
+  The {@ent:words:Word}s of the {@fld:line:Invocation.argv} of an {@ent:line:Invocation}
+  of a {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form} is shell,
+  after its program word, other than the one command-strings/shell-form-needs-a-c-cluster takes the text from, are never
+  read as a program: no {@ent:line:Invocation} comes from them but those of the command and process substitutions in their {@fld:words:Word.text}, at any depth.
 why: >-
   `bash -c 'echo' rm` would report rm.

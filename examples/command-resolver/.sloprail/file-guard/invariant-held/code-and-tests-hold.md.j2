@@ -10,6 +10,13 @@ cannot answer, for every <invariant> below:
 
 Judge every <invariant>; fail if any one fails either question.
 
+A counterexample is a concrete input, quoted in full, inside the invariant's stated boundary:
+the inputs its predicate says it covers, read with the entities it cites (a `Line` is only what
+`spec/line/entities/Line.yaml` admits). A fail on the code half names the concrete input on which
+the code breaks the predicate. Unstated is unconstrained: what the code or a test does on an
+input outside the boundary is free, however surprising, and is never a reason to fail either
+half; nor is behaviour that no invariant states at all.
+
 ## Inputs
 
 Nothing is inlined here: read the files. Every path is in the project.
@@ -63,7 +70,8 @@ states, under its specific wording — not a looser or stricter reading of it.
 - **Together they cover the statement**: every condition it names (each
   value, default, limit, "unless", "only when"), its edges (the first and last
   allowed, the first not allowed, empty, zero) and its failure paths (what must
-  NOT happen) is exercised by at least one test.
+  NOT happen) is exercised by at least one test. Inputs past the boundary need
+  no test.
 
 ### How to decide
 
@@ -72,6 +80,12 @@ For each invariant, make the checklist: every condition the statement names
 failure path, one item each; plus one item per marked test, for whether it
 proves the statement. Then find, for each condition, the test that exercises
 it.
+
+The checklist comes from the predicate's own conditions, never from the code's paths: an edge
+is an edge of a condition the predicate names, not a branch, helper or combination the code
+happens to have. A counterexample to the code is the code half's finding; it is a missing
+test only when it is also a condition, edge or failure path of the predicate that no test
+exercises.
 
 ## Your reasoning
 
@@ -86,9 +100,12 @@ A pass without the checklist is not a pass.
 On a fail, for each failing invariant say which half failed:
 
 - **code**: name the specific line or behavior that violates the predicate's wording, quoting
-  the exact clause of the invariant it fails, and say what to do: Undo the code
-  that breaks the rule. Do not reshape the requested feature to fit the rule:
-  keep the rule and tell the user the request conflicts with it. Rewording the
-  invariant needs the user's own words asking for it.
+  the exact clause of the invariant it fails, and the general cause: which rule of the
+  predicate the code's design breaks, so that every input of that kind fails, not only the one
+  you found (list each instance you found). Say what to do: fix that cause, not the one input.
+  When the code breaks the rule only by a bound it needs to finish and the predicate states
+  none, say so: the agent asks the user for a bound in the spec instead of adding one. Do not
+  reshape the requested feature to fit the rule: keep the rule and tell the user the request
+  conflicts with it. Rewording the invariant needs the user's own words asking for it.
 - **tests**: name each marked test that does not prove the statement, and each condition,
   edge or failure path no test exercises ("no test sets the cap to 0").

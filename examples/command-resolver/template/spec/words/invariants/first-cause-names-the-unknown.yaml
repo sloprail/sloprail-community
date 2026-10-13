@@ -1,5 +1,6 @@
 predicate: >-
-  When several parts of a {@fld:words:Word.text} each make it unknown,
-  {@fld:words:Word.unknown} names the cause that comes first in the text.
+  A {@ent:words:Word} with no {@fld:words:Word.value} has as its {@fld:words:Word.unknown}
+  the {@fld:words:WordPart.cause} of the first entry of its {@fld:words:Word.parts} that has
+  one.
 why: >-
   Two resolvers would classify the same word differently.

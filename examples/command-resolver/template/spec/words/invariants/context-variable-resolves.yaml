@@ -1,5 +1,8 @@
 predicate: >-
-  A reference to a variable the line has not assigned contributes that variable's value in
-  {@fld:line:Context.env} to {@fld:words:Word.value}.
+  At a point whose shell is the {@ent:line:Scope} whose {@fld:line:Scope.kind} is line
+  and that stands outside every {@fld:line:Function.body}, a {@ent:variables:Variable} that no
+  {@ent:variables:Change} naming it precedes, whose {@fld:variables:Variable.name}
+  {@fld:line:Context.env} holds and is not in {@fld:variables:Variable.shellSet}, has as its
+  {@fld:variables:Variable.value} the value {@fld:line:Context.env} holds for that name.
 why: >-
   `$HOME/x` would be reported as unknown although the environment says what it is.

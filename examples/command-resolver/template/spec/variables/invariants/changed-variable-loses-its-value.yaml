@@ -1,7 +1,6 @@
 predicate: >-
-  A {@ent:variables:Variable} has no {@fld:variables:Variable.value} after something the
-  line cannot follow may have changed it: `read`, `+=`, an array assignment, a `for` loop
-  naming it, arithmetic naming it, `source`, or a current-shell
-  {@ent:command-strings:CommandString} with no text.
+  Where the latest {@ent:variables:Change} of a {@ent:variables:Variable} has as its
+  {@fld:variables:Change.kind} array, read, for, arithmetic, default, cd, call, entry or
+  every, the {@ent:variables:Variable} has no {@fld:variables:Variable.value}.
 why: >-
   A value that no longer holds would be reported.

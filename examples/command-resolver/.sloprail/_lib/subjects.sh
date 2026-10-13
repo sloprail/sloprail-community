@@ -47,7 +47,7 @@ sub_resolve() {
   hm='{}'; bm='{}'
   [ -z "$hp" ] || hm="$(paste <(printf '%s\n' "$hp") <(printf '%s\n' "$hp" | sub_oids "$(cs '.changeset.head')") | jq -Rn '[inputs | split("\t") | {(.[0]): .[1]}] | add')"
   [ -z "$bp" ] || bm="$(paste <(printf '%s\n' "$bp") <(printf '%s\n' "$bp" | sub_oids "$(cs '.changeset.base')") | jq -Rn '[inputs | split("\t") | {(.[0]): .[1]}] | add')"
-  jq -c --argjson h "$hm" --argjson b "$bm" '[.[] | {id, files: (.files | unique), text: ((.extra // "")
+  jq -c --slurpfile h <(printf '%s' "$hm") --slurpfile b <(printf '%s' "$bm") '$h[0] as $h | $b[0] as $b | [.[] | {id, files: (.files | unique), text: ((.extra // "")
       + ((.deps // []) | map("\n" + . + "=" + $h[.]) | join(""))
       + ((.bdeps // []) | map("\nbase:" + . + "=" + $b[.]) | join("")))}]' <<<"$arr"
 }
@@ -66,7 +66,7 @@ sub_finish() {
   tmp="$(mktemp -d "${TMPDIR:-/tmp}/sr-subjects.XXXXXX")"
   jq -c '.[] | .text | tojson' <<<"$arr" | while IFS= read -r line; do printf '%s\n' "$line" >"$tmp/$i"; i=$((i + 1)); done
   seq 0 $((n - 1)) | sed "s|^|$tmp/|" | git hash-object --stdin-paths |
-    jq -Rn --argjson s "$arr" '[inputs] as $h | [range(0; $s | length) as $i | $s[$i] | {id, files} + (if .text == "" then {} else {fingerprint: $h[$i]} end)]'
+    jq -Rn --slurpfile s <(printf '%s' "$arr") '$s[0] as $s | [inputs] as $h | [range(0; $s | length) as $i | $s[$i] | {id, files} + (if .text == "" then {} else {fingerprint: $h[$i]} end)]'
   rm -rf "$tmp"
 }
 

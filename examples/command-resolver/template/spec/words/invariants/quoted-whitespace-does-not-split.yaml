@@ -1,5 +1,6 @@
 predicate: >-
-  Whitespace that is quoted or escaped in {@fld:words:Word.text} stays inside one
-  {@ent:words:Word}.
+  In a {@fld:words:Word.text} that holds no `$`, backtick or backslash-newline and is not
+  the {@ent:words:Word} whose {@fld:words:Word.value}
+  wrappers/env-split-string-is-one-command splits, no quoted or escaped space, tab or newline separates two {@ent:words:Word}s it yields.
 why: >-
   One argument holding a space would be reported as two.

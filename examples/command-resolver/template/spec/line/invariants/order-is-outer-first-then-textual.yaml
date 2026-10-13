@@ -1,6 +1,13 @@
 predicate: >-
-  {@fld:line:Resolution.invocations} lists the programs in the order their commands are
-  written in {@fld:line:Line.text}, except that a command comes before every command
-  nested inside it: its substitutions, the program it wraps, its command string.
+  In a {@ent:line:Line} whose {@fld:line:Line.text} is written in the {@ent:line:Grammar},
+  of depth at most two, in which every substitution stands in a {@ent:words:Word} of the {@fld:line:Invocation.argv} of an {@ent:line:Invocation}, with no brace expression and no call of a {@ent:line:Function},
+  {@fld:line:Resolution.invocations} lists its simple commands outside every substitution in
+  the order written, each directly followed by the {@ent:line:Invocation}s it gives rise to,
+  each of those followed in turn by its own: first the program it runs as a
+  {@ent:config:Wrapper}, or the commands of its {@ent:wrappers:FindClause}s in clause order,
+  then the commands of its {@ent:command-strings:CommandString}, then those of the
+  substitutions in its {@ent:words:Word}s in written order, a
+  {@ent:words:Word} shared with the {@fld:line:Invocation.argv} of an {@ent:line:Invocation}
+  it gives rise to belonging to the innermost one.
 why: >-
   Two resolvers would list the same programs in different orders.

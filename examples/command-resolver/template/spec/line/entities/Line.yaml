@@ -3,3 +3,4 @@ fields:
   - name: text
     type: string
     doc: "The line as written; it may span several physical lines."
+    constraint_expr: 'written in the line.Grammar, or written in it at every place but one, where it shows one of line.Grammar.faults'

@@ -1,6 +1,7 @@
 predicate: >-
-  A {@ent:line:Line} whose {@fld:line:Line.text} is not valid shell syntax has a
-  {@fld:line:Resolution.parseError} and no entry in {@fld:line:Resolution.invocations},
-  not even for the statements before the error.
+  A {@ent:line:Line} whose {@fld:line:Line.text} is not written in the {@ent:line:Grammar},
+  but followed by a newline and one `'`, `"`, backtick, `)`, `}`, fi, done or esac would be a
+  text written in it of depth at most two (as the {@ent:line:Grammar} defines depth), has a
+  {@fld:line:Resolution.parseError} and no {@fld:line:Resolution.invocations} entry.
 why: >-
   An unreadable line would look like a line that runs nothing.

@@ -1,6 +1,9 @@
 predicate: >-
-  {@fld:line:Invocation.argv} holds one {@ent:words:Word} for every word the shell would
-  pass the program, in the order written, whether or not the word has a
-  {@fld:words:Word.value}.
+  The {@ent:line:Invocation} of a simple command (as the {@ent:line:Invocation} doc defines it)
+  has as its {@fld:line:Invocation.argv} the {@ent:words:Word}s that the written words of that
+  command yield, in the order written, from its program word (as the {@ent:words:Word} doc
+  defines it) on; none from a {@ent:line:Redirection} or a {@fld:stdin:HereDocument.body}. A
+  written word yields one {@ent:words:Word}, but where words/brace-expansion-yields-several-words,
+  variables/unquoted-substitution-splits or words/comment-yields-no-word says otherwise.
 why: >-
   A consumer could not tell `git -C $(x) push` from `git -C push`.

@@ -1,0 +1,17 @@
+description: >
+  eval/build cut down to a closed slice (slice.txt, setup.sh): every invariant
+  of cwd, variables and env, plus the line and words invariants they need, 44
+  in all, with every entity. These are the domains the full build did not
+  converge on, so the slice proves the spec-to-build loop on its hardest part
+  before a full-size run. Same template, rules, prompt, score and variants as
+  eval/build.
+seed: ../../template
+exampleSloprail: true
+setup: setup.sh
+variants:
+  sloprail: {}
+  bare: {noSloprail: true}
+freshMachine: true
+harnesses: [claude]
+model: size-sm
+score: score.sh

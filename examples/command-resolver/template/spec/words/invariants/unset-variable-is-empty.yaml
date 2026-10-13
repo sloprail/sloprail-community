@@ -1,5 +1,10 @@
 predicate: >-
-  A reference to a variable that neither the line nor {@fld:line:Context.env} sets
-  contributes the empty string to {@fld:words:Word.value}.
+  At a point whose shell is the {@ent:line:Scope} whose {@fld:line:Scope.kind} is line
+  and that stands outside every {@fld:line:Function.body}, a {@ent:variables:Variable} that no
+  {@ent:variables:Change} naming it precedes, whose {@fld:variables:Variable.name} is made
+  of letters, digits and underscores, does not start with a digit, and is in
+  none of {@fld:line:Context.env}, {@fld:variables:Variable.shellSet} and
+  {@fld:variables:Variable.shellDefaulted}, has the empty string as its
+  {@fld:variables:Variable.value}.
 why: >-
   A word bash expands to nothing would be reported as unknown.

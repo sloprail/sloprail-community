@@ -1,6 +1,9 @@
 predicate: >-
-  A program whose name is in neither table of the {@ent:config:Config}, and is not `find`,
-  yields only its own {@ent:line:Invocation}; its arguments are never read as another
-  program.
+  An {@ent:line:Invocation} whose {@fld:line:Invocation.bin} is the
+  {@fld:config:Wrapper.name} of no entry of {@fld:config:Config.wrappers}, the
+  {@fld:config:CommandStringProgram.name} of no entry of
+  {@fld:config:Config.commandStringPrograms}, and not find, reads none of the
+  {@ent:words:Word}s of its {@fld:line:Invocation.argv} after the program word as another
+  program: no {@ent:line:Invocation} comes from them but those of the command and process substitutions in their {@fld:words:Word.text}, at any depth.
 why: >-
   An ordinary argument would be reported as a program.

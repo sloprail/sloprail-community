@@ -1,5 +1,9 @@
 predicate: >-
-  An arithmetic expansion made only of integer constants and operators contributes its
-  decimal result to {@fld:words:Word.value}.
+  A {@ent:words:Word} whose {@fld:words:Word.text} is only `$((E))` or `"$((E))"`, E a
+  well-formed expression of spaces, parentheses, the binary operators `+`, `-` and `*` and
+  constants that are 0 or decimal digits not starting with 0, every value of which lies
+  within the signed 64-bit range, has the decimal result as its {@fld:words:Word.value},
+  where no {@ent:variables:Change} that precedes it names the {@ent:variables:Variable}
+  whose {@fld:variables:Variable.name} is IFS.
 why: >-
   A value the line fixes would be reported as unknown.

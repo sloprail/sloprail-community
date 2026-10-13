@@ -59,21 +59,28 @@ want_subject() { local s; s="$(subject_id)"; [ -z "$s" ] || [ "$s" = "$1" ]; }
   refuse_error "SR_TREE is not set, so the committed tree cannot be read; this rule only judges commits"
 tree() { printf '%s' "$SR_TREE"; }
 
-# load_markers KIND — sets MARKERS to every `sr:<KIND> <fqn>` marker in the
-# committed tree, one "path<TAB>fqn" per line. Uses the engine's marker grammar:
+# load_marker_lines KIND — sets MARKER_LINES to every `sr:<KIND> <fqn>` marker in the
+# committed tree, one "path<TAB>line<TAB>fqn" per line. Uses the engine's marker grammar:
 # the whole line is the marker, after a //, # or -- leader; the fqn is a quoted
 # or bare token. git grep exits 1 on no match (fine) and >1 on an error (refuse).
-load_markers() {
+load_marker_lines() {
   local kind="$1" out rc
-  MARKERS=""
+  MARKER_LINES=""
   out="$(git -C "$SR_TREE" grep -n -I -E \
     "^[[:space:]]*(//|#|--)[[:space:]]*sr:${kind}[[:space:]]+(\"[^\"]*\"|[^[:space:]\"][^[:space:]]*)[[:space:]]*$" \
     -- . ':!proposals/**' 2>&1)"
   rc=$?
   [ "$rc" -le 1 ] || refuse_error "could not search the committed tree for sr:${kind} markers: $out"
   [ -n "$out" ] || return 0
-  MARKERS="$(printf '%s\n' "$out" | sed -E \
-    "s#^([^:]+):[0-9]+:[[:space:]]*(//|\#|--)[[:space:]]*sr:${kind}[[:space:]]+\"?([^\"[:space:]]+)\"?[[:space:]]*\$#\1\t\3#")"
+  MARKER_LINES="$(printf '%s\n' "$out" | sed -E \
+    "s#^([^:]+):([0-9]+):[[:space:]]*(//|\#|--)[[:space:]]*sr:${kind}[[:space:]]+\"?([^\"[:space:]]+)\"?[[:space:]]*\$#\1\t\2\t\4#")"
+}
+
+# load_markers KIND — sets MARKERS to the same markers without their lines, one
+# "path<TAB>fqn" per line.
+load_markers() {
+  load_marker_lines "$1"
+  MARKERS="$(printf '%s' "$MARKER_LINES" | cut -f1,3)"
 }
 
 # load_yaml FILE — sets YAML to a committed-tree YAML file as JSON ("null" if absent).

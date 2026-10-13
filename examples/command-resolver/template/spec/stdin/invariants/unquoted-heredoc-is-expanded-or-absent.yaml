@@ -1,6 +1,13 @@
 predicate: >-
-  When {@fld:stdin:HereDocument.quotedDelimiter} is false, {@fld:line:Invocation.stdin} is
-  present only when every expansion in {@fld:stdin:HereDocument.body} can be known, and
-  then holds their results in place of the expansions.
+  When the {@ent:stdin:InputRedirection} of the command of an {@ent:line:Invocation} has a
+  {@fld:stdin:InputRedirection.hereDocument} whose {@fld:stdin:HereDocument.quotedDelimiter}
+  is false and whose {@fld:stdin:HereDocument.body} holds no backtick or backslash, and
+  every `$` in it starts a reference `$NAME` or `${NAME}` (NAME being letters, digits and
+  underscores, not starting with a digit) to the {@ent:variables:Variable} whose
+  {@fld:variables:Variable.name} is NAME: {@fld:line:Invocation.stdin} is that body, less,
+  when its {@fld:stdin:HereDocument.stripsTabs} is true, the tabs that begin each of its
+  lines, with each reference replaced by its {@ent:variables:Variable}'s
+  {@fld:variables:Variable.value} right before the command when every one of them has one, and absent when one
+  has none.
 why: >-
   Half-expanded text would be reported as what the program reads.
