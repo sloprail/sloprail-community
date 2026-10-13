@@ -4,7 +4,7 @@ predicate: >-
   {@fld:line:Invocation.env} or {@fld:line:Invocation.unknownEnv} entry for that name: an
   assignment the {@ent:config:Wrapper} that runs it directly takes (as its
   {@fld:config:Wrapper.takesAssignments} allows) over one a {@ent:config:Wrapper} farther out
-  in its chain takes, any of those over a `NAME=value` {@ent:words:Word} before its command's
+  in its chain (as the {@ent:config:Wrapper} doc defines it) takes, any of those over a `NAME=value` {@ent:words:Word} before its command's
   program word, either kind over a {@ent:variables:Change}; and of two
   {@ent:variables:Change}s, of two such words of one command, or of two assignments one
   {@ent:config:Wrapper} takes, the later written.

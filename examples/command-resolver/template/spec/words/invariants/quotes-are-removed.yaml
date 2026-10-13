@@ -1,10 +1,8 @@
 predicate: >-
-  Quoting never reaches a {@fld:words:Word.value}: the characters of
-  {@fld:words:Word.text} that open and close a quoted stretch (`'` and `'`, `"` and `"`, `$'`
-  and `'`, the `$` included) are absent from it, a
-  single-quoted stretch other than a `$'…'` one appears verbatim, a backslash outside every quoted stretch
-  and not itself escaped, before any character but a newline, is absent and the character
-  after it stays (read left to right, so `\\` yields one backslash), and adjacent quoted
-  and unquoted stretches form one string.
+  Quoting never reaches a {@fld:words:Word.value}: of the stretches of its written word (as
+  the {@ent:words:Word} doc defines them), the characters that open and close a quoted
+  stretch (`'`, `"`, and `$'` with its `$`) are absent from it; a `'…'` stretch appears
+  verbatim; an unquoted literal that is a backslash with a character other than a newline
+  after it gives that character alone; and the stretches, in order, form one string.
 why: >-
   A program spelled `n\pm` or `n""pm` would not be reported as npm.

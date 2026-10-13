@@ -1,4 +1,15 @@
-doc: "One word of a command, as the shell would pass it."
+doc: >-
+  One word of a command, as the shell would pass it. A written word, read left to right, is a
+  sequence of stretches: a quoted stretch, `'…'`, `"…"` or `$'…'`; a reference, `$NAME` or
+  `${NAME}`, NAME being letters, digits and underscores not starting with a digit; an
+  expansion of another kind: a special parameter (`$` and one of `?`, `$`, `!`, `#`, `*`,
+  `@`, `-` or a digit), a parameter operation (any other `${…}`), a command substitution
+  (`$(…)` or a backtick one), an arithmetic expansion (`$((…))`) or a process substitution
+  (`<(…)` or `>(…)`); and a literal, any other character, a backslash with the character
+  after it being one literal. Inside a `"…"` stand literals, references and expansions;
+  inside `'…'` and `$'…'` only literals. The text inside a command or process substitution
+  is a text of its own, read anew: a stretch in it is quoted only by a `"…"` written in it.
+  A stretch is unquoted when it stands in no quoted stretch of its own text.
 fields:
   - name: text
     type: string

@@ -12,7 +12,9 @@ doc: >-
   or is a single-dash cluster that is no option's value and holds its letter (a one-letter
   one). The chain of an Invocation is the Wrapper whose wrapped program it is, that Wrapper's
   own, and so on, command and builtin included; an Invocation that is no wrapped program has
-  an empty chain.
+  an empty chain. An option word of a Wrapper is one of its own words after its program word
+  and before the word of the program it runs whose words.Word.text starts with `-`, or that
+  has no words.Word.value.
 fields:
   - name: name
     type: string
