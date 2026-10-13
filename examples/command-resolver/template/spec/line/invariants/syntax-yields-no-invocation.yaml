@@ -1,6 +1,5 @@
 predicate: >-
-  A command with no program word (as the {@ent:words:Word} doc defines it), a `[[ … ]]` test, a `(( … ))` expression and the
-  {@fld:line:Grammar.reservedWords} of the {@ent:line:Grammar}, written unquoted, yield no
+  A command with no program word (as the {@ent:words:Word} doc defines it), a `[[ … ]]` test, a `(( … ))` expression and a program word whose {@fld:words:Word.text} is one of the {@fld:line:Grammar.reservedWords} of the {@ent:line:Grammar} yield no
   {@ent:line:Invocation} of their own.
 why: >-
   Shell syntax would be reported as a program.

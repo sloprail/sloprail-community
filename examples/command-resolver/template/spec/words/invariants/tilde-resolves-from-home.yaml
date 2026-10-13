@@ -1,8 +1,7 @@
 predicate: >-
   A {@ent:words:WordPart} that is a tilde prefix whose {@fld:words:WordPart.text} is `~`
   contributes the {@fld:variables:Variable.value} of the {@ent:variables:Variable} whose
-  {@fld:variables:Variable.name} is HOME there, when it has one that is not empty, to the
-  {@fld:words:Word.value} of its {@ent:words:Word}; a `~` that starts no tilde prefix is
+  {@fld:variables:Variable.name} is HOME there, when it has one that is not empty, to the {@fld:words:Word.value} of its {@ent:words:Word}, when that {@ent:words:Word} has one; a `~` that starts no tilde prefix is
   literal text.
 why: >-
   A literal `~` would name a different file from the one the shell passes.

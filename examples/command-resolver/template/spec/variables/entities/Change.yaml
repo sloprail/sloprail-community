@@ -1,5 +1,5 @@
 doc: >-
-  One place where the line changes Variables: a form its kind lists, written outside every body
+  One place where the line changes Variables. A test below of what a word is or starts with reads its words.Word.text with its quote characters removed; an option word of a command is a word after its program word that so read starts with `-` or `+`. A Change is a form its kind lists, written outside every body
   of a line.Function (a call stands for what its bodies change); a form that is an argument of a
   program is one of a line.Invocation the shell runs. One word may be several Changes. A Change
   stands at the end of the word that is its form, or of the command for a form that is a

@@ -1,7 +1,7 @@
 predicate: >-
-  A {@ent:line:Line} whose {@fld:line:Line.text}, of depth at most two (as the
-  {@ent:line:Grammar} defines depth), is outside the {@ent:line:Grammar} but would be in it
-  with one closing quote, `)`, `}`, fi, done or esac appended, has a
+  A {@ent:line:Line} whose {@fld:line:Line.text} is not written in the {@ent:line:Grammar},
+  but followed by a newline and one `'`, `"`, backtick, `)`, `}`, fi, done or esac would be a
+  text written in it of depth at most two (as the {@ent:line:Grammar} defines depth), has a
   {@fld:line:Resolution.parseError} and no {@fld:line:Resolution.invocations} entry.
 why: >-
   An unreadable line would look like a line that runs nothing.

@@ -5,8 +5,7 @@ predicate: >-
   assignment a {@ent:config:Wrapper} of its chain (as the {@ent:config:Wrapper} doc defines
   it) takes (as its {@fld:config:Wrapper.takesAssignments} allows) over one a
   {@ent:config:Wrapper} farther out in that chain takes, any of those over a prefix word of its command (as the {@ent:words:Word} doc
-  defines it), either kind over a {@ent:variables:Change}; and of two
-  {@ent:variables:Change}s the latest (as the {@ent:variables:Change} doc defines it), of two such words of one command, or of two assignments one
+  defines it), either kind over a {@ent:variables:Change}; and of two such words of one command, or of two assignments one
   {@ent:config:Wrapper} takes, the later written.
 why: >-
   The overridden value would be reported.

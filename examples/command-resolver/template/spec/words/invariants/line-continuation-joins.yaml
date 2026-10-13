@@ -1,7 +1,7 @@
 predicate: >-
   In a {@fld:line:Line.text} written in the {@ent:line:Grammar}, a backslash that no
   backslash before it escapes, followed by a newline, between words or in an unquoted or
-  double-quoted stretch of a {@fld:words:Word.text}, outside a comment, contributes nothing
+  double-quoted stretch of a {@fld:words:Word.text}, outside a comment and every here-document body, contributes nothing
   to {@fld:words:Word.value} and ends no {@ent:words:Word}.
 why: >-
   A command split over two lines would be reported as two, or with a stray backslash.

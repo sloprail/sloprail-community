@@ -1,7 +1,6 @@
 predicate: >-
   For a {@ent:config:Wrapper} whose {@fld:config:Wrapper.takesAssignments} is true, each
-  bare {@ent:words:Word} (as the {@ent:config:Wrapper} doc defines it) past the ones
-  wrappers/leading-operands-precede-the-program sets aside whose {@fld:words:Word.text} is
+  bare {@ent:words:Word} (as the {@ent:config:Wrapper} doc defines it) past the ones wrappers/leading-operands-precede-the-program sets aside that is the first its written word yields and whose {@fld:words:Word.text} is
   `NAME=value`, NAME a name of POSIX.1-2017 section 3.235 written with no quote or
   backslash, up to the first that is not, is an assignment for the wrapped program, and that
   first one is the wrapped program {@ent:words:Word}.

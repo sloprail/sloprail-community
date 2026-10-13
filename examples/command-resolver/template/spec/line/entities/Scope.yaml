@@ -3,8 +3,7 @@ doc: >-
   is line or child-shell. A move of a Scope is a simple command written in it, not in a Scope
   inside it, that has a program word whose words.Word.value is absent, or is cd, pushd, popd,
   command, builtin, exec, `.` or source, the name of a Function, or the name of an
-  entry of config.Config.commandStringPrograms whose currentShell is true. A text (a compound command, a list, a
-  Function's body) holds a move of a Scope when that move is written in it.
+  entry of config.Config.commandStringPrograms whose currentShell is true. A Scope of kind child-shell is started by the command-strings.CommandString.invocation of the CommandString resolved in it. A text (a simple command, a compound command, a list, a Function's body) holds a move of a Scope when that move is written in it.
 fields:
   - name: kind
     type: string
@@ -12,5 +11,5 @@ fields:
     enum: ["line", "subshell", "pipeline-stage", "background-job", "command-substitution", "process-substitution", "child-shell"]
   - name: cwd
     type: string?
-    doc: "The directory in force at a point of the scope; absent when the resolver does not know it. The cwd at a point is that of the innermost Scope the point stands in; the point right after a construct stands in the innermost Scope the construct stands in. Lexically cleaning a path removes its `.` components, its empty ones (a repeated or trailing `/`) and each `..` with the component before it, a `..` at the root staying there."
+    doc: "The directory in force at a point of the scope; absent when the resolver does not know it. The cwd at a point is that of the innermost Scope the point stands in; each command and construct (a list, a pipeline, a job, a compound command, a Function definition) has a point right after it of its own, in the innermost Scope it stands in: never the point right after a command or construct inside it. The point right before a command or construct is the point right after the one written before it in the same list or body, or, for the first, the point right before that list or body (the Scope's start for its first). Lexically cleaning a path removes its `.` components, its empty ones (a repeated or trailing `/`) and each `..` with the component before it, a `..` at the root staying there."
     constraint_expr: 'an absolute path, lexically clean'

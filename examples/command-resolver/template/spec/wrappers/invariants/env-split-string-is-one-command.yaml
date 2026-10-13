@@ -1,10 +1,7 @@
 predicate: >-
   When the only option of the {@ent:config:Wrapper} whose {@fld:config:Wrapper.name} is env
   is a {@ent:words:Word} whose {@fld:words:Word.value} is `-S`, and the {@ent:words:Word}
-  after it has a {@fld:words:Word.value} with no `'`, `"`, backtick, backslash, `$` or `#` and
-  no blank at either end, env's words are read as the {@ent:config:Wrapper} doc says, that
-  {@ent:words:Word} replaced by the {@ent:words:Word}s its value makes at runs of blanks, none
-  of them the value of `-S`, `;`, `&&` and `|` in them ordinary; env's
-  {@fld:line:Invocation.argv} keeps it.
+  after it has a {@fld:words:Word.value} with no `'`, `"`, backtick, backslash, `$` or `#` and no space or tab at either end, env's words are read as the {@ent:config:Wrapper} doc says, that
+  {@ent:words:Word} replaced by the {@ent:words:Word}s its value makes at runs of spaces and tabs, each a written word of its own, none of them the value of `-S`, no character in them being an operator; env's {@fld:line:Invocation.argv} keeps the {@ent:words:Word} after `-S` as written.
 why: >-
   A second program that env never runs would be reported.

@@ -1,6 +1,5 @@
 predicate: >-
-  A {@ent:words:Word} whose {@fld:words:Word.text} holds an arithmetic expansion, not
-  single-quoted, whose expression holds a letter or `_` but no `$`, backtick, `0x` or `0X`
+  A {@ent:words:Word} whose {@fld:words:Word.text} holds, outside every `'…'` stretch and every command and process substitution, an arithmetic expansion whose expression holds a letter or `_` but no `$`, backtick, `0x` or `0X`
   has no {@fld:words:Word.value}, and that expansion is an entry of {@fld:words:Word.parts}
   whose {@fld:words:WordPart.cause} is arithmetic.
 why: >-

@@ -1,7 +1,6 @@
 predicate: >-
-  In a {@fld:words:Word.value}, of the stretches of its written word (as
-  the {@ent:words:Word} doc defines them), the characters that open and close a quoted
-  stretch (`'`, `"`, and `$'` with its `$`) are absent from it; a `'…'` stretch appears
+  In the {@fld:words:Word.value} of a {@ent:words:Word} whose {@fld:words:Word.parts} is empty and whose written word is made only of quoted stretches and literals (as the {@ent:words:Word} doc defines them), of its stretches, the characters that open and close a quoted
+  stretch (`'`, `"`, and `$'` with its `$`) contribute nothing to it; a `'…'` stretch appears
   verbatim; an unquoted literal that is a backslash with a character other than a newline
   after it gives that character alone; and the stretches, in order, form one string.
 why: >-

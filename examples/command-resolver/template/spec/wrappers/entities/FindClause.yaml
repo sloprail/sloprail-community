@@ -1,4 +1,4 @@
-doc: "A command `find` runs for the files it matches: the words from an introducer up to the word that closes it, its terminator. Words from an introducer that nothing closes make none."
+doc: "A command `find` runs for the files it matches: the words from an introducer up to the word that closes it, its terminator. Words from an introducer that nothing closes make none. A word is an introducer or terminator by its words.Word.value."
 fields:
   - name: introducer
     type: string

@@ -2,9 +2,7 @@ predicate: >-
   In the {@fld:line:Invocation.argv} of the {@ent:line:Invocation} a
   {@ent:wrappers:FindClause} runs, a {@ent:words:Word} whose {@fld:words:Word.text} is `{}`,
   `'{}'` or `"{}"` has no {@fld:words:Word.value}; in that of the {@ent:line:Invocation} the
-  {@ent:config:Wrapper} whose {@fld:config:Wrapper.name} is xargs runs, when its only `-I`
-  option is a word of its own followed by a {@ent:words:Word} whose {@fld:words:Word.value}
-  is made only of letters, digits, `_`, `{` and `}`, a {@ent:words:Word} whose
+  {@ent:config:Wrapper} whose {@fld:config:Wrapper.name} is xargs runs, when exactly one of its option words (as the {@ent:config:Wrapper} doc defines them) has `-I` as its {@fld:words:Word.value} and is directly followed by a {@ent:words:Word} whose {@fld:words:Word.value} is made only of ASCII letters, digits, `_`, `{` and `}`, a {@ent:words:Word} whose
   {@fld:words:Word.text} is that value has none. Such a {@ent:words:Word} has one entry of
   {@fld:words:Word.parts}, whose {@fld:words:WordPart.text} is its {@fld:words:Word.text}
   and whose {@fld:words:WordPart.cause} is placeholder.

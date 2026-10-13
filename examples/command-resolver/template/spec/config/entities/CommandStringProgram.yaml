@@ -7,10 +7,9 @@ doc: >-
   a value are those in valueOptions and, for one whose form is option, `-c` and `--command`. A
   word is the value of an option when it follows, as a separate word, an option that takes a
   value, or a single-dash cluster one of whose letters x after the first has `-x` taking a
-  value, each such letter taking the next unused word in the order of the letters, unless the
-  letter is the cluster's last and characters follow it in the same word. An option's value may
+  value, each such letter taking the next unused word in the order of the letters, unless characters follow the letter in the same word. An option's value may
   also be attached: what follows `=` in a word `--name=value` whose `--name` takes a value, and
-  what follows the letter x in a single-dash word whose `-x` takes a value. The first `--` ends
+  what follows the letter x in a single-dash word whose first letter is x and whose `-x` takes a value. The first `--` ends
   the options and is neither an option nor a bare word. A word that is an option's value is no option, and any other word that is no option's value
   is a bare word.
 fields:

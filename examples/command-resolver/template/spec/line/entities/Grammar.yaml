@@ -13,8 +13,7 @@ doc: >-
   reserved word, a parameter or arithmetic expansion, a brace expression, a tilde prefix or
   the body of a here-document whose delimiter is unquoted. The depth of a text is the largest
   number of these, standing one inside another, in it: a quoted stretch (`'…'`, `"…"`,
-  `$'…'`), a `$(…)`, backtick, `<(…)`, `>(…)` or `$((…))` substitution, a `${…}` expansion
-  and a compound command; a `$NAME` reference, a tilde prefix and a brace expression count
+  `$'…'`), a `$(…)`, backtick, `<(…)`, `>(…)` or `$((…))` substitution, a `${…}` expansion other than `${NAME}`, and a compound command (if, case, for, while, until, `( … )`, `{ … }`, `[[ … ]]`, `(( … ))`); a `$NAME` or `${NAME}` reference, a tilde prefix and a brace expression count
   for none: `a "$(b)"` has depth two, `if c; then echo "$HOME"; fi` depth two.
 fields:
   - name: standard
@@ -35,7 +34,7 @@ fields:
       - "indexed arrays: name=(…), name[i]=…, ${name[i]}, ${name[@]}"
       - "appending assignments: name+=…"
       - "declarations: local, declare and typeset, with the options -a -f -F -g -i -I -l -n -p -r -t -u -x and their + forms"
-      - "parameter operations: ${name/pattern/string}, ${name//pattern/string}, ${name:offset:length}"
+      - "parameter operations: ${name/pattern/string}, ${name//pattern/string}, ${name:offset}, ${name:offset:length}"
   - name: reservedWords
     type: string[]
     doc: "The words the grammar reads as part of its syntax where a command starts."

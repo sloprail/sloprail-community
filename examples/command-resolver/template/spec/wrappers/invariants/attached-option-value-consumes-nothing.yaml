@@ -1,5 +1,4 @@
 predicate: >-
-  One of a {@ent:config:Wrapper}'s {@fld:config:Wrapper.valueOptions} written with its value
-  in the same word (as the {@ent:config:Wrapper} doc defines it) consumes no further word.
+  One of a {@ent:config:Wrapper}'s {@fld:config:Wrapper.valueOptions} written with the value in the same word (as the {@ent:config:Wrapper} doc defines it) takes no {@ent:words:Word} after it as that option's value.
 why: >-
   The program word would be swallowed as an option value.

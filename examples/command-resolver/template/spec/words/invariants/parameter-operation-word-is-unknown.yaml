@@ -1,9 +1,7 @@
 predicate: >-
-  A {@ent:words:Word} whose {@fld:words:Word.text} holds, outside `'…'`, `$'…'` and every
-  other `$` expansion, a parameter expansion of a {@ent:variables:Variable} with an operator
+  A {@ent:words:Word} whose {@fld:words:Word.text} holds no `{` but those of `${`, and holds, outside `'…'`, `$'…'` and every command, arithmetic or process substitution and other `${…}`, a `${NAME…}` expansion of a {@ent:variables:Variable} (NAME as the {@ent:words:Word} doc defines it) with an operator
   of POSIX.1-2017 section 2.6.2 (`:-`, `-`, `:=`, `=`, `:?`, `?`, `:+`, `+`, `#` for the
-  length, `%`, `%%`, `#`, `##`) or of the {@fld:line:Grammar.extensions} (`/`, `//`,
-  `:offset:length`) has no {@fld:words:Word.value}, and that expansion is an entry of
+  length, `%`, `%%`, `#`, `##`) or of the {@fld:line:Grammar.extensions} (`/`, `//`, `:offset`, `:offset:length`) has no {@fld:words:Word.value}, and that expansion is an entry of
   {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is parameter-operation.
 why: >-
   A transformed value would be reported without having been computed.

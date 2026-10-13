@@ -1,5 +1,5 @@
 predicate: >-
-  A {@ent:config:Wrapper} with no bare {@ent:words:Word} past its leading operands
+  A {@ent:config:Wrapper} that wrappers/env-split-string-is-one-command does not cover, with no bare {@ent:words:Word} past its leading operands
   (wrappers/leading-operands-precede-the-program) and assignments
   (wrappers/assignments-are-not-the-wrapped-program) yields no wrapped
   {@ent:line:Invocation}.

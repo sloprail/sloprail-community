@@ -1,5 +1,5 @@
 predicate: >-
-  A {@ent:words:Word} whose written word holds no literal `{` and holds a reference (as the
+  A {@ent:words:Word} whose written word holds no unquoted `{` and holds a reference (as the
   {@ent:words:Word} doc defines it) that is a stretch of the written word itself, unquoted or
   in a `"…"` stretch, not inside a substitution or `${…}`, to a
   {@ent:variables:Variable} with no {@fld:variables:Variable.value} has no

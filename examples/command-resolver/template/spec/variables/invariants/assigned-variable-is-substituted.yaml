@@ -1,10 +1,9 @@
 predicate: >-
   A reference (as the {@ent:words:Word} doc defines it) to a {@ent:variables:Variable} with a
   {@fld:variables:Variable.value} contributes that value to the {@fld:words:Word.value} of
-  its {@ent:words:Word}, when that {@ent:words:Word} has one, in two cases: it stands in a
-  `"…"` stretch, or in a {@fld:variables:Change.word} and in no expansion of another kind; or it is unquoted, its
-  written word holds an unquoted literal and no literal `{`, no {@ent:variables:Change}
+  its {@ent:words:Word}, when that {@ent:words:Word} has one, in two cases: it stands in no expansion of another kind, and in a `"…"` stretch or a {@fld:variables:Change.word}; or it is unquoted, its
+  written word holds an unquoted literal and no unquoted `{`, no {@ent:variables:Change}
   naming the {@ent:variables:Variable} whose {@fld:variables:Variable.name} is IFS precedes
-  the {@ent:words:Word}, and the value holds no space, tab, newline, `*`, `?` or `[`.
+  the {@ent:words:Word}, and that {@fld:variables:Variable.value} holds no space, tab, newline, `*`, `?` or `[`.
 why: >-
   `X=a; rm "$X"` would be reported without its argument.

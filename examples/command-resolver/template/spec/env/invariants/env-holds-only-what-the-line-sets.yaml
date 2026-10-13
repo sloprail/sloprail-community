@@ -3,8 +3,7 @@ predicate: >-
   whose {@ent:line:Scope}'s shell has line as its {@fld:line:Scope.kind}, and that no
   {@ent:wrappers:FindClause} runs, holds a name in its {@fld:line:Invocation.env} or
   {@fld:line:Invocation.unknownEnv} only when a prefix word of its command (as the
-  {@ent:words:Word} doc defines it), an assignment a {@ent:config:Wrapper} of its chain (as
-  the {@ent:config:Wrapper} doc defines it) takes (as its {@fld:config:Wrapper.takesAssignments} allows), or a {@ent:variables:Change}
+  {@ent:words:Word} doc defines it), an assignment a {@ent:config:Wrapper} of its chain (as the {@ent:config:Wrapper} doc defines it) takes (as wrappers/assignments-are-not-the-wrapped-program makes one), or a {@ent:variables:Change}
   that precedes its command, names it.
 why: >-
   Every program would be reported with the whole ambient environment.
