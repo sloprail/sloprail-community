@@ -1,6 +1,8 @@
 predicate: >-
   An {@ent:line:Invocation} whose program word is the first written word of its simple
-  command that is neither a `NAME=value` word nor part of a {@ent:line:Redirection} has as its {@fld:line:Invocation.argv}
+  command that is neither a word whose text starts with a NAME (letters,
+  digits and underscores, not starting with a digit) followed by `=`, `+=` or `[`, nor part of
+  a {@ent:line:Redirection} has as its {@fld:line:Invocation.argv}
   the {@ent:words:Word}s that the written words of that simple command yield, in the order
   written, from its program word on; none from a {@ent:line:Redirection} or a
   {@fld:stdin:HereDocument.body}. A written word yields one {@ent:words:Word}, but where

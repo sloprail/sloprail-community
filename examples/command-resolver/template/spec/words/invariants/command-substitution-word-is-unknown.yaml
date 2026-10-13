@@ -1,6 +1,6 @@
 predicate: >-
   A {@ent:words:Word} whose written word holds a command substitution (as the
-  {@ent:words:Word} doc defines it) that stands in no other expansion, unquoted or in a `"…"`
+  {@ent:words:Word} doc defines it) that stands in no expansion of any kind, unquoted or in a `"…"`
   stretch, has no {@fld:words:Word.value}, and that substitution is an entry of
   {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is command-substitution.
 why: >-

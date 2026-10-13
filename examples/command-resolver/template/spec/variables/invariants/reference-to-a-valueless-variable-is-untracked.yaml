@@ -1,6 +1,7 @@
 predicate: >-
   A {@ent:words:Word} whose written word holds no literal `{` and holds a reference (as the
-  {@ent:words:Word} doc defines it), unquoted or in a `"…"` stretch, to a
+  {@ent:words:Word} doc defines it) that is a stretch of the written word itself, unquoted or
+  in a `"…"` stretch, not inside a substitution or `${…}`, to a
   {@ent:variables:Variable} with no {@fld:variables:Variable.value} has no
   {@fld:words:Word.value}, and that reference is an entry of {@fld:words:Word.parts} whose
   {@fld:words:WordPart.cause} is untracked-variable.
