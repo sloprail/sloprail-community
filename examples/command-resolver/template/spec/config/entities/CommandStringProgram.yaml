@@ -1,6 +1,6 @@
 doc: >-
   A program that runs one of its arguments as a shell command line. A test below of what a
-  word starts with, holds or is equal to reads its words.Word.value; a word with none is a bare word. An Invocation of an entry
+  word starts with, holds or is equal to reads its words.Word.value; a word with none is a bare word unless it is an option's value. An Invocation of an entry
   of Config.commandStringPrograms is one whose line.Invocation.bin is the entry's name; an
   entry of another list has none. Among its arguments, an
   option is a word that starts with `-` or `+` and comes before any `--`. The options that take

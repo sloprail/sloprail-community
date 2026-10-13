@@ -11,8 +11,7 @@ doc: >-
   directoryOptions when it is equal to it, starts with it followed by `=` (a double-dash one),
   or has its letter among the letters of a single-dash cluster (a one-letter one). The chain of an Invocation is the Invocation of the Wrapper whose wrapped program it is, that one's, and so on, command and builtin included; an Invocation that is no wrapped program has
   an empty chain. An option word of a Wrapper is a word of its own, after its program word
-  and before the word of the program it runs, whose words.Word.value starts with `-` or is
-  absent.
+  and before the word of the program it runs, whose words.Word.value starts with `-` or is absent (a word with none being a bare word too).
 fields:
   - name: name
     type: string
