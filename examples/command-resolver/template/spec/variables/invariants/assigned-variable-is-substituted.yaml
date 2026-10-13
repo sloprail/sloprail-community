@@ -2,10 +2,11 @@ predicate: >-
   A {@ent:words:WordPart} `$X` or `${X}` that references a {@ent:variables:Variable} with a
   {@fld:variables:Variable.value} contributes that value to the {@fld:words:Word.value} of
   its {@ent:words:Word}, when that {@ent:words:Word} has one, in two cases: it stands inside
-  double quotes (written inside the innermost command, backtick or process substitution that
-  holds it, if one does) or in a {@fld:variables:Change.word} and inside no substitution
+  double quotes (written inside the innermost command substitution `$(…)`, backtick substitution
+  or process substitution that holds it, if one does) or in a {@fld:variables:Change.word} and inside no substitution
   written in it; or it stands unquoted in a
-  {@ent:words:Word} whose {@fld:words:Word.text} holds a character outside every `$` expansion and backtick substitution and
+  {@ent:words:Word} whose {@fld:words:Word.text} holds a character outside every `$NAME`, `${…}`, `$(…)`, `$((…))`, `$'…'`
+  and backtick substitution and
   holds no `{` other than one right after a `$`,
   no {@ent:variables:Change} naming the {@ent:variables:Variable} whose
   {@fld:variables:Variable.name} is IFS precedes the {@ent:words:Word}, and the value holds no space, tab, newline, `*`,

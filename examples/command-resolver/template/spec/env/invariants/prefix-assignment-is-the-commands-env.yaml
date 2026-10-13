@@ -4,8 +4,8 @@ predicate: >-
   starting with a digit, puts NAME in
   the {@fld:line:Invocation.env} or the {@fld:line:Invocation.unknownEnv}, as
   env/unknown-value-is-listed-apart says, of that command's {@ent:line:Invocation} and of each
-  {@ent:line:Invocation} that {@ent:line:Invocation} runs as a {@ent:config:Wrapper}, directly
-  or not (command and builtin included), unless a closer setting decides
+  {@ent:line:Invocation} whose chain (as the {@ent:config:Wrapper} doc defines it) holds that
+  command's {@ent:line:Invocation}, unless a closer setting decides
   (env/closest-setting-wins). This holds only where none of those {@ent:line:Invocation}s is
   of a {@ent:config:Wrapper} whose {@fld:config:Wrapper.name} is env and that has,
   among its own words after its program word and before the word of the program it runs, one

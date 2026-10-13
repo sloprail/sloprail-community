@@ -3,7 +3,8 @@ predicate: >-
   {@fld:words:Word.text} that open and close a quoted stretch (`'` and `'`, `"` and `"`, `$'`
   and `'`, the `$` included) are absent from it, a
   single-quoted stretch other than a `$'…'` one appears verbatim, a backslash outside every quoted stretch
-  before any character but a newline is absent and the character stays, and adjacent quoted
+  and not itself escaped, before any character but a newline, is absent and the character
+  after it stays (read left to right, so `\\` yields one backslash), and adjacent quoted
   and unquoted stretches form one string.
 why: >-
   A program spelled `n\pm` or `n""pm` would not be reported as npm.

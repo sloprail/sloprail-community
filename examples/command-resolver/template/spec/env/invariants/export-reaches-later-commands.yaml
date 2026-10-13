@@ -1,6 +1,7 @@
 predicate: >-
   An {@ent:line:Invocation} whose command stands outside every {@fld:line:Function.body},
-  not run, directly or not, by a {@ent:config:Wrapper} whose {@fld:config:Wrapper.name} is env and that has,
+  whose chain (as the {@ent:config:Wrapper} doc defines it) holds no {@ent:config:Wrapper}
+  whose {@fld:config:Wrapper.name} is env and that has,
   among its own words after its program word and before the word of the program it runs, one
   whose {@fld:words:Word.text} starts with `-` or that has no {@fld:words:Word.value}, at whose command, of the {@ent:variables:Change}s of a {@ent:variables:Variable}
   that precede it and whose {@fld:variables:Change.kind} is export, unexport, unset, call,

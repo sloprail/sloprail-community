@@ -10,7 +10,9 @@ doc: >-
   a word equal to it. A word before the wrapped program's word names one of its
   directoryOptions when it is equal to it, starts with it followed by `=` (a double-dash one),
   or is a single-dash cluster that is no option's value and holds its letter (a one-letter
-  one).
+  one). The chain of an Invocation is the Wrapper whose wrapped program it is, that Wrapper's
+  own, and so on, command and builtin included; an Invocation that is no wrapped program has
+  an empty chain.
 fields:
   - name: name
     type: string

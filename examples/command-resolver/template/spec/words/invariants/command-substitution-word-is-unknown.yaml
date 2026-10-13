@@ -1,6 +1,6 @@
 predicate: >-
-  A {@ent:words:Word} whose {@fld:words:Word.text} contains, outside `'…'`, `$'…'` and every
-  other `$` expansion, a command substitution, `$(…)` or `` `…` ``, has no {@fld:words:Word.value}, and the
+  A {@ent:words:Word} whose {@fld:words:Word.text} contains, outside every `'…'`, `$'…'`, `${…}` and
+  `$((…))`, a command substitution, `$(…)` or `` `…` ``, has no {@fld:words:Word.value}, and the
   substitution is an entry of {@fld:words:Word.parts} whose {@fld:words:WordPart.cause} is
   command-substitution.
 why: >-
