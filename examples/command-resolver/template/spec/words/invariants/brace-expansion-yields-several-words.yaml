@@ -2,7 +2,7 @@ predicate: >-
   A written word of a simple command, none of its prefix words (as the {@ent:words:Word} doc defines them) and outside every {@ent:line:Redirection}, made only of ASCII letters, digits, `_`, `-`, `.`, `/`, `,` and one `{`
   and one `}` that form a brace expression in one of the forms the brace expansion entry of
   {@fld:line:Grammar.extensions} shows, a range form `{m..n}` or `{m..n..s}` only
-  with m and n written with no sign or leading zero, making at most 1024 words, makes one written word
+  with m and n written with no sign and no 0 before another digit, making at most 1024 words, makes one written word
   per alternative, left to right: the whole written word with the brace expression replaced
   by that alternative, the text before and after it kept (`cp config.yaml{,.bak}` has the
   written words config.yaml and config.yaml.bak), each yielding {@ent:words:Word}s as a written word does;

@@ -4,7 +4,6 @@ predicate: >-
   {@fld:config:CommandStringProgram.name} of no entry of
   {@fld:config:Config.commandStringPrograms}, and not find, reads none of the
   {@ent:words:Word}s of its {@fld:line:Invocation.argv} after the program word as another
-  program: no {@ent:line:Invocation} comes from them but those of the command and process
-  substitutions they hold.
+  program: no {@ent:line:Invocation} comes from them but those of the command and process substitutions in their {@fld:words:Word.text}, at any depth.
 why: >-
   An ordinary argument would be reported as a program.

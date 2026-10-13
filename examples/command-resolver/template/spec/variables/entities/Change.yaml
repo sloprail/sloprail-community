@@ -20,7 +20,7 @@ fields:
       - "unset: an operand of unset given no option or -v"
       - "export: NAME or NAME=word as an argument of export given no option"
       - "unexport: an operand of export given -n"
-      - "read: an operand of read (whose -a, -d, -i, -n, -N, -p, -t and -u take a value), its -a value, or REPLY when it has neither; the second operand of getopts, and OPTARG and OPTIND; the -v value of printf; the -p value of wait; the operand of mapfile or readarray (whose -d, -n, -O, -s, -u, -C and -c take a value), or MAPFILE when it has none"
+      - "read: an operand of read (whose -a, -d, -i, -n, -N, -p, -t and -u take a value, the next word or, attached, the rest of their word, also as the last letter of a cluster such as -rp), its -a value, or REPLY when it has neither; the second operand of getopts, and OPTARG and OPTIND; the -v value of printf; the -p value of wait; the operand of mapfile or readarray (whose -d, -n, -O, -s, -u, -C and -c take a value), or MAPFILE when it has none"
       - "for: the NAME of a for loop"
       - "arithmetic: an assignment operator of POSIX.1-2017 section 2.6.4 whose left operand is NAME, in an arithmetic expression: the text of a $((…)) or ((…)), an argument of let, the index of an indexed array, the offset or length of ${name:offset:length}, or an operand of -eq, -ne, -lt, -le, -gt or -ge in [[ … ]]"
       - "default: a ${NAME:=word} or ${NAME=word} expansion"

@@ -7,7 +7,7 @@ predicate: >-
   {@fld:variables:Variable.name} is NAME: {@fld:line:Invocation.stdin} is that body, less,
   when its {@fld:stdin:HereDocument.stripsTabs} is true, the tabs that begin each of its
   lines, with each reference replaced by its {@ent:variables:Variable}'s
-  {@fld:variables:Variable.value} there when every one of them has one, and absent when one
+  {@fld:variables:Variable.value} right before the command when every one of them has one, and absent when one
   has none.
 why: >-
   Half-expanded text would be reported as what the program reads.

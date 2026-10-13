@@ -1,6 +1,6 @@
 doc: >-
   A stretch of a Word's text the shell replaces or matches when it runs the command: an
-  expansion, an unquoted `*` or `?`, an unquoted `[` with a later unquoted `]` in the word (a bracket expression), a tilde prefix, or a run-time
+  expansion, a `*` or `?` neither quoted nor escaped, a `[` neither quoted nor escaped with a later such `]` in the word (a bracket expression), a tilde prefix, or a run-time
   placeholder. A tilde prefix is an unquoted `~` and the unquoted characters after it up to
   the first `/` or the end of the word, standing at the start of the word or, in a word of
   the form NAME=value, at the start of the value or after an unquoted `:` in it, where it

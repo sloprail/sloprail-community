@@ -7,10 +7,9 @@ doc: >-
   is no option's value is a bare word. The value of one of its valueOptions is the word after
   it, or, written in the same word, the characters after a one-letter single-dash option,
   written alone or after other one-letter options in one cluster (`-uroot`, `-tI{}`), or after
-  the `=` of a double-dash one (`--user=root`). The letters of a single-dash cluster that is no option's value run up to the first whose `-x` is one of its valueOptions, that one included, which takes the rest of the word or, when none is left, the word after it as its value. An option is given when one of its options is a word equal to it or, a one-letter one, a letter of such a cluster. A word before the wrapped program's word names one of its
+  the `=` of a double-dash one (`--user=root`). The letters of a single-dash cluster that is no option's value run up to the first whose `-x` is one of its valueOptions, that one included, which takes the rest of the word or, when none is left, the word after it as its value. An option is given when one of its option words is equal to it or, a one-letter one, a letter of such a cluster. A word before the wrapped program's word names one of its
   directoryOptions when it is equal to it, starts with it followed by `=` (a double-dash one),
-  or has its letter among the letters of a single-dash cluster (a one-letter one). The chain of an Invocation is the Wrapper whose wrapped program it is, that Wrapper's
-  own, and so on, command and builtin included; an Invocation that is no wrapped program has
+  or has its letter among the letters of a single-dash cluster (a one-letter one). The chain of an Invocation is the Invocation of the Wrapper whose wrapped program it is, that one's, and so on, command and builtin included; an Invocation that is no wrapped program has
   an empty chain. An option word of a Wrapper is a word of its own, after its program word
   and before the word of the program it runs, whose words.Word.value starts with `-` or is
   absent.
