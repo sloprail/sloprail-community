@@ -2,8 +2,8 @@ predicate: >-
   An {@ent:line:Invocation} whose command stands outside every {@fld:line:Function.body},
   whose {@ent:line:Scope}'s shell has line as its {@fld:line:Scope.kind}, and that no
   {@ent:wrappers:FindClause} runs, holds a name in its {@fld:line:Invocation.env} or
-  {@fld:line:Invocation.unknownEnv} only when a `NAME=value` {@ent:words:Word} before its
-  command's program {@ent:words:Word}, an assignment a {@ent:config:Wrapper} of its chain (as
+  {@fld:line:Invocation.unknownEnv} only when a prefix word of its command (as the
+  {@ent:words:Word} doc defines it), an assignment a {@ent:config:Wrapper} of its chain (as
   the {@ent:config:Wrapper} doc defines it) takes (as its {@fld:config:Wrapper.takesAssignments} allows), or a {@ent:variables:Change}
   that precedes its command, names it.
 why: >-

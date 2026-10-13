@@ -1,7 +1,7 @@
 predicate: >-
   When the {@ent:stdin:InputRedirection} of the command of an {@ent:line:Invocation} has
-  here-string as its {@fld:stdin:InputRedirection.kind} and its
-  {@fld:stdin:InputRedirection.word} has a {@fld:words:Word.value},
+  here-string as its {@fld:stdin:InputRedirection.kind} and the
+  {@fld:line:Redirection.word} of its {@fld:stdin:InputRedirection.redirection} has a {@fld:words:Word.value},
   {@fld:line:Invocation.stdin} is that value followed by exactly one newline.
 why: >-
   The reported input would differ from what the program reads by a newline.

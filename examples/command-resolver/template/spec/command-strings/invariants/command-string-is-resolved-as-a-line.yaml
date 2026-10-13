@@ -3,6 +3,7 @@ predicate: >-
   at most 8 and whose {@fld:command-strings:CommandString.text} is written in the
   {@ent:line:Grammar}, of depth at most two (as the {@ent:line:Grammar} defines depth), puts
   in {@fld:line:Resolution.invocations} the {@ent:line:Invocation}s its text holds, read as
-  the {@fld:line:Line.text} of a {@ent:line:Line}.
+  a {@fld:line:Line.text} is, but with no {@ent:line:Scope} of
+  {@fld:line:Scope.kind} line of its own.
 why: >-
   `bash -c 'npm publish'` would hide npm.

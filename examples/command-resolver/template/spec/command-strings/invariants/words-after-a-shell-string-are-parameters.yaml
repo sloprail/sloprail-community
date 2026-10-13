@@ -1,8 +1,7 @@
 predicate: >-
   The {@ent:words:Word}s of the {@fld:line:Invocation.argv} of an {@ent:line:Invocation}
-  whose {@fld:line:Invocation.bin} is the {@fld:config:CommandStringProgram.name} of a
-  {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form} is shell,
-  after its program word, other than its {@ent:command-strings:CommandString}, are never
+  of a {@ent:config:CommandStringProgram} whose {@fld:config:CommandStringProgram.form} is shell,
+  after its program word, other than the one holding the {@fld:command-strings:CommandString.text}, are never
   read as a program: no {@ent:line:Invocation} comes from them but those of the command and
   process substitutions they hold.
 why: >-

@@ -1,5 +1,8 @@
 doc: >-
-  A program that runs one of its arguments as a shell command line. Among its arguments, an
+  A program that runs one of its arguments as a shell command line. A test below of what a
+  word starts with, holds or is equal to reads its words.Word.value. An Invocation of an entry
+  of Config.commandStringPrograms is one whose line.Invocation.bin is the entry's name; an
+  entry of another list has none. Among its arguments, an
   option is a word that starts with `-` or `+` and comes before any `--`. The options that take
   a value are those in valueOptions and, for one whose form is option, `-c` and `--command`. A
   word is the value of an option when it follows, as a separate word, an option that takes a
@@ -8,7 +11,8 @@ doc: >-
   letter is the cluster's last and characters follow it in the same word. An option's value may
   also be attached: what follows `=` in a word `--name=value` whose `--name` takes a value, and
   what follows the letter x in a single-dash word whose `-x` takes a value. The first `--` ends
-  the options and is neither an option nor a bare word. Any other word is a bare word.
+  the options and is neither an option nor a bare word. A word that is an option's value is no option, and any other word that is no option's value
+  is a bare word.
 fields:
   - name: name
     type: string

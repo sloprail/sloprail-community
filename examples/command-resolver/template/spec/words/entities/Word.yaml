@@ -9,7 +9,10 @@ doc: >-
   after it being one literal. Inside a `"…"` stand literals, references and expansions;
   inside `'…'` and `$'…'` only literals. The text inside a command or process substitution
   is a text of its own, read anew: a stretch in it is quoted only by a `"…"` written in it.
-  A stretch is unquoted when it stands in no quoted stretch of its own text.
+  A stretch is unquoted when it stands in no quoted stretch of its own text. The program word
+  of a simple command is the first Word its written words yield from the first one, outside
+  every redirection, whose text does not start with a NAME followed by `=`, `+=` or `[`; the
+  written words before that one, outside every redirection, are its prefix words.
 fields:
   - name: text
     type: string

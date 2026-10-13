@@ -1,5 +1,6 @@
 doc: >-
-  A program whose arguments are the argument vector of another program it runs. Its words, after
+  A program whose arguments are the argument vector of another program it runs. A test below of
+  what a word starts with, holds or is equal to reads its words.Word.value. Its words, after
   its program word, are read left to right: while no bare word and no `--` has been read, a word
   that starts with `-` and is no option's value is an option, and the first `--` that is no
   option's value ends the options and is neither an option nor a bare word; any other word that
@@ -12,9 +13,9 @@ doc: >-
   or is a single-dash cluster that is no option's value and holds its letter (a one-letter
   one). The chain of an Invocation is the Wrapper whose wrapped program it is, that Wrapper's
   own, and so on, command and builtin included; an Invocation that is no wrapped program has
-  an empty chain. An option word of a Wrapper is one of its own words after its program word
-  and before the word of the program it runs whose words.Word.text starts with `-`, or that
-  has no words.Word.value.
+  an empty chain. An option word of a Wrapper is a word of its own, after its program word
+  and before the word of the program it runs, whose words.Word.value starts with `-` or is
+  absent.
 fields:
   - name: name
     type: string

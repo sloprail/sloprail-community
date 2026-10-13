@@ -1,7 +1,7 @@
 predicate: >-
   When the {@ent:stdin:InputRedirection} of the command of an {@ent:line:Invocation} has
-  here-string as its {@fld:stdin:InputRedirection.kind} and its
-  {@fld:stdin:InputRedirection.word} has no {@fld:words:Word.value},
+  here-string as its {@fld:stdin:InputRedirection.kind} and the
+  {@fld:line:Redirection.word} of its {@fld:stdin:InputRedirection.redirection} has no {@fld:words:Word.value},
   {@fld:line:Invocation.stdin} is absent.
 why: >-
   A guessed input would be reported.

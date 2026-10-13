@@ -1,7 +1,7 @@
 # The resolver's built-in tables (spec/config/entities/Config.yaml). A user's own
 # configuration file has the same shape; an entry there replaces the entry of the same name.
 wrappers:
-  - {name: sudo, valueOptions: [-u, --user, -g, --group, -h, --host, -p, --prompt, -C, --close-from, -D, --chdir, -R, --chroot, -r, --role, -t, --type, -T, --command-timeout, -U, --other-user], leadingOperands: 0, takesAssignments: true, describingOptions: [-l, --list, -e, --edit, -v, --validate, -k, --reset-timestamp], directoryOptions: [-D, --chdir], requiredOptions: []}
+  - {name: sudo, valueOptions: [-u, --user, -g, --group, -h, --host, -p, --prompt, -C, --close-from, -D, --chdir, -R, --chroot, -r, --role, -t, --type, -T, --command-timeout, -U, --other-user], leadingOperands: 0, takesAssignments: true, describingOptions: [-l, --list, -e, --edit, -v, --validate], directoryOptions: [-D, --chdir], requiredOptions: []}
   - {name: doas, valueOptions: [-u, -C, -a], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}
   - {name: env, valueOptions: [-u, --unset, -C, --chdir, -S, --split-string, -a, --argv0], leadingOperands: 0, takesAssignments: true, describingOptions: [], directoryOptions: [-C, --chdir], requiredOptions: []}
   - {name: xargs, valueOptions: [-a, --arg-file, -d, --delimiter, -E, -I, -L, --max-lines, -n, --max-args, -P, --max-procs, -s, --max-chars], leadingOperands: 0, takesAssignments: false, describingOptions: [], directoryOptions: [], requiredOptions: []}

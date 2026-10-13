@@ -1,6 +1,9 @@
 doc: >-
   One program the line would run. It is run by the shell when no config.Wrapper runs it, or when
   the Wrapper that runs it is named command or builtin; otherwise it is run by that Wrapper.
+  Its command is the simple command among whose written words its first argv entry stands; the
+  Invocation of a simple command is the one whose first argv entry is that command's program
+  word (as words.Word defines it).
 fields:
   - name: bin
     type: string?

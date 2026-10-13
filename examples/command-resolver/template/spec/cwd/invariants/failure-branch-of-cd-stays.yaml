@@ -1,8 +1,7 @@
 predicate: >-
   In `A || B`, an and-or list of two simple commands, A holding no command substitution and no process substitution (as the
   {@ent:words:Word} doc defines them) and having a
-  program {@ent:words:Word} whose {@fld:words:Word.value} is cd, no {@ent:line:Function}
-  being named cd, and B holding no move of the {@ent:line:Scope} it stands in (as {@ent:line:Scope} defines one), B starts with
+  program {@ent:words:Word} whose {@fld:words:Word.value} is cd, A being no call of a {@ent:line:Function}, and B holding no move of the {@ent:line:Scope} it stands in (as {@ent:line:Scope} defines one), B starts with
   the {@fld:line:Scope.cwd} right before A, and right after the list the
   {@fld:line:Scope.cwd} is the one right after A; this invariant decides those two points in
   place of every other cwd invariant.

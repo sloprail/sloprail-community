@@ -2,8 +2,8 @@ doc: >-
   A shell process within the line. Its shell is the nearest Scope, itself included, whose kind
   is line or child-shell. A move of a Scope is a simple command written in it, not in a Scope
   inside it, that has a program word whose words.Word.value is absent, or is cd, pushd, popd,
-  command, builtin, exec, `.` or source, the name of a Function, or the name of a
-  config.CommandStringProgram whose currentShell is true. A text (a compound command, a list, a
+  command, builtin, exec, `.` or source, the name of a Function, or the name of an
+  entry of config.Config.commandStringPrograms whose currentShell is true. A text (a compound command, a list, a
   Function's body) holds a move of a Scope when that move is written in it.
 fields:
   - name: kind
@@ -12,5 +12,5 @@ fields:
     enum: ["line", "subshell", "pipeline-stage", "background-job", "command-substitution", "process-substitution", "child-shell"]
   - name: cwd
     type: string?
-    doc: "The directory in force at a point of the scope; absent when the resolver does not know it. The cwd at a point is that of the innermost Scope the point stands in. Lexically cleaning a path removes its `.` components, its empty ones (a repeated or trailing `/`) and each `..` with the component before it, a `..` at the root staying there."
+    doc: "The directory in force at a point of the scope; absent when the resolver does not know it. The cwd at a point is that of the innermost Scope the point stands in; the point right after a construct stands in the innermost Scope the construct stands in. Lexically cleaning a path removes its `.` components, its empty ones (a repeated or trailing `/`) and each `..` with the component before it, a `..` at the root staying there."
     constraint_expr: 'an absolute path, lexically clean'
