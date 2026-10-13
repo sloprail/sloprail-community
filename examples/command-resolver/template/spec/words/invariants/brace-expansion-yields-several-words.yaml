@@ -2,10 +2,10 @@ predicate: >-
   A {@fld:words:Word.text} of a command from its program {@ent:words:Word} on, outside every
   {@ent:line:Redirection}, made only of letters, digits, `_`, `-`, `.`, `/`, `,` and one `{`
   and one `}` that form a brace expression in one of the forms the brace expansion entry of
-  {@fld:line:Grammar.extensions} shows, a `{m..n..s}` one only with m and n written with no
-  sign or leading zero, making at most 1024 words, makes one written word
+  {@fld:line:Grammar.extensions} shows, a range form `{m..n}` or `{m..n..s}` only
+  with m and n written with no sign or leading zero, making at most 1024 words, makes one written word
   per alternative, left to right, each yielding {@ent:words:Word}s as a written word does;
-  the alternatives of `{m..n..s}` run from m
+  the alternatives of a range form run from m
   to n by steps of the absolute value of s, 1 when s is absent or 0, downward when m is
   above n, letters by their ASCII codes.
 why: >-

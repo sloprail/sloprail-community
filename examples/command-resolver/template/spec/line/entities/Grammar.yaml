@@ -12,8 +12,10 @@ doc: >-
   naming a surrogate or a value above 10FFFF; and a backslash-newline inside an operator, a
   reserved word, a parameter or arithmetic expansion, a brace expression, a tilde prefix or
   the body of a here-document whose delimiter is unquoted. The depth of a text is the largest
-  number of quotes, substitutions, expansions and compound commands in it that stand one
-  inside another: `a "$(b)"` has depth two.
+  number of these, standing one inside another, in it: a quoted stretch (`'…'`, `"…"`,
+  `$'…'`), a `$(…)`, backtick, `<(…)`, `>(…)` or `$((…))` substitution, a `${…}` expansion
+  and a compound command; a `$NAME` reference, a tilde prefix and a brace expression count
+  for none: `a "$(b)"` has depth two, `if c; then echo "$HOME"; fi` depth two.
 fields:
   - name: standard
     type: string

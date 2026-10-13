@@ -1,10 +1,8 @@
 predicate: >-
-  An {@ent:line:Invocation} of a program that is the wrapped program of no
-  {@ent:config:Wrapper}, whatever its name (command and builtin included), and that no
-  {@ent:wrappers:FindClause} runs, has as its
-  {@fld:line:Invocation.argv} the {@ent:words:Word}s that the written words of its simple
-  command yield, in the order written, from its program word on; none from a `NAME=value`
-  {@ent:words:Word} before the program word, a {@ent:line:Redirection} or a
+  An {@ent:line:Invocation} whose program word is the first written word of its simple
+  command after the `NAME=value` words that open it has as its {@fld:line:Invocation.argv}
+  the {@ent:words:Word}s that the written words of that simple command yield, in the order
+  written, from its program word on; none from a {@ent:line:Redirection} or a
   {@fld:stdin:HereDocument.body}. A written word yields one {@ent:words:Word}, but where
   words/brace-expansion-yields-several-words, variables/unquoted-substitution-splits or
   words/comment-yields-no-word says otherwise.
